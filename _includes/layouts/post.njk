@@ -1,0 +1,27 @@
+---
+layout: layouts/base
+---
+
+<article class="h-entry">
+	<header>
+		{% if image %}
+			<img class="u-featured" src="{{ image }}"/>
+		{% endif %}
+		<h1 id="title" class="p-name">
+			{{ title }}
+		</h1>
+	</header>
+
+	<div class="post-meta">
+		<p>
+			<time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/>
+			<a href="{{ page.url | url }}">Permalink</a>
+		</p>
+	</div>
+
+	<div class="post-body">
+		<div class="e-content">
+			{{ content | safe }}
+		</div>
+	</div>
+</article>

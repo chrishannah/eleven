@@ -1,0 +1,21 @@
+{
+  "name": "eleven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "moment": "^2.30.1"
+  }
+}

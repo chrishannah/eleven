@@ -1,0 +1,50 @@
+---
+layout: layouts/archive
+title: Photography
+pagination:
+  data: collections.photography
+  size: 10
+  reverse: true
+  alias: posts
+permalink: "photography/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
+---
+
+{%- for post in posts %}
+	<article class="h-entry">
+		<header>
+			{% if post.data.image %}
+				<img class="u-featured" src="{{ post.data.image }}"/>
+			{% endif %}
+			<h1 id="title" class="p-name">
+				{{ post.data.title }}
+			</h1>
+		</header>
+
+		<div class="post-meta">
+			<p>
+				<time class="dt-published" datetime="{{ post.date }}">{{ post.data.date | displayDate }}</time><br/>
+				<a href="{{ post.url | url }}">Permalink</a>
+			</p>
+		</div>
+
+		<div class="post-body">
+			<div class="e-content">
+				{{ post.content | safe }}
+			</div>
+		</div>
+	</article>
+{%- endfor %}
+
+<nav>
+	{% if pagination.href.previous %}
+		<span class="page-item" style="float: left;">
+			<a class="page-link" href="{{ pagination.href.previous }}">&larr; Newer</a>
+		</span>
+	{% endif %}
+
+	{% if pagination.href.next %}
+		<span class="page-item" style="float: right;">
+			<a class="page-link" href="{{ pagination.href.next }}">Older &rarr;</a>
+		</span>
+	{% endif %}
+</nav>

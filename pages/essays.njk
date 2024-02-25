@@ -1,0 +1,32 @@
+---
+layout: layouts/archive
+permalink: essays/
+title: Essays
+---
+{% set currentYear = 1000 %}
+
+{%- for post in collections.essay | reverse %}
+	{% set postYear = post
+		.data
+		.date
+		.getFullYear() %}
+
+	{% if postYear != currentYear %}
+		<h3>{{ postYear }}</h3>
+	{% endif %}
+
+	{% if postMonth != currentMonth %}
+		{% if firstYearPrinted %}
+	</ul>
+{% endif %}
+
+{% endif %}
+
+<li>
+<a href="{{ post.url }}">{{ post.data.title }}</a>
+</li>
+
+{% set currentYear = postYear %}
+{% set firstYearPrinted = true %}
+
+{% endfor %}
