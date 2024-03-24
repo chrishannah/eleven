@@ -7,6 +7,7 @@ layout: layouts/micro
 permalink: my-relationship-with-the-ipad/
 tags:
 - post
+- micro
 title: My Relationship With the iPad
 ---
 

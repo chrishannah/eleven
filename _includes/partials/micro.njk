@@ -1,0 +1,16 @@
+<article class="h-entry">
+	<header>
+		<div class="post-meta">
+			<p>
+				<a href="{{ post.url | url }}">
+					<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
+			</p>
+		</div>
+	</header>
+
+	<div class="post-body">
+		<div class="e-content">
+			{{ post.content | safe }}
+		</div>
+	</div>
+</article>

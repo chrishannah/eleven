@@ -12,31 +12,13 @@ pagination:
 permalink: "blog/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
 ---
 
-{%- for post in posts %}
-  <article class="h-entry">
-    <header>
-      {% if post.data.image %}
-        <img class="u-featured" src="{{ post.data.image }}"/>
-      {% endif %}
-      <h1 id="title" class="p-name">
-        {{ post.data.title }}
-      </h1>
-    </header>
-
-    <div class="post-meta">
-      <p>
-        <time class="dt-published" datetime="{{ post.date }}">{{ post.data.date | displayDate }}</time><br/>
-        <a href="{{ post.url | url }}">Permalink</a>
-      </p>
-    </div>
-
-    <div class="post-body">
-      <div class="e-content">
-        {{ post.content | safe }}
-      </div>
-    </div>
-  </article>
-{%- endfor %}
+{% for post in posts %}
+  {% if "micro" in post.data.tags%}
+    {% include "partials/micro.njk" %}
+  {% else %}
+    {% include "partials/post.njk" %}
+  {% endif %}
+{% endfor %}
 
 <nav>
   {% if pagination.href.previous %}

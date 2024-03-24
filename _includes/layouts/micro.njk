@@ -1,0 +1,20 @@
+---
+layout: layouts/base
+---
+
+<article class="h-entry">
+	<header>
+		<div class="post-meta">
+			<p>
+				<a href="{{ page.url | url }}">
+					<time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/></a>
+			</p>
+		</div>
+	</header>
+
+	<div class="post-body">
+		<div class="e-content">
+			{{ content | safe }}
+		</div>
+	</div>
+</article>

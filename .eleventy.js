@@ -2,6 +2,8 @@ const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 const dateFilters = require('./config/date.js')
 const numberFilters = require('./config/number.js')
+const postFilters = require('./config/post.js')
+const blogTools = require("eleventy-plugin-blog-tools");
 const inspect = require("util").inspect;
 
 module.exports = function (eleventyConfig) {
@@ -33,8 +35,13 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  /* Blog Tools */
+  module.exports = function (eleventyConfig) {
+    eleventyConfig.addPlugin(blogTools);
+  };
+
   /* Filters */
-  eleventyConfig.addFilter("debug", (content) => `<pre><code>${inspect(content)}</code></pre>`);
+  eleventyConfig.addFilter("debug", (content) => `${inspect(content)}`);
 
   Object.keys(dateFilters).forEach(filterName => {
     eleventyConfig.addFilter(filterName, dateFilters[filterName])
@@ -42,6 +49,10 @@ module.exports = function (eleventyConfig) {
 
   Object.keys(numberFilters).forEach(filterName => {
     eleventyConfig.addFilter(filterName, numberFilters[filterName])
+  })
+
+  Object.keys(postFilters).forEach(filterName => {
+    eleventyConfig.addFilter(filterName, postFilters[filterName])
   })
 
   /* Watch for changes */

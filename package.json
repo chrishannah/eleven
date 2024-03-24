@@ -14,8 +14,11 @@
     "@11ty/eleventy": "^2.0.1"
   },
   "dependencies": {
+    "eleventy-plugin-blog-tools": "^0.4.1",
+    "lodash": "^4.17.21",
     "markdown-it": "^14.0.0",
     "markdown-it-footnote": "^4.0.0",
-    "moment": "^2.30.1"
+    "moment": "^2.30.1",
+    "remove-markdown-and-html": "^0.1.0"
   }
 }
