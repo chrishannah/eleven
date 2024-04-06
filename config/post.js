@@ -1,4 +1,3 @@
-var removeMd = require('remove-markdown-and-html');
 module.exports = {
 	microExcerpt: (content) => {
 		var output = content;

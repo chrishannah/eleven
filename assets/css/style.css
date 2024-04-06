@@ -113,6 +113,15 @@ a:active {
 
 /* Home */
 
+#bio {
+    background-color: var(--quote-background);
+    padding:2em;
+}
+
+.home-blog {
+    margin-top: 4em;
+}
+
 .home-bio {
   font-size: 1.2em;
   font-weight: 300;
@@ -123,6 +132,11 @@ a:active {
   padding: 2px;
   font-weight: 500;
   border-radius: 2px;
+}
+
+.large-text {
+    font-size: 1.4em;
+    font-weight: 500;
 }
 
 #wf-link {
