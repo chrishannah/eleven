@@ -24,7 +24,7 @@ module.exports = function (eleventyConfig) {
     /* passthrough copy static folders */
     eleventyConfig.addPassthroughCopy({ "static/text-shot": "text-shot" });
     eleventyConfig.addPassthroughCopy({ "static/2020": "2020" });
-    eleventyConfig.addPassthroughCopy({ "static/cv": "2020" });
+    eleventyConfig.addPassthroughCopy({ "static/cv": "cv" });
     eleventyConfig.addPassthroughCopy({ "static/prntsc": "prntsc" });
     eleventyConfig.addPassthroughCopy({ "static/fonts": "fonts" });
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
