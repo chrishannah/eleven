@@ -44,4 +44,14 @@
 			{% include "footer.njk" %}
 		</footer>
 	</body>
+
+    <script>
+        var codeHighlightingEnabled = document.getElementsByTagName('code').length != 0;
+        if (codeHighlightingEnabled) {
+            const script = document.createElement("script");
+            script.src = 'https://chrishannah.me/js/highlight.js';
+            script.async = false;
+            document.body.appendChild(script);
+        }
+    </script>
 </html>

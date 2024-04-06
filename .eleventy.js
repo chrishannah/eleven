@@ -27,6 +27,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "static/cv": "2020" });
     eleventyConfig.addPassthroughCopy({ "static/prntsc": "prntsc" });
     eleventyConfig.addPassthroughCopy({ "static/fonts": "fonts" });
+    eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
 
     /* Collections */
     eleventyConfig.addCollection("all", function (collectionApi) {
