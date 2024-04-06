@@ -5,6 +5,7 @@ const numberFilters = require('./config/number.js')
 const postFilters = require('./config/post.js')
 const blogTools = require("eleventy-plugin-blog-tools");
 const inspect = require("util").inspect;
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function (eleventyConfig) {
 
@@ -36,10 +37,11 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    /* RSS */
+    eleventyConfig.addPlugin(pluginRss);
+
     /* Blog Tools */
-    module.exports = function (eleventyConfig) {
-        eleventyConfig.addPlugin(blogTools);
-    };
+    eleventyConfig.addPlugin(blogTools);
 
     /* Filters */
     eleventyConfig.addFilter("debug", (content) => `${inspect(content)}`);
