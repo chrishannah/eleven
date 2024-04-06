@@ -1,0 +1,156 @@
+<html>
+
+	<head>
+		<title>Random Prnt.sc</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<meta name="description" content="A fun project made that finds random images stored on Prnt.sc.">
+		<meta name="author" content="Chris Hannah @chrishannah">
+
+		<script>
+			function openInNewTab(url) {
+			  var win = window.open(url, '_blank');
+			  win.focus();
+			}
+
+			function openRandomImages() {
+				var total = document.getElementsByName("number")[0].value;
+				for (var i = 0; i < total; i++) {
+					openInNewTab(generateURL());
+				}
+			}
+
+			function generateURL() {
+				return "https://prnt.sc/" + makeId();
+			}
+
+			function makeId() {
+			   var result = '';
+			   var characters  = 'abcdefghijklmnopqrstuvwxyz0123456789';
+			   var charactersLength = characters.length;
+			   for ( var i = 0; i < 6; i++ ) {
+			      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+			   }
+			   return result;
+			}
+		</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f2aefb0e9b854174957ba043359f5742"}'></script><!-- End Cloudflare Web Analytics -->
+
+		<style>
+			html {
+				font-family:sans-serif;
+			}
+
+			body {
+				max-width: 800px;
+			}
+
+			.small {
+				font-size: 12px;
+			}
+
+			footer {
+				color: #aaa;
+			}
+
+			/* Carbon Ads */
+
+#carbonads {
+    display: block;
+    max-width: 380px;
+    max-height: 140px;
+    padding: 4px;
+    border-radius: 8px;
+    color: black;
+}
+
+#carbonads a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#carbonads a:hover {
+    color: inherit;
+}
+
+#carbonads span {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+#carbonads .carbon-wrap {
+    display: flex;
+    background-color: yellow;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.carbon-img {
+    display: block;
+    margin: 0;
+    line-height: 1;
+}
+
+.carbon-img img {
+    display: block;
+    height: 100px;
+    width: 130px;
+    margin-bottom: 4px;
+}
+
+.carbon-text {
+    font-size: 13px;
+    padding: 10px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.carbon-poweredby {
+    display: block;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-weight: 600;
+    font-size: 8px;
+    color: black !important;
+}
+		</style>
+	</head>
+
+	<body>
+		<h1>Random Prnt.sc</h1>
+		<p>A fun project made by <a href="https://chrishannah.me">Chris Hannah</a> that finds random images stored on Prnt.sc.</p>
+		<h3>Wait, what?</h3>
+		<p><a href="https://app.prntscr.com/en/download.html">Lightshot</a> is a screenshot utility that allows you to quickly customise screenshots, and upload them to the internet. These images can be found on a website called Prnt.sc, and they're publically available.</p>
+		<h3>So how can they be found?</h3>
+		Each image on Prnt.sc gets a unique identifier when uploaded, and from what I've seen, the format is a simple 6-digit alphanumerical key. For example, the key <strong>ni90qm</strong>, brings up <a href="https://prnt.sc/ni90qm">an image of a few Pokemon</a>.
+		<p></p>
+		<h3>Okay, so why?</h3>
+		<p>Well, I had heard about people finding funny images on Prnt.sc, but I'm lazy, and it's a manual process. So I made a tool to do it for me. Although due to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">cross-origin resource sharing</a> and the fact I didn't want to spend an eternity on a fun project, the random images are opened in new tabs, rather than embedded here directly. </p>
+
+		<h2>Find Random Images!</h2>
+		<p class="small">
+			Just a warning, if you open too many at once, or in quick succession, then your IP may be blocked from accessing Prnt.sc. Either be smart and only open a few images at once or use <a href="http://tunnelbear.com">TunnelBear</a>. I've found 5 to be a safe number.
+		<p id="random">
+			Open <input type="number" name="number" value="1"> random screenshot(s).
+
+			<input type="submit" value="Go!" onclick="openRandomImages()">
+		</div>
+
+		<h3>Had fun?</h3>
+		<p>Consider <a href="https://www.buymeacoffee.com/chrishannah">buying me a coffee</a>. It's one way to help me keep these websites of mine on the internet.
+		</p>
+		<p>
+                    <script async type="text/javascript"
+                src="//cdn.carbonads.com/carbon.js?serve=CKYIVK3I&placement=chrishannahme" id="_carbonads_js"></script>
+                </p>
+	</body>
+
+	<footer class="small">
+		This webpage has been intentionally built with minimal style. Don't <a href="https:/twitter.com/chrishannah">@</a> me.
+	</footer>
+</html>
+
