@@ -6,6 +6,8 @@ const postFilters = require('./config/post.js')
 const blogTools = require("eleventy-plugin-blog-tools");
 const inspect = require("util").inspect;
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginIcons = require('eleventy-plugin-icons');
+const path = require("path");
 
 module.exports = function (eleventyConfig) {
 
@@ -43,6 +45,19 @@ module.exports = function (eleventyConfig) {
 
     /* Blog Tools */
     eleventyConfig.addPlugin(blogTools);
+
+    /* Icons */
+    eleventyConfig.addPlugin(pluginIcons, { 
+        sources: [
+            {
+                name: 'simple', 
+                path: 'node_modules/simple-icons/icons', 
+            }, {
+                name: 'lucide', 
+                path: 'node_modules/lucide-static/icons', 
+            },
+        ]
+    });
 
     /* Filters */
     eleventyConfig.addFilter("debug", (content) => `${inspect(content)}`);

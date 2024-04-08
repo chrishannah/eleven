@@ -2,6 +2,7 @@
   --header-bg: #rgb(250, 231, 231);
   --header-text: #000000ee;
   --accent: #ff7f00;
+  --accent-dark: #d76c02;
   --bg: #fff6f6;
   --link: var(--accent);
   --link-visited: var(--accent);
@@ -961,4 +962,33 @@ input[type="reset"] {
 .u-photo {
   max-width: 80px;
   border-radius: 40px;
+}
+
+/* Currently Listening */
+#currently-listening a {
+    font-weight: bold;
+    animation: accent-swap 1s linear 0s infinite alternate !important;
+    text-decoration-line: underline !important;
+    text-decoration-style: wavy !important;
+    text-decoration-thickness: 1px !important;
+}
+
+#currently-listening svg {
+    animation: accent-swap 1s linear 0s infinite alternate !important;
+    vertical-align: middle;
+}
+
+.recent-played {
+    display: inline-block;
+}
+
+@keyframes accent-swap {
+    from {
+        text-decoration-color: var(--accent) !important;
+        color: var(--accent);
+    }
+    to {
+        text-decoration-color: var(--accent-dark) !important;
+        color: var(--accent-dark);
+    }
 }
