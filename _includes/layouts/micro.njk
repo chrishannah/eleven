@@ -3,18 +3,29 @@ layout: layouts/base
 ---
 
 <article class="h-entry">
-	<header>
-		<div class="post-meta">
-			<p>
-				<a href="{{ page.url | url }}">
-					<time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/></a>
-			</p>
-		</div>
-	</header>
+    <header>
+        <div class="post-meta">
+            <p>
+            <a href="{{ page.url | url }}">
+                <time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/></a>
+            </p>
+        </div>
+    </header>
 
-	<div class="post-body">
-		<div class="e-content">
-			{{ content | safe }}
-		</div>
-	</div>
+    <div class="post-body">
+        <div class="e-content">
+            {{ content | safe }}
+        </div>
+        <p>
+        <button class="tinylytics_kudos"></button>
+        </p>
+        <p>
+        <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
+        </p>
+
+        <div class="post-comments">
+            <div id="webmentions"></div>
+        </div>
+
+    </div>
 </article>
