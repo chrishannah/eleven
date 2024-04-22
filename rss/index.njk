@@ -23,6 +23,7 @@
     <description>{{ metadata.subtitle }}</description>
     <language>{{ metadata.language }}</language>
     {%- for post in collections.all | reverse %}
+    {% if loop.index0 < 20 %}
     {%- set absolutePostUrl = post.url | absoluteUrl(metadata.url) %}
     <item>
       <title>{{ post.data.title }}</title>
@@ -32,6 +33,7 @@
       <dc:creator>{{ metadata.author.name }}</dc:creator>
       <guid>{{ absolutePostUrl }}</guid>
     </item>
+    {% endif %}
     {%- endfor %}
   </channel>
 </rss>
