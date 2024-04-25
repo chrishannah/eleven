@@ -21,7 +21,7 @@
   --image-frame: #4e4e4e;
   --meta-text: #4e4e4e;
   --heading-text: #3c3c3c;
-  --sans-serif: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --sans-serif: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, ui-serif, serif;
   --monospace: ui-monospace, Consolas, monaco, monospace;
 }
@@ -115,12 +115,12 @@ a:active {
 /* Home */
 
 #bio {
-    background-color: var(--quote-background);
-    padding:2em;
+  background-color: var(--quote-background);
+  padding: 2em;
 }
 
 .home-blog {
-    margin-top: 4em;
+  margin-top: 4em;
 }
 
 .home-bio {
@@ -136,8 +136,8 @@ a:active {
 }
 
 .large-text {
-    font-size: 1.4em;
-    font-weight: 500;
+  font-size: 1.4em;
+  font-weight: 500;
 }
 
 #wf-link {
@@ -966,29 +966,30 @@ input[type="reset"] {
 
 /* Currently Listening */
 #currently-listening a {
-    font-weight: bold;
-    animation: accent-swap 1s linear 0s infinite alternate !important;
-    text-decoration-line: underline !important;
-    text-decoration-style: wavy !important;
-    text-decoration-thickness: 1px !important;
+  font-weight: bold;
+  animation: accent-swap 1s linear 0s infinite alternate !important;
+  text-decoration-line: underline !important;
+  text-decoration-style: wavy !important;
+  text-decoration-thickness: 1px !important;
 }
 
 #currently-listening svg {
-    animation: accent-swap 1s linear 0s infinite alternate !important;
-    vertical-align: middle;
+  animation: accent-swap 1s linear 0s infinite alternate !important;
+  vertical-align: middle;
 }
 
 .recent-played {
-    display: inline-block;
+  display: inline-block;
 }
 
 @keyframes accent-swap {
-    from {
-        text-decoration-color: var(--accent) !important;
-        color: var(--accent);
-    }
-    to {
-        text-decoration-color: var(--accent-dark) !important;
-        color: var(--accent-dark);
-    }
+  from {
+    text-decoration-color: var(--accent) !important;
+    color: var(--accent);
+  }
+
+  to {
+    text-decoration-color: var(--accent-dark) !important;
+    color: var(--accent-dark);
+  }
 }
