@@ -16,7 +16,7 @@
 		<div class="post-meta">
 			<p>
 				<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/>
-				<a href="/{{ post.data.permalink | url }}">Permalink</a>
+				<a href="{{ post.url | url }}">Permalink</a>
 			</p>
 		</div>
 	</div>
