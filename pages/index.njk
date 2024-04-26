@@ -35,12 +35,12 @@ permalink: /
 <div class="home-blog">
     <h2>Recent Blog Posts</h2>
     {% set posts = collections.all | reverse %}
-    {% for post in posts.slice(0,10) %}
+    {% for post in posts.slice(0, 10) %}
         {% if "micro" in post.data.tags%}
             {% include "partials/micro.njk" %}
         {% else %}
             {% include "partials/post.njk" %}
-        {% endif %} 
+        {% endif %}
     {% endfor %}
 
     <nav>

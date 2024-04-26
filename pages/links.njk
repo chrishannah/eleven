@@ -1,12 +1,12 @@
 ---
 layout: layouts/archive
-permalink: archive/
-title: Archive
+permalink: links/
+title: Links
 ---
 {% set currentYear = 1000 %}
 {% set currentMonth = 12 %}
 
-{% for post in collections.post | reverse %}
+{% for post in collections.link | reverse %}
 	{% set postYear = post
 		.data
 		.date

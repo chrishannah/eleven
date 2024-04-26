@@ -40,6 +40,15 @@ module.exports = function (eleventyConfig) {
         });
     });
 
+    /* HTML Stuff */
+    eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
+        filters: {
+            base: "htmlBaseUrl",
+            html: "transformWithHtmlBase",
+            pathPrefix: "addPathPrefixToUrl",
+        },
+    });
+
     /* RSS */
     eleventyConfig.addPlugin(pluginRss);
 
@@ -47,14 +56,14 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(blogTools);
 
     /* Icons */
-    eleventyConfig.addPlugin(pluginIcons, { 
+    eleventyConfig.addPlugin(pluginIcons, {
         sources: [
             {
-                name: 'simple', 
-                path: 'node_modules/simple-icons/icons', 
+                name: 'simple',
+                path: 'node_modules/simple-icons/icons',
             }, {
-                name: 'lucide', 
-                path: 'node_modules/lucide-static/icons', 
+                name: 'lucide',
+                path: 'node_modules/lucide-static/icons',
             },
         ]
     });

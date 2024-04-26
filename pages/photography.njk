@@ -20,16 +20,16 @@ permalink: "photography/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum
 			</h1>
 		</header>
 
-		<div class="post-meta">
-			<p>
-				<time class="dt-published" datetime="{{ post.date }}">{{ post.data.date | displayDate }}</time><br/>
-				<a href="{{ post.url | url }}">Permalink</a>
-			</p>
-		</div>
-
 		<div class="post-body">
 			<div class="e-content">
 				{{ post.content | safe }}
+			</div>
+
+			<div class="post-meta">
+				<p>
+					<time class="dt-published" datetime="{{ post.date }}">{{ post.data.date | displayDate }}</time><br/>
+					<a href="/{{ post.data.permalink | url }}">Permalink</a>
+				</p>
 			</div>
 		</div>
 	</article>
