@@ -12,14 +12,12 @@ layout: layouts/base
         <div class="post-meta">
             <p>
                 <time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/>
-                <a href="{{ page.url | url }}">Permalink</a>
+                <a href="{{ page.url | url }}">Permalink</a><br/>
+                <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
             </p>
         </div>
         <p>
             <button class="tinylytics_kudos"></button>
-        </p>
-        <p>
-            <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
         </p>
 
         <div class="post-comments">
