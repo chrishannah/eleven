@@ -306,6 +306,7 @@ body>header {
 }
 
 #header-titles a {
+
   text-decoration: none !important;
 }
 
@@ -405,14 +406,20 @@ article {
   margin-bottom: 4rem;
 }
 
+.e-content {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+}
+
 /* Article Header */
 
-article>.post-meta {
+.post-meta {
   font-weight: 500;
   text-transform: uppercase;
   color: var(--meta-text);
   font-size: 0.8em;
-  text-align: right;
+  text-align: left;
   font-family: var(--sans-serif);
 
 }
@@ -446,11 +453,6 @@ article>.post-meta {
   nav>ul {
     margin: 0
   }
-}
-
-article>.post-meta {
-  text-align: left;
-
 }
 
 .post-meta a {

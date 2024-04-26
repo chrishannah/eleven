@@ -41,6 +41,17 @@ module.exports = {
 		final = output.substring(0, spaceIndex + 1);
 
 		return "\"" + final.trim() + "..." + "\"";
+	},
+
+	cleanUrl: (url) => {
+		try {
+			return url
+				.replace(/(^\w+:|^)\/\//, '')
+				.replace('www.', '')
+		} catch (e) {
+			console.error(e);
+			return url;
+		}
 	}
 }
 

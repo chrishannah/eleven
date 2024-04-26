@@ -8,16 +8,17 @@
 		</h1>
 	</header>
 
-	<div class="post-meta">
-		<p>
-			<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/>
-			<a href="{{ post.url | url }}">Permalink</a>
-		</p>
-	</div>
-
 	<div class="post-body">
 		<div class="e-content">
 			{{ post.content | safe }}
 		</div>
+
+		<div class="post-meta">
+			<p>
+				<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/>
+				<a href="{{ post.url | url }}">Permalink</a>
+			</p>
+		</div>
 	</div>
+
 </article>
