@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <meta name="theme-color" content="#fff6f6" media="(prefers-color-scheme: light)">
-        <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style>
-        {% include "../../assets/css/style.css" %}
-        {% include "../../assets/css/fonts.css" %}
-        </style>
-        <link rel="me" href="https://micro.blog/ChrisHannah"/>
-        <link rel="me" href="https://github.com/chrishannah"/>
-        <meta name="pocket-site-verification" content="b9fdccdecc6f0b9e69b03cdebe20e7"/>
-        <meta name="google-site-verification" content="Chw2h37fUgKvTGRa3AZxs1MirZXhMELRSdC8UmrR_jM"/>
-        <meta name="p:domain_verify" content="cce9b0fd8aedc78145dfb114fcfe425e"/>
-        <link href="https://twitter.com/chrishannah" rel="me">
-        <link rel="webmention" href="https://webmention.io/chrishannah.me/webmention"/>
-        <link rel="pingback" href="https://webmention.io/chrishannah.me/xmlrpc"/>
+    <meta name="theme-color" content="#fff6f6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
 
-        <!-- RSS Feeds -->
-        <link rel="alternate" type="application/rss+xml"
-                              href="https://chrishannah.me/index.xml" title="Chris Hanah">
-
-        <!-- Analytics -->
-        <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js?hits&kudos=★" defer></script>
-
-        <!-- Open Graph -->
-        <meta property="og:title" content="{{ title }}">
-        <meta property="twitter:title" content="{{ title }}">
-        <meta property="og:type" content="article">
-        <meta property="twitter:url" content="https://chrishannah.me{{ page.url }}">
-        <meta property="og:url" content="https://chrishannah.me{{ page.url }}">
-        <meta property="twitter:domain" content="chrishannah.me">
-
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        <header>
-            {% include "header.njk" %}
-            {% include "nav.njk" %}
-        </header>
-        <main>
-            {{ content | safe }}
-        </main>
-        <footer>
-            <p>Hits: <span class="tinylytics_hits"></span></p>
-            {% include "footer.njk" %}
-        </footer>
-    </body>
-
-    <script>
-        var codeHighlightingEnabled = document.getElementsByTagName('code').length != 0;
-        if (codeHighlightingEnabled) {
-            const script = document.createElement("script");
-            script.src = 'https://chrishannah.me/js/highlight.js';
-            script.async = true;
-            document.body.appendChild(script);
+    <style>
+        {
+            % include "../../assets/css/style.css" %
         }
-    </script>
+
+            {
+            % include "../../assets/css/fonts.css" %
+        }
+    </style>
+    <link rel="me" href="https://micro.blog/ChrisHannah" />
+    <link rel="me" href="https://github.com/chrishannah" />
+    <meta name="pocket-site-verification" content="b9fdccdecc6f0b9e69b03cdebe20e7" />
+    <meta name="google-site-verification" content="Chw2h37fUgKvTGRa3AZxs1MirZXhMELRSdC8UmrR_jM" />
+    <meta name="p:domain_verify" content="cce9b0fd8aedc78145dfb114fcfe425e" />
+    <link href="https://twitter.com/chrishannah" rel="me">
+    <link rel="webmention" href="https://webmention.io/chrishannah.me/webmention" />
+    <link rel="pingback" href="https://webmention.io/chrishannah.me/xmlrpc" />
+
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" href="https://chrishannah.me/index.xml" title="Chris Hanah">
+
+    <!-- Analytics -->
+    <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js?hits&kudos=★" defer></script>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="twitter:title" content="{{ title }}">
+    <meta property="og:type" content="article">
+    <meta property="twitter:url" content="https://chrishannah.me{{ page.url }}">
+    <meta property="og:url" content="https://chrishannah.me{{ page.url }}">
+    <meta property="twitter:domain" content="chrishannah.me">
+    <meta property="twitter:card" content="summary">
+
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header>
+        {% include "header.njk" %}
+        {% include "nav.njk" %}
+    </header>
+    <main>
+        {{ content | safe }}
+    </main>
+    <footer>
+        <p>Hits: <span class="tinylytics_hits"></span></p>
+        {% include "footer.njk" %}
+    </footer>
+</body>
+
+<script>
+    var codeHighlightingEnabled = document.getElementsByTagName('code').length != 0;
+    if (codeHighlightingEnabled) {
+        const script = document.createElement("script");
+        script.src = 'https://chrishannah.me/js/highlight.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }
+</script>
+
 </html>
