@@ -33,7 +33,7 @@ permalink: /
 </details>
 
 <div class="home-blog">
-    <h2>Recent Blog Posts</h2>
+    <h2>Recent Writing</h2>
     {% set posts = collections.all | reverse %}
     {% for post in posts.slice(0, 10) %}
         {% if "micro" in post.data.tags%}

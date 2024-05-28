@@ -55,7 +55,7 @@ html {
   background-size: cover;
   line-height: 1.75;
   color: var(--text);
-  font-family: var(--sans-serif);
+  font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
@@ -65,7 +65,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg);
-  font-size: 16px;
+  font-size: 18px;
 }
 
 main {
