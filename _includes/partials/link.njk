@@ -1,0 +1,26 @@
+<article class="h-entry">
+	<header>
+		{% if post.data.image %}
+			<img class="u-featured" src="{{ post.data.image }}"/>
+		{% endif %}
+		<h1 id="title-link" class="p-name">
+			“{{ post.data.title }}”
+		</h1>
+		<div class="post-meta">
+			<a href="{{ post.data.link | url }}">{{ post.data.link | cleanUrl | url }} ➪</a>
+		</div>
+	</header>
+
+	<div class="post-body">
+		<div class="e-content">
+			{{ post.content | safe }}
+		</div>
+
+		<div class="post-meta">
+			<p>
+				<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/>
+				<a href="{{ post.url | url }}">Permalink</a>
+			</p>
+		</div>
+	</div>
+</article>

@@ -38,6 +38,8 @@ permalink: /
     {% for post in posts.slice(0, 10) %}
         {% if "micro" in post.data.tags%}
             {% include "partials/micro.njk" %}
+        {% elseif "link" in post.data.tags%}
+            {% include "partials/link.njk" %}
         {% else %}
             {% include "partials/post.njk" %}
         {% endif %}

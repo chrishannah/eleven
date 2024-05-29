@@ -15,6 +15,8 @@ permalink: "blog/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
 {% for post in posts %}
   {% if "micro" in post.data.tags%}
     {% include "partials/micro.njk" %}
+  {% elseif "link" in post.data.tags%}
+    {% include "partials/link.njk" %}
   {% else %}
     {% include "partials/post.njk" %}
   {% endif %}
