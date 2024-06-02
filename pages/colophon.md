@@ -1,7 +1,7 @@
 ---
 title: Colophon
 layout: layouts/page.njk
-permalink: /colophon
+permalink: /colophon.html
 ---
 
 This website is built using [Eleventy](https://www.11ty.dev/), and hosted via [Vercel](https://vercel.com). It automatically deploys whenever I push changes to the [public GitHub repository](https://github.com/chrishannah/eleven). (Have a look if you're interested)

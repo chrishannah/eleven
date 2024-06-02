@@ -1,7 +1,7 @@
 ---
 title: Subscribe
 layout: layouts/page.njk
-permalink: /subscribe
+permalink: /subscribe.html
 ---
 
 You can subscribe to the whole website, including blog posts, micro posts, and essays via the main RSS feed at [chrishannah.me/index.xml][all].
