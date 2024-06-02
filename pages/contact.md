@@ -1,7 +1,7 @@
 ---
 title: Contact
 layout: layouts/page.njk
-permalink: /contact
+permalink: contact/
 ---
 
 If you want to get hold of me, there are a few different ways to do so.

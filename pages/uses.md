@@ -1,7 +1,7 @@
 ---
 title: Uses
 layout: layouts/page.njk
-permalink: /uses
+permalink: uses/
 ---
 
 ## Hardware

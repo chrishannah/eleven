@@ -1,7 +1,7 @@
 ---
 title: About
 layout: layouts/page.njk
-permalink: /about.html
+permalink: about/
 ---
 
 ## I build things.
