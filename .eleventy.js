@@ -35,8 +35,12 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addCollection("all", function (collectionApi) {
         return collectionApi.getAllSorted().filter(function (item) {
             // Only return content that was originally a markdown file
+            let isPage = false
+            if (item.data.layout != null) {
+                isPage = item.data.layout.includes('page');
+            }
             let extension = item.inputPath.split('.').pop();
-            return extension === "md";
+            return extension === "md" && !isPage;
         });
     });
 
