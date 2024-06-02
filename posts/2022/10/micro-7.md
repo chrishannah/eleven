@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro-7/
 tags:
 - micro
-- post
 title: Good Days
 ---
 

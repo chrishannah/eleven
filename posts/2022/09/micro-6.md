@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro-6/
 tags:
 - micro
-- post
 title: 'Minimal CSS '
 ---
 

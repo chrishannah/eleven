@@ -7,7 +7,6 @@ permalink: finished-software/
 source: https://josem.co/the-beauty-of-finished-software/
 tags:
 - software
-- post
 title: Finished Software
 ---
 

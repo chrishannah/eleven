@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro-5/
 tags:
 - micro
-- post
 title: Spotify x Heardle
 ---
 

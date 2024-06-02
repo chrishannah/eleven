@@ -8,7 +8,6 @@ permalink: celebrating-offline-tech/
 source: https://birchtree.me/blog/a-celebration-of-100-offline-tech/
 tags:
 - technology
-- post
 title: Celebrating Offline Tech
 ---
 

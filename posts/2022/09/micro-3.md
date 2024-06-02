@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro-3/
 tags:
 - micro
-- post
 title: Cutting Down on Subscriptions
 ---
 

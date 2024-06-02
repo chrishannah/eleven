@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro-4/
 tags:
 - micro
-- post
 title: QEII
 ---
 

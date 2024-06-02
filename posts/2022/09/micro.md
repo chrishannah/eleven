@@ -7,7 +7,6 @@ layout: layouts/post
 permalink: micro/
 tags:
 - micro
-- post
 title: Having a Larger Battery Than You Need
 ---
 
