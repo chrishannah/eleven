@@ -29,6 +29,8 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "static/cv": "cv" });
     eleventyConfig.addPassthroughCopy({ "static/prntsc": "prntsc" });
     eleventyConfig.addPassthroughCopy({ "static/fonts": "fonts" });
+    eleventyConfig.addPassthroughCopy({ "static/images": "images" });
+    eleventyConfig.addPassthroughCopy({ "static/videos": "videos" });
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
 
     /* Collections */
