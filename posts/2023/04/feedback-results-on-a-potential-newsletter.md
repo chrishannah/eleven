@@ -12,7 +12,7 @@ Yesterday, I asked for feedback on how people read my blog, and some thoughts on
 
 The first question was to find out some primary information on how people primarily consume my blog, to provide a foundation for further questions.
 
-<img src="https://cdn.chrishannah.me/images/2023/04/graph1.jpg">
+<img src="https://chrishannah.me/images/2023/04/graph1.jpg">
 
 <details>
     <summary>Results</summary>
@@ -31,7 +31,7 @@ It's clear to see RSS being the clear winner here, which did surprise me a bit, 
 
 The next was asking for preferences on a method of delivery**.**
 
-<img src="https://cdn.chrishannah.me/images/2023/04/graph2-1.jpg">
+<img src="https://chrishannah.me/images/2023/04/graph2-1.jpg">
 
 <details>
     <summary>Results</summary>
@@ -52,7 +52,7 @@ I suppose this was the _main_ question I needed to ask. How would people want a 
 
 Finally, I wanted to ask about what content people would want in a newsletter.
 
-<img src="https://cdn.chrishannah.me/images/2023/04/graph3-1.jpg">
+<img src="https://chrishannah.me/images/2023/04/graph3-1.jpg">
 
 <details>
     <summary>Results</summary>

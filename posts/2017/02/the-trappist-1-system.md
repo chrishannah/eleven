@@ -5,7 +5,7 @@ categories:
 - Space
 date: 2017-02-24 23:30:52+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/IMG_0452-1.jpg
+image: https://chrishannah.me/images/2017/02/IMG_0452-1.jpg
 layout: layouts/post
 permalink: the-trappist-1-system/
 tags:

@@ -29,7 +29,7 @@ Here is an example of what I currently have set up for this website to provide t
 
 And here is what it looks like:
 
-<img src="https://cdn.chrishannah.me/images/2021/06/41220D4E-498E-483F-BCC7-92411013F7F3.jpeg" caption="">
+<img src="https://chrishannah.me/images/2021/06/41220D4E-498E-483F-BCC7-92411013F7F3.jpeg" caption="">
 
 I’m not totally in favour of the new Safari design myself, but I’m definitely a fan of added customisation.
 

@@ -3,7 +3,7 @@ categories:
 - Graphics
 date: 2016-10-18 18:58:51+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/10/1.jpg
+image: https://chrishannah.me/images/2016/10/1.jpg
 layout: layouts/post
 permalink: black/
 tags:

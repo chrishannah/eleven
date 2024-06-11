@@ -16,7 +16,7 @@ title: Text Case 2021.1 Beta
 <p>After quite a long time of development, the major update to Text Case that I've been working on is finally ready for a <a href="https://testflight.apple.com/join/MBYyuB3c">public beta</a>.</p>
 
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Image.PNG" alt="" />
+<img src="https://chrishannah.me/images/2021/01/Image.PNG" alt="" />
 
 
 <p>This update changes the focus of the app from simply using built-in formats, to focus on user-created flows. A flow is a collection of formats, which together can become a more complex text transformation. </p>

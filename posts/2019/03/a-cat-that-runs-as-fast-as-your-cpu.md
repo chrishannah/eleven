@@ -16,7 +16,7 @@ title: A Cat That Runs as Fast as Your CPU
 ---
 
 <p>There are loads of apps that track your Macs CPU usage. But only one of them uses a running cat to visualise it.</p>
-<p><img loading="lazy" src="https://cdn.chrishannah.me/images/2019/03/ezgif.com-video-to-gif.gif" class="alignnone size-full wp-image-6923" alt="ezgif.com-video-to-gif.gif" width="556" height="228"></p>
+<p><img loading="lazy" src="https://chrishannah.me/images/2019/03/ezgif.com-video-to-gif.gif" class="alignnone size-full wp-image-6923" alt="ezgif.com-video-to-gif.gif" width="556" height="228"></p>
 <p><a href="https://itunes.apple.com/us/app/runcat/id1429033973?mt=12">RunCat</a> is a free Mac menu bar app that features a running cat that adapts to your CPU speed. If it&#8217;s running relatively slow, then the cat will just be running at a leisurely pace, but if it&#8217;s running really high (try building a huge Xcode project), then the cat will go crazy!</p>
 <p>It&#8217;s really fun!</p>
 <h2>Runners</h2>

@@ -17,7 +17,7 @@ If you haven’t heard, there’s a company called “[Nothing”](https://nothi
 
 As far as I can tell, it’s an Android device (with a custom launcher), that looks a bit (from the front) like an iPhone 12, but with a whole new back design that I haven’t seen anywhere else.
 
-<img src="https://cdn.chrishannah.me/images/2022/07/Twitter_1024x512_V1_1.jpg" caption="">
+<img src="https://chrishannah.me/images/2022/07/Twitter_1024x512_V1_1.jpg" caption="">
 
 They call it the [Glyph Interface](https://nothing.tech/blogs/news/meet-the-glyph-interface), as you can see, it’s full of lights. The one near the power connector will show the current charge when plugged in, and you can also assign various light patterns to ringtones, which [Marques Brownlee made a great video showing off](https://www.youtube.com/watch?v=mrkAmmMakMg). Maybe that sounds a bit useless to you. But to me, it just seems fun, a bit quirky, but overall definitely something different.
 

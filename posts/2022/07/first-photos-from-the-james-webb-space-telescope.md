@@ -21,6 +21,6 @@ The images are amazing, and my brain can't comprehend that thay aren't just CGI,
 
 Here are my two favourite images that have been released:
 
-<img src="https://cdn.chrishannah.me/images/2022/07/STScI-01G77PKYA4T05YKJ3EDQ36NZCX.png" caption="<strong>“Cosmic Cliffs” in the Carina Nebula | Credit</strong>: NASA, ESA, CSA, STScI&nbsp;">
+<img src="https://chrishannah.me/images/2022/07/STScI-01G77PKYA4T05YKJ3EDQ36NZCX.png" caption="<strong>“Cosmic Cliffs” in the Carina Nebula | Credit</strong>: NASA, ESA, CSA, STScI&nbsp;">
 
-<img src="https://cdn.chrishannah.me/images/2022/07/STScI-01G709RFDHBXFGJ68SZXHNBAVM-2.png" caption="<strong>Southern Ring Nebula | Credit</strong>: NASA, ESA, CSA, STScI">
+<img src="https://chrishannah.me/images/2022/07/STScI-01G709RFDHBXFGJ68SZXHNBAVM-2.png" caption="<strong>Southern Ring Nebula | Credit</strong>: NASA, ESA, CSA, STScI">

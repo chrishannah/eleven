@@ -17,7 +17,7 @@ Josh Holtz, has announced his new app [ConnectKit for Shortcuts](https://apps.ap
 
 You can use the built-in token storage for free, along with the action to generate a JWT token that can be used to make authentication requests to the API. But for just a small tip, you can unlock four premium actions which is where the magic is.
 
-<img src="https://cdn.chrishannah.me/images/2020/11/Image-1.PNG">
+<img src="https://chrishannah.me/images/2020/11/Image-1.PNG">
 
 There's an action to get your apps, and also your sales and finance reports, which both come with quite a lot of parameters. For the rest of the API functonality, you can use the Make Request action, which lets you interact with the API directly, but you get the added bonus of the JWT token being generated for you automatically.
 

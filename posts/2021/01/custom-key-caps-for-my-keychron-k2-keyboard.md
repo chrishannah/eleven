@@ -21,25 +21,25 @@ That's why when I saw much more hype around custom mechanical keyboards, I thoug
 
 Although, when I saw the specification for the key sizes for the K2 ([included on the page for the K2 key set page](https://www.keychron.com/products/keychron-k2-keycap-set-1)), I started thinking that the task would be much more hassle than I imagined. Since I was expecting that I'd need to go and purchase either a massive set of keys and hope the weird sizes of my keyboard are all included, or I'd need to find a way to buy seperate keys using the sizes from the spec sheet.
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Screenshot-2021-01-12-at-10.24.59.png">
+<img src="https://chrishannah.me/images/2021/01/Screenshot-2021-01-12-at-10.24.59.png">
 
 Luckily, I was doing some searching on the WASD Keyboards suport page, and found an [article for "non-standard layout keycap sets"](https://support.wasdkeyboards.com/hc/en-us/articles/360051280353-Non-standard-layout-keycap-sets). There have some information regarding colour availability for certain sizes, and information on how backlit keys show throw their keys. But I was more focussed on the fact they specifically mentioned the 84-key Keychron K2 layout, and had [a link to their online customiser tool](https://www.wasdkeyboards.com/keychron-k2-84-key-custom-cherry-mx-keycap-set.html).
 
 From there, I just needed to choose the colour of each key, legend, and also select that I wanted the Mac modifier keys. And after a while, I was pretty happy with my design.
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Screenshot-2021-01-12-at-10.47.22.png">
+<img src="https://chrishannah.me/images/2021/01/Screenshot-2021-01-12-at-10.47.22.png">
 
 The main colour I liked was the mint for the modifier keys, but I wanted to mix a bit of pink in there somewhere. And also, I wanted to seperate the top row somehow, and the four keys on the right that I really never use.
 
 So I ordered the keys, and after them being sent through the U.S., they eventually arrived, and this is what they look like:
 
-<img src="https://cdn.chrishannah.me/images/2021/01/IMG_1092.jpeg">
+<img src="https://chrishannah.me/images/2021/01/IMG_1092.jpeg">
 
 Replacing the keys was pretty easy, there was a key remover tool included in the box. But it sure took a while to remove all the existing keys. That's not something I could ever enjoy.
 
-<img src="https://cdn.chrishannah.me/images/2021/01/IMG_1093.jpeg">
+<img src="https://chrishannah.me/images/2021/01/IMG_1093.jpeg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/IMG_1094.jpeg">
+<img src="https://chrishannah.me/images/2021/01/IMG_1094.jpeg">
 
 As you can see from a few close ups, I also went a step further than just having different key colours. On the top row, I styled the text in a few colours to make them stand out just a bit more. The brightness keys have yellow symbols, the media keys are the same mint as the modifier keys, and the volume keys are pink. And I also had to match the delete key, so that's red on dark grey, with the big delete key being white on red, just like the escape key.
 

@@ -5,7 +5,7 @@ categories:
 - Pretty
 date: 2017-03-14 10:24:32+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/03/screenshot-1.png
+image: https://chrishannah.me/images/2017/03/screenshot-1.png
 layout: layouts/post
 permalink: pretty-regular-expressions/
 tags:

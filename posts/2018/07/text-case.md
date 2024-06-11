@@ -1,7 +1,7 @@
 ---
 date: 2018-07-07 11:23:34+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/01/Image-2.png
+image: https://chrishannah.me/images/2019/01/Image-2.png
 layout: layouts/post
 permalink: text-case/
 tags:

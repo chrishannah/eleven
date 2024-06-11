@@ -5,7 +5,7 @@ categories:
 - Sticker
 date: 2016-09-21 06:36:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/09/header.png
+image: https://chrishannah.me/images/2016/09/header.png
 layout: layouts/post
 permalink: pixels-sticker-pack/
 tags:

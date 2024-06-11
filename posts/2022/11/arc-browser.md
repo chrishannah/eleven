@@ -39,7 +39,7 @@ However, there are definitely features of Arc that while may be fun for others, 
 
 I'll start with the Sidebar. This is probably the most obvious visual difference when comparing Arc to other browsers. It's essentially a combination of a bookmark bar and a tab bar. Except there is a slight difference, in that instead of bookmarks, you have pinned tabs. Which can stay active, and keep your session loaded without needing to open the bookmark link in another tab/window.
 
-<img src="https://cdn.chrishannah.me/images/2022/11/Screenshot-2022-11-09-at-23.03.07-3.png">
+<img src="https://chrishannah.me/images/2022/11/Screenshot-2022-11-09-at-23.03.07-3.png">
 
 I can see how the pinned tabs can be a smart idea, but for my use, they started to irritate me. In my mind, a bookmark is just a URL that I can then choose to open in a new tab/window. I didn't always want it to keep its state after I was done with it.
 
@@ -61,7 +61,7 @@ Even if I conveniently forgot that iCloud Keychain also provides my passwords fo
 
 Another great feature that is packed full of functionality, but I found it more complex for my use case than it needed to be.
 
-<img src="https://cdn.chrishannah.me/images/2022/11/Screenshot-2022-11-09-at-23.06.45.png">
+<img src="https://chrishannah.me/images/2022/11/Screenshot-2022-11-09-at-23.06.45.png">
 
 At the start, I would use the command bar to quickly make a web search, open a new tab, (try to) launch an existing tab by entering the name of the page, and even perform actions like pinning the current tab.
 

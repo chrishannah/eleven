@@ -21,6 +21,6 @@ It turns out, what's using these ports is the new AirPlay Receiver functionality
 
 You can find this in the Sharing pane of System Preferences. And if you don't care about having it enabled, then you can just uncheck it, and the ports will be free.
 
-<img src="https://cdn.chrishannah.me/images/2021/11/Screenshot-2021-11-22-at-11.46.04.png">
+<img src="https://chrishannah.me/images/2021/11/Screenshot-2021-11-22-at-11.46.04.png">
 
 However, if you do want to make use of AirPlay Receiver, then all you need to do is first disable it, run your local server, and then enable AirPlay Receiver again. It will then use a different port.

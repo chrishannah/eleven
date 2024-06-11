@@ -4,7 +4,7 @@ categories:
 - Watch
 date: 2017-09-26 21:22:26+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/09/IMG_5390-1.jpg
+image: https://chrishannah.me/images/2017/09/IMG_5390-1.jpg
 layout: layouts/post
 permalink: new-watches-strategy/
 tags:

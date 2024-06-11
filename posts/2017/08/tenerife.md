@@ -4,7 +4,7 @@ categories:
 - travel
 date: 2017-08-16 12:38:30+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/08/Adeje-1.png
+image: https://chrishannah.me/images/2017/08/Adeje-1.png
 layout: layouts/post
 permalink: tenerife/
 tags:

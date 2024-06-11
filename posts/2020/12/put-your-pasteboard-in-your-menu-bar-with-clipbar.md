@@ -23,13 +23,13 @@ There's no need to worry about the size of the pasteboard either, since you can 
 
 If you've simply copied text, then that's what will appear. However, if you've copied a file, then you'll see the path, and if you've copied an image, you will see an icon to show it is an image, and it's file size.
 
-<img src="https://cdn.chrishannah.me/images/2020/12/Screenshot-2020-12-09-at-15.15.41.png">
+<img src="https://chrishannah.me/images/2020/12/Screenshot-2020-12-09-at-15.15.41.png">
 
 In a recent update, ClipBar gained a preview feature, so you can view the whole contents of your clipboard. For images, it switches from the file size to an actual preview of the image.
 
 From the preview, you can share the contents using any built-in or third-party share extensions.
 
-<img src="https://cdn.chrishannah.me/images/2020/12/Screenshot-2020-12-09-at-15.18.48.png">
+<img src="https://chrishannah.me/images/2020/12/Screenshot-2020-12-09-at-15.18.48.png">
 
 Having your pasteboard contents permanently in your menu bar can sound potentially dangerous, especially if you regularly copy sensitive information. Unfortunately, if you are worried about such problems, then this app may not be for you.
 

@@ -23,7 +23,7 @@ Sadly I was at least partially correct, it does indeed feel that Werdsmith is de
 
 The first part of Werdsmith that made me think that the app wasn’t for me was the very simple document organisation.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image-3.png">
+<img src="https://chrishannah.me/images/2021/02/Image-3.png">
 
 There are two sections, ideas and projects. Writing starts as an idea, and then you can convert it to a project later on. This rather simple organisation makes me think that the app is best used with a minimal amount of projects. So not one that can be used with a large collection of well-organised documents.
 
@@ -31,11 +31,11 @@ There are two sections, ideas and projects. Writing starts as an idea, and then 
 
 The writing experience in Werdsmith is certainly distraction-free, the interface is quite minimal, and leaves you with just your writing.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image-5.png">
+<img src="https://chrishannah.me/images/2021/02/Image-5.png">
 
 However, the Markdown support is pretty lacking, and so are the formatting options in general. You have two headers, bold, italics, and quotes. So not exactly many options to choose from. Not even lists or images.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image-4.png">
+<img src="https://chrishannah.me/images/2021/02/Image-4.png">
 
 In addition to the formatting options, you have the option to set an overall format for the document. There are four to choose from, which I think shows the designed purposes of the app. The formats are text, novel, screenplay, or poem. I assume the text format was meant to be the one for general-purpose writing, but I honestly think it may as well not be there.
 

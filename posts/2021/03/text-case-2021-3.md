@@ -4,7 +4,7 @@ categories:
 - App
 date: 2021-03-08 09:27:15+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/03/Image.png
+image: https://chrishannah.me/images/2021/03/Image.png
 layout: layouts/post
 permalink: text-case-2021-3/
 tags:

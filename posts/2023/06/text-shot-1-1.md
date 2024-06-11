@@ -4,7 +4,7 @@ categories:
 - Text Shot
 date: 2023-06-26 12:53:55+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2023/06/Simulator-Screenshot---iPad-Pro--12.9-inch---6th-generation----2023-06-25-at-21.21.23.png
+image: https://chrishannah.me/images/2023/06/Simulator-Screenshot---iPad-Pro--12.9-inch---6th-generation----2023-06-25-at-21.21.23.png
 layout: layouts/post
 permalink: text-shot-1-1/
 tags:

@@ -19,7 +19,7 @@ title: Vinegar - A Safari Extension To Fix YouTube Videos
 
 You may have heard about [Vinegar](https://andadinosaur.com/launch-vinegar), since it’s been doing the rounds recently. However, if you haven’t, It’s essentially a Safari extension that makes YouTube videos look better, and act like standard HTML videos. Which means they use Safari’s native video player, which means that you have slightly more control over the video, but at the same time you do lose some functionality that YouTube has in their player.
 
-<img src="https://cdn.chrishannah.me/images/2021/12/Screenshot-2021-12-01-at-10.34.58.png" caption="">
+<img src="https://chrishannah.me/images/2021/12/Screenshot-2021-12-01-at-10.34.58.png" caption="">
 
 As you can see, the video player still lets you change the video quality, use subtitles, stream to an AirPlay device, etc. So the basic functionality is there. And it makes Picture-in-Picture a lot easier to access, as the YouTube player requires three clicks, and the native player has a button in the top-left corner.
 

@@ -24,18 +24,18 @@ title: Four Emoji Quizzes
 </ul>
 <p>I&#8217;ve got an image for each quiz, and also a version including the answers. I&#8217;ll include each of the below, but for the answers you&#8217;ll have to click on the relevant answers link.</p>
 <h2>Movies</h2>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/Movies.png"><img src="https://cdn.chrishannah.me/images/2020/03/Movies.png" alt="Movies Quiz" /></a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/Movies.png">Questions</a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/Movies-inc.-Answers.png">Questions and Answers</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/Movies.png"><img src="https://chrishannah.me/images/2020/03/Movies.png" alt="Movies Quiz" /></a></p>
+<p><a href="https://chrishannah.me/images/2020/03/Movies.png">Questions</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/Movies-inc.-Answers.png">Questions and Answers</a></p>
 <h2>TV Shows</h2>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/TV-Shows.png"><img src="https://cdn.chrishannah.me/images/2020/03/TV-Shows.png" alt="TV Shows Quiz" /></a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/TV-Shows.png">Questions</a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/TV-Shows-inc.-Answers.png">Questions and Answers</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/TV-Shows.png"><img src="https://chrishannah.me/images/2020/03/TV-Shows.png" alt="TV Shows Quiz" /></a></p>
+<p><a href="https://chrishannah.me/images/2020/03/TV-Shows.png">Questions</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/TV-Shows-inc.-Answers.png">Questions and Answers</a></p>
 <h2>UK Landmarks</h2>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/UK-Landmarks.png"><img src="https://cdn.chrishannah.me/images/2020/03/UK-Landmarks.png" alt="UK Landmarks Quiz" /></a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/UK-Landmarks.png">Questions</a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/UK-Landmarks-inc.-Answers.png">Questions and Answers</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/UK-Landmarks.png"><img src="https://chrishannah.me/images/2020/03/UK-Landmarks.png" alt="UK Landmarks Quiz" /></a></p>
+<p><a href="https://chrishannah.me/images/2020/03/UK-Landmarks.png">Questions</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/UK-Landmarks-inc.-Answers.png">Questions and Answers</a></p>
 <h2>English Football Teams</h2>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/English-Football-Teams.png"><img src="https://cdn.chrishannah.me/images/2020/03/English-Football-Teams.png" alt="English Football Teams Quiz" /></a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/English-Football-Teams.png">Questions</a></p>
-<p><a href="https://cdn.chrishannah.me/images/2020/03/English-Football-Teams-inc.-Answers.png">Questions and Answers</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/English-Football-Teams.png"><img src="https://chrishannah.me/images/2020/03/English-Football-Teams.png" alt="English Football Teams Quiz" /></a></p>
+<p><a href="https://chrishannah.me/images/2020/03/English-Football-Teams.png">Questions</a></p>
+<p><a href="https://chrishannah.me/images/2020/03/English-Football-Teams-inc.-Answers.png">Questions and Answers</a></p>

@@ -27,7 +27,7 @@ Here's a short video showing me generating the frontmatter from an example
 title:
 
 <video autoplay="true" loop="true"
-src="https://cdn.chrishannah.me/videos/2024/01/blogutils-nvim-frontmatter.mp4" >
+src="https://chrishannah.me/videos/2024/01/blogutils-nvim-frontmatter.mp4" >
 
 I may improve it in the future, but right now that's all I need it for. And with
 how smoothly the development went, I'm really interested in the idea of making

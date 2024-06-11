@@ -5,7 +5,7 @@ categories:
 - Apple Watch
 date: 2020-09-16 19:24:09+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/09/watch.png
+image: https://chrishannah.me/images/2020/09/watch.png
 layout: layouts/post
 permalink: the-apple-watch-series-6/
 tags:

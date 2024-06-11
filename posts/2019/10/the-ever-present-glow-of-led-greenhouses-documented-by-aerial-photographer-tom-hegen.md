@@ -1,7 +1,7 @@
 ---
 date: 2019-10-23 09:11:27+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/10/IMG_1713.jpeg
+image: https://chrishannah.me/images/2019/10/IMG_1713.jpeg
 layout: layouts/post
 permalink: the-ever-present-glow-of-led-greenhouses-documented-by-aerial-photographer-tom-hegen/
 tags:

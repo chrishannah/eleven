@@ -6,7 +6,7 @@ categories:
 - Movie
 date: 2018-11-18 19:56:15+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/E67FC4AA-5B0F-469A-9EF1-9C612FCA413A.png
+image: https://chrishannah.me/images/2018/11/E67FC4AA-5B0F-469A-9EF1-9C612FCA413A.png
 layout: layouts/post
 permalink: fantastic-beasts-crimes-of-grindelwald/
 tags:

@@ -3,7 +3,7 @@ categories:
 - News
 date: 2020-06-09 17:33:18+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/06/Screenshot-2020-06-09-at-17.31.26-1.png
+image: https://chrishannah.me/images/2020/06/Screenshot-2020-06-09-at-17.31.26-1.png
 layout: layouts/post
 permalink: this-fantastical-sea-creature-helps-remove-planet-warming-gases-from-the-atmosphere/
 tags:

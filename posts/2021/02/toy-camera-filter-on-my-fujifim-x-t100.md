@@ -19,16 +19,16 @@ I can't say it will produce the most professional photos, but as a person that e
 
 Here are a few quick examples:
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1009-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1009-1.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1010-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1010-1.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1014-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1014-1.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1012-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1012-1.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1003-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1003-1.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1004-1.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1004-1.jpg">
 
 I'll have to give the other filters a try now, and I'll see what I can get when I can actually leave my house and go somewhere interesting.

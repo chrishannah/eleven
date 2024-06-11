@@ -4,7 +4,7 @@ categories:
 - Rumour
 date: 2016-07-02 12:27:08+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/07/27724433060_9fd9f91430_b.jpg
+image: https://chrishannah.me/images/2016/07/27724433060_9fd9f91430_b.jpg
 layout: layouts/post
 permalink: space-black-iphone-7-renders/
 tags:

@@ -3,7 +3,7 @@ categories:
 - iPad
 date: 2016-07-14 22:48:04+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/07/gallery_08.png
+image: https://chrishannah.me/images/2016/07/gallery_08.png
 layout: layouts/post
 permalink: razer-create-mechanical-keyboard-for-ipad-pro/
 tags:

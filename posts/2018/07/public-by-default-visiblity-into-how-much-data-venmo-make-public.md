@@ -4,7 +4,7 @@ categories:
 - Venmo
 date: 2018-07-20 14:12:55+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/07/Screen-Shot-2018-07-20-at-14.12.30.png
+image: https://chrishannah.me/images/2018/07/Screen-Shot-2018-07-20-at-14.12.30.png
 layout: layouts/post
 permalink: public-by-default-visiblity-into-how-much-data-venmo-make-public/
 tags:

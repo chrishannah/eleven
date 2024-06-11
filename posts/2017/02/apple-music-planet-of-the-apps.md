@@ -1,7 +1,7 @@
 ---
 date: 2017-02-14 12:16:33+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/Screen-Shot-2017-02-14-at-12-09-31-1.png
+image: https://chrishannah.me/images/2017/02/Screen-Shot-2017-02-14-at-12-09-31-1.png
 layout: layouts/post
 permalink: apple-music-planet-of-the-apps/
 tags:

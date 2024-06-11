@@ -4,7 +4,7 @@ categories:
 - Email
 date: 2021-07-08 20:18:24+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/07/Screenshot-2021-07-08-at-21.18.04.png
+image: https://chrishannah.me/images/2021/07/Screenshot-2021-07-08-at-21.18.04.png
 layout: layouts/post
 permalink: trying-out-a-new-email-app-big-mail/
 tags:

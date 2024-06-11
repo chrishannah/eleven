@@ -5,7 +5,7 @@ categories:
 - iOS
 date: 2016-07-29 14:15:57+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/08/Screen-Shot-2016-07-29-at-15-08-28.png
+image: https://chrishannah.me/images/2016/08/Screen-Shot-2016-07-29-at-15-08-28.png
 layout: layouts/post
 permalink: square-enix-brings-role-playing-game-to-apple-watch/
 tags:

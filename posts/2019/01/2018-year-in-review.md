@@ -3,7 +3,7 @@ categories:
 - Year
 date: 2019-01-01 11:16:20+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/12/2018.png
+image: https://chrishannah.me/images/2018/12/2018.png
 layout: layouts/post
 permalink: 2018-year-in-review/
 tags:

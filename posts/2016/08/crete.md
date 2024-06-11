@@ -4,7 +4,7 @@ categories:
 - travel
 date: 2016-08-12 14:46:43+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/09/Screen-Shot-2016-08-12-at-15-41-53.png
+image: https://chrishannah.me/images/2016/09/Screen-Shot-2016-08-12-at-15-41-53.png
 layout: layouts/post
 permalink: crete/
 tags:

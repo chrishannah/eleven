@@ -3,7 +3,7 @@ categories:
 - macOS
 date: 2016-11-24 18:50:12+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/11/Screen-Shot-2016-11-24-at-18-21-46-1.png
+image: https://chrishannah.me/images/2016/11/Screen-Shot-2016-11-24-at-18-21-46-1.png
 layout: layouts/post
 permalink: squash-2/
 tags:
@@ -39,8 +39,8 @@ title: Squash 2
 <ul>
 <li><a href="https://cdn.spacetelescope.org/archives/images/publicationjpg/heic1502a.jpg">Andromeda Galaxy</a> 5.3MB JPEG -&gt; 2.2MB</li>
 <li><a href="http://getqwiki.co/assets/icon.png">Qwiki Icon</a> 857KB PNG -&gt; 375KB / 327KB (Slower PNG Compression)</li>
-<li><a href="https://cdn.chrishannah.me/images/2016/11/BLACK_I_desktop-1.jpg">Black Wallpaper</a> 2.2MB JPEG -&gt; 537Kb</li>
-<li><a href="https://cdn.chrishannah.me/images/2016/11/IMG_0169.JPG">Outside Landscape</a> 1.8MB JPEG -&gt; 1.7MB</li>
+<li><a href="https://chrishannah.me/images/2016/11/BLACK_I_desktop-1.jpg">Black Wallpaper</a> 2.2MB JPEG -&gt; 537Kb</li>
+<li><a href="https://chrishannah.me/images/2016/11/IMG_0169.JPG">Outside Landscape</a> 1.8MB JPEG -&gt; 1.7MB</li>
 <li>Screenshot of Squash (Above) 105KB JPEG -&gt; 57KB</li>
 </ul>
 <h2 id="download">Download</h2>

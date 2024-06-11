@@ -4,7 +4,7 @@ categories:
 - Series
 date: 2020-11-12 21:09:51+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/11/35908127-A30F-4758-A899-6C33FF52063A.jpeg
+image: https://chrishannah.me/images/2020/11/35908127-A30F-4758-A899-6C33FF52063A.jpeg
 layout: layouts/post
 permalink: the-secret-she-keeps/
 tags:

@@ -12,7 +12,7 @@ If you haven’t heard, there’s a new photo-sharing app called [Glass](https:/
 
 Instead, Glass is a paid subscription-based app[^1] for photographers. While I’m sure most people would enjoy the minimalistic interface, and how the focus is really placed on the photos, there’s a ton of things that are obviously geared more towards photographers showing off their work and receiving feedback from the community, rather than the average person sharing selfies[^2].
 
-![](https://cdn.chrishannah.me/images/2021/08/Image.png)
+![](https://chrishannah.me/images/2021/08/Image.png)
 
 There’s support for P3 colour gamut, EXIF information for each photo, and a lack of “likes”. The only interaction that you can have on a photo is a comment. And the only interaction you can have with a fellow photographer, is to follow them.
 

@@ -5,7 +5,7 @@ categories:
 - Tim Ferriss
 date: 2018-01-28 19:15:38+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/01/iu-2.jpeg
+image: https://chrishannah.me/images/2018/01/iu-2.jpeg
 layout: layouts/post
 permalink: the-4-hour-work-week-by-tim-ferriss/
 tags:

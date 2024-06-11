@@ -173,7 +173,7 @@ I’ve now gone over the work I needed to do to configure my blog to allow for m
 
 In the future, I want to try building out a Shortcut that can interact with my blog via an API. However, I have so far been writing them directly in the web editor.
 
-<img src="https://cdn.chrishannah.me/images/2022/09/Screenshot-2022-09-07-at-14.26.45.png" caption="">
+<img src="https://chrishannah.me/images/2022/09/Screenshot-2022-09-07-at-14.26.45.png" caption="">
 
 There are just three things that I need to do to make a micro post, and have it handled correctly. Obviously, the post content and the new `micro` tag, but I also add a title of `Micro`.
 

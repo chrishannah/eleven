@@ -24,20 +24,20 @@ A lot of the time I was focussing on getting portrait-oriented shots that would 
 
 From the final 24 photos, I've picked out 9 that I'd like to feature here on the blog. I hope you like them. And if you want to see the other 15, you can [view the full album on Flickr](https://www.flickr.com/photos/186342532@N04/albums/72157716737787487/with/50562891656/).
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562891656_1a6c29b691_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562891656_1a6c29b691_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562891911_b091224201_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562891911_b091224201_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562893141_c5ae5df824_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562893141_c5ae5df824_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562151493_fd5d043d7b_o.jpg" caption="">
+<img src="https://chrishannah.me/images/2020/11/50562151493_fd5d043d7b_o.jpg" caption="">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562894686_30bc1b7e47_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562894686_30bc1b7e47_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50563024672_e1654f7cc5_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50563024672_e1654f7cc5_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50563026732_74e66a1576_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50563026732_74e66a1576_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562150608_32fc8f9179_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562150608_32fc8f9179_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/11/50562149728_c624c80a96_o.jpg">
+<img src="https://chrishannah.me/images/2020/11/50562149728_c624c80a96_o.jpg">

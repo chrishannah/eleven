@@ -5,7 +5,7 @@ categories:
 - Mac
 date: 2016-09-06 18:37:18+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/09/Tue-6-9-7-26PM-7.png
+image: https://chrishannah.me/images/2016/09/Tue-6-9-7-26PM-7.png
 layout: layouts/post
 permalink: appleevents-for-mac/
 tags:

@@ -4,7 +4,7 @@ categories:
 - Harry Potter
 date: 2016-07-29 02:10:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/08/HP_Background_Only_Portrait_Key_Art.jpg
+image: https://chrishannah.me/images/2016/08/HP_Background_Only_Portrait_Key_Art.jpg
 layout: layouts/post
 permalink: harry-potter-and-the-cursed-child-available-for-pre-order/
 tags:

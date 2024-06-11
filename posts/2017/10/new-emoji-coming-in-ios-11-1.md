@@ -5,7 +5,7 @@ categories:
 - iOS
 date: 2017-10-07 12:00:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/10/apple_emoji_update_2017_mystical-1.jpg
+image: https://chrishannah.me/images/2017/10/apple_emoji_update_2017_mystical-1.jpg
 layout: layouts/post
 permalink: new-emoji-coming-in-ios-11-1/
 tags:

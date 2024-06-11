@@ -6,7 +6,7 @@ categories:
 - Pretty
 date: 2017-02-15 11:04:58+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/screenshot-2-1.png
+image: https://chrishannah.me/images/2017/02/screenshot-2-1.png
 layout: layouts/post
 permalink: im-developing-a-new-app/
 tags:

@@ -13,7 +13,7 @@ title: Castro's New Queue Widgets
 
 Castro has just [announced over on their blog](https://castro.fm/blog/queue-widgets) that widgets have finally arrived. They come in three different sizes, and they each offer a different level of information regarding your queue.
 
-<img src="https://cdn.chrishannah.me/images/2020/11/Image.PNG" caption="">
+<img src="https://chrishannah.me/images/2020/11/Image.PNG" caption="">
 
 In the small size, you'll be able to see the number of episodes in your queue, along with the total duration, and if you tap anywhere on the widget it opens to your queue. With the medium size, it has the same idea, except you see the title and a short description of the next three episodes. And the large size is the same but bigger, and with one more episode.
 
@@ -21,7 +21,7 @@ These widgets look great, and they're already better options than the ones that 
 
 Another cool feature is what you get when your queue is empty. With the medium and large sizes, you get the option to jump straight to Inbox or Discover if you've got nothing in your queue. That's pretty handy.
 
-<img src="https://cdn.chrishannah.me/images/2020/11/IMG_0658.jpg">
+<img src="https://chrishannah.me/images/2020/11/IMG_0658.jpg">
 
 I think now I've gotten used to launching Podcasts via a widget on my home screen, I'm going to give Castro a good try with one of the new widgets. I've always liked the idea of a queue, and I think I prefer the design over Overcast. Overcast is a really good app, and I used it for years, but it doesn't seem "fun" to me, and when it comes to apps, I like it when the design has a bit of character.
 

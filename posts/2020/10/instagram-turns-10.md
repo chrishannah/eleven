@@ -23,13 +23,13 @@ I'm interested in two things in the update. The ability to set a custom app icon
 
 You now have the ability to change the app icon for Instagram! I know it's possible via Shortcuts, but these are actual custom app icons.
 
-<img src="https://cdn.chrishannah.me/images/2020/10/Image.png">
+<img src="https://chrishannah.me/images/2020/10/Image.png">
 
 There are 13 to choose from, and they go back to 2010 before the app was even launched.
 
 To get to the icons, you need to go to Settings, and swipe down from the top of the screen (a lot).
 
-<img src="https://cdn.chrishannah.me/images/2020/10/2020-10-06-12.13.40.gif">
+<img src="https://chrishannah.me/images/2020/10/2020-10-06-12.13.40.gif">
 
 I've gone for the "Classic 2" icon. Because surely that's objectively the best option?
 
@@ -39,7 +39,7 @@ The Stories Map is a cool feature, and it's one for yourself. As in, it's part o
 
 To find it, tap on the menu while you're viewing your profile (What even is this menu called?), and tap Archive. Then you'll be able to see your past stories in a simple reverse-chronological list like before, in a calendar view, or on a map.
 
-<img src="https://cdn.chrishannah.me/images/2020/10/Image-2.png">
+<img src="https://chrishannah.me/images/2020/10/Image-2.png">
 
 I think the calendar view will be the most useful when going back and looking at old videos. But the map view is also pretty cool. Although if you want your videos to appear on your map, you have to add a location sticker to a story when sharing it.
 

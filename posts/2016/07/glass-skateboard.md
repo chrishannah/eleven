@@ -4,7 +4,7 @@ categories:
 - Video
 date: 2016-07-14 22:26:02+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/07/Unknown-1.jpeg
+image: https://chrishannah.me/images/2016/07/Unknown-1.jpeg
 layout: layouts/post
 permalink: glass-skateboard/
 tags:

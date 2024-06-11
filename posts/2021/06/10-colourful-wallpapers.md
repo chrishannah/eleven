@@ -1,7 +1,7 @@
 ---
 date: 2021-06-04 21:05:20+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/06/Grid.png
+image: https://chrishannah.me/images/2021/06/Grid.png
 layout: layouts/post
 permalink: 10-colourful-wallpapers/
 tags:
@@ -17,43 +17,43 @@ Here’s a preview of what each wallpaper looks like:
 
 ## CMYK
 
-<img src="https://cdn.chrishannah.me/images/2021/06/CMYK.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/CMYK.PNG" caption="">
 
 ## Coloured Glass
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Coloured-Glass.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Coloured-Glass.PNG" caption="">
 
 ## Ice Cream
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Ice-Cream.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Ice-Cream.PNG" caption="">
 
 ## Pink Hills
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Pink-Hills.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Pink-Hills.PNG" caption="">
 
 ## Sunset
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Sunset.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Sunset.PNG" caption="">
 
 ## Letters
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Letters.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Letters.PNG" caption="">
 
 ## Mint Stripes
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Mint-Stripes.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Mint-Stripes.PNG" caption="">
 
 ## Worms
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Worms.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Worms.PNG" caption="">
 
 ## Triangles
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Triangles.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Triangles.PNG" caption="">
 
 ## Pastels
 
-<img src="https://cdn.chrishannah.me/images/2021/06/Pastels.PNG" caption="">
+<img src="https://chrishannah.me/images/2021/06/Pastels.PNG" caption="">
 
 All of these images are squares, and the intention behind that is to allow you to choose your own crop and positioning when setting them as your wallpaper. Each image comes in two sizes - 6,000 x 6,000 pixels, and also 12,000 x 12,000 pixels, because why not.
 

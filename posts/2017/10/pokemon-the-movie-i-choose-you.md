@@ -4,7 +4,7 @@ categories:
 - Pokemon
 date: 2017-10-07 07:36:45+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/10/Screen-Shot-2017-10-07-at-08.34.10-1.png
+image: https://chrishannah.me/images/2017/10/Screen-Shot-2017-10-07-at-08.34.10-1.png
 layout: layouts/post
 permalink: pokemon-the-movie-i-choose-you/
 tags:

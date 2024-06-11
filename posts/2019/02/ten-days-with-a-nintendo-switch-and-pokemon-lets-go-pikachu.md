@@ -6,7 +6,7 @@ categories:
 - Opinion
 date: 2019-02-22 13:38:24+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/02/66388CA2-A590-4D33-A63A-4418E4D0C7C0.jpeg
+image: https://chrishannah.me/images/2019/02/66388CA2-A590-4D33-A63A-4418E4D0C7C0.jpeg
 layout: layouts/post
 permalink: ten-days-with-a-nintendo-switch-and-pokemon-lets-go-pikachu/
 tags:

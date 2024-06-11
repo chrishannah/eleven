@@ -1,7 +1,7 @@
 ---
 date: 2016-11-01 18:36:41+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/11/ios-10-shrug-emoji-1.png
+image: https://chrishannah.me/images/2016/11/ios-10-shrug-emoji-1.png
 layout: layouts/post
 permalink: loads-of-new-emoji-in-ios-10-2/
 tags:

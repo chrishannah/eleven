@@ -23,7 +23,7 @@ It doesn’t exactly do much, but it saves a lot of time and effort. It essentia
 
 Turns out the Mac’s a bit more complicated, as while there’s a share menu, you can’t use it to launch a shortcut. So, my existing solution was out the window.
 
-<img src="https://cdn.chrishannah.me/images/2022/02/Screenshot-2022-02-12-at-18.04.27.png" caption="">
+<img src="https://chrishannah.me/images/2022/02/Screenshot-2022-02-12-at-18.04.27.png" caption="">
 
 I tried a few other options that sounded promising, such as the “Get Article from Safari Reader” action that seemed to be precisely what I wanted. I’d be able to detect the URL somehow, and then be able to extract any information manually. Unfortunately, this action doesn’t work, and I’ve been told it hasn’t been working for some time.
 
@@ -31,7 +31,7 @@ After some experimenting, I realised that as long as I could have the URL and hi
 
 My last option was to try to use macOS Services. I discovered that if I used a service from Safari, then it received the selected text as the input. And to top it off there was also a way to receive the “onscreen content” inside a shortcut, which in the case of Safari, returns the URL of the current page.
 
-<img src="https://cdn.chrishannah.me/images/2022/02/Screenshot-2022-02-12-at-17.50.10.png" caption="">
+<img src="https://chrishannah.me/images/2022/02/Screenshot-2022-02-12-at-17.50.10.png" caption="">
 
 That meant I was able to combine the selected text from the input, and the URL from the onscreen content, and put together a link post generator.
 

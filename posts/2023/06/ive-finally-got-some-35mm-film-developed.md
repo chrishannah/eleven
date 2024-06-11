@@ -32,17 +32,17 @@ I ended up with 79 photos from the three rolls of film (I haven't shared the pho
 
 All of my favourites were actually from the Kodak UltraMax film with the Dubblefilm SHOW camera. I only got a handful on the Minolta, so that's not too much of a surprise. But to be honest, I think a lot of the shots were a bit weird because the film was just so old. From memory, I think it was from the mid-2000s.
 
-<img src="https://cdn.chrishannah.me/images/2023/06/179.jpg" caption="Looking over Dunstable Downs">
+<img src="https://chrishannah.me/images/2023/06/179.jpg" caption="Looking over Dunstable Downs">
 
-<img src="https://cdn.chrishannah.me/images/2023/06/188.jpg" caption="The beach near Durdle Door">
+<img src="https://chrishannah.me/images/2023/06/188.jpg" caption="The beach near Durdle Door">
 
-<img src="https://cdn.chrishannah.me/images/2023/06/201.jpg" caption="Wells-next-the-Sea">
+<img src="https://chrishannah.me/images/2023/06/201.jpg" caption="Wells-next-the-Sea">
 
-<img src="https://cdn.chrishannah.me/images/2023/06/222.jpg" caption="Spekes Mill Mouth Waterfall">
+<img src="https://chrishannah.me/images/2023/06/222.jpg" caption="Spekes Mill Mouth Waterfall">
 
-<img src="https://cdn.chrishannah.me/images/2023/06/233.jpg" caption="Spekes Mill Mouth">
+<img src="https://chrishannah.me/images/2023/06/233.jpg" caption="Spekes Mill Mouth">
 
-<img src="https://cdn.chrishannah.me/images/2023/06/241.jpg" caption="Dover">
+<img src="https://chrishannah.me/images/2023/06/241.jpg" caption="Dover">
 
 ## Takeaways
 

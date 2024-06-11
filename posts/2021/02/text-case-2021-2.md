@@ -17,7 +17,7 @@ It’s not been long since the major update to Text Case was released, introduci
 
 All 48 formats can be accessed on the macOS app via the Services menu.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/2021-02-07-16.16.36-1.gif">
+<img src="https://chrishannah.me/images/2021/02/2021-02-07-16.16.36-1.gif">
 
 They apply the format directly to the selected text, which means no extra action is required. And since they are services, you can add a custom keyboard shortcut to them!
 

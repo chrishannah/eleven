@@ -6,7 +6,7 @@ categories:
 - Earphones
 date: 2022-12-06 19:07:03+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2022/12/E4A1DEF9-1880-40F4-B713-4A33509CDC73.jpeg
+image: https://chrishannah.me/images/2022/12/E4A1DEF9-1880-40F4-B713-4A33509CDC73.jpeg
 layout: layouts/post
 permalink: nothing-ear-stick/
 tags:
@@ -24,7 +24,7 @@ There are two main reasons why I bought them. The first being that I wanted an u
 
 Secondly, the Nothing brand, and its recent products, are making me think differently about technology. They're making fun products, with slightly quirky designs, and not forcing themselves into being yet another bland tech company, obsessed with specifications and just one number being higher than another. I've been getting bored of technology recently, both hardware and software, but these  seemed to stick out, so I thought I'd give them a go.
 
-<img src="https://cdn.chrishannah.me/images/2022/12/12DFFC19-D6AE-4ACD-9B07-F194A9024CA3.jpeg">
+<img src="https://chrishannah.me/images/2022/12/12DFFC19-D6AE-4ACD-9B07-F194A9024CA3.jpeg">
 
 ## Design
 

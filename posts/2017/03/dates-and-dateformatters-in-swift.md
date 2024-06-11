@@ -5,7 +5,7 @@ categories:
 - Swift Basics
 date: 2017-03-08 13:51:42+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/03/dates-1.png
+image: https://chrishannah.me/images/2017/03/dates-1.png
 layout: layouts/post
 permalink: dates-and-dateformatters-in-swift/
 tags:

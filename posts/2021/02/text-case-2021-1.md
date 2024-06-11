@@ -3,7 +3,7 @@ categories:
 - Text Case
 date: 2021-02-01 00:00:29+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/01/screenshot.png
+image: https://chrishannah.me/images/2021/01/screenshot.png
 layout: layouts/post
 permalink: text-case-2021-1/
 tags:
@@ -14,7 +14,7 @@ title: Text Case 2021.1
 
 The major update to Text Case that I've been working on for a while is finally here!
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Image.png">
+<img src="https://chrishannah.me/images/2021/01/Image.png">
 
 ## 🌟 Flows
 
@@ -33,7 +33,7 @@ These are customisable combinations of formats, that can be put together to crea
 	- Duplicate Flow
 	- Delete Flow
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Image-2.png">
+<img src="https://chrishannah.me/images/2021/01/Image-2.png">
 
 ## 👀 New Formats
 
@@ -54,14 +54,14 @@ There are:
 
 All of these new formats are available to use within a flow, and also via dedicated actions in the Shortcuts app.
 
-<img src="https://cdn.chrishannah.me/images/2021/01/Image-3.png">
+<img src="https://chrishannah.me/images/2021/01/Image-3.png">
 
 ## ⚙️ Share Extension Customisation
 
 - It can be configured to show just flows, just formats, or both.
 - You can also choose whether you want formats to have their default colour styling.
 
-<img src="https://cdn.chrishannah.me/images/2021/01/iVBORw0KGgoAAAANSUhEUgAAC50AAAjwCAYAAAAKgq9xAAAACXBIWXMAAAsTAAALEwEAmpwYAAAM-2-1.png">
+<img src="https://chrishannah.me/images/2021/01/iVBORw0KGgoAAAANSUhEUgAAC50AAAjwCAYAAAAKgq9xAAAACXBIWXMAAAsTAAALEwEAmpwYAAAM-2-1.png">
 
 ## ❇️ New Icons
 

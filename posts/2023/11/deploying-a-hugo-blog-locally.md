@@ -13,7 +13,7 @@ I switched this blog from [Ghost](https://ghost.org) to [Hugo](https://gohugo.io
 
 Then all you need to do in the command line is run `hugo server`.
 
-![](https://cdn.chrishannah.me/images/2023/11/Screenshot%202023-11-12%20at%2015.51.43.png)
+![](https://chrishannah.me/images/2023/11/Screenshot%202023-11-12%20at%2015.51.43.png)
 
 After that you haven't just built a bunch of static `.html` files. Instead, Hugo runs a local web server that live reloads on changes to your site config, blog posts, theme, etc. So it's not just a simple way of previewing your blog content, it's a literal copy of what your entire site is going to look like when it goes live.
 

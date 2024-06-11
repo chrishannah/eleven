@@ -1,7 +1,7 @@
 ---
 date: 2021-02-08 21:49:16+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/02/_116866830_mediaitem116866829.jpg
+image: https://chrishannah.me/images/2021/02/_116866830_mediaitem116866829.jpg
 layout: layouts/post
 permalink: overtly-sexual-cow-blocked-as-facebook-ad/
 tags:

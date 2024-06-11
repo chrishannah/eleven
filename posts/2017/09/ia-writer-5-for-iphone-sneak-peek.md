@@ -4,7 +4,7 @@ categories:
 - iOS
 date: 2017-09-07 08:17:22+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/09/combine_images-1.png
+image: https://chrishannah.me/images/2017/09/combine_images-1.png
 layout: layouts/post
 permalink: ia-writer-5-for-iphone-sneak-peek/
 tags:

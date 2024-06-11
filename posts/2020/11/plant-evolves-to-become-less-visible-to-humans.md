@@ -3,7 +3,7 @@ categories:
 - Nature
 date: 2020-11-20 21:35:50+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/11/plantevolves-2.jpg
+image: https://chrishannah.me/images/2020/11/plantevolves-2.jpg
 layout: layouts/post
 permalink: plant-evolves-to-become-less-visible-to-humans/
 tags:

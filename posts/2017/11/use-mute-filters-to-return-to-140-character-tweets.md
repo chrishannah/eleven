@@ -4,7 +4,7 @@ categories:
 - Twitter
 date: 2017-11-08 11:09:23+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/11/Screen-Shot-2017-11-08-at-10.17.40-1.png
+image: https://chrishannah.me/images/2017/11/Screen-Shot-2017-11-08-at-10.17.40-1.png
 layout: layouts/post
 permalink: use-mute-filters-to-return-to-140-character-tweets/
 tags:

@@ -3,7 +3,7 @@ categories:
 - Text Case
 date: 2021-07-04 22:20:06+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/07/Screenshot-2021-07-04-at-17.46.09.png
+image: https://chrishannah.me/images/2021/07/Screenshot-2021-07-04-at-17.46.09.png
 layout: layouts/post
 permalink: text-case-2021-6/
 tags:

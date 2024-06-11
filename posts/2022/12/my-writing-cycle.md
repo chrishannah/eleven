@@ -5,7 +5,7 @@ categories:
 - Blogging
 date: 2022-12-15 14:23:11+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2022/12/1671113698786_filtered.jpg
+image: https://chrishannah.me/images/2022/12/1671113698786_filtered.jpg
 layout: layouts/post
 permalink: my-writing-cycle/
 tags:

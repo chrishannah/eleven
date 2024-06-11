@@ -18,7 +18,7 @@ like better colouring, better visualisation of metadata, knowledge about more
 file types, and a bunch of options that you can use.
 
 TL;DR, exa is [no longer being maintained][exag]. However, a replacement has
-now risen out of the ashes, and is called [eza][eza]. 
+now risen out of the ashes, and is called [eza][eza].
 
 Essentially, eza, is a maintained fork of exa, and adds even more features,
 that you definitely didn't know you needed. Nevertheless, even just using the
@@ -31,15 +31,15 @@ Some examples to give you an idea what it looks like:
 
 `eza`
 
-![](https://cdn.chrishannah.me/images/2023/12/eza.png)
+![](https://chrishannah.me/images/2023/12/eza.png)
 
 `eza --long`
 
-![](https://cdn.chrishannah.me/images/2023/12/eza-long.png)
+![](https://chrishannah.me/images/2023/12/eza-long.png)
 
 `eza --tree`
 
-![](https://cdn.chrishannah.me/images/2023/12/eza-tree.png)
+![](https://chrishannah.me/images/2023/12/eza-tree.png)
 
 You can find the code, docs, and install instructions via [the GitHub
 repo][eza]. But if you're on a Mac, and you use [Homebrew][hb], you just need to

@@ -5,7 +5,7 @@ categories:
 - Readdle
 date: 2017-05-25 15:00:36+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/05/1-RD6SLcrV7_ORH4DeuofxsQ-1.jpeg
+image: https://chrishannah.me/images/2017/05/1-RD6SLcrV7_ORH4DeuofxsQ-1.jpeg
 layout: layouts/post
 permalink: readdle-update-their-apps-with-custom-drag-and-drop/
 tags:

@@ -6,7 +6,7 @@ categories:
 - Project
 date: 2018-07-07 11:21:53+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/07/IMG_0262.png
+image: https://chrishannah.me/images/2018/07/IMG_0262.png
 layout: layouts/post
 permalink: text-case-has-been-released/
 tags:

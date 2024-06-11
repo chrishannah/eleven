@@ -6,7 +6,7 @@ categories:
 - Writing
 date: 2016-11-04 18:41:48+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/11/0x0ss-85-1.jpg
+image: https://chrishannah.me/images/2016/11/0x0ss-85-1.jpg
 layout: layouts/post
 permalink: writing-with-bear/
 tags:

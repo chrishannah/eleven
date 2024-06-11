@@ -4,7 +4,7 @@ categories:
 - Pokemon
 date: 2016-07-09 19:33:46+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/07/maxresdefault.jpg
+image: https://chrishannah.me/images/2016/07/maxresdefault.jpg
 layout: layouts/post
 permalink: installing-pokemon-go-in-unsupported-countries/
 tags:

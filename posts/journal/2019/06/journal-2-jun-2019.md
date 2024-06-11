@@ -1,7 +1,7 @@
 ---
 date: 2019-06-02 23:12:33+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/06/98A87DBF-8E08-4ADF-86DA-C8197AAAEF8F.jpeg
+image: https://chrishannah.me/images/2019/06/98A87DBF-8E08-4ADF-86DA-C8197AAAEF8F.jpeg
 layout: layouts/post
 permalink: journal-2-jun-2019/
 tags:

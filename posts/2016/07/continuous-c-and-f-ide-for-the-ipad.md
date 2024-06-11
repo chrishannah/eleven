@@ -3,7 +3,7 @@ categories:
 - iPad
 date: 2016-07-07 00:35:15+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/07/IMG_0261.png
+image: https://chrishannah.me/images/2016/07/IMG_0261.png
 layout: layouts/post
 permalink: continuous-c-and-f-ide-for-the-ipad/
 tags:

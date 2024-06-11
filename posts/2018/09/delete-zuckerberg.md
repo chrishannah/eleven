@@ -3,7 +3,7 @@ categories:
 - Facebook
 date: 2018-09-28 13:03:44+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/09/4.png
+image: https://chrishannah.me/images/2018/09/4.png
 layout: layouts/post
 permalink: delete-zuckerberg/
 tags:

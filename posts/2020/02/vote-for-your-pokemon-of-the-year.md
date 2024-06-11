@@ -12,7 +12,7 @@ title: Vote for Your Pokémon of the Year
 ---
 
 <p>It&#8217;s getting close to Pokémon Day on the 27th February, and Pokémon have teamed up with Google to let people vote for their favourite Pokémon.</p>
-<p><img src="https://cdn.chrishannah.me/images/2020/02/Pok%C3%A9mon.png" alt="Pokémon Vote" /></p>
+<p><img src="https://chrishannah.me/images/2020/02/Pok%C3%A9mon.png" alt="Pokémon Vote" /></p>
 <p>You just need to <a href="https://www.google.com/search?q=pokemon+vote">search &#8220;Pokémon Vote&#8221; on Google</a> to get to the poll, and once you&#8217;re there you&#8217;ll be able to vote for your favourite Pokémon from each of the 8 regions (Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, and Galar). It includes all 890 Pokémon from there National Pokédex in Sword/Shield.</p>
 <p>Here&#8217;s what I voted:</p>
 <ul>

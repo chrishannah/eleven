@@ -6,7 +6,7 @@ categories:
 - Pokemon GO
 date: 2017-02-15 12:36:44+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/Screen-Shot-2017-02-15-at-12-34-26-1.png
+image: https://chrishannah.me/images/2017/02/Screen-Shot-2017-02-15-at-12-34-26-1.png
 layout: layouts/post
 permalink: more-pokemon-to-catch-in-pokemon-go/
 tags:

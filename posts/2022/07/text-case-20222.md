@@ -22,11 +22,11 @@ As for the new formats, they are:
 * Replace “X” with Line Breaks
 * Replace Line Breaks with “X”
 
-<img src="https://cdn.chrishannah.me/images/2022/07/Screenshot-2022-07-03-at-10.26.21.png" caption="">
+<img src="https://chrishannah.me/images/2022/07/Screenshot-2022-07-03-at-10.26.21.png" caption="">
 
 Relatively simple, but I’ve been getting quite a few requests, so I thought I’d add them in. These new formats are available when building a flow, and also via new actions in the Shortcuts app.
 
-<img src="https://cdn.chrishannah.me/images/2022/07/Screenshot-2022-07-03-at-10.27.12.png" caption="">
+<img src="https://chrishannah.me/images/2022/07/Screenshot-2022-07-03-at-10.27.12.png" caption="">
 
 And then for the bugs, one was a rather simple one that one of the formats wasn’t appearing in the formats list. But the other was rather annoying, and was specific to the macOS app, where when you selected the Settings tab, the app review prompt would appear. And it would happen every single time. So, thankfully that should be fixed too.
 

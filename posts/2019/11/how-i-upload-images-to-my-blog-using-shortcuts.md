@@ -23,6 +23,6 @@ title: How I Upload Images to My Blog Using Shortcuts
 <p>So with the fundamental work done, I added an “Ask for Input” action at the beginning, to extract the title of the media. And also a “Text” block, to use the title and image URL and format it as Markdown so it can then be quickly copied and pasted into a document in iA Writer.</p>
 <hr />
 <p>So after all of that talking, I’m sure you would like to see what the Shortcut actually looks like:</p>
-<p><img src="https://cdn.chrishannah.me/images/2019/11/IMG_0071-1.png" alt="Upload Image To Blog Shortcut Screenshot" /></p>
+<p><img src="https://chrishannah.me/images/2019/11/IMG_0071-1.png" alt="Upload Image To Blog Shortcut Screenshot" /></p>
 <p><a href="https://www.icloud.com/shortcuts/7f8cce33f0824139bb753e94af3458d4">Download the Upload Image To Blog Shortcut</a></p>
 <p>Hopefully either the resulting Shortcut can be useful to other people, or at least my thought process behind it, as no matter how good you think you know Shortcuts, it also seems to surprise you.</p>

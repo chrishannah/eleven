@@ -21,14 +21,14 @@ After playing around in Lightroom, I've got [12 photos that I'm happy with](http
 
 You can [see them all on my Flickr](https://www.flickr.com/photos/186342532@N04/50870077867/in/album-72157718014948461/), but here are my 6 favourites:
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50869982291_2c6fa32cc9_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50869982291_2c6fa32cc9_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50870076727_cba4a2ba74_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50870076727_cba4a2ba74_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50869267353_2a6781ba64_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50869267353_2a6781ba64_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50870079007_8a7feed9ae_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50870079007_8a7feed9ae_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50869269523_f954e74e5a_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50869269523_f954e74e5a_o.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/01/50869979261_f04e3c9caf_o.jpg">
+<img src="https://chrishannah.me/images/2021/01/50869979261_f04e3c9caf_o.jpg">

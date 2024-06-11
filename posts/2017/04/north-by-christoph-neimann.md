@@ -3,7 +3,7 @@ categories:
 - National Geographic
 date: 2017-04-06 20:52:07+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/04/Screen-Shot-2017-04-06-at-21-51-21-1.png
+image: https://chrishannah.me/images/2017/04/Screen-Shot-2017-04-06-at-21-51-21-1.png
 layout: layouts/post
 permalink: north-by-christoph-neimann/
 tags:

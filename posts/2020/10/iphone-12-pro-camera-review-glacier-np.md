@@ -1,7 +1,7 @@
 ---
 date: 2020-10-20 20:35:13+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/10/IMG_0469.jpg
+image: https://chrishannah.me/images/2020/10/IMG_0469.jpg
 layout: layouts/post
 permalink: iphone-12-pro-camera-review-glacier-np/
 tags:

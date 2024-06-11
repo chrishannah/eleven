@@ -23,7 +23,7 @@ Nevertheless, it's been common to write a post to analyse the impact of being on
 
 I was awake for just over an hour after the post hit the front page, and I think it had about 200 views in that time. In my head, it wasn't going to get much higher than that. So I was rather surprised when I looked at the analytics this morning.
 
-<img src="https://cdn.chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-12.57.04.png">
+<img src="https://chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-12.57.04.png">
 
 Overall, the page got **4,272** views, and as you can see above, over 75% of this came from Hacker News. And I'd argue that probably a lot more also came from related aggregators and websites.
 
@@ -33,7 +33,7 @@ On Hacker News, [the post](https://news.ycombinator.com/item?id=33539549) has (a
 
 I'm not afraid to say that I don't make much revenue from the single ad at the bottom of the website. So I'll happily share the impact that it had on the revenue.
 
-<img src="https://cdn.chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-13.01.38.png">
+<img src="https://chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-13.01.38.png">
 
 As you can see, the average day doesn't go above $1. However, with the suddent increase in page views, and a few apparent clicks, the revenue certainly jumped. I think I can estimate around $8 in earnings from that single post.
 
@@ -43,7 +43,7 @@ One thing I had definitely heard about being on Hacker News was that it the traf
 
 This blog is a self-hosted [Ghost](https://ghost.org) blog, and it's hosted on a relatively small virtual server on [Digital Ocean](https://m.do.co/c/30383193b89a). It has a single CPU and just 2 GB memory. And it seemed to cope just fine.
 
-<img src="https://cdn.chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-13.10.18.png">
+<img src="https://chrishannah.me/images/2022/11/Screenshot-2022-11-10-at-13.10.18.png">
 
 Digital Ocean can provide a nice graph of the CPU usage, and you can see it never even reached 40%. As for the memory, I was monitoring this during the early peak via htop, and I can't say I saw the total memory usage even reach 1 GB. Maybe this _isn't_ great and it should handle more. Who knows. All I can say is that it was clearly enough for me. And this is for only just $10/month or so.
 

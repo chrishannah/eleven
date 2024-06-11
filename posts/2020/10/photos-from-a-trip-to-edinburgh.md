@@ -18,19 +18,19 @@ Over 300 made it back, which was then refined by removing duplicates, blurry ima
 
 I've [uploaded them all to Flickr, and put them in a single album](https://www.flickr.com/photos/186342532@N04/albums/72157716284740168). But as usual, I thought I'd post a few of my favourites here directly:
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0838.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0838.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0704.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0704.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0886.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0886.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0867.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0867.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0721.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0721.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0720.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0720.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2020/10/DSCF0713.jpg">
+<img src="https://chrishannah.me/images/2020/10/DSCF0713.jpg">
 
 ---
 

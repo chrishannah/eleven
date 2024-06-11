@@ -6,7 +6,7 @@ categories:
 - iOS
 date: 2018-11-15 23:07:58+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/865D1F74-AE8F-44F9-9089-B84026E81161.png
+image: https://chrishannah.me/images/2018/11/865D1F74-AE8F-44F9-9089-B84026E81161.png
 layout: layouts/post
 permalink: harry-potter-wizards-unite/
 tags:

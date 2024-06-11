@@ -17,7 +17,7 @@ title: The MagSafe Battery Pack
 
 Apple has just released [the product that I think we've all been expecting](https://www.apple.com/uk/shop/product/MJWY3ZM/A/magsafe-battery-pack) ever since the recent addition of MagSafe in the recent iPhone lineup. It's a product that simply makes sense.
 
-<img src="https://cdn.chrishannah.me/images/2021/07/MJWY3-2.png">
+<img src="https://chrishannah.me/images/2021/07/MJWY3-2.png">
 
 As you may expect, it's by no means the biggest battery pack you can get for your iPhone, with the capacity standing at 1460mAh, and it's not clear what this will mean in terms of actual extra use time. However, when you compare it to the iPhone 12 battery capacities, you can probably get a rough estimate:
 

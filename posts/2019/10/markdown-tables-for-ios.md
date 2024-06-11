@@ -5,7 +5,7 @@ categories:
 - Markdown
 date: 2019-10-11 11:51:19+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/10/IMG_1496.png
+image: https://chrishannah.me/images/2019/10/IMG_1496.png
 layout: layouts/post
 permalink: markdown-tables-for-ios/
 tags:

@@ -1,7 +1,7 @@
 ---
 date: 2020-10-17 11:13:59+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/10/3efa8382-8811-4da1-9927-571699a83cfd.png
+image: https://chrishannah.me/images/2020/10/3efa8382-8811-4da1-9927-571699a83cfd.png
 layout: layouts/post
 permalink: the-winners-of-the-2020-wildlife-photographer-of-the-year/
 tags:

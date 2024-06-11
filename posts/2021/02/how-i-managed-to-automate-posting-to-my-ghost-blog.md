@@ -35,7 +35,7 @@ Which meant the only option was to write an app instead.
 
 Although, not a fully functioning app, I only actually wanted a few Shortcut actions. So I ended up creating a SwiftUI app that looks like this:
 
-<img src="https://cdn.chrishannah.me/images/2021/02/IMG_0366.png">
+<img src="https://chrishannah.me/images/2021/02/IMG_0366.png">
 
 However, there are actually three Shortcut actions that it provides:
 
@@ -53,7 +53,7 @@ I’m not too sure how stable this action is, especially since the endpoint only
 
 Here is the Shortcut I’ve created to upload an image:
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image.png">
+<img src="https://chrishannah.me/images/2021/02/Image.png">
 
 ## Post Creation
 
@@ -84,7 +84,7 @@ After that, I use my app Text Case to format the title into AP Title Case, conve
 
 Then I run it through the new Create Post action.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/IMG_0371.png">
+<img src="https://chrishannah.me/images/2021/02/IMG_0371.png">
 
 From there I have the post information, which means I can automate sending a tweet about the new blog post and launch the page in Safari.
 

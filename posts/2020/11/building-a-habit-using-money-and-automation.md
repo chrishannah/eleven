@@ -6,7 +6,7 @@ categories:
 - Money
 date: 2020-11-03 00:47:40+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/11/monzo-pot-image-tablet-alt-FE4D59.png
+image: https://chrishannah.me/images/2020/11/monzo-pot-image-tablet-alt-FE4D59.png
 layout: layouts/post
 permalink: building-a-habit-using-money-and-automation/
 tags:
@@ -54,7 +54,7 @@ To me, this seems like a perfect fit. I want to get myself into a habit where I'
 
 For the automation, I'll be using a combination of the blogs RSS feed, IFTTT, and a specific pot in Monzo with an associated goal (Which has a cool image that I built using [Robb Knight's tool](https://potimages.rknight.me/), and is the featured image of this post).
 
-<img src="https://cdn.chrishannah.me/images/2020/11/Screenshot-2020-11-02-at-20.06.44-1.png">
+<img src="https://chrishannah.me/images/2020/11/Screenshot-2020-11-02-at-20.06.44-1.png">
 
 It's a pretty simple process. Whenever there's a new item in my blogs RSS feed, money will be transferred into my pot in Monzo. Eventually, I'll hit the target, I'll order the iPad, and all my life's worries will go away (I think this is how it works?).
 

@@ -5,7 +5,7 @@ categories:
 - Snapchat
 date: 2017-06-24 17:11:20+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/06/IMG_3612-1.jpg
+image: https://chrishannah.me/images/2017/06/IMG_3612-1.jpg
 layout: layouts/post
 permalink: snapchat-can-now-share-your-location/
 tags:

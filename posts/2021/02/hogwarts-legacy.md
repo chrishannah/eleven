@@ -4,7 +4,7 @@ categories:
 - game
 date: 2021-02-25 22:53:17+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/02/hogwarts-legacy-desktop.jpg
+image: https://chrishannah.me/images/2021/02/hogwarts-legacy-desktop.jpg
 layout: layouts/post
 permalink: hogwarts-legacy/
 tags:

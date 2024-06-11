@@ -15,8 +15,8 @@ tags:
 title: My iPhone Home Screen
 ---
 
-<p>I enjoy seeing other people&#8217;s iPhone home screens, so I thought it was probably about time I shared <a href="https://cdn.chrishannah.me/images/2020/05/IMG_5ABA1A1DA416-1.jpeg">my own.</a></p>
-<p><img src="https://cdn.chrishannah.me/images/2020/05/IMG_5ABA1A1DA416-1.jpeg" alt="Home screen" style="max-height: 800px;"></p>
+<p>I enjoy seeing other people&#8217;s iPhone home screens, so I thought it was probably about time I shared <a href="https://chrishannah.me/images/2020/05/IMG_5ABA1A1DA416-1.jpeg">my own.</a></p>
+<p><img src="https://chrishannah.me/images/2020/05/IMG_5ABA1A1DA416-1.jpeg" alt="Home screen" style="max-height: 800px;"></p>
 <p>Mine is rather simple and it&#8217;s got to a point where it&#8217;s pretty stable, with only a few apps changing now and then. There&#8217;s a total of 20 apps, with four of them being in the dock.</p>
 <p>In the past, I&#8217;ve crammed my home screen full of apps that I think I use a lot. But that feels too busy. So instead, I leave the bottom rows empty. Which also gives me space to put an app I need to use temporarily, or if I&#8217;m trying something new out.</p>
 <p>All apps that aren&#8217;t stock apps will have links to their App Store pages.</p>

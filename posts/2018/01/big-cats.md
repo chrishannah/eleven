@@ -6,7 +6,7 @@ categories:
 - Nature
 date: 2018-01-14 17:51:11+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/01/p05sxjdv.jpg
+image: https://chrishannah.me/images/2018/01/p05sxjdv.jpg
 layout: layouts/post
 permalink: big-cats/
 tags:

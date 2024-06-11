@@ -3,7 +3,7 @@ categories:
 - Beer
 date: 2020-09-24 20:52:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/09/hobgoblin.png
+image: https://chrishannah.me/images/2020/09/hobgoblin.png
 layout: layouts/post
 permalink: hobgoblin-ruby/
 tags:

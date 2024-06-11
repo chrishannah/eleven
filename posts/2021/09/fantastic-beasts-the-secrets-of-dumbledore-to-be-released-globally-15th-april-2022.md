@@ -3,7 +3,7 @@ categories:
 - Harry Potter
 date: 2021-09-23 21:26:05+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/09/erumpent-full-logo-width.png
+image: https://chrishannah.me/images/2021/09/erumpent-full-logo-width.png
 layout: layouts/post
 permalink: fantastic-beasts-the-secrets-of-dumbledore-to-be-released-globally-15th-april-2022/
 tags:

@@ -1,7 +1,7 @@
 ---
 date: 2021-09-29 22:55:39+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/09/0FC9C3BE-BF89-42B4-862F-FC100DBF9EE9.jpeg
+image: https://chrishannah.me/images/2021/09/0FC9C3BE-BF89-42B4-862F-FC100DBF9EE9.jpeg
 layout: layouts/post
 permalink: raptors-in-flight-striking-portraits-by-mark-harvey-frame-birds-of-prey-on-the-hunt/
 tags:

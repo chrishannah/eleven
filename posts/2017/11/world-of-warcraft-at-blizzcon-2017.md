@@ -5,7 +5,7 @@ categories:
 - WoW
 date: 2017-11-03 19:38:18+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/11/Screen-Shot-2017-11-03-at-19.25.21-1.png
+image: https://chrishannah.me/images/2017/11/Screen-Shot-2017-11-03-at-19.25.21-1.png
 layout: layouts/post
 permalink: world-of-warcraft-at-blizzcon-2017/
 tags:

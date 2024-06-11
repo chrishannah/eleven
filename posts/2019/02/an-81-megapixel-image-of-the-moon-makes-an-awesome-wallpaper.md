@@ -4,7 +4,7 @@ categories:
 - Space
 date: 2019-02-20 11:44:34+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/02/IMG_0002-1.jpg
+image: https://chrishannah.me/images/2019/02/IMG_0002-1.jpg
 layout: layouts/post
 permalink: an-81-megapixel-image-of-the-moon-makes-an-awesome-wallpaper/
 tags:

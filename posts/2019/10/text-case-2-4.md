@@ -4,7 +4,7 @@ categories:
 - Text Case
 date: 2019-10-10 23:03:19+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/10/IMG_1474.png
+image: https://chrishannah.me/images/2019/10/IMG_1474.png
 layout: layouts/post
 permalink: text-case-2-4/
 tags:

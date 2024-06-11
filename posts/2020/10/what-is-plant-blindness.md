@@ -3,7 +3,7 @@ categories:
 - Nature
 date: 2020-10-12 22:12:23+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/10/50254362657_836c7d0b33_k.jpg
+image: https://chrishannah.me/images/2020/10/50254362657_836c7d0b33_k.jpg
 layout: layouts/post
 permalink: what-is-plant-blindness/
 tags:

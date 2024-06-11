@@ -21,6 +21,6 @@ They have [written about the process](https://swelltype.com/yep-i-created-the-ne
 
 Talking about the new typeface itself, I think it suits Avatar very well. It has a clear evolution from Papyrus, but adds a bit more character.
 
-<img src="https://cdn.chrishannah.me/images/2022/05/Avatar-samples1.png" caption="Image credit: Swell Type">
+<img src="https://chrishannah.me/images/2022/05/Avatar-samples1.png" caption="Image credit: Swell Type">
 
 I’m now going to be hyper-aware of this typeface whenever I see anything relating to Avatar, but I wonder if _normal_ people will notice anything different?

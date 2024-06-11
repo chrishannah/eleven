@@ -18,32 +18,32 @@ To cut to the chase, the camera I used was a Fujifilm X-T100, and the lens is a 
 
 Here are the photos I liked most from the trip:
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_16_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_16_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_17_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_17_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_18_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_18_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_19_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_19_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_20_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_20_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_21_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_21_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_22_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_22_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_23_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_23_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_24_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_24_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_25_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_25_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_26_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_26_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_27_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_27_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_28_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_28_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_29_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_29_Small.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2023/02/Edinburgh_30_Small.jpg">
+<img src="https://chrishannah.me/images/2023/02/Edinburgh_30_Small.jpg">

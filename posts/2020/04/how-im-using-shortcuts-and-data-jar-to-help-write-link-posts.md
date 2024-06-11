@@ -28,7 +28,7 @@ title: How I’m Using Shortcuts and Data Jar To Help Write Link Posts
 <li>Create a dictionary with four pieces of data &#8211; the title, URL, any text that was selected that I want to quote, and also the author. Although I’ve found the author to not be very reliable.</li>
 <li>Store this dictionary at the end of my <code>drafts</code> list in Data Jar.</li>
 </ol>
-<p><a href="https://cdn.chrishannah.me/images/2020/04/Image.png"><img src="https://cdn.chrishannah.me/images/2020/04/Image.png" alt=""></a></p>
+<p><a href="https://chrishannah.me/images/2020/04/Image.png"><img src="https://chrishannah.me/images/2020/04/Image.png" alt=""></a></p>
 <p>Download the Shortcut: <a href="https://www.icloud.com/shortcuts/cda947a8097f4b6290c7a67da9666074">Add to Drafts List</a></p>
 <h1>Starting a Link Post</h1>
 <p>This shortcut is a bit more complex, as it has to do quite a few things:</p>
@@ -39,7 +39,7 @@ title: How I’m Using Shortcuts and Data Jar To Help Write Link Posts
 <li>Create a new document in iA Writer.</li>
 </ul>
 <p>It’s a bit long, so I’ll put the long screenshot below, and then explain why it may seem pretty complicated for what it does, and the things I had to work around.</p>
-<p><a href="https://cdn.chrishannah.me/images/2020/04/63367181-1299-410A-A9A8-9EF07FB52A9E-scaled.jpeg"><img src="https://cdn.chrishannah.me/images/2020/04/63367181-1299-410A-A9A8-9EF07FB52A9E-scaled.jpeg" alt="Start Link Post From Draft Shortcut"></a></p>
+<p><a href="https://chrishannah.me/images/2020/04/63367181-1299-410A-A9A8-9EF07FB52A9E-scaled.jpeg"><img src="https://chrishannah.me/images/2020/04/63367181-1299-410A-A9A8-9EF07FB52A9E-scaled.jpeg" alt="Start Link Post From Draft Shortcut"></a></p>
 <p>To start off, the shortcut gets the list of drafts from Data Jar. This contains all the drafts that have been saved.</p>
 <p>It then does a little transformation with that data, using a temporary variable in Data Jar. It clears the value for the specific key I’m going to use, and then it loops through the list of articles, and extracts the title and the index of each article into a new list. This is because we need to show the list of articles, and also perform operations on the specific article that was selected.</p>
 <p>The temporary list is then displayed, and from the chosen article, the Index is then used to fetch the complete article data from Data Jar. That includes the title, author, page selection (snippet), and the URL.</p>

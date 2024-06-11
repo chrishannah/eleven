@@ -21,11 +21,11 @@ It's a universal application (iOS/iPadOS/macOS) that lets you take snippets of t
 
 Like these:
 
-<p><img src="https://cdn.chrishannah.me/images/2023/06/PNG-image.png" style="max-width: 400px;"></p>
+<p><img src="https://chrishannah.me/images/2023/06/PNG-image.png" style="max-width: 400px;"></p>
 
-<p><img src="https://cdn.chrishannah.me/images/size/w1600/2023/06/PNG-image-1.png" style="max-width: 600px;"></p>
+<p><img src="https://chrishannah.me/images/size/w1600/2023/06/PNG-image-1.png" style="max-width: 600px;"></p>
 
-<p><img src="https://cdn.chrishannah.me/images/2023/06/PNG-image-2.png" style="max-width: 200px;"></p>
+<p><img src="https://chrishannah.me/images/2023/06/PNG-image-2.png" style="max-width: 200px;"></p>
 
 All of the functionality is also available within the Shortcuts app, which means you can tie it into much more complex automations.
 

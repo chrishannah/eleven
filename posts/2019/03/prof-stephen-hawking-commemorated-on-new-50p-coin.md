@@ -5,7 +5,7 @@ categories:
 - Stephen Hawking
 date: 2019-03-12 12:14:19+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/03/105981407_hawkingcoins.jpg
+image: https://chrishannah.me/images/2019/03/105981407_hawkingcoins.jpg
 layout: layouts/post
 permalink: prof-stephen-hawking-commemorated-on-new-50p-coin/
 tags:

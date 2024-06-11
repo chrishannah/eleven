@@ -16,6 +16,6 @@ title: 'Journal: 13 Apr 2019'
 <p>I did say yesterday that I would try to get a few photos of Jay today. I have a couple that I like, but his colouring makes it very hard to get a sharp image.</p>
 <p>Anyway, here are the best two from today:</p>
 <figure>
-<img src="https://cdn.chrishannah.me/images/2019/04/Jay-iPad.jpeg" alt=""></figure>
+<img src="https://chrishannah.me/images/2019/04/Jay-iPad.jpeg" alt=""></figure>
 <figure>
-<img src="https://cdn.chrishannah.me/images/2019/04/Jay-Yellow-Sofa.jpeg" alt=""></figure></p>
+<img src="https://chrishannah.me/images/2019/04/Jay-Yellow-Sofa.jpeg" alt=""></figure></p>

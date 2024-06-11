@@ -19,11 +19,11 @@ But I was looking at the app analytics section App Store Connect one day and I s
 
 In the end, it was around 3 million:
 
-<img src="https://cdn.chrishannah.me/images/2021/03/Screenshot-2021-03-06-at-00.12.24.png">
+<img src="https://chrishannah.me/images/2021/03/Screenshot-2021-03-06-at-00.12.24.png">
 
 I immediately thought it meant that my app must have been linked somewhere popular, or that it was featured in the App Store. Turns out it was the latter. Text Case was in fact featured in the "Apps and Games We Love Right Now" section.
 
-<img src="https://cdn.chrishannah.me/images/2021/03/EuJT2ivWgAImBHm.jpeg">
+<img src="https://chrishannah.me/images/2021/03/EuJT2ivWgAImBHm.jpeg">
 
 I started thinking that this could mean a sudden increase in downloads because so many people would know about the app.
 
@@ -31,7 +31,7 @@ But as it turned out, there may have been a small increase, where the sales didn
 
 Below is the number of units during the same period as the above impressions (February):
 
-<img src="https://cdn.chrishannah.me/images/2021/03/Screenshot-2021-03-06-at-00.13.32.png">
+<img src="https://chrishannah.me/images/2021/03/Screenshot-2021-03-06-at-00.13.32.png">
 
 After a while thinking about this experience, I've come to the conclusion that this just shows how much word-of-mouth and direct recommendations work, compared to simply being visible on the app store. If a few reviews can have the same impact as millions of impressions, then they must be pretty effective.
 

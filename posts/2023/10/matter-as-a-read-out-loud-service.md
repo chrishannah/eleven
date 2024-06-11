@@ -13,8 +13,8 @@ While I don't use it fully, I've found one feature to be very useful for when I 
 
 It's super easy to use, just send over an article to reader (I tend to use the Safari extension), and then inside reader, you can just press the play button to have it start reading the post to you.
 
-![send-to-matter](https://cdn.chrishannah.me/images/2023/10/send-to-matter.jpeg)
+![send-to-matter](https://chrishannah.me/images/2023/10/send-to-matter.jpeg)
 
-![matter](https://cdn.chrishannah.me/images/2023/10/matter.jpeg)
+![matter](https://chrishannah.me/images/2023/10/matter.jpeg)
 
 Maybe in the future I'll use Matter for actually reading posts. But right now, it's meaning that I can read a lot more blog posts than before, and I can sit and play World of Warcraft at the same time.

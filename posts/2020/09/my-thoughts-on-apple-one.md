@@ -5,7 +5,7 @@ categories:
 - Apple One
 date: 2020-09-15 23:54:07+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/09/Screenshot-2020-09-15-at-23.31.49.png
+image: https://chrishannah.me/images/2020/09/Screenshot-2020-09-15-at-23.31.49.png
 layout: layouts/post
 permalink: my-thoughts-on-apple-one/
 tags:

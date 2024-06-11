@@ -4,7 +4,7 @@ categories:
 - Podcast
 date: 2016-08-12 09:30:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/08/Screen-Shot-2016-08-12-at-01-10-57.png
+image: https://chrishannah.me/images/2016/08/Screen-Shot-2016-08-12-at-01-10-57.png
 layout: layouts/post
 permalink: castro-2/
 tags:

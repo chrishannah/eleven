@@ -5,7 +5,7 @@ categories:
 - David Attenborough
 date: 2020-12-24 10:26:13+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/12/p0926cjp.jpg
+image: https://chrishannah.me/images/2020/12/p0926cjp.jpg
 layout: layouts/post
 permalink: david-attenboroughs-a-perfect-planet/
 tags:

@@ -20,7 +20,7 @@ I can't quite remember where I said it, but I remember thinking at the end of
 I managed to develop and release a universal (iOS, iPadOS, and macOS)
 app that takes in various parameters and generates a "text shot", [Text Shot](http://chrishannah.me/text-shot).
 
-![Text Shot](https://cdn.chrishannah.me/images/2023/12/ts.png)
+![Text Shot](https://chrishannah.me/images/2023/12/ts.png)
 
 It's a simple idea, and the app itself is very utilitarian. But from what I've
 heard, quite a few people have found it useful, including myself. It was
@@ -38,7 +38,7 @@ add it to their Mastodon posts.
 This is by no means a new project. But 2023 brought a few small changes to Text
 Case, along with an entirely new form.
 
-![Text Case](https://cdn.chrishannah.me/images/2023/12/tc.png)
+![Text Case](https://chrishannah.me/images/2023/12/tc.png)
 
 Apart from some small visual tweaks and bug fixes, I added back a "scratchpad"
 feature, which shows a piece of text in all formats and flows at once, similar
@@ -46,7 +46,7 @@ to the original version of Text Case, there were new colour options added, and
 also, it became a totally free app! The tip jar still exists, but I decided to
 make all versions of the app free.
 
-![Text Case](https://cdn.chrishannah.me/images/2023/12/tcc.png)
+![Text Case](https://chrishannah.me/images/2023/12/tcc.png)
 
 The new form that Text Case took in 2023 was a command line application. Partly
 because I wanted the functionality myself, along with wanting to work on

@@ -4,7 +4,7 @@ categories:
 - Social Media
 date: 2020-10-13 10:10:59+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/10/IMG_5113.png
+image: https://chrishannah.me/images/2020/10/IMG_5113.png
 layout: layouts/post
 permalink: instead-of-launching-social-media-apps-why-not-take-a-deep-breath-first/
 tags:
@@ -18,11 +18,11 @@ I came across [a tweet regarding an interesting app idea yesterday](https://twit
 
 The idea behind the app is to enforce a few seconds to take a breath before opening a social media app. So for example, when you go to launch Instagram to mindlessly scroll for a few minutes, you will be asked to take a deep breath, and then you can decide whether you really want to open Instagram or not. A lot of times, I tend to open Instagram or TikTok simply out of boredom. And I think it's become a bit of a reflex. Sometimes I catch myself blindly opening Instagram, but I little kick every time I did would be helpful.
 
-<img src="https://cdn.chrishannah.me/images/2020/10/Image-2-1.png">
+<img src="https://chrishannah.me/images/2020/10/Image-2-1.png">
 
 It works via the Shortcuts app, and specifically by using the automation feature of Shortcuts where you can assign actions to happen when a custom trigger is activated. In this case, you assign the "Take One Sec.." action to the a trigger for when a certain app is opened. This way the shortcut is launched every time you launch that app.
 
-<img src="https://cdn.chrishannah.me/images/2020/10/Image-3.PNG">
+<img src="https://chrishannah.me/images/2020/10/Image-3.PNG">
 
 The app has a level of customisation where you can select how long you want the "breathing" to last whenever you launch the app, and also whether you want it to apply if you relaunch the app within a specific period. I have it set to a 3 second duration, and also allows relaunches to be allowed if within 1 minute. That way I think it will cause enough friction to stop me from mindlessly launching things, but also not enough that it annoys me if I quickly go back to it a few seconds later. Because this would also apply if you're switching between apps quickly.
 

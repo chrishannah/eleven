@@ -4,7 +4,7 @@ categories:
 - Pokemon
 date: 2018-11-12 19:51:16+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/D2C47498-5158-47DC-8D9F-2269B4ECA77A.jpeg
+image: https://chrishannah.me/images/2018/11/D2C47498-5158-47DC-8D9F-2269B4ECA77A.jpeg
 layout: layouts/post
 permalink: pokemon-detective-pikachu/
 tags:

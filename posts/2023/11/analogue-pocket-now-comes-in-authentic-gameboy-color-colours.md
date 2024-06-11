@@ -16,4 +16,4 @@ I've been interested in the Analogue Pocket for some time. Although I've always 
 
 However, I have to say, I love it in the true GameBoy colours.
 
-![](https://cdn.chrishannah.me/images/2023/11/pocket.png)
+![](https://chrishannah.me/images/2023/11/pocket.png)

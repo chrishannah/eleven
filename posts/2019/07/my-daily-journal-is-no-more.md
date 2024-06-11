@@ -21,8 +21,8 @@ title: My Daily Journal Is No More
 <li>167 averages words per post</li>
 </ul>
 <p>And some additional graphs:</p>
-<p><img src="https://cdn.chrishannah.me/images/2019/07/months.png" alt="Average Number of Words in Each Journal Entry by Month"></p>
-<p><img src="https://cdn.chrishannah.me/images/2019/07/days-1.png" alt="Number of Words in Each Journal Entry"></p>
+<p><img src="https://chrishannah.me/images/2019/07/months.png" alt="Average Number of Words in Each Journal Entry by Month"></p>
+<p><img src="https://chrishannah.me/images/2019/07/days-1.png" alt="Number of Words in Each Journal Entry"></p>
 <h2>What I’ve Learned</h2>
 <p>I’ve certainly learned a few things from the process though. Mainly that I like writing and especially personal logs, that I can write down quite easily, without a ton of research.</p>
 <p>Something that made it really easy was automation, obviously. I’ve written about my automation before on the blog. First with “<a href="https://chrishannah.me/how-i-automate-my-daily-journal/">How I Automate My Daily Journal</a>”, where I discussed the way I reminded myself to write, and also to generate a new file based upon a template. And also with “<a href="https://chrishannah.me/how-i-automate-publishing-blog-posts/">How I Automate Publishing Blog Posts</a>”, where I go through how I take a markdown file and publish it to the blog.</p>

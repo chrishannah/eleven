@@ -4,7 +4,7 @@ categories:
 - Reading
 date: 2016-12-08 01:01:26+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/12/IMG_0596.jpg
+image: https://chrishannah.me/images/2016/12/IMG_0596.jpg
 layout: layouts/post
 permalink: my-reading-list/
 tags:

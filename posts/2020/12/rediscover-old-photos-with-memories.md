@@ -20,7 +20,7 @@ title: Rediscover Old Photos With Memories
 <p><a href="https://apps.apple.com/us/app/photos-widget-memories/id1540852772">Memories</a> is a new app that lets you view photos from years gone by on your iOS devices, either inside of the app, or with its widgets.</p>
 
 
-<img src="https://cdn.chrishannah.me/images/2020/12/Image.PNG" alt="" />
+<img src="https://chrishannah.me/images/2020/12/Image.PNG" alt="" />
 
 
 <p>Memories supports all three widget sizes, and they will each show a single photo from previous years. It won't just show the one photo for the whole day though, as it cycles through multiple photos throughout the day.</p>

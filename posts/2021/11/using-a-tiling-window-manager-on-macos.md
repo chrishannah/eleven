@@ -27,7 +27,7 @@ There are a few default layouts, and you even create them yourself, but I’ve b
 
 Here’s an example of how my Mac usually looks:
 
-<img src="https://cdn.chrishannah.me/images/2021/11/Screenshot-2021-11-30-at-18.26.19.png" caption="">
+<img src="https://chrishannah.me/images/2021/11/Screenshot-2021-11-30-at-18.26.19.png" caption="">
 
 On the left, I have the “main” window, this is usually a web browser or text editor. Then on the right, there’s usually at least one terminal window, and maybe a few extras.
 

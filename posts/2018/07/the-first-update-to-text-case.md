@@ -6,7 +6,7 @@ categories:
 - Project
 date: 2018-07-10 07:54:49+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/07/3EC0B74F-F542-43EF-8590-E3D1729713B6.png
+image: https://chrishannah.me/images/2018/07/3EC0B74F-F542-43EF-8590-E3D1729713B6.png
 layout: layouts/post
 permalink: the-first-update-to-text-case/
 tags:

@@ -4,7 +4,7 @@ categories:
 - Mac
 date: 2016-11-30 16:05:39+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2016/11/1480195777227-1.png
+image: https://chrishannah.me/images/2016/11/1480195777227-1.png
 layout: layouts/post
 permalink: aqua-and-bondi/
 tags:

@@ -5,7 +5,7 @@ categories:
 - Podcast
 date: 2017-04-20 14:14:20+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/04/Screen-Shot-2017-04-20-at-15-05-14-1.png
+image: https://chrishannah.me/images/2017/04/Screen-Shot-2017-04-20-at-15-05-14-1.png
 layout: layouts/post
 permalink: appstories/
 tags:

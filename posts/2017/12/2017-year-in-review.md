@@ -1,7 +1,7 @@
 ---
 date: 2017-12-24 12:00:38+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/12/HEADER-1.jpg
+image: https://chrishannah.me/images/2017/12/HEADER-1.jpg
 layout: layouts/post
 permalink: 2017-year-in-review/
 tags:

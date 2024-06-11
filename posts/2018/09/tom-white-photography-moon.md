@@ -4,7 +4,7 @@ categories:
 - Moon
 date: 2018-09-24 23:25:44+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/09/Image-24-09-2018-23-23.png
+image: https://chrishannah.me/images/2018/09/Image-24-09-2018-23-23.png
 layout: layouts/post
 permalink: tom-white-photography-moon/
 tags:

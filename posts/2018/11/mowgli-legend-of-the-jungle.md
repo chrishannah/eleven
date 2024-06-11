@@ -4,7 +4,7 @@ categories:
 - Trailer
 date: 2018-11-13 12:56:31+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/Screenshot-2018-11-13-at-12.51.57.png
+image: https://chrishannah.me/images/2018/11/Screenshot-2018-11-13-at-12.51.57.png
 layout: layouts/post
 permalink: mowgli-legend-of-the-jungle/
 tags:

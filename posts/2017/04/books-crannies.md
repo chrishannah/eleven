@@ -4,7 +4,7 @@ categories:
 - Books
 date: 2017-04-23 18:39:52+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/04/cropped-header-image-1.jpg
+image: https://chrishannah.me/images/2017/04/cropped-header-image-1.jpg
 layout: layouts/post
 permalink: books-crannies/
 tags:

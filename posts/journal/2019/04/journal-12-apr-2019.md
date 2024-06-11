@@ -16,5 +16,5 @@ title: 'Journal: 12 Apr 2019'
 <p>He&#8217;s a very vocal cat, and he very much likes to be stroked. So it&#8217;s gone pretty well!</p>
 <p>Here’s a photo of him where he his right now, sitting with me on my bed.</p>
 <figure>
-<img src="https://cdn.chrishannah.me/images/2019/04/Jay.jpeg" alt=""></figure>
+<img src="https://chrishannah.me/images/2019/04/Jay.jpeg" alt=""></figure>
 <p>I haven&#8217;t managed to take a <em>good</em> still photo of him yet, as he&#8217;s a black cat (although his browns are coming through quite a lot in that photo), and he&#8217;s also pretty much always moving. Hopefully I&#8217;ll have one to share tomorrow.</p>

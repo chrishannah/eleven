@@ -3,7 +3,7 @@ categories:
 - App
 date: 2021-05-19 08:40:00+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/05/IMG_0409.jpg
+image: https://chrishannah.me/images/2021/05/IMG_0409.jpg
 layout: layouts/post
 permalink: parcel-app/
 tags:

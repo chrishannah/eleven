@@ -5,7 +5,7 @@ categories:
 - MacBook Pro
 date: 2018-07-12 14:17:29+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/07/Apple_MacBook_Pro_update_13in_15in_07122018.jpg
+image: https://chrishannah.me/images/2018/07/Apple_MacBook_Pro_update_13in_15in_07122018.jpg
 layout: layouts/post
 permalink: apple-updates-macbook-pro-with-faster-performance-and-new-features-for-pros/
 tags:

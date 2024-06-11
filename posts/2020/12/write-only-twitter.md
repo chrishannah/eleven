@@ -32,7 +32,7 @@ title: Write-only Twitter
 <p>One app I use when sharing content to Twitter is <a href="https://pragmaticcode.com/linky/">Linky</a>. It has a very good share extension, and lets me share content without ever opening the Twitter app.</p>
 
 
-<img src="https://cdn.chrishannah.me/images/2020/12/Screenshot-2020-12-10-at-12.07.22.png" alt="" />
+<img src="https://chrishannah.me/images/2020/12/Screenshot-2020-12-10-at-12.07.22.png" alt="" />
 
 
 <p>As for Typefully, it is essentially a Twitter composer. There is no feed, or any content from Twitter at all. The only things you can do is to compose tweets, and either publish them, or schedule them to be published later. It works great in a web browser, and also if you add it to an iOS Home Screen. </p>

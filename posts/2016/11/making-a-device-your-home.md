@@ -23,7 +23,7 @@ title: Making a Device Your Home
 <p>The first place everyone starts off with is the wallpaper, it&#8217;s a pretty big part of a device, especially when it&#8217;s the lock screen and the home screen. But this isn&#8217;t true personality, as you&#8217;ve still got the same device as everyone else.</p>
 <p>The little things that make a difference are cool cases, different coloured covers, putting stickers on your devices, and then there’s even the way you set up and layout your devices.</p>
 <p>I’m a big sticker fan myself, and you can see below what it looks like:</p>
-<p><img class="alignnone size-full wp-image-611" src="https://cdn.chrishannah.me/images/2016/11/6dad104a-c0be-4025-a4c1-f3818139d9c3.jpeg" /></p>
+<p><img class="alignnone size-full wp-image-611" src="https://chrishannah.me/images/2016/11/6dad104a-c0be-4025-a4c1-f3818139d9c3.jpeg" /></p>
 <p>It’s not much, but the stickers are things that I like, and it feels mine when I’m holding it. I find it really interesting to see what other people do to their devices as well, I’ve seen some cool creations in the past.</p>
 <p>So for the software side of things, using iOS as an example, your app layout and selection of apps can really change the feel of a device as well. I’ve previously been a person who likes to keep things standard, that’s fine I guess, but it’s not fun.</p>
 <p>Don’t be afraid to move SnapChat into your Dock, delete Mail from your iPhone, or even set cat noises as your ringtone.</p>

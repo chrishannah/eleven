@@ -25,7 +25,7 @@ The terms used to describe such goals are "reforestation" and "rewinding". And w
 
 ## Ecologi
 
-<img src="https://cdn.chrishannah.me/images/2021/04/Photo-for-wren-1-scaled.jpg-copy.png"><figcaption>Photo: Ecologi. Showing the Reforesting Dalry project.</figcaption>
+<img src="https://chrishannah.me/images/2021/04/Photo-for-wren-1-scaled.jpg-copy.png"><figcaption>Photo: Ecologi. Showing the Reforesting Dalry project.</figcaption>
 
 The first one I'll mention is [Ecologi](https://ecologi.com/). I've had a membership for over six months now, and the work they do around the world is excellent. Their main objectives are to plant trees and to fund the best climate crisis solutions.
 
@@ -39,7 +39,7 @@ If that interests you, then I'd recommend [checking them out](https://ecologi.co
 
 ## Mossy Earth
 
-<img src="https://cdn.chrishannah.me/images/2021/04/c7a96b06-c92a-46c7-8583-ddfcdb838e63_roe-deer-4569327_1280.jpg-copy-1.png"><figcaption>Photo: Mossy Earth. Showing the wildlife that they are protecting as part of the realising projects in Scotland.</figcaption>
+<img src="https://chrishannah.me/images/2021/04/c7a96b06-c92a-46c7-8583-ddfcdb838e63_roe-deer-4569327_1280.jpg-copy-1.png"><figcaption>Photo: Mossy Earth. Showing the wildlife that they are protecting as part of the realising projects in Scotland.</figcaption>
 
 Mossy Earth is one that I've only just found, and that was through my research into various rewilding projects. The main aim of all of their projects is to "restore ecosystems and promote biodiversity".
 

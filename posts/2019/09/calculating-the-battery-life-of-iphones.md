@@ -99,5 +99,5 @@ title: Calculating the Battery Life of iPhones
 <hr />
 <p>Update:</p>
 <p>To help visualise the data, here are two charts. The first using only the relative values that Apple provide, and the second including the estimate base values for the iPhone 6s and 6s Plus.</p>
-<p><a href="https://cdn.chrishannah.me/images/2019/09/relative-iphone-battery-life.png"><img src="https://cdn.chrishannah.me/images/2019/09/relative-iphone-battery-life.png" alt="iPhone Battery Life Changes Relative to iPhone 6S and 6S Plus (in Hours)" /></a></p>
-<p><a href="https://cdn.chrishannah.me/images/2019/09/iphone-battery-life-with-base-values.png"><img src="https://cdn.chrishannah.me/images/2019/09/iphone-battery-life-with-base-values.png" alt="iPhone Battery Life Using Estimated Base Values for iPhone 6S and 6S Plus (in Hours)" /></a></p>
+<p><a href="https://chrishannah.me/images/2019/09/relative-iphone-battery-life.png"><img src="https://chrishannah.me/images/2019/09/relative-iphone-battery-life.png" alt="iPhone Battery Life Changes Relative to iPhone 6S and 6S Plus (in Hours)" /></a></p>
+<p><a href="https://chrishannah.me/images/2019/09/iphone-battery-life-with-base-values.png"><img src="https://chrishannah.me/images/2019/09/iphone-battery-life-with-base-values.png" alt="iPhone Battery Life Using Estimated Base Values for iPhone 6S and 6S Plus (in Hours)" /></a></p>

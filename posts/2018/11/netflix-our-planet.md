@@ -6,7 +6,7 @@ categories:
 - TV
 date: 2018-11-12 21:35:31+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/6D72BB31-A773-4D76-AE67-44D5AFC42B39.jpeg
+image: https://chrishannah.me/images/2018/11/6D72BB31-A773-4D76-AE67-44D5AFC42B39.jpeg
 layout: layouts/post
 permalink: netflix-our-planet/
 tags:

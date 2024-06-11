@@ -3,7 +3,7 @@ categories:
 - Project
 date: 2019-03-22 08:41:05+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/03/Image-1.png
+image: https://chrishannah.me/images/2019/03/Image-1.png
 layout: layouts/post
 permalink: text-case-2-0-is-released/
 tags:

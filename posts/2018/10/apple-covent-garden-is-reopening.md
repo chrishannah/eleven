@@ -4,7 +4,7 @@ categories:
 - Retail
 date: 2018-10-24 15:43:15+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/10/d-hero_2x.jpg
+image: https://chrishannah.me/images/2018/10/d-hero_2x.jpg
 layout: layouts/post
 permalink: apple-covent-garden-is-reopening/
 tags:

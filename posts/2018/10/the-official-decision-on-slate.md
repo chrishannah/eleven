@@ -4,7 +4,7 @@ categories:
 - Slate
 date: 2018-10-10 13:39:38+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/10/ipadpro.png
+image: https://chrishannah.me/images/2018/10/ipadpro.png
 layout: layouts/post
 permalink: the-official-decision-on-slate/
 tags:

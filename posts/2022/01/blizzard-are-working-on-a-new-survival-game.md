@@ -4,7 +4,7 @@ categories:
 - Blizzard
 date: 2022-01-25 20:11:43+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2022/01/66619217-61F9-4669-AB3C-E375D87C4DA2.jpeg
+image: https://chrishannah.me/images/2022/01/66619217-61F9-4669-AB3C-E375D87C4DA2.jpeg
 layout: layouts/post
 permalink: blizzard-are-working-on-a-new-survival-game/
 tags:
@@ -26,7 +26,7 @@ I’ve been a theoretical fan of survival games since Day-Z came out, and I’ve
 
 The artwork definitely looks interesting, and looks like it matches the style of World of Warcraft and Hearthstone, which I very much like.
 
-<img src="https://cdn.chrishannah.me/images/2022/01/B0PINTVCA64V1643130471662.png">
+<img src="https://chrishannah.me/images/2022/01/B0PINTVCA64V1643130471662.png">
 
 I like the idea of this survival game being set in the Warcraft universe, but I can also accept that it might be time for some new worlds and characters. I guess I would be fine with it either way.
 

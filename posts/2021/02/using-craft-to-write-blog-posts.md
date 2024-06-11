@@ -27,7 +27,7 @@ There are four fonts to choose from, two options for page width, spell check, co
 
 I must admit though, there is one feature that Craft has that I absolutely love. Embedding documents within each other.  There are various formatting options, but essentially they appear as cards inside a document.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.15.53.png">
+<img src="https://chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.15.53.png">
 
 I’ve used these a few times for more general research writing, but I see these as being pretty useful when doing more long-form writing, as it allows you to manage a structure easier. So I don’t think I’ll need to use embedded content or linked documents when writing the majority of my blog posts, but it’s good to have.
 
@@ -35,7 +35,7 @@ I’ve used these a few times for more general research writing, but I see these
 
 I think even if Craft isn’t used as a tool for writing a final version of a document, it’s an invaluable tool for gathering research and organising your thoughts. Like I said at the start of this post, I’ve been using Craft for a while already for this very purpose. I have a document for interesting things I find, where I usually store a link and a few thoughts, so I can reference it later if I want to either look further into a subject or even write about it.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.40.01.png">
+<img src="https://chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.40.01.png">
 
 There’s a lot more to Craft than just text and images too, with the support for various types of content embeds, linking documents, and the modular design of cards, it can really serve as a hub of information. Couple this together with third-party apps like Spark that allow you to generate URLs for specific emails, and you can put together a document that can serve as a central point for a project.
 
@@ -47,7 +47,7 @@ When it comes to taking your writing out of Craft, I must admit there’s room f
 
 There are a few options for exporting a document into various formats, like Markdown, PDF, Textbundle, and MS Word. But that obviously requires you to then move that content manually into your blog.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.52.24.png">
+<img src="https://chrishannah.me/images/2021/02/Screenshot-2021-02-08-at-20.52.24.png">
 
 Along with simply exporting a document into another format, there are options to send your document to another application. So when you’re finished writing, you can send your document to an app such as iA Writer or Ulysses to finalise any formatting, and then use their built-in publishing tools. It feels like a workaround, but it’s still definitely possible. I have my custom Shortcut actions, which means I _can_ publish directly from Ghost. But there are times where I think using iA Writer as a middle-man is useful, especially when dealing with things like HTML embeds.
 

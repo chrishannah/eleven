@@ -17,7 +17,7 @@ title: Using the Action Extension in Text Case To Format Text
 <p>That’s why you can format any text in iOS, simply by selecting text, sharing it to Text Case, and then just tapping once on the format you want to use. It’s a flow I use whenever I’m writing on my iPhone or my iPad, because it allows you to completely focus on your writing, without needing to manually switch apps to just format a title.</p>
 <h2>Enabling the Extension</h2>
 <p>First off, you’ll need to enable the Action Extension. This can be quite long-winded, so it’s best to follow along with the screenshots below, or there are some written steps.</p>
-<img src="https://cdn.chrishannah.me/images/2019/03/enabling-the-share-extension.jpeg" alt="">
+<img src="https://chrishannah.me/images/2019/03/enabling-the-share-extension.jpeg" alt="">
 </p>
 <ol>
 <li>Select any text in your favourite text editor.</li>
@@ -28,7 +28,7 @@ title: Using the Action Extension in Text Case To Format Text
 </ol>
 <h2>Formatting Text via the Extension</h2>
 <p>Once you’ve got it enabled, formatting text is rather simple.</p>
-<img src="https://cdn.chrishannah.me/images/2019/03/formatting-text-via-the-share-extension.jpeg" alt="">
+<img src="https://chrishannah.me/images/2019/03/formatting-text-via-the-share-extension.jpeg" alt="">
 </p>
 <ol>
 <li>Select the text you want to format.</li>

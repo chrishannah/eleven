@@ -4,7 +4,7 @@ categories:
 - Video
 date: 2019-08-01 22:00:07+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/08/IMG_0039.jpeg
+image: https://chrishannah.me/images/2019/08/IMG_0039.jpeg
 layout: layouts/post
 permalink: high-n-dry/
 tags:

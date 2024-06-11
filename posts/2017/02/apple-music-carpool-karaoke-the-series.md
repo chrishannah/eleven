@@ -5,7 +5,7 @@ categories:
 - Carpool Karaoke
 date: 2017-02-14 00:24:25+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/Screen-Shot-2017-02-14-at-12-12-46-1-1.png
+image: https://chrishannah.me/images/2017/02/Screen-Shot-2017-02-14-at-12-12-46-1-1.png
 layout: layouts/post
 permalink: apple-music-carpool-karaoke-the-series/
 tags:

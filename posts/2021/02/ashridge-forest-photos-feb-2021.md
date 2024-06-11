@@ -18,14 +18,14 @@ My camera is the Fujifilm X-T100, and I used two lenses, the XC 50-230mm zoom le
 
 After going through a few hundred photos, I came out with 24 that I really like. I've uploaded them all to Flickr, so [you can view the entire album there](https://www.flickr.com/photos/186342532@N04/albums/72157718457122731). But for a quick preview, here are five of my favourites:
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1190.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1190.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/IMG_1574.jpg">
+<img src="https://chrishannah.me/images/2021/02/IMG_1574.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/IMG_1635.jpg">
+<img src="https://chrishannah.me/images/2021/02/IMG_1635.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1193.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1193.jpg">
 
-<img src="https://cdn.chrishannah.me/images/2021/02/DSCF1050.jpg">
+<img src="https://chrishannah.me/images/2021/02/DSCF1050.jpg">
 
 [View all 24 photos.](https://www.flickr.com/photos/186342532@N04/albums/72157718457122731)

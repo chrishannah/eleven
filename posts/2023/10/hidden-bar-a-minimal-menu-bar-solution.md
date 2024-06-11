@@ -13,7 +13,7 @@ Having a menu bar full of apps is a common problem on macOS, and for a while, th
 
 Thanks, to [Superbits](https://superbits.co) (and [ldstephens for the tip](https://ldstephens.me/bartender-to-hidden-bar-a-simpler-solution-for-macos-sonoma)), there's a new app that addresses the problem in the most minimalist way possible, [Hidden Bar](https://superbits.co/hidden/).
 
-![Hidden Bar](https://cdn.chrishannah.me/images/2023/10/menu-bar.gif)
+![Hidden Bar](https://chrishannah.me/images/2023/10/menu-bar.gif)
 
 It's a totally free app. And all it does, is add a separator icon to your menu bar, which you can place to the right of the icons you want to hide. And then another icon that you can use to toggle the visibility of those extra icons.
 

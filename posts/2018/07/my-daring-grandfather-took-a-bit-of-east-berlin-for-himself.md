@@ -5,7 +5,7 @@ categories:
 - Story
 date: 2018-07-03 10:29:32+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/07/102309025_442d189c-ba3f-42a2-844f-3389203db1ba.jpg
+image: https://chrishannah.me/images/2018/07/102309025_442d189c-ba3f-42a2-844f-3389203db1ba.jpg
 layout: layouts/post
 permalink: my-daring-grandfather-took-a-bit-of-east-berlin-for-himself/
 tags:

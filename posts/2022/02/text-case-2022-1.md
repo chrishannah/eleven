@@ -23,15 +23,15 @@ It’s the first update to Text Case this year, and to be honest the first one i
 
 **Two fixes**. Firstly to address the Guardian title case that wasn’t correctly following the rules where certain words are always lowercase. And secondly, to address the bug when searching the formats list and the empty section headers would still be present.
 
-<img src="https://cdn.chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-18-58.png" caption="">
+<img src="https://chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-18-58.png" caption="">
 
 **Refreshed dark mode** . The previous dark mode took inspiration from other iOS apps when it was first designed, where it used a lot of jet black, and everything was very dark. But it’s always been a thing that I’ve not 100% been a fan of, so I took some time to soften the colours a bit, and I think it looks a lot better.
 
-<img src="https://cdn.chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-33-37.png" caption="">
+<img src="https://chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-33-37.png" caption="">
 
 **New accent colours**. Text Case has always had a red-ish accent colour throughout the app. This colour was taken from the original app icon. However, the default icon changed back at the start of 2021 when 12 new variants were added. The new default icon featured a slightly different red, and a new blue colour. So for this update I’ve decided to adjust the accent colours to match this icon, which means in light mode the accent will be red, and the blue will be used for dark mode (which works well with the new dark mode I must say).
 
-<img src="https://cdn.chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-21-24-1.PNG">
+<img src="https://chrishannah.me/images/2022/02/Monday--07-Feb-2022-11-21-24-1.PNG">
 
 **Support for Shortcuts on Mac**. Definitely a _finally_. This has been long deserved, and I’m to be honest I’m surprised more people haven’t ben reaching out and asking for it. But it’s finally here, and I think it makes Text Case a much better option now for people who want their automations to work on all of their machines.
 

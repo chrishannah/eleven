@@ -24,7 +24,7 @@ Okay, so putting aside the fact that Instagram seems to change their interface w
 
 For now, I'll focus on the tab bar. Although, who knows, it might even change tomorrow.
 
-![](https://cdn.chrishannah.me/images/size/w1000/2020/11/IMG_0635.PNG)
+![](https://chrishannah.me/images/size/w1000/2020/11/IMG_0635.PNG)
 
 So what I have now is five items, Home, Discover, Reels, Shop, and Profile. I get that they want to push Reels as a feature (even though I think it's terrible), and yes you can buy things on Instagram now (I also think this is bad). But why do these items need to fill up 40% of the tab bar?
 
@@ -38,7 +38,7 @@ This change isn't as drastic as what Instagram is doing, but it still messes wit
 
 The change here is the addition of the Create button in the centre. Although pressing this doesn't actually take you to the upload interface. Instead, you get a boring list interface like the Create option on Instagram. But here you only have two options, to upload a video, or to start a live stream.[^1]
 
-![](https://cdn.chrishannah.me/images/size/w1000/2020/11/IMG_0636.PNG)
+![](https://chrishannah.me/images/size/w1000/2020/11/IMG_0636.PNG)
 
 It's sort of the opposite of Instagram, where the changes there are to make you view Reels and use the shopping feature. But in the YouTube app, they seem to want you to create more.
 

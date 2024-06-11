@@ -5,7 +5,7 @@ categories:
 - Apple
 date: 2020-11-18 15:46:57+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/11/tempImagejglQdP.gif
+image: https://chrishannah.me/images/2020/11/tempImagejglQdP.gif
 layout: layouts/post
 permalink: homepod-mini-first-impressions/
 tags:

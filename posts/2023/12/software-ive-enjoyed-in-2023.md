@@ -16,7 +16,7 @@ either moved back to this year, or tried out for the first time.
 
 ## Things
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/things.png)
+![Screenshot](https://chrishannah.me/images/2023/12/things.png)
 
 I'm not exactly a big user of task manager apps, but for the odd occasion where
 i want to track important tasks, or keep track of things like packing luggage
@@ -26,7 +26,7 @@ but I'd rather that, than use something that forces me to change my habits.
 
 ## Neovim
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/neovim.png)
+![Screenshot](https://chrishannah.me/images/2023/12/neovim.png)
 
 This is probably symbolic of my the general way I've been using my computers
 recently,
@@ -45,7 +45,7 @@ GitHub](https://github.com/chrishannah/nvim-config).
 
 ## Artifact
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/artifact.png)
+![Screenshot](https://chrishannah.me/images/2023/12/artifact.png)
 
 Apart from social media, I've found [Artifact](https://artifact.news) to be a really good tool to
 surface news, blog posts, links, apps, etc. that are both relevant and
@@ -59,7 +59,7 @@ a native Mac app, or even just a web interface that I could use.
 
 ## NetNewsWire
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/netnewswire.png)
+![Screenshot](https://chrishannah.me/images/2023/12/netnewswire.png)
 
 This is an app I've used for a while. But it's such a great RSS reader, I can't
 say I've even wanted to even think about switching to anything else. I'm using
@@ -72,7 +72,7 @@ I hope it continues.
 
 ## Homebrew
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/homebrew.png)
+![Screenshot](https://chrishannah.me/images/2023/12/homebrew.png)
 
 The world of package managers[^2] for macOS is a lonely one. Fortunately,
 what we have is [Homebrew](https://brew.sh). Maybe it's because I appreciate
@@ -96,7 +96,7 @@ downloading installers, expanding DMGs, etc.
 
 ## Amethyst
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/amethyst.png)
+![Screenshot](https://chrishannah.me/images/2023/12/amethyst.png)
 
 I've been [using this for
 a while](https://chrishannah.me/using-a-tiling-window-manager-on-macos), but
@@ -111,7 +111,7 @@ from my keyboard.
 
 ## Safari Web Apps
 
-![Screenshot](https://cdn.chrishannah.me/images/2023/12/add-to-dock.png)
+![Screenshot](https://chrishannah.me/images/2023/12/add-to-dock.png)
 
 This isn't an app in it's own right. But the recent feature in macOS Sonoma to
 [save any website in Safari as a web

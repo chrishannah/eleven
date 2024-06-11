@@ -6,7 +6,7 @@ categories:
 - Update
 date: 2019-01-04 08:44:43+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/01/Image-2.png
+image: https://chrishannah.me/images/2019/01/Image-2.png
 layout: layouts/post
 permalink: text-case-1-4/
 tags:

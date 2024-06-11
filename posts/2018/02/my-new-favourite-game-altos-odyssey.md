@@ -4,7 +4,7 @@ categories:
 - iOS
 date: 2018-02-26 21:22:50+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/02/IMG_7894.png
+image: https://chrishannah.me/images/2018/02/IMG_7894.png
 layout: layouts/post
 permalink: my-new-favourite-game-altos-odyssey/
 tags:

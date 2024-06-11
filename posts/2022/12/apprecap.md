@@ -100,14 +100,14 @@ Finally, so I have at least some visual memories of the website, here are a few 
 
 The first blog post (that was available in this backup, I'm pretty sure older ones have been lose):
 
-<img src="https://cdn.chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.38.08.png">
+<img src="https://chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.38.08.png">
 
 The last blog post:
 
-<img src="https://cdn.chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.36.02.png" caption="">
+<img src="https://chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.36.02.png" caption="">
 
 And a small glimpse into the sort of content I thought was relevant:
 
-<img src="https://cdn.chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.39.04.png" caption="">
+<img src="https://chrishannah.me/images/2022/12/Screenshot-2022-12-30-at-02.39.04.png" caption="">
 
 _(It wasn't.)_

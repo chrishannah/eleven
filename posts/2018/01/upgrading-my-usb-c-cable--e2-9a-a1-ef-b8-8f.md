@@ -6,7 +6,7 @@ categories:
 - USB C
 date: 2018-01-22 13:32:43+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/01/IMG_7400.jpg
+image: https://chrishannah.me/images/2018/01/IMG_7400.jpg
 layout: layouts/post
 permalink: upgrading-my-usb-c-cable--e2-9a-a1-ef-b8-8f/
 tags:

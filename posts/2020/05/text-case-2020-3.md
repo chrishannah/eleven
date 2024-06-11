@@ -17,7 +17,7 @@ title: Text Case 2020.3
 
 <p>Another small update to Text Case is hitting the App Stores.</p>
 <p>It comes with a few UI enhancements, notably to help show pointer location when hovering. And also a simple context menu that appears when you right click or long press on any formatted text, where you can choose to either copy or share the result.</p>
-<p><img src="https://cdn.chrishannah.me/images/2020/05/Simulator-Screen-Shot-iPhone-11-Pro-Max-2020-05-05-at-23.14.04.png" width="400px"></p>
+<p><img src="https://chrishannah.me/images/2020/05/Simulator-Screen-Shot-iPhone-11-Pro-Max-2020-05-05-at-23.14.04.png" width="400px"></p>
 <p>Improvements were also made to the performance of the app, and a few miscellaneous bugs were also fixed.</p>
 <hr>
 <h2>Links:</h2>

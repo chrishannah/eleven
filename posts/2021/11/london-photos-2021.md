@@ -18,8 +18,8 @@ A few more photos again today from the archives. I'm still going through and mak
 
 This time it's a few shots I took in London back in September.
 
-<img src="https://cdn.chrishannah.me/images/2021/11/IMG_3228.png">
+<img src="https://chrishannah.me/images/2021/11/IMG_3228.png">
 
-<img src="https://cdn.chrishannah.me/images/2021/11/DSCF1469.png">
+<img src="https://chrishannah.me/images/2021/11/DSCF1469.png">
 
-<img src="https://cdn.chrishannah.me/images/2021/11/DSCF1455.png">
+<img src="https://chrishannah.me/images/2021/11/DSCF1455.png">

@@ -21,7 +21,7 @@ For those occasions, I used [Fork](https://git-fork.com). Although I’m sure fo
 
 This is what it looks like:
 
-<img src="https://cdn.chrishannah.me/images/2021/12/Screenshot-2021-12-05-at-12.26.56.png" caption="">
+<img src="https://chrishannah.me/images/2021/12/Screenshot-2021-12-05-at-12.26.56.png" caption="">
 
 Because it’s a terminal app, it’s full of keyboard shortcuts, that make everything super fast. For example, to pull changes, you just use a lowercase `p`, and to push it’s an uppercase `P`.
 
@@ -29,11 +29,11 @@ Most of them are that simple that you just tap one key, but they tend to be limi
 
 This is obviously a small example, but here is the experience of committing files:
 
-<img src="https://cdn.chrishannah.me/images/2021/12/2021-12-05-12.31.26.gif" caption="">
+<img src="https://chrishannah.me/images/2021/12/2021-12-05-12.31.26.gif" caption="">
 
 It’s not limited to the keyboard though, you can navigate Lazygit using the cursor as well:
 
-<img src="https://cdn.chrishannah.me/images/2021/12/2021-12-05-12.34.23.gif" caption="">
+<img src="https://chrishannah.me/images/2021/12/2021-12-05-12.34.23.gif" caption="">
 
 After installing Lazygit, I haven’t needed to use a GUI application at all. I know some may prefer to use a GUI, but I certainly have found Lazygit so much easier to use. Especially because of the abundance of keyboard shortcuts, and also because it lets me keep my Git activity to a single terminal window.
 

@@ -4,7 +4,7 @@ categories:
 - Writing
 date: 2020-11-29 13:42:59+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2020/11/Screenshot-2020-11-29-at-00.07.55.png
+image: https://chrishannah.me/images/2020/11/Screenshot-2020-11-29-at-00.07.55.png
 layout: layouts/post
 permalink: writing-in-the-ghost-editor/
 tags:

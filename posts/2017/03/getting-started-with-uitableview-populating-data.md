@@ -5,7 +5,7 @@ categories:
 - Swift Basics
 date: 2017-03-10 00:23:50+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/03/populating-data-1.png
+image: https://chrishannah.me/images/2017/03/populating-data-1.png
 layout: layouts/post
 permalink: getting-started-with-uitableview-populating-data/
 tags:

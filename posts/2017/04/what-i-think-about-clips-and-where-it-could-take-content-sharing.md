@@ -5,7 +5,7 @@ categories:
 - Opinion
 date: 2017-04-07 13:08:24+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/04/Image-2.png
+image: https://chrishannah.me/images/2017/04/Image-2.png
 layout: layouts/post
 permalink: what-i-think-about-clips-and-where-it-could-take-content-sharing/
 tags:

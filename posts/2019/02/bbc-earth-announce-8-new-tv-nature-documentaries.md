@@ -5,7 +5,7 @@ categories:
 - Nature
 date: 2019-02-11 21:43:54+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/02/lLQ3dGl.jpg
+image: https://chrishannah.me/images/2019/02/lLQ3dGl.jpg
 layout: layouts/post
 permalink: bbc-earth-announce-8-new-tv-nature-documentaries/
 tags:

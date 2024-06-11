@@ -4,7 +4,7 @@ categories:
 - Plants
 date: 2019-09-30 09:50:55+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2019/09/64C16B44-C5C6-4AAF-8E92-79991FE9018B.jpeg
+image: https://chrishannah.me/images/2019/09/64C16B44-C5C6-4AAF-8E92-79991FE9018B.jpeg
 layout: layouts/post
 permalink: the-intelligence-of-plants/
 tags:

@@ -3,7 +3,7 @@ categories:
 - Funny
 date: 2018-11-28 11:35:14+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2018/11/sei_41848922-c97f.jpg
+image: https://chrishannah.me/images/2018/11/sei_41848922-c97f.jpg
 layout: layouts/post
 permalink: a-giant-cow-called-knickers-is-so-large-it-actually-saved-his-life/
 tags:

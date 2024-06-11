@@ -29,7 +29,7 @@ title: What Is Title Case?
 <p><strong>CMOS</strong></p>
 <p>CMOS is one of the more popular standards that I’ve seen among bloggers, and it’s one that I use myself. In CMOS, all words are capitalised except for any preposition or conjunction. It’s commonly used when doing comprehensive, in-depth writing.</p>
 <h2>Changing Title Case Style in Text Case</h2>
-<p><img src="https://cdn.chrishannah.me/images/2019/03/Title-Case-Style-Guide-Screenshot.png" alt="">
+<p><img src="https://chrishannah.me/images/2019/03/Title-Case-Style-Guide-Screenshot.png" alt="">
 <p>You can change the Title Case style by navigating to the Settings page, choosing “Text Case Style”, and then selecting the style that you wish you use.</p>
 <p>You can also tap on the Info icon on any of the styles, to find out more information on how they are used, and also a link to read more about them.</p>
 <p>When you’re using the Title Case format, you can see the style that is being used on the top right of the formatted result. For example, the app in the screenshot is using APA style.</p>

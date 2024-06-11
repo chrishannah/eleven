@@ -17,7 +17,7 @@ Ever since I rebuilt [Text Case](https://textcase.app) around the concept of use
 
 That's why, I've decided to add back that feature, but in a new slightly new guise.
 
-<img src="https://cdn.chrishannah.me/images/2023/06/tc.jpg">
+<img src="https://chrishannah.me/images/2023/06/tc.jpg">
 
 There's now a new "Scratchpad" tab in Text Case, which allows you to enter text at the top, and then see the results of it being formatted using all of your custom flows, and also every single format available in Text Case!
 

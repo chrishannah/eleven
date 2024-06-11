@@ -5,7 +5,7 @@ categories:
 - Workflow
 date: 2017-02-10 02:15:10+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2017/02/IMG_1434-1.png
+image: https://chrishannah.me/images/2017/02/IMG_1434-1.png
 layout: layouts/post
 permalink: workflow-gains-magic-variables-and-more-in-huge-1-7-update/
 tags:

@@ -4,7 +4,7 @@ categories:
 - App
 date: 2023-01-25 10:20:44+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2023/01/1B119FBB-F230-4E74-800D-8018ACF8D898.jpeg
+image: https://chrishannah.me/images/2023/01/1B119FBB-F230-4E74-800D-8018ACF8D898.jpeg
 layout: layouts/post
 permalink: ivory-for-mastodon/
 tags:

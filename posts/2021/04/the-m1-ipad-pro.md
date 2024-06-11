@@ -5,7 +5,7 @@ categories:
 - Event
 date: 2021-04-20 20:37:27+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2021/04/intro_summary_static__epib5tclp926_large_2x.png
+image: https://chrishannah.me/images/2021/04/intro_summary_static__epib5tclp926_large_2x.png
 layout: layouts/post
 permalink: the-m1-ipad-pro/
 tags:

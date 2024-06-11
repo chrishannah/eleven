@@ -19,7 +19,7 @@ I wrote about [tiling window managers on macOS](https://chrishannah.me/using-a-t
 
 However, to really get the best out of a tiling window manager, I think you also need to have good a workspace manager. On macOS that comes in the form of Spaces. And while that may let you use multiple fixed workspaces, I find the implementation a bit lacking
 
-<img src="https://cdn.chrishannah.me/images/2023/06/Screenshot-2023-06-23-at-19.38.42-2.png" caption="Multiple Desktops on macOS using Spaces">
+<img src="https://chrishannah.me/images/2023/06/Screenshot-2023-06-23-at-19.38.42-2.png" caption="Multiple Desktops on macOS using Spaces">
 
 You can configure Spaces to have a fixed number of "Desktops" always enabled, and to have them not continuously change order (which is a stupid default option in my opinion).
 

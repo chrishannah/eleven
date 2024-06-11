@@ -45,7 +45,7 @@ Even so, there is a workaround to keep your entire library downloaded, and I’v
 
 The trick is to create a Smart Playlist in the macOS Music app that has rules that mean all songs are added. I have it set up to include all songs where the artist is not blank.
 
-<img src="https://cdn.chrishannah.me/images/2022/03/Screenshot-2022-03-12-at-12.57.37.png" caption="">
+<img src="https://chrishannah.me/images/2022/03/Screenshot-2022-03-12-at-12.57.37.png" caption="">
 
 Once this is created, you can then set this playlist to download on any device. Then as you add songs to your library, this playlist will update, and it will download on your device.
 

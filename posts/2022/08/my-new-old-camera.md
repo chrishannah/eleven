@@ -1,7 +1,7 @@
 ---
 date: 2022-08-12 19:39:15+00:00
 description: ''
-image: https://cdn.chrishannah.me/images/2022/08/IMG_2844.jpeg
+image: https://chrishannah.me/images/2022/08/IMG_2844.jpeg
 layout: layouts/post
 permalink: my-new-old-camera/
 tags:
@@ -17,7 +17,7 @@ As for how I’m now in possession of the camera, that story actually begins aro
 
 I was definitely interested. As I’ve wanted to get a new film camera for a while, although I was thinking of a manual SLR. Mainly because I didn’t know this type of autofocus SLR existed. And to be honest, this is probably the ideal film camera for me at the moment. I’m pretty sure that if I was using a manual film camera, then 99% of the shots would be absolutely horrendous. At least the camera is doing a bit of the work for me.
 
-![Camera](https://cdn.chrishannah.me/images/2022/08/IMG_2845.jpeg)
+![Camera](https://chrishannah.me/images/2022/08/IMG_2845.jpeg)
 
 Anyway, I ordered a new battery for the camera[^3], which has arrived today, and the shot counter is already at 14. Those could have been taken any time in the past 20-25 years, so it will certainly be interesting to see what was captured. I’m also going to use the rest of the film myself, which may also produce weird results, as I assume the film is at least 22 years old.
 

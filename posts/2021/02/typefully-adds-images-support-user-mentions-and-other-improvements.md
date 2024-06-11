@@ -13,11 +13,11 @@ title: Typefully Adds Images Support, User Mentions, and Other Improvements
 
 [Typefully](https://typefully.com/?via=chris-hannah), the great web-based tweet composer has received a very welcome update. Bringing images and GIFs support, user mentions, quoted tweets, and more.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image-1.png">
+<img src="https://chrishannah.me/images/2021/02/Image-1.png">
 
 Just like most Twitter clients, you can add up to 4 images per tweets. And because you just see a text representation in the editor, it’s pretty easy to move them around and get the perfect composition.
 
-<img src="https://cdn.chrishannah.me/images/2021/02/Image-2.png">
+<img src="https://chrishannah.me/images/2021/02/Image-2.png">
 
 It also now supports username suggestions, which are pretty handy, since I for one have become used to this being standard. Which means there’s a good chance I’ll make a mistake if I have to do it manually.
 

@@ -17,11 +17,11 @@ But for people that are running 14.3, you can make use of these two shortcuts I'
 
 ## The Shortcuts
 
-![](https://cdn.chrishannah.me/images/2020/11/Untitled.jpeg)
+![](https://chrishannah.me/images/2020/11/Untitled.jpeg)
 
 The first one simply looks in an album for photos, gets a random one, and sets it as the wallpaper. So you can just add/remove photos from the selected album, and let the shortcut pick it up.
 
-![](https://cdn.chrishannah.me/images/2020/11/Untitled-3.png)
+![](https://chrishannah.me/images/2020/11/Untitled-3.png)
 
 The other is a bit smarter, as it has the option to choose a seperate for light and dark backgrounds. so depending on the current appearance that is set, it will choose from a seperate group of photos.
 
