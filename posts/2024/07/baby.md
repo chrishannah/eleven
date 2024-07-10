@@ -3,7 +3,7 @@ categories:
 - post
 date: 2024-07-09 23:00:00+01:00
 layout: layouts/post
-permalink: a-ather/
+permalink: a-father/
 title: A Father
 tags:
 - post
