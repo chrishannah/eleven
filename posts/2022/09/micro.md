@@ -4,7 +4,7 @@ categories:
 date: 2022-09-06 21:37:28+00:00
 description: ''
 layout: layouts/post
-permalink: micro/
+permalink: micro-0/
 tags:
 - micro
 title: Having a Larger Battery Than You Need

@@ -1,0 +1,37 @@
+---
+layout: layouts/base
+tags:
+  - nav
+navtitle: Micro
+title: Micro Posts
+pagination:
+  data: collections.micro
+  size: 10
+  reverse: true
+  alias: posts
+permalink: "micro/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
+---
+
+{% for post in posts %}
+  {% if "micro" in post.data.tags%}
+    {% include "partials/micro.njk" %}
+  {% elseif "link" in post.data.tags%}
+    {% include "partials/link.njk" %}
+  {% else %}
+    {% include "partials/post.njk" %}
+  {% endif %}
+{% endfor %}
+
+<nav>
+  {% if pagination.href.previous %}
+    <span class="page-item" style="float: left;">
+      <a class="page-link" href="{{ pagination.href.previous }}">&larr; Newer</a>
+    </span>
+  {% endif %}
+
+  {% if pagination.href.next %}
+    <span class="page-item" style="float: right;">
+      <a class="page-link" href="{{ pagination.href.next }}">Older &rarr;</a>
+    </span>
+  {% endif %}
+</nav>
