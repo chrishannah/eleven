@@ -85,6 +85,10 @@ main {
   padding: 3em 1em;
 }
 
+section {
+  margin: 3em 0;
+}
+
 /* Headings */
 
 h1 {

@@ -5,54 +5,71 @@ permalink: /
 ---
 
 <h2>Hi, welcome to my little piece of the internet.</h2>
-<p>
-    <strong>Something I've said recently:</strong>
-</p>
-<p>
-    {% set micro_posts = collections.micro | reverse %}
-    {% for post in micro_posts.slice(0, 1) %}
-        <div class="e-content">
+
+<section>
+    <p>
+        <strong>Something I've said recently:</strong>
+    </p>
+    <p>
+        {% set micro_posts = collections.micro | reverse %}
+        {% for post in micro_posts.slice(0, 1) %}
+            <div class="e-content">
+                {{ post.content | safe }}
+            </div>
+            <div class="post-meta">
+                <p>
+                    <a href="{{ post.url | url }}">
+                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
+                </p>
+            </div>
+        {% endfor %}
+    </p>
+</section>
+
+<section>
+    <p>
+        <strong>A recent photo of mine:</strong>
+    </p>
+    <p>
+        {% set photo_posts = collections.photography | reverse %}
+        {% for post in photo_posts.slice(0, 1) %}
             {{ post.content | safe }}
-        </div>
-        <div class="post-meta">
-            <p>
-                <a href="{{ post.url | url }}">
-                    <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
-            </p>
-        </div>
-    {% endfor %}
-</p>
-<p>
-    <strong>A recent photo of mine:</strong>
-</p>
-<p>
-    <figure>
-        <img class="hero" height="200" width="400" src="https://chrishannah.me/images/2023/11/82-web.jpg">
-        <figcaption>A flowery scene in Tejeda, Gran Canaria. November 2023.</figcaption>
-    </figure>
-</p>
-<p>
-    <strong>A list of my most recent blog posts:</strong>
-</p>
-<ul>
-    {% set posts = collections.post | reverse %}
-    {% for post in posts.slice(0, 5) %}
-        <li>
-            <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
-<p>
-    <strong>And my recent essays:</strong>
-</p>
-<ul>
-    {% set essays = collections.essay | reverse %}
-    {% for post in essays.slice(0, 5) %}
-        <li>
-            <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
-<p>
+            <div class="post-meta">
+                <p>
+                    <a href="{{ post.url | url }}">
+                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
+                </p>
+            </div>
+        {% endfor %}
+    </p>
+</section>
+
+<section>
+    <p>
+        <strong>A list of my most recent blog posts:</strong>
+    </p>
+    <ul>
+        {% set posts = collections.post | reverse %}
+        {% for post in posts.slice(0, 5) %}
+            <li>
+                <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        <strong>And my recent essays:</strong>
+    </p>
+    <ul>
+        {% set essays = collections.essay | reverse %}
+        {% for post in essays.slice(0, 5) %}
+            <li>
+                <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
         You can view the <a href="http://chrishannah.me/essays">full list of essays</a>, go back through <a href="http://chrishannah.me/blog">my blog</a>, or have a look at the <a href="http://chrishannah.me/archive">entire post archive</a>.
         </p>
+</section>
