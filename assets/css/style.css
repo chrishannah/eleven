@@ -81,7 +81,6 @@ header {
 main {
   grid-column: 2/3;
   max-width: 80ch;
-  width: 80ch;
   padding: 3em 1em;
 }
 
