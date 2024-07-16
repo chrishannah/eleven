@@ -1,1 +1,15 @@
+@font-face {
+  font-family: Dosis;
+  src: url("/fonts/dosis/Dosis-Book.ttf") format("truetype");
+}
 
+@font-face {
+  font-family: Dosis-Bold;
+  src: url("/fonts/dosis/Dosis-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Dosis;
+  font-weight: bold;
+  src: url("/fonts/dosis/Dosis-SemiBold.ttf") format("truetype");
+}

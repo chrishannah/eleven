@@ -21,7 +21,8 @@
   --image-frame: #4e4e4e;
   --meta-text: #4e4e4e;
   --heading-text: #3c3c3c;
-  --sans-serif: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --body: "Dosis", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --header: "Dosis-Bold", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
   --serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, ui-serif, serif;
   --monospace: ui-monospace, Consolas, monaco, monospace;
 }
@@ -55,7 +56,7 @@ html {
   background-size: cover;
   line-height: 1.75;
   color: var(--text);
-  font-family: var(--serif);
+  font-family: var(--body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
@@ -80,7 +81,7 @@ header {
 
 main {
   grid-column: 2/3;
-  max-width: 80ch;
+  max-width: 70ch;
   padding: 3em 1em;
 }
 
@@ -138,7 +139,7 @@ a:active {
 
 .home-bio {
   font-size: 1.2em;
-  font-weight: 300;
+  font-weight: 800;
 }
 
 .home-bio a {
@@ -252,7 +253,7 @@ hr:after {
 table {
   margin: 0;
   padding: 0;
-  font-family: var(--sans-serif);
+  font-family: var(--body);
   border-collapse: collapse;
 }
 
@@ -305,6 +306,7 @@ body>header {
   margin-left: auto;
   margin-right: auto;
   color: var(--header-text);
+  font-family: var(--header);
 }
 
 #header-titles a {
@@ -318,13 +320,13 @@ body>header {
 }
 
 #header-titles>.description {
-  font-family: var(--serif);
+  font-family: var(--header);
   font-size: 2em;
 }
 
 #header-content>h1 {
   font-size: 3rem;
-  font-family: var(--serif);
+  font-family: var(--header);
   font-weight: 500;
   color: var(--site-title);
   margin-bottom: 0;
@@ -343,7 +345,7 @@ body>footer {
   text-align: center;
   opacity: 0.8;
   grid-column: 1/3;
-  font-family: var(--sans-serif);
+  font-family: var(--body);
 }
 
 body>footer a {
@@ -359,8 +361,8 @@ body>footer>a>svg {
 /* Navigation */
 
 nav {
-  /* font-family: var(--sans-serif); */
   margin: 1em;
+  font-family: var(--header);
   color: var(--text);
 }
 
@@ -394,7 +396,7 @@ nav>ul>li>a:hover {
   color: var(--quote-text);
   background-color: var(--quote-background);
   padding: 0.3rem;
-  font-family: var(--sans-serif);
+  font-family: var(--body);
   border-radius: 0.2rem;
   text-transform: lowercase;
   line-height: 2.6;
@@ -421,7 +423,7 @@ article {
   color: var(--meta-text);
   font-size: 0.8em;
   text-align: left;
-  font-family: var(--sans-serif);
+  font-family: var(--header);
 
 }
 
@@ -446,7 +448,6 @@ article>header>h1>a:hover {
 
 .list-title {
   text-transform: capitalize;
-  font-family: var(--serif) !important;
   font-weight: 500;
   font-size: 1.8em;
 }
@@ -463,7 +464,6 @@ article>header>time {
 /* Article Footer */
 
 article>footer {
-  font-family: var(--sans-serif);
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
@@ -533,7 +533,6 @@ figcaption {
   margin-bottom: 32px;
   color: var(--text);
   opacity: 0.8;
-  font-family: var(--sans-serif);
 }
 
 /* Pagination */
@@ -822,7 +821,7 @@ input[type="reset"] {
 }
 
 #webmentions h2 {
-  font-family: var(--serif);
+  font-family: var(--body);
 }
 
 #webmentions img {
@@ -903,7 +902,7 @@ input[type="reset"] {
   }
 
   #header-titles>.description {
-    font-family: var(--serif);
+    font-family: var(--header);
     font-size: 1.6em;
     text-align: left;
   }
