@@ -13,3 +13,20 @@
   font-weight: bold;
   src: url("/fonts/dosis/Dosis-SemiBold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: Rowdies;
+  src: url("/fonts/rowdies/Rowdies-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Rowdies;
+  font-weight: 200;
+  src: url("/fonts/rowdies/Rowdies-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Rowdies;
+  font-weight: bold;
+  src: url("/fonts/rowdies/Rowdies-Bold.ttf") format("truetype");
+}

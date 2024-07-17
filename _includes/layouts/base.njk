@@ -50,16 +50,18 @@
     </head>
 
     <body>
-        <header>
-            {% include "header.njk" %}
-        </header>
-        {% include "nav.njk" %}
-        <main>
-            {{ content | safe }}
-        </main>
-        <footer>
-            {% include "footer.njk" %}
-        </footer>
+        <div id="container">
+            <header>
+                {% include "header.njk" %}
+            </header>
+            {% include "nav.njk" %}
+            <main>
+                {{ content | safe }}
+            </main>
+            <footer>
+                {% include "footer.njk" %}
+            </footer>
+        </div>
     </body>
 
     <script>

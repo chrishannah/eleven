@@ -4,7 +4,9 @@ layout: layouts/base.njk
 permalink: /
 ---
 
-<h2>Welcome to my little piece of the internet.</h2>
+<section class="top-section">
+    <h2>Welcome to my little piece of the internet.</h2>
+</section>
 
 <section>
     <p>
@@ -19,7 +21,8 @@ permalink: /
             <div class="post-meta">
                 <p>
                     <a href="{{ post.url | url }}">
-                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
+                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate
+                    }}</time><br/></a>
                 </p>
             </div>
         {% endfor %}
@@ -37,7 +40,8 @@ permalink: /
             <div class="post-meta">
                 <p>
                     <a href="{{ post.url | url }}">
-                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time><br/></a>
+                        <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate
+                    }}</time><br/></a>
                 </p>
             </div>
         {% endfor %}
@@ -48,11 +52,15 @@ permalink: /
     <p>
         <strong>A list of my most recent blog posts:</strong>
     </p>
-    <ul>
+    <ul class="home-list">
         {% set posts = collections.post | reverse %}
         {% for post in posts.slice(0, 5) %}
-            <li>
-                <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
+            <li class="home-item">
+                <a href="{{ post.data.permalink }}">
+                    <h3>{{ post.data.title }}</h3>
+                </a>
+                <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate
+                }}</time>
             </li>
         {% endfor %}
     </ul>
@@ -60,16 +68,22 @@ permalink: /
     <p>
         <strong>And my recent essays:</strong>
     </p>
-    <ul>
+    <ul class="home-list">
         {% set essays = collections.essay | reverse %}
         {% for post in essays.slice(0, 5) %}
-            <li>
-                <a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
+            <li class="home-item">
+                <a href="{{ post.data.permalink }}">
+                    <h3>{{ post.data.title }}</h3>
+                </a>
+                <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate
+                }}</time>
             </li>
         {% endfor %}
     </ul>
 
     <p>
-        You can view the <a href="http://chrishannah.me/essays">full list of essays</a>, go back through <a href="http://chrishannah.me/blog">my blog</a>, or have a look at the <a href="http://chrishannah.me/archive">entire post archive</a>.
-        </p>
+        You can view the <a href="http://chrishannah.me/essays">full list of essays</a>, go back through <a
+            href="http://chrishannah.me/blog">my blog</a>, or have a look at the <a
+            href="http://chrishannah.me/archive">entire post archive</a>.
+    </p>
 </section>

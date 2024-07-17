@@ -21,8 +21,8 @@
   --image-frame: #4e4e4e;
   --meta-text: #4e4e4e;
   --heading-text: #3c3c3c;
-  --body: "Dosis", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --header: "Dosis-Bold", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --body: "Gill Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --header: "Rowdies", ui-sans-serif, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
   --serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, ui-serif, serif;
   --monospace: ui-monospace, Consolas, monaco, monospace;
 }
@@ -67,48 +67,79 @@ body {
   padding: 0;
   background-color: var(--bg);
   font-size: 18px;
+}
+
+#container {
   display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 120ch;
 }
 
 nav {
-  grid-column: 1/2;
+  grid-area: nav;
   padding: 3em 1em;
 }
 
 header {
-  grid-column: 1/3;
+  grid-area: header;
+  text-align: center;
 }
 
 main {
-  grid-column: 2/3;
+  grid-area: main;
   max-width: 70ch;
   padding: 3em 1em;
 }
 
 section {
-  margin: 3em 0;
+  margin: 1em 0;
+  padding: 0em;
+  border: 2px dotted var(--code-background);
+  border-radius: 1em;
 }
 
 /* Headings */
 
+h1,
+h2,
+h3,
+h4,
+h4,
+h5,
+h6 {
+  font-family: var(--header);
+}
+
 h1 {
   font-size: 2.2em;
+  font-weight: 600;
 }
 
 h2 {
   font-size: 1.6em;
+  font-weight: 500;
 }
 
 h3 {
+  font-weight: 400;
   font-size: 1.4em;
 }
 
 h4 {
+  font-weight: 300;
   font-size: 1.2em;
 }
 
 h5,
 h6 {
+  font-weight: 200;
   font-size: 1.05em;
 }
 
@@ -128,6 +159,12 @@ a:active {
 
 /* Home */
 
+.top-section {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 #bio {
   background-color: var(--quote-background);
   padding: 2em;
@@ -139,7 +176,6 @@ a:active {
 
 .home-bio {
   font-size: 1.2em;
-  font-weight: 800;
 }
 
 .home-bio a {
@@ -317,6 +353,8 @@ body>header {
   color: var(--accent);
   font-size: 4em;
   font-weight: 600;
+  font-family: var(--header);
+  text-transform: uppercase;
 }
 
 #header-titles>.description {
@@ -340,22 +378,43 @@ body>header {
 
 /* Website Footer */
 
-body>footer {
+#container>footer {
   color: var(--meta-text) !important;
   text-align: center;
   opacity: 0.8;
-  grid-column: 1/3;
   font-family: var(--body);
+  grid-area: footer;
 }
 
-body>footer a {
+#container>footer a {
   text-decoration: none;
   color: var(--meta-text) !important;
 }
 
-body>footer>a>svg {
+#container>footer>a>svg {
   height: 1em;
   padding: 0.2em;
+}
+
+/* Home list */
+.home-list {
+  list-style: none;
+  padding: 0;
+}
+
+.home-item {
+  padding: 0;
+  padding-top: 0.3em;
+  padding-bottom: 0.7em;
+}
+
+.home-item a {
+  text-decoration: none;
+}
+
+.home-item h3 {
+  margin: 0;
+  padding: 0;
 }
 
 /* Navigation */
@@ -364,6 +423,8 @@ nav {
   margin: 1em;
   font-family: var(--header);
   color: var(--text);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 nav>ul {
@@ -476,7 +537,7 @@ img {
 }
 
 img.hero {
-  max-width: 600px;
+  max-width: 100%;
   max-height: 600px;
 }
 
@@ -516,18 +577,14 @@ input[type="reset"] {
   font-size: inherit;
 }
 
-/* Ghost Cards */
-
-.kg-embed-card iframe {
-  width: 100%;
-  height: 500px;
-}
-
 iframe {
   max-width: 100%;
   max-height: 600px;
 }
 
+figure {
+  margin: 1em 0;
+}
 
 figcaption {
   margin-bottom: 32px;
@@ -882,9 +939,19 @@ input[type="reset"] {
   }
 }
 
-@media only screen and (max-width: 120ch) {
+@media only screen and (max-width: 100ch) {
   body {
     display: block;
+  }
+
+  #container {
+    gap: 0;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
   }
 
   body>header {
@@ -909,10 +976,9 @@ input[type="reset"] {
 
   nav {
     margin: 0;
-    padding: 1em;
-    text-align: left;
+    padding: 0 0.4em;
+    text-align: center;
   }
-
 
   nav>ul {
     margin: 0
