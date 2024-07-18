@@ -101,8 +101,6 @@ main {
 section {
   margin: 1em 0;
   padding: 0em;
-  border: 2px dotted var(--code-background);
-  border-radius: 1em;
 }
 
 /* Headings */
