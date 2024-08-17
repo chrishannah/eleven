@@ -7,6 +7,6 @@ permalink: photo/heybridge-basin/
 ---
 
 <figure>
-        <img class="hero" height="200" width="400" src="images/2024/08/heybridge-web.jpeg">
-        <figcaption>The view from Heybridge Basin, Essex, England. August, 2024. <a href="images/2024/08/heybridge.jpeg">Full image</a></figcaption>
+        <img class="hero" height="200" width="400" src="https://chrishannah.me/images/2024/08/heybridge-web.jpeg">
+        <figcaption>The view from Heybridge Basin, Essex, England. August, 2024. <a href="https://chrishannah.me/images/2024/08/heybridge.jpeg">Full image</a></figcaption>
     </figure>
