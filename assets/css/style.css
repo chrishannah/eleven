@@ -1006,6 +1006,10 @@ input[type="reset"] {
     display: inline-block;
   }
 
+  #sub-nav {
+    text-align: center;
+  }
+
   img.hero {
     max-width: 100%;
     max-height: 600px;
