@@ -17,6 +17,7 @@
   --site-title: #fff6f6;
   --text: rgb(25, 25, 25);
   --quote-text: #302a2a;
+  --nav-text: #302a2a;
   --quote-background: rgb(250, 231, 231);
   --image-frame: #4e4e4e;
   --meta-text: #4e4e4e;
@@ -89,12 +90,6 @@ nav {
 
 corner {
   grid-area: corner;
-}
-
-header {
-  padding: 1em;
-  grid-area: header;
-  text-align: left;
 }
 
 main {
@@ -341,6 +336,10 @@ cite {
 
 body>#container>header {
   color: var(--accent);
+  padding: 1em;
+  grid-area: header;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 body>#container>header a {
@@ -352,8 +351,8 @@ body>#container>header a {
 }
 
 #header-titles>.title {
-  font-size: 4em;
-  font-weight: 600;
+  font-size: 3em;
+  font-weight: 800;
   font-family: var(--header);
 }
 
@@ -378,7 +377,7 @@ body>#container>header a {
 }
 
 #container>footer>a>svg {
-  height: 1em;
+  height: 1.4em;
   padding: 0.2em;
 }
 
@@ -422,16 +421,48 @@ nav>ul>li {
   display: block;
   margin-right: 0.4rem;
   text-align: right;
+  text-transform: uppercase;
 }
 
 nav>ul>li>a {
   color: var(--header-text) !important;
   text-decoration: none;
-  border-bottom: 2px solid var(--accent);
 }
 
 nav>ul>li>a:hover {
   opacity: 1;
+}
+
+#main-nav>li {
+  margin-bottom: 0.4em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#main-nav>li>a {
+  padding: 0.2em;
+  border: none;
+}
+
+#main-nav>li>a:hover {
+  opacity: 1;
+  border-bottom: 2px solid var(--accent);
+}
+
+#sub-nav {
+  font-size: 0.8em;
+  text-align: right;
+}
+
+#sub-nav>li>a::before {
+  content: '/';
+  padding-right: 0.1em;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+#sub-nav>li>a:hover {
+  font-weight: bold;
 }
 
 /* Tags */
