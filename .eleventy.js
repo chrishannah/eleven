@@ -1,4 +1,5 @@
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const EleventyPluginOgImage = require('eleventy-plugin-og-image');
 
 const dateFilters = require('./config/date.js')
 const numberFilters = require('./config/number.js')
@@ -7,7 +8,7 @@ const blogTools = require("eleventy-plugin-blog-tools");
 const inspect = require("util").inspect;
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginIcons = require('eleventy-plugin-icons');
-const path = require("path");
+const fs = require('fs')
 
 module.exports = function (eleventyConfig) {
 
@@ -32,6 +33,19 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "static/images": "images" });
     eleventyConfig.addPassthroughCopy({ "static/videos": "videos" });
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
+
+    /* OG Image */
+    eleventyConfig.addPlugin(EleventyPluginOgImage, {
+        satoriOptions: {
+            fonts: [
+                {
+                    name: 'Inter',
+                    data: fs.readFileSync('./static/fonts/iowan.ttf'),
+                    style: 'normal',
+                },
+            ],
+        },
+    });
 
     /* Collections */
     eleventyConfig.addCollection("all", function (collectionApi) {
