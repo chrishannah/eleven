@@ -1,3 +1,4 @@
+
 :root {
   --header-bg: #rgb(250, 231, 231);
   --header-text: #000000ee;
@@ -161,6 +162,11 @@ a:active {
   margin: 0;
   padding: 0;
   border: none;
+}
+
+.top-section h2 {
+  font-size: 1em;
+  font-weight: 800;
 }
 
 #bio {
@@ -975,7 +981,11 @@ input[type="reset"] {
   }
 
   #header-titles {
+    text-align: center;
+    font-size: 0.8em;
+    line-height: 2em;
     margin-bottom: 1em;
+    margin-top: 0.4em;
   }
 
   #header-titles>.title {
@@ -999,11 +1009,17 @@ input[type="reset"] {
   }
 
   nav>ul {
-    margin: 0
+    margin-bottom: 0.4em;
+  }
+
+  #nav-header {
+    display: none;
   }
 
   nav>ul>li {
     display: inline-block;
+    margin: 0;
+    padding: 0;
   }
 
   #sub-nav {
@@ -1015,3 +1031,5 @@ input[type="reset"] {
     max-height: 600px;
   }
 }
+
+        
