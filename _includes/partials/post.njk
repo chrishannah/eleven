@@ -4,7 +4,7 @@
 			<img class="u-featured" src="{{ post.data.image }}"/>
 		{% endif %}
 		<h1 id="title" class="p-name">
-			{{ post.data.title }}
+			<a href="{{ post.url | url }}">{{ post.data.title }}</a>
 		</h1>
 	</header>
 

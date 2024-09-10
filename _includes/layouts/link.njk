@@ -8,10 +8,10 @@ layout: layouts/base
 			<img class="u-featured" src="{{ image }}"/>
 		{% endif %}
 		<h1 id="title-link" class="p-name">
-			“{{ title }}”
+			{{ title }} →
 		</h1>
 		<div class="post-meta">
-			<a href="{{ link | url }}">{{ link | cleanUrl | url }} ➪</a>
+			<a href="{{ link | url }}">{{ link | cleanUrl | url }}</a>
 		</div>
 	</header>
 

@@ -23,8 +23,8 @@
   --image-frame: #4e4e4e;
   --meta-text: #4e4e4e;
   --heading-text: #fff6f6;
-  --body: "Iowan Old Style", -apple-system, BlinkMacSystemFont, ui-sans-serif, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --header: -apple-system, BlinkMacSystemFont, ui-sans-serif, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  --header: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
   --serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, ui-serif, serif;
   --monospace: ui-monospace, Consolas, monaco, monospace;
 }
@@ -540,6 +540,14 @@ article>header>h1>a:hover {
 article>header>time {
   color: var(--meta-text);
   opacity: 0.8;
+}
+
+article>header>h1>a {
+  color: inherit !important;
+}
+
+article>header>h1>a:hover {
+  border-bottom: 2px solid var(--accent);
 }
 
 /* Article Footer */
