@@ -1,4 +1,3 @@
-
 :root {
   --header-bg: #rgb(250, 231, 231);
   --header-text: #000000ee;
@@ -10,7 +9,7 @@
   --link-active: var(--accent);
   --code-background: #e8f8ff;
   --code-text: #0a222d;
-  --hr: #908a83;
+  --hr: #e8dac9;
   --table-border: #e7e7e7;
   --table-head-bg: #e7e7e7;
   --table-row-bg: #f7f7f7;
@@ -68,7 +67,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg);
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #container {
@@ -82,6 +81,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   max-width: 100ch;
+  border-left: 1px solid var(--hr);
+  border-right: 1px solid var(--hr);
 }
 
 nav {
@@ -1039,5 +1040,3 @@ input[type="reset"] {
     max-height: 600px;
   }
 }
-
-        
