@@ -472,6 +472,12 @@ nav>ul>li>a:hover {
   font-weight: bold;
 }
 
+#sub-nav-extra {
+  padding-top: 1em;
+  font-size: 0.8em;
+  text-align: right;
+}
+
 /* Tags */
 
 .tag {
@@ -1033,6 +1039,10 @@ input[type="reset"] {
 
   #sub-nav {
     text-align: center;
+  }
+
+  #sub-nav-extra {
+    display: none;
   }
 
   img.hero {

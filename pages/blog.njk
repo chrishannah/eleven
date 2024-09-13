@@ -9,7 +9,7 @@ pagination:
   size: 10
   reverse: true
   alias: posts
-permalink: "blog/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
+permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
 ---
 
 {% for post in posts %}

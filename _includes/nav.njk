@@ -19,6 +19,7 @@
 			<a href="/archive">Archive</a>
 		</li>
 	</ul>
+
 	<ul id="sub-nav">
 		<p id="nav-header">
 			<strong>SLASH PAGES</strong>
@@ -39,4 +40,28 @@
 			<a href="/subscribe">subscribe</a>
 		</li>
 	</ul>
+
+	<section id="sub-nav-extra">
+		<p id="nav-header">
+			<strong>RECENT PHOTO</strong>
+		</p>
+		<p>
+			{% set photo_posts = collections.photography | reverse %}
+			{% for post in photo_posts.slice(0, 1) %}
+				{{ post.content | safe }}
+			{% endfor %}
+		</p>
+	</section>
+
+	<section id="sub-nav-extra">
+		<p id="nav-header">
+			<strong>RECENT THOUGHT</strong>
+		</p>
+		<p>
+			{% set micro_posts = collections.micro | reverse %}
+			{% for post in micro_posts.slice(0, 1) %}
+				{{ post.content | safe }}
+			{% endfor %}
+		</p>
+	</section>
 </nav>
