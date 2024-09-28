@@ -17,4 +17,4 @@ And then it came into my head, it should be to toggle the torch. I have a baby n
 
 Maybe that's a sign that sometimes too much customisability isn't always the easiest to deal with. Or maybe it's just me. Either way, it literally took me a year to find a use for the Action Button.
 
-[^1]: Not Pro, not Max, just 16.
+[^1]: Not Plus, not Pro, not Max, just 16.
