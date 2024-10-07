@@ -4,4 +4,5 @@ title: "{{title}}"
 permalink: 
 layout: layouts/post
 tags:
+  - post
 ---
