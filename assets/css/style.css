@@ -382,7 +382,7 @@ body>#container>header a {
   color: var(--meta-text) !important;
 }
 
-#container>footer>a>svg {
+#container>footer a>svg {
   height: 1.4em;
   padding: 0.2em;
 }
@@ -469,6 +469,27 @@ nav>ul>li>a:hover {
 
 #sub-nav>li>a:hover {
   font-weight: bold;
+}
+
+#footer-nav {
+  padding: 0;
+}
+
+#footer-nav>li>a::before {
+  content: '/';
+  padding-right: 0.1em;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+#footer-nav>li>a:hover {
+  font-weight: bold;
+}
+
+#footer-nav>li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0 0.6em;
 }
 
 #sub-nav-extra {
