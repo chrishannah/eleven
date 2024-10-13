@@ -3,8 +3,8 @@
 :root {
   --header-bg: #rgb(250, 231, 231);
   --header-text: #000000ee;
-  --accent: #ff7f00;
-  --accent-dark: #d76c02;
+  --accent: #ff163a;
+  --accent-dark: #c9102c;
   --bg: #fff6f6;
   --link: var(--accent);
   --link-visited: var(--accent);
@@ -16,7 +16,7 @@
   --table-head-bg: #e7e7e7;
   --table-row-bg: #f7f7f7;
   --table-row-bg-alt: #fbfbfb;
-  --site-title: #fff6f6;
+  --site-title: #c9102c;
   --text: rgb(25, 25, 25);
   --quote-text: #302a2a;
   --nav-text: #302a2a;
@@ -31,7 +31,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent: #ff7f00;
+    --accent: #ff163a;
     --bg: #1d1d1d;
     --hr: rgb(67, 67, 67);
     --header-text: #ffffffee;
@@ -47,7 +47,7 @@
     --heading-text: #fff6f6;
     --code-background: #111;
     --code-text: #a3e4ff;
-    --site-title: #ffbf00;
+    --site-title: #c9102c;
   }
 }
 
