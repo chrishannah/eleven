@@ -46,7 +46,7 @@
         {% else %}
             <meta property="twitter:card" content="summary">
             {% if title %}
-                {# {% ogImage "_includes/images/og-image.og.njk", { title:  title } %} #}
+                {% ogImage "_includes/images/og-image.og.njk", { title:  title } %}
             {% endif %}
         {% endif %}
 
