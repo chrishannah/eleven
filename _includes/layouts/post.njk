@@ -7,8 +7,11 @@ layout: layouts/base
         {% if image %}
             <img class="u-featured" src="{{ image }}"/>
         {% endif %}
+        <div class="post-meta">
+            <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
+        </div>
         <h1 id="title" class="p-name">
-            {{ title }}
+            <a href="{{ url | url }}">{{ title }}</a>
         </h1>
     </header>
 
@@ -18,7 +21,6 @@ layout: layouts/base
         </div>
         <div class="post-meta">
             <p>
-                <time class="dt-published" datetime="{{ page.date }}">{{ page.date | displayDate }}</time><br/>
                 <a href="{{ page.url | url }}">Permalink</a><br/>
                 <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
             </p>

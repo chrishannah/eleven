@@ -1,7 +1,7 @@
 var moment = require('moment');
 module.exports = {
 	displayDate: (date) => {
-		return moment(date).format("D MMMM YYYY");
+		return moment(date).format("D MMM YYYY");
 	},
 
 	monthNumberToName: (month) => {
