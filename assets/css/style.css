@@ -29,7 +29,7 @@
   --monospace: ui-monospace, Consolas, monaco, monospace;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --accent: #ff7f00;
     --bg: #1d1d1d;
@@ -49,7 +49,7 @@
     --code-text: #a3e4ff;
     --site-title: #ffbf00;
   }
-} */
+}
 
 /* Global */
 
