@@ -1021,7 +1021,7 @@ input[type="reset"] {
   }
 
   #header-titles {
-    text-align: center;
+    text-align: left;
     font-size: 0.8em;
     line-height: 2em;
     margin-bottom: 1em;
@@ -1039,13 +1039,13 @@ input[type="reset"] {
   }
 
   header {
-    text-align: center;
+    text-align: left;
   }
 
   nav {
     margin: 0;
     padding: 0 0.4em;
-    text-align: center;
+    text-align: left;
   }
 
   nav>ul {
@@ -1063,7 +1063,7 @@ input[type="reset"] {
   }
 
   #sub-nav {
-    text-align: center;
+    text-align: left;
   }
 
   #sub-nav-extra {
@@ -1073,5 +1073,12 @@ input[type="reset"] {
   img.hero {
     max-width: 100%;
     max-height: 600px;
+  }
+}
+
+@media only screen and (max-width: 60ch) {
+  #header-titles img {
+    display: block;
+    margin: 1.6em 0;
   }
 }
