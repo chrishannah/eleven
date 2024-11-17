@@ -104,9 +104,9 @@ function handleQuery(req, res) {
 }
 
 async function handleFavorite(properties, res) {
-	const { fetch } = await import('node-fetch');
-	const { cheerio } = await import('cheerio');
-	const { webmention } = await import('send-webmention');
+	const fetch = (await import('node-fetch')).default;
+	const cheerio = await import('cheerio');
+	const sendWebmention = (await import('send-webmention')).default;
 
 	const favoriteUrl = properties['like-of'];
 	console.log('favoriteUrl:', favoriteUrl);
@@ -145,7 +145,7 @@ tags: ["post", "micro", "favorite"]
 
 		// Send webmention
 		try {
-			const webmentionResult = await webmention(postUrl, favoriteUrl);
+			const webmentionResult = await sendWebmention(postUrl, favoriteUrl);
 			console.log('Webmention sent:', webmentionResult);
 		} catch (webmentionError) {
 			console.error('Error sending webmention:', webmentionError);
