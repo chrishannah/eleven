@@ -68,7 +68,7 @@ async function handleFavorite(properties, res) {
 	const { cheerio } = await import('cheerio');
 	const { webmention } = await import('send-webmention');
 
-	const favoriteUrl = properties['like-of']?.[0] || properties['favorite-of']?.[0];
+	const favoriteUrl = properties['like-of'];
 	if (!favoriteUrl) {
 		return res.status(400).json({ error: 'Missing favorite URL' });
 	}
