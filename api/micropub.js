@@ -1,6 +1,6 @@
-const { Octokit } = require("@octokit/rest");
+import { Octokit } from '@octokit/rest';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     return handleCreate(req, res);
   } else if (req.method === 'GET') {
