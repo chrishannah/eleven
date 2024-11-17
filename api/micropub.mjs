@@ -55,30 +55,14 @@ export default async function handler(req, res) {
 	const { Octokit } = await import('@octokit/rest');
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-	const path = `posts/${fileName}`;
-	console.log(`Attempting to create file at path: ${path}`);
-	console.log(`Repository: chrishannah/eleven`);
-	console.log(`Branch: master`);
-
-	try {
-	  const response = await octokit.repos.createOrUpdateFileContents({
-		owner: 'chrishannah',
-		repo: 'eleven',
-		path: path,
-		message: `Add new post: ${fileName}`,
-		content: Buffer.from(content).toString('base64'),
-		branch: 'master'  // Changed from 'main' to 'master'
-	  });
-	  console.log('File created successfully:', response.data);
-	  return response.data;
-	} catch (error) {
-	  console.error('Error creating file:', error);
-	  console.error('Error details:', error.response?.data);
-	  if (error.status === 404) {
-		console.error('Repository, branch, or path not found. Please check your repository name, branch name, and file path.');
-	  }
-	  throw error;
-	}
+	await octokit.repos.createOrUpdateFileContents({
+	  owner: 'chrishannah',
+	  repo: 'eleven',
+	  path: `src/posts/${fileName}`,
+	  message: `Add new post: ${fileName}`,
+	  content: Buffer.from(content).toString('base64'),
+	  branch: 'main'
+	});
   }
 
   function slugify(text) {

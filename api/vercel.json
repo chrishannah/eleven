@@ -1,0 +1,7 @@
+{
+	"version": 21,
+	"builds": [{ "src": "api/micropub.mjs", "use": "@vercel/node" }],
+	"routes": [
+	  { "src": "/api/micropub", "dest": "api/micropub.mjs" }
+	]
+  }
