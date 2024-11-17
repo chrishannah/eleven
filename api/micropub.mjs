@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 	if (Array.isArray(properties.content)) {
 	  content = properties.content[0].html || properties.content[0].value || properties.content[0];
 	} else if (typeof properties.content === 'object') {
-	  content = properties.content.html || properties.content.value || JSON.stringify(properties.content);
+	  content = properties.content.value || properties.content.html || JSON.stringify(properties.content);
 	} else {
 	  content = properties.content || '';
 	}
@@ -32,12 +32,12 @@ export default async function handler(req, res) {
 	const tags = [...new Set(['post', ...requestTags])];
 	const fileName = `${date.split('T')[0]}-${slugify(title || 'untitled')}.md`;
 	const fileContent = `---
-  layout: layouts/post
-  title: "${title}"
-  date: ${date}
-  permalink: ${slug}/
-  tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
-  ---
+layout: layouts/post
+title: "${title}"
+date: ${date}
+permalink: ${slug}/
+tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
+---
   ${content}`;
 
 	try {
