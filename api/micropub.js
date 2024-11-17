@@ -65,7 +65,11 @@ export default async function handler(req, res) {
 		path: path,
 		message: `Add new post: ${fileName}`,
 		content: Buffer.from(content).toString('base64'),
-		branch: 'master'
+		branch: 'master',
+		committer: {
+			name: 'Chris Hannah',
+			email: 'me@chrishannah.me'
+		  },
 	  });
 	  console.log('File created successfully:', response.data);
 	  return response.data;
