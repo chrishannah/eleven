@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 }
 
 async function validateToken(token) {
-	const { fetch } = await import('node-fetch');
+	const { default: fetch } = await import('node-fetch');
 	const tokenEndpoint = 'https://tokens.indieauth.com/token';
 
 	try {
