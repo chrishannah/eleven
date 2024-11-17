@@ -27,8 +27,7 @@ export default async function handler(req, res) {
   title: "${title}"
   date: ${date}
   permalink: ${slug}/
-  tags:
-  ${tags.map(tag => `  - ${tag}`).join('\n')}
+  tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
   ---
   ${content}`;
 
