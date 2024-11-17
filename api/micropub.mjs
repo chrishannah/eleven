@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
 async function handleCreate(req, res) {
 	const { type, properties } = req.body;
-
+	console.log('req.body:', req.body);
 	console.log('type:', type);
 	console.log('properties:', properties);
 	if (type !== 'h-entry') {
