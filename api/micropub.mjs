@@ -55,7 +55,7 @@ async function validateToken(token) {
 async function handleCreate(req, res) {
 	const { properties } = req.body;
 
-	if (properties['like-of']) {
+	if (req.body['like-of']) {
 		return handleFavorite(properties, res);
 	}
 
