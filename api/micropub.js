@@ -58,7 +58,7 @@ export default async function handler(req, res) {
 	await octokit.repos.createOrUpdateFileContents({
 	  owner: 'chrishannah',
 	  repo: 'eleven',
-	  path: `src/posts/${fileName}`,
+	  path: `posts/${fileName}`,
 	  message: `Add new post: ${fileName}`,
 	  content: Buffer.from(content).toString('base64'),
 	  branch: 'main'
