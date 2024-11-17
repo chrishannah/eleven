@@ -20,12 +20,17 @@ async function handleCreate(req, res) {
   const content = properties.content[0];
   const title = properties.name ? properties.name[0] : '';
   const date = new Date().toISOString();
-
+  const slug = properties.slug ? properties.slug[0] : slugify(title ||'untitled');
+  const requestTags = properties.category || [];
+  const tags = [...new Set(['post', ...requestTags])];
   const fileName = `${date.split('T')[0]}-${slugify(title || 'untitled')}.md`;
   const fileContent = `---
-layout: post
+layout: layouts/post
 title: "${title}"
 date: ${date}
+permalink: ${slug}/
+tags:
+${tags.map(tag => `  - ${tag}`).join('\n')}
 ---
 ${content}`;
 
