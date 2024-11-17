@@ -5,6 +5,7 @@ permalink: sticking-with-eleventy-for-now/
 layout: layouts/post
 tags:
   - post
+  - eleventy
 ---
 I wrote recently about how [I don't have much time](https://chrishannah.me/no-time/) (or effort) to do spend much time on things like blogging. And that because this blog is a custom Eleventy site, which uses Markdown files, with specific frontmatter, kept track in GitHub, and then hosted via Vercel, it's becoming a bit of a faff when I want to quickly write and publish something to my blog.
 
