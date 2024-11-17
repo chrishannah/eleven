@@ -1,28 +1,32 @@
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
-	  return handleCreate(req, res);
+		return handleCreate(req, res);
 	} else if (req.method === 'GET') {
-	  return handleQuery(req, res);
+		return handleQuery(req, res);
 	}
 
 	res.status(405).json({ error: 'Method not allowed' });
-  }
+}
 
-  async function handleCreate(req, res) {
+async function handleCreate(req, res) {
 	const { type, properties } = req.body;
 
 	if (type[0] !== 'h-entry') {
-	  return res.status(400).json({ error: 'Invalid entry type' });
+		return res.status(400).json({ error: 'Invalid entry type' });
+	}
+
+	if (properties['like-of'] || properties['favorite-of']) {
+		return handleFavorite(properties, res);
 	}
 
 	// Handle content properly
 	let content = '';
 	if (Array.isArray(properties.content)) {
-	  content = properties.content[0].html || properties.content[0].value || properties.content[0];
+		content = properties.content[0].html || properties.content[0].value || properties.content[0];
 	} else if (typeof properties.content === 'object') {
-	  content = properties.content.value || properties.content.html || JSON.stringify(properties.content);
+		content = properties.content.value || properties.content.html || JSON.stringify(properties.content);
 	} else {
-	  content = properties.content || '';
+		content = properties.content || '';
 	}
 
 	const title = properties.name ? properties.name[0] : '';
@@ -41,25 +45,83 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
   ${content}`;
 
 	try {
-	  await createFileInGitHub(fileName, fileContent);
-	  res.status(201).json({ success: true, url: `https://chrishannah.me/posts/${fileName}` });
+		await createFileInGitHub(fileName, fileContent);
+		res.status(201).json({ success: true, url: `https://chrishannah.me/posts/${fileName}` });
 	} catch (error) {
-	  res.status(500).json({ error: 'Failed to create post' });
+		res.status(500).json({ error: 'Failed to create post' });
 	}
-  }
+}
 
-  function handleQuery(req, res) {
+function handleQuery(req, res) {
 	if (req.query.q === 'config') {
-	  res.status(200).json({
-		"media-endpoint": "https://chrishannah.me/api/media",
-		"syndicate-to": []
-	  });
+		res.status(200).json({
+			"media-endpoint": "https://chrishannah.me/api/media",
+			"syndicate-to": []
+		});
 	} else {
-	  res.status(400).json({ error: 'Invalid query' });
+		res.status(400).json({ error: 'Invalid query' });
 	}
-  }
+}
 
-  async function createFileInGitHub(fileName, content) {
+async function handleFavorite(properties, res) {
+	const { fetch } = await import('node-fetch');
+	const { cheerio } = await import('cheerio');
+	const { webmention } = await import('send-webmention');
+
+	const favoriteUrl = properties['like-of']?.[0] || properties['favorite-of']?.[0];
+	if (!favoriteUrl) {
+		return res.status(400).json({ error: 'Missing favorite URL' });
+	}
+
+	const title = properties.name?.[0] || 'Favorite';
+	const date = new Date().toISOString();
+	const slug = slugify(title + '-' + date);
+	const fileName = `${date.split('T')[0]}-${slug}.md`;
+
+	// Extract title from the favorited URL
+	let extractedTitle;
+	try {
+		const response = await fetch(favoriteUrl);
+		const html = await response.text();
+		const $ = cheerio.load(html);
+		extractedTitle = $('title').text().trim();
+	} catch (error) {
+		console.error('Error extracting title:', error);
+		extractedTitle = 'Untitled';
+	}
+
+	const fileContent = `---
+layout: layouts/micro
+date: ${date}
+permalink: ${slug}/
+tags: ["post", "micro", "favorite"]
+---
+★ Favourite: ![${extractedTitle}](${favoriteUrl})`;
+
+	try {
+		await createFileInGitHub(fileName, fileContent);
+		const postUrl = `https://chrishannah.me/${slug}/`;
+
+		// Send webmention
+		try {
+			const webmentionResult = await webmention(postUrl, favoriteUrl);
+			console.log('Webmention sent:', webmentionResult);
+		} catch (webmentionError) {
+			console.error('Error sending webmention:', webmentionError);
+		}
+
+		res.status(201).json({
+			success: true,
+			url: postUrl
+		});
+
+	} catch (error) {
+		console.error('Error creating favorite:', error);
+		res.status(500).json({ error: 'Failed to create favorite' });
+	}
+}
+
+async function createFileInGitHub(fileName, content) {
 	const { Octokit } = await import('@octokit/rest');
 	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
@@ -67,28 +129,28 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
 	console.log(`Attempting to create file at path: ${path}`);
 
 	try {
-	  const response = await octokit.repos.createOrUpdateFileContents({
-		owner: 'chrishannah',
-		repo: 'eleven',
-		path: path,
-		message: `Add new post: ${fileName}`,
-		content: Buffer.from(content).toString('base64'),
-		branch: 'master'
-	  });
-	  console.log('File created successfully:', response.data);
-	  return response.data;
+		const response = await octokit.repos.createOrUpdateFileContents({
+			owner: 'chrishannah',
+			repo: 'eleven',
+			path: path,
+			message: `Add new post: ${fileName}`,
+			content: Buffer.from(content).toString('base64'),
+			branch: 'master'
+		});
+		console.log('File created successfully:', response.data);
+		return response.data;
 	} catch (error) {
-	  console.error('Error creating file:', error);
-	  console.error('Error details:', error.response?.data);
-	  throw error;
+		console.error('Error creating file:', error);
+		console.error('Error details:', error.response?.data);
+		throw error;
 	}
-  }
+}
 
-  function slugify(text) {
+function slugify(text) {
 	return text.toString().toLowerCase()
-	  .replace(/\s+/g, '-')
-	  .replace(/[^\w\-]+/g, '')
-	  .replace(/\-\-+/g, '-')
-	  .replace(/^-+/, '')
-	  .replace(/-+$/, '');
-  }
+		.replace(/\s+/g, '-')
+		.replace(/[^\w\-]+/g, '')
+		.replace(/\-\-+/g, '-')
+		.replace(/^-+/, '')
+		.replace(/-+$/, '');
+}
