@@ -15,7 +15,16 @@ export default async function handler(req, res) {
 	  return res.status(400).json({ error: 'Invalid entry type' });
 	}
 
-	const content = properties.content[0];
+	// Handle content properly
+	let content = '';
+	if (Array.isArray(properties.content)) {
+	  content = properties.content[0].html || properties.content[0].value || properties.content[0];
+	} else if (typeof properties.content === 'object') {
+	  content = properties.content.html || properties.content.value || JSON.stringify(properties.content);
+	} else {
+	  content = properties.content || '';
+	}
+
 	const title = properties.name ? properties.name[0] : '';
 	const date = new Date().toISOString();
 	const slug = properties.slug ? properties.slug[0] : slugify(title || 'untitled');
