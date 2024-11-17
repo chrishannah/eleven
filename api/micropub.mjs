@@ -1,4 +1,17 @@
 export default async function handler(req, res) {
+	// Extract the token from the Authorization header
+	const authHeader = req.headers.authorization;
+	if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		return res.status(401).json({ error: 'Missing or invalid Authorization header' });
+	}
+	const token = authHeader.split(' ')[1];
+
+	// Validate the token
+	const isValid = await validateToken(token);
+	if (!isValid) {
+		return res.status(401).json({ error: 'Invalid or expired token' });
+	}
+
 	if (req.method === 'POST') {
 		return handleCreate(req, res);
 	} else if (req.method === 'GET') {
@@ -8,14 +21,42 @@ export default async function handler(req, res) {
 	res.status(405).json({ error: 'Method not allowed' });
 }
 
+async function validateToken(token) {
+	const { fetch } = await import('node-fetch');
+	const tokenEndpoint = 'https://tokens.indieauth.com/token';
+
+	try {
+		const response = await fetch(tokenEndpoint, {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${token}`,
+				'Accept': 'application/json'
+			}
+		});
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const data = await response.json();
+
+		// Check if the token has the necessary scope
+		if (!data.scope || !data.scope.includes('create')) {
+			throw new Error('Token does not have the required scope');
+		}
+
+		return true;
+	} catch (error) {
+		console.error('Token validation error:', error);
+		return false;
+	}
+}
+
 async function handleCreate(req, res) {
 	const { type, properties } = req.body;
 	console.log('req.body:', req.body);
 	console.log('type:', type);
 	console.log('properties:', properties);
-	if (type !== 'h-entry') {
-		return res.status(400).json({ error: 'Invalid entry type' });
-	}
 
 	if (properties['like-of']) {
 		return handleFavorite(properties, res);
