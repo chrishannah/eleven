@@ -11,11 +11,11 @@ export default async function handler(req, res) {
 async function handleCreate(req, res) {
 	const { type, properties } = req.body;
 
-	if (type[0] !== 'h-entry') {
+	if (type !== 'h-entry') {
 		return res.status(400).json({ error: 'Invalid entry type' });
 	}
 
-	if (properties['like-of'] || properties['favorite-of']) {
+	if (properties['like-of']) {
 		return handleFavorite(properties, res);
 	}
 
