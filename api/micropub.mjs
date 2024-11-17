@@ -11,6 +11,8 @@ export default async function handler(req, res) {
 async function handleCreate(req, res) {
 	const { type, properties } = req.body;
 
+	console.log('type:', type);
+	console.log('properties:', properties);
 	if (type !== 'h-entry') {
 		return res.status(400).json({ error: 'Invalid entry type' });
 	}
@@ -69,6 +71,7 @@ async function handleFavorite(properties, res) {
 	const { webmention } = await import('send-webmention');
 
 	const favoriteUrl = properties['like-of'];
+	console.log('favoriteUrl:', favoriteUrl);
 	if (!favoriteUrl) {
 		return res.status(400).json({ error: 'Missing favorite URL' });
 	}
