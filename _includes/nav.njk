@@ -28,16 +28,4 @@
 			{% endfor %}
 		</p>
 	</section>
-
-	<section id="sub-nav-extra">
-		<p id="nav-header">
-			<strong>RECENT THOUGHT</strong>
-		</p>
-		<p>
-			{% set micro_posts = collections.micro | reverse %}
-			{% for post in micro_posts.slice(0, 1) %}
-				{{ post.content | safe }}
-			{% endfor %}
-		</p>
-	</section>
 </nav>
