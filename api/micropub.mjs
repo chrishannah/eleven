@@ -115,8 +115,8 @@ async function handleFavorite(req, res) {
 	}
 
 	const date = new Date().toISOString();
-	const slug = slugify('favourite-' + date);
-	const fileName = `${slug}.md`;
+	const slug = slugify(date);
+	const fileName = `favourite-${slug}.md`;
 
 	// Extract title from the favorited URL
 	let extractedTitle;
@@ -133,8 +133,8 @@ async function handleFavorite(req, res) {
 	const fileContent = `---
 layout: layouts/micro
 date: ${date}
-permalink: ${slug}/
-tags: ["post", "micro", "favorite"]
+permalink: favourite/${slug}/
+tags: [ "micro", "favorite"]
 ---
 ★ Favourite: ![${extractedTitle}](${favoriteUrl})`;
 
