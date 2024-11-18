@@ -62,6 +62,7 @@ html {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
+  border-top: 1rem solid var(--accent);
 }
 
 body {
