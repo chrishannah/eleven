@@ -1,3 +1,8 @@
+import { buildPostContent, buildFavouriteContent } from './buildPostContent.mjs';
+import { createFileInGitHub } from './createFileInGitHub.mjs';
+import { slugify } from './slugify.mjs';
+import { validateToken } from './validateToken.mjs';
+
 export default async function handler(req, res) {
 	// Extract the token from the Authorization header
 	const authHeader = req.headers.authorization;
@@ -21,42 +26,11 @@ export default async function handler(req, res) {
 	res.status(405).json({ error: 'Method not allowed' });
 }
 
-async function validateToken(token) {
-	const { default: fetch } = await import('node-fetch');
-	const tokenEndpoint = 'https://tokens.indieauth.com/token';
-
-	try {
-		const response = await fetch(tokenEndpoint, {
-			method: 'GET',
-			headers: {
-				'Authorization': `Bearer ${token}`,
-				'Accept': 'application/json'
-			}
-		});
-
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
-		}
-
-		const data = await response.json();
-
-		// Check if the token has the necessary scope
-		if (!data.scope || !data.scope.includes('create')) {
-			throw new Error('Token does not have the required scope');
-		}
-
-		return true;
-	} catch (error) {
-		console.error('Token validation error:', error);
-		return false;
-	}
-}
-
 async function handleCreate(req, res) {
 	const { properties } = req.body;
 
 	if (req.body['like-of']) {
-		return handleFavorite(req, res);
+		return handlefavourite(req, res);
 	}
 
 	// Handle content properly
@@ -75,14 +49,7 @@ async function handleCreate(req, res) {
 	const requestTags = properties.category || [];
 	const tags = [...new Set(['post', ...requestTags])];
 	const fileName = `${date.split('T')[0]}-${slugify(title || 'untitled')}.md`;
-	const fileContent = `---
-layout: layouts/post
-title: "${title}"
-date: ${date}
-permalink: ${slug}/
-tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
----
-  ${content}`;
+	const fileContent = buildPostContent(title, date, slug, tags, content);
 
 	try {
 		await createFileInGitHub(fileName, fileContent);
@@ -91,6 +58,8 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
 		res.status(500).json({ error: 'Failed to create post' });
 	}
 }
+
+
 
 function handleQuery(req, res) {
 	if (req.query.q === 'config') {
@@ -103,52 +72,30 @@ function handleQuery(req, res) {
 	}
 }
 
-async function handleFavorite(req, res) {
-	const fetch = (await import('node-fetch')).default;
-	const cheerio = await import('cheerio');
-	const sendWebmention = (await import('send-webmention')).default;
+async function handlefavourite(req, res) {
 
-	const favoriteUrl = req.body['like-of'];
-	console.log('favoriteUrl:', favoriteUrl);
-	if (!favoriteUrl) {
-		return res.status(400).json({ error: 'Missing favorite URL' });
+
+	const favouriteUrl = req.body['like-of'];
+	console.log('favouriteUrl:', favouriteUrl);
+	if (!favouriteUrl) {
+		return res.status(400).json({ error: 'Missing favourite URL' });
 	}
 
 	const date = new Date().toISOString();
 	const slug = slugify(date);
 	const fileName = `favourite-${slug}.md`;
 
-	// Extract title from the favorited URL
-	let extractedTitle;
-	try {
-		const response = await fetch(favoriteUrl);
-		const html = await response.text();
-		const $ = cheerio.load(html);
-		extractedTitle = $('title').text().trim();
-	} catch (error) {
-		console.error('Error extracting title:', error);
-		extractedTitle = 'Untitled';
-	}
+	// Extract title from the favourited URL
+	let extractedTitle = await extractTitleFromUrl(favouriteUrl);
 
-	const fileContent = `---
-layout: layouts/micro
-date: ${date}
-permalink: favourite/${slug}/
-tags: [ "micro", "favorite"]
----
-★ Favourite: ![${extractedTitle}](${favoriteUrl})`;
+	const fileContent = buildFavouriteContent(date, slug, extractedTitle, favouriteUrl);
 
 	try {
 		await createFileInGitHub(fileName, fileContent);
 		const postUrl = `https://chrishannah.me/${slug}/`;
 
 		// Send webmention
-		try {
-			const webmentionResult = await sendWebmention(postUrl, favoriteUrl);
-			console.log('Webmention sent:', webmentionResult);
-		} catch (webmentionError) {
-			console.error('Error sending webmention:', webmentionError);
-		}
+		await sendWebmention(postUrl, favouriteUrl);
 
 		res.status(201).json({
 			success: true,
@@ -156,41 +103,41 @@ tags: [ "micro", "favorite"]
 		});
 
 	} catch (error) {
-		console.error('Error creating favorite:', error);
-		res.status(500).json({ error: 'Failed to create favorite' });
+		console.error('Error creating favourite:', error);
+		res.status(500).json({ error: 'Failed to create favourite' });
 	}
 }
+async function extractTitleFromUrl(url) {
+	const cheerio = await import('cheerio');
+	const fetch = (await import('node-fetch')).default;
 
-async function createFileInGitHub(fileName, content) {
-	const { Octokit } = await import('@octokit/rest');
-	const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-	const path = `posts/${fileName}`;
-	console.log(`Attempting to create file at path: ${path}`);
-
+	let extractedTitle;
 	try {
-		const response = await octokit.repos.createOrUpdateFileContents({
-			owner: 'chrishannah',
-			repo: 'eleven',
-			path: path,
-			message: `Add new post: ${fileName}`,
-			content: Buffer.from(content).toString('base64'),
-			branch: 'master'
-		});
-		console.log('File created successfully:', response.data);
-		return response.data;
+		const response = await fetch(url);
+		const html = await response.text();
+		const $ = cheerio.load(html);
+		extractedTitle = $('title').text().trim();
 	} catch (error) {
-		console.error('Error creating file:', error);
-		console.error('Error details:', error.response?.data);
-		throw error;
+		console.error('Error extracting title:', error);
+		extractedTitle = 'Untitled';
 	}
+	return extractedTitle;
 }
 
-function slugify(text) {
-	return text.toString().toLowerCase()
-		.replace(/\s+/g, '-')
-		.replace(/[^\w\-]+/g, '')
-		.replace(/\-\-+/g, '-')
-		.replace(/^-+/, '')
-		.replace(/-+$/, '');
+async function sendWebmention(postUrl, favouriteUrl) {
+	const { webmention } = await import('send-webmention');
+
+	webmention({
+		source: postUrl,
+		target: favouriteUrl
+	},
+	function(err, obj) {
+		if (obj) {
+			console.log('Webmention sent:', obj);
+		}
+		if (err) {
+			console.error('Error sending webmention:', err);
+		}
+	});
 }
+
