@@ -56,7 +56,7 @@ async function handleCreate(req, res) {
 	const { properties } = req.body;
 
 	if (req.body['like-of']) {
-		return handleFavorite(properties, res);
+		return handleFavorite(req, res);
 	}
 
 	// Handle content properly
@@ -103,21 +103,20 @@ function handleQuery(req, res) {
 	}
 }
 
-async function handleFavorite(properties, res) {
+async function handleFavorite(req, res) {
 	const fetch = (await import('node-fetch')).default;
 	const cheerio = await import('cheerio');
 	const sendWebmention = (await import('send-webmention')).default;
 
-	const favoriteUrl = properties['like-of'];
+	const favoriteUrl = req.body['like-of'];
 	console.log('favoriteUrl:', favoriteUrl);
 	if (!favoriteUrl) {
 		return res.status(400).json({ error: 'Missing favorite URL' });
 	}
 
-	const title = properties.name?.[0] || 'Favorite';
 	const date = new Date().toISOString();
-	const slug = slugify(title + '-' + date);
-	const fileName = `${date.split('T')[0]}-${slug}.md`;
+	const slug = slugify('favourite-' + date);
+	const fileName = `${slug}.md`;
 
 	// Extract title from the favorited URL
 	let extractedTitle;
