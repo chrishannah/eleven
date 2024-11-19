@@ -45,10 +45,10 @@ async function handleCreate(req, res) {
 
 	const title = properties.name ? properties.name[0] : '';
 	const date = new Date().toISOString();
-	const slug = properties.slug ? properties.slug[0] : slugify(title || 'untitled');
+	const slug = properties.slug ? properties.slug[0] : slugify(title || date );
 	const requestTags = properties.category || [];
 	const tags = [...new Set(['post', ...requestTags])];
-	const fileName = `${date.split('T')[0]}-${slugify(title || 'untitled')}.md`;
+	const fileName = `${slug}.md`;
 	const fileContent = buildPostContent(title, date, slug, tags, content);
 
 	try {
@@ -58,8 +58,6 @@ async function handleCreate(req, res) {
 		res.status(500).json({ error: 'Failed to create post' });
 	}
 }
-
-
 
 function handleQuery(req, res) {
 	if (req.query.q === 'config') {
@@ -73,10 +71,7 @@ function handleQuery(req, res) {
 }
 
 async function handlefavourite(req, res) {
-
-
 	const favouriteUrl = req.body['like-of'];
-	console.log('favouriteUrl:', favouriteUrl);
 	if (!favouriteUrl) {
 		return res.status(400).json({ error: 'Missing favourite URL' });
 	}
