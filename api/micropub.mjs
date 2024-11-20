@@ -4,6 +4,9 @@ import { slugify } from './slugify.mjs';
 import { validateToken } from './validateToken.mjs';
 
 export default async function handler(req, res) {
+	// Logging
+	console.log('micropub' + req);
+
 	// Extract the token from the Authorization header
 	const authHeader = req.headers.authorization;
 	if (!authHeader || !authHeader.startsWith('Bearer ')) {
