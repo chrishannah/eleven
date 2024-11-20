@@ -45,7 +45,7 @@ async function handleCreate(req, res) {
 
 	const title = properties.name ? properties.name[0] : '';
 	const date = new Date().toISOString();
-	const slug = properties.slug ? properties.slug[0] : slugify(title || date );
+	const slug = properties.slug ? properties.slug[0] : slugify(title || date);
 	const requestTags = properties.category || [];
 	const tags = [...new Set(['post', ...requestTags])];
 	const fileName = `${slug}.md`;
@@ -92,7 +92,7 @@ async function handlefavourite(req, res) {
 		// Send webmention
 		await sendWebmention(postUrl, favouriteUrl);
 
-		res.status(201).json({
+		res.writeHead(201, { 'Location': postUrl }).json({
 			success: true,
 			url: postUrl
 		});
@@ -114,7 +114,7 @@ async function extractTitleFromUrl(url) {
 		extractedTitle = $('title').text().trim();
 	} catch (error) {
 		console.error('Error extracting title:', error);
-		extractedTitle = 'Untitled';
+		extractedTitle = url;
 	}
 	return extractedTitle;
 }
@@ -126,13 +126,13 @@ async function sendWebmention(postUrl, favouriteUrl) {
 		source: postUrl,
 		target: favouriteUrl
 	},
-	function(err, obj) {
-		if (obj) {
-			console.log('Webmention sent:', obj);
-		}
-		if (err) {
-			console.error('Error sending webmention:', err);
-		}
-	});
+		function (err, obj) {
+			if (obj) {
+				console.log('Webmention sent:', obj);
+			}
+			if (err) {
+				console.error('Error sending webmention:', err);
+			}
+		});
 }
 
