@@ -22,5 +22,5 @@ permalink: uses/
 - Keychron K2 with red switches and a custom key set.
 
 ### Phones
-- iPhone 15 Pro Max (way too big for me)
+- iPhone 16 
 - Pixel 6 - For when I get annoyed with iOS.
