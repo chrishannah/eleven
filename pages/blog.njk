@@ -19,9 +19,9 @@ Below is a feed of all of my articles, status updates, photos, and essays, enjoy
 {% endif %}
 
 {% for post in posts %}
-  {% if "micro" in post.data.tags%}
+  {% if post.data.tags and "micro" in post.data.tags %}
     {% include "partials/micro.njk" %}
-  {% elseif "link" in post.data.tags%}
+  {% elseif post.data.tags and "link" in post.data.tags%}
     {% include "partials/link.njk" %}
   {% else %}
     {% include "partials/post.njk" %}
