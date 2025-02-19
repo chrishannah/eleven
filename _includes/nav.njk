@@ -16,16 +16,4 @@
 			<a href="/archive">Archive</a>
 		</li>
 	</ul>
-
-	<section id="sub-nav-extra">
-		<p id="nav-header">
-			<strong>RECENT PHOTO</strong>
-		</p>
-		<p>
-			{% set photo_posts = collections.photography | reverse %}
-			{% for post in photo_posts.slice(0, 1) %}
-				{{ post.content | safe }}
-			{% endfor %}
-		</p>
-	</section>
 </nav>
