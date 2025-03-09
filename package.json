@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "eleventy",
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "dev": "ELEVENTY_ENV=development eleventy --serve"
   },
   "keywords": [],
   "author": "",

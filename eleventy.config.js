@@ -37,6 +37,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif}");
 
     /* OG Image */
+    const isDevelopment = process.env.ELEVENTY_ENV === 'development';
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
         satoriOptions: {
             fonts: [
@@ -47,6 +48,7 @@ export default function (eleventyConfig) {
                 },
             ],
         },
+        generateOnBuild: !isDevelopment, // Skip generation in development mode
     });
 
     /* Collections */
