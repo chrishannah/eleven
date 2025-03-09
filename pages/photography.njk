@@ -35,16 +35,16 @@ permalink: "photography/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum
 	</article>
 {%- endfor %}
 
-<nav>
+<nav style="margin-top: 2rem;">
 	{% if pagination.href.previous %}
-		<span class="page-item" style="float: left;">
-			<a class="page-link" href="{{ pagination.href.previous }}">&larr; Newer</a>
+		<span class="page-item">
+			<a class="page-link" href="{{ pagination.href.previous }}"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>Newer</a>
 		</span>
 	{% endif %}
 
 	{% if pagination.href.next %}
-		<span class="page-item" style="float: right;">
-			<a class="page-link" href="{{ pagination.href.next }}">Older &rarr;</a>
+		<span class="page-item">
+			<a class="page-link" href="{{ pagination.href.next }}">Older<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a>
 		</span>
 	{% endif %}
 </nav>

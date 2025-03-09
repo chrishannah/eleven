@@ -454,7 +454,8 @@ nav ul li {
   margin-bottom: 0.5rem;
 }
 
-nav ul li a {
+nav ul li a,
+.page-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -470,11 +471,8 @@ nav ul li a {
   margin-right: 4px;
 }
 
-#main-nav li a {
-  color: var(--text);
-}
-
-#main-nav li a:hover {
+#main-nav li a:hover,
+.page-link:hover {
   background-color: var(--quote-background);
 }
 
@@ -487,6 +485,46 @@ nav ul li a svg {
 
 #main-nav li a svg {
   stroke: var(--text);
+}
+
+/* Pagination */
+.page-item {
+  display: inline-block;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+nav[style*="margin-top: 2rem"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0;
+  width: 100%;
+}
+
+nav[style*="margin-top: 2rem"] .page-item:only-child {
+  margin-left: auto;
+}
+
+nav[style*="margin-top: 2rem"] .page-link {
+  width: auto;
+  margin: 0;
+}
+
+nav[style*="margin-top: 2rem"] .page-link svg {
+  margin: 0 0.5rem;
+}
+
+nav[style*="margin-top: 2rem"] .page-link:hover {
+  background-color: var(--quote-background);
 }
 
 @media (max-width: 768px) {
