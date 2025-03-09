@@ -1,5 +1,3 @@
-@import url('//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 :root {
   --header-bg: #rgb(250, 231, 231);
   --header-text: #000000ee;
@@ -24,9 +22,25 @@
   --image-frame: #4e4e4e;
   --meta-text: #797979;
   --heading-text: #fff6f6;
-  --body: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
-  --header: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
-  --monospace: ui-monospace, Consolas, monaco, monospace;
+  --body: system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  --header: var(--body);
+  --monospace: 'SF Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.875rem;    /* 14px */
+  --text-sm: 1rem;        /* 16px */
+  --text-base: 1.125rem;  /* 18px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 2rem;       /* 32px */
+  --text-3xl: 2.5rem;     /* 40px */
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,20 +70,23 @@
 html {
   background-color: var(--bg);
   background-size: cover;
-  line-height: 1.75;
+  line-height: var(--leading-relaxed);
   color: var(--text);
   font-family: var(--body);
-  -webkit-font-smoothing: auto;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
   border-top: 1rem solid var(--accent);
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bg);
-  font-size: 17px;
+  font-size: var(--text-base);
+  font-family: var(--body);
 }
 
 #container {
@@ -82,7 +99,7 @@ body {
     "footer footer";
   margin-left: auto;
   margin-right: auto;
-  max-width: 120ch;
+  max-width: 108ch;
 }
 
 nav {
@@ -100,7 +117,7 @@ corner {
 
 main {
   grid-area: main;
-  max-width: 700px;
+  max-width: 630px;
   padding: 1.5em 1em;
 }
 
@@ -115,36 +132,44 @@ h1,
 h2,
 h3,
 h4,
-h4,
 h5,
 h6 {
   font-family: var(--header);
+  line-height: var(--leading-tight);
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2.4rem;
+  font-size: var(--text-3xl);
   font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 h2 {
-  font-size: 1.6em;
-  font-weight: 500;
+  font-size: var(--text-2xl);
+  margin-top: 3rem;
 }
 
 h3 {
-  font-weight: 400;
-  font-size: 1.4em;
+  font-size: var(--text-xl);
+  margin-top: 2.5rem;
 }
 
 h4 {
-  font-weight: 300;
-  font-size: 1.2em;
+  font-size: var(--text-lg);
+  margin-top: 2rem;
 }
 
 h5,
 h6 {
-  font-weight: 200;
-  font-size: 1.05em;
+  font-size: var(--text-base);
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Links */
@@ -248,18 +273,21 @@ a:active {
 
 code {
   font-family: var(--monospace);
-  background-color: var(--code-background);
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  background: var(--code-background);
   color: var(--code-text);
-  border-radius: 0.2rem;
-  padding: 0.2em;
-  font-style: normal;
 }
 
 pre {
-  background-color: var(--code-background);
-  padding: 1em;
-  white-space: pre-wrap;
-  border-radius: 0.2rem;
+  font-family: var(--monospace);
+  font-size: 0.9em;
+  line-height: 1.6;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  background: var(--code-background);
+  border-radius: 6px;
 }
 
 pre code {
@@ -277,7 +305,6 @@ hr {
   overflow: visible;
   text-align: center;
   margin: 1em 6em;
-
 }
 
 hr:after {
@@ -300,6 +327,10 @@ table {
   padding: 0;
   font-family: var(--body);
   border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  width: 100%;
+  margin: 2rem 0;
 }
 
 th {
@@ -332,15 +363,26 @@ tr:last-of-type {
 /* Blockquote */
 
 blockquote {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 3px solid var(--accent);
+  background: var(--quote-background);
+  font-style: italic;
   color: var(--quote-text);
-  padding: 0 1rem;
-  margin: 0 1rem;
-  border-left: 4px solid var(--quote-background);
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
 }
 
 cite {
-  color: var(--text);
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--meta-text);
+  margin-top: 1rem;
+  display: block;
 }
 
 /* Website Header */
@@ -471,6 +513,10 @@ nav ul li a,
   margin-right: 4px;
 }
 
+#main-nav li a {
+  color: var(--text);
+}
+
 #main-nav li a:hover,
 .page-link:hover {
   background-color: var(--quote-background);
@@ -566,22 +612,29 @@ nav[style*="margin-top: 2rem"] .page-link:hover {
 article {
   margin-top: 0;
   margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .e-content {
   margin-top: 1em;
   margin-bottom: 1em;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin: 2rem 0;
+}
 
+.e-content p {
+  margin-bottom: 1.5rem;
 }
 
 /* Article Header */
 
 .post-meta {
-  font-weight: 500;
+  font-size: var(--text-sm);
   color: var(--meta-text);
-  text-align: left;
-  font-family: var(--header);
-
+  margin: 1rem 0;
+  font-weight: 500;
 }
 
 .post-meta a {
@@ -635,7 +688,6 @@ article>footer {
 
 img {
   max-width: 100%;
-
 }
 
 img.hero {
@@ -1041,9 +1093,10 @@ input[type="reset"] {
   }
 }
 
-@media only screen and (max-width: 100ch) {
+@media only screen and (max-width: 90ch) {
   body {
     display: block;
+    padding-top: 4rem; /* Add space for fixed menu button */
   }
 
   #container {
@@ -1051,77 +1104,113 @@ input[type="reset"] {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header"
-      "nav"
       "main"
       "footer";
+    padding: 0 1rem;
+    max-width: 100%;
   }
 
   body>header {
-    margin-left: 0em;
-    margin-right: 0em;
+    margin: 0;
+    padding: 1rem 0;
     display: block;
   }
 
   #header-titles {
     text-align: left;
     font-size: 0.8em;
-    line-height: 2em;
-    margin-bottom: 1em;
-    margin-top: 0.4em;
+    line-height: 1.4;
+    margin: 0;
   }
 
   #header-titles>.title {
-    font-size: 3em;
+    font-size: 2.5em;
+    line-height: 1.2;
   }
 
   #header-titles>.description {
     font-family: var(--header);
-    font-size: 1.6em;
+    font-size: 1.4em;
     text-align: left;
   }
 
-  header {
-    text-align: left;
+  main {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem 0;
+    margin: 0 auto;
   }
 
   nav {
+    display: none; /* Hide by default on mobile */
     margin: 0;
-    padding: 0 0.4em;
+    padding: 4rem 1.5rem 1.5rem;
     text-align: left;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  nav>ul {
-    margin-bottom: 0.4em;
-  }
-
-  #nav-header {
-    display: none;
+  nav.menu-open {
+    display: block;
   }
 
   nav>ul>li {
-    display: inline-block;
-    margin: 0;
+    display: block;
+    margin: 0 0 0.5rem;
     padding: 0;
   }
 
-  #sub-nav {
-    text-align: left;
+  .menu-overlay.active {
+    display: block;
+    opacity: 1;
   }
 
-  #sub-nav-extra {
-    display: none;
-  }
-
-  img.hero {
-    max-width: 100%;
-    max-height: 600px;
+  /* Ensure content doesn't shift when menu opens */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 }
 
-@media only screen and (max-width: 60ch) {
-  #header-titles img {
-    display: block;
-    margin: 1.6em 0;
+@media (max-width: 768px) {
+  #menu-toggle {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--bg);
+    border-left: 1px solid var(--hr);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #container {
+    padding: 0 0.75rem;
+  }
+
+  #header-titles>.title {
+    font-size: 2em;
+  }
+
+  #header-titles>.description {
+    font-size: 1.2em;
+  }
+
+  .e-content {
+    font-size: var(--text-base);
   }
 }
 
@@ -1135,7 +1224,7 @@ input[type="reset"] {
     position: fixed;
     top: 1.5rem;
     right: 1rem;
-    z-index: 1000;
+    z-index: 1001;  /* Increased to be above overlay */
     color: var(--text);
     border-radius: 0.5rem;
     transition: background-color 0.2s;
@@ -1173,14 +1262,13 @@ input[type="reset"] {
         border-left: 1px solid var(--hr);
         border-right: none;
         transition: right 0.3s ease;
-        z-index: 999;
+        z-index: 1000;
         padding: 4rem 1.5rem 1rem 1.5rem;
         overflow-y: auto;
         display: block;
     }
 
     .nav-content {
-        display: block;
         border-right: none;
         margin-right: 0;
         padding-right: 0;
@@ -1189,6 +1277,7 @@ input[type="reset"] {
     /* When menu is open */
     nav.menu-open {
         right: 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
 
     /* Overlay when menu is open */
@@ -1200,11 +1289,15 @@ input[type="reset"] {
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 998;
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(2px);
     }
 
     .menu-overlay.active {
         display: block;
+        opacity: 1;
     }
 
     /* Reset any previous mobile styles that might interfere */
@@ -1223,6 +1316,11 @@ input[type="reset"] {
         margin: 0;
         padding: 0;
     }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
 }
 
 @media only screen and (min-width: 769px) {
@@ -1233,6 +1331,10 @@ input[type="reset"] {
     nav {
         position: sticky;
         display: block;
+    }
+
+    .menu-overlay {
+        display: none !important;
     }
 }
 
@@ -1324,4 +1426,24 @@ body.lightbox-open {
 body.lightbox-open #container {
     filter: blur(5px);
     transition: filter 0.3s ease;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  :root {
+    --text-3xl: 2rem;
+    --text-2xl: 1.75rem;
+    --text-xl: 1.25rem;
+    --text-lg: 1.125rem;
+    --text-base: 1rem;
+  }
+
+  html {
+    font-size: 15px;
+  }
+
+  blockquote {
+    font-size: var(--text-base);
+    padding: 1rem 1.5rem;
+  }
 }
