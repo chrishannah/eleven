@@ -85,6 +85,20 @@
                 .body
                 .appendChild(script);
         }
+
+        // Check if there are images that would use lightbox
+        var images = document.querySelectorAll('img:not(.u-photo):not([width="24"]):not([height="24"]), img.hero');
+        if (images.length > 0) {
+            const lightboxScript = document.createElement("script");
+            lightboxScript.src = '/js/lightbox.js';
+            lightboxScript.onload = function() {
+                // Initialize lightbox after script loads
+                if (typeof initLightbox === 'function') {
+                    initLightbox();
+                }
+            };
+            document.body.appendChild(lightboxScript);
+        }
     </script>
     <script src="/js/menu.js"></script>
 
