@@ -27,11 +27,13 @@ import {
   Collapse,
   Code,
   Badge,
+  Image,
 } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ViewIcon, ViewOffIcon, EditIcon } from '@chakra-ui/icons';
 import ReactMarkdown from 'react-markdown';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import YAML from 'yaml';
+import ImageUploader from '../components/ImageUploader';
 
 export default function BlogEditor() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -49,6 +51,7 @@ export default function BlogEditor() {
     content: '',
     newTag: '',
     newCategory: '',
+    featuredImage: '', // Add featured image field
   });
 
   const handleInputChange = (e) => {
@@ -97,6 +100,11 @@ export default function BlogEditor() {
       permalink: formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '/',
       title: formData.title,
     };
+
+    // Add image to frontmatter if one is selected
+    if (formData.featuredImage) {
+      frontmatter.image = formData.featuredImage;
+    }
 
     return `---
 ${YAML.stringify(frontmatter)}---
@@ -194,11 +202,56 @@ ${formData.content}`;
     }
   };
 
+  const handleDateChange = (e) => {
+    const { name, value } = e.target;
+    const currentDate = parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date());
+    let newDate;
+
+    if (name === 'date-input') {
+      // When date changes, keep the existing time
+      const [year, month, day] = value.split('-');
+      newDate = new Date(
+        year,
+        month - 1,
+        day,
+        currentDate.getHours(),
+        currentDate.getMinutes(),
+        currentDate.getSeconds()
+      );
+    } else if (name === 'time-input') {
+      // When time changes, keep the existing date
+      const [hours, minutes] = value.split(':');
+      newDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        hours,
+        minutes,
+        0
+      );
+    }
+
+    if (newDate) {
+      setFormData(prev => ({
+        ...prev,
+        date: format(newDate, 'yyyy-MM-dd HH:mm:ss')
+      }));
+    }
+  };
+
+  // Add handler for setting featured image
+  const setFeaturedImage = (imagePath) => {
+    setFormData(prev => ({
+      ...prev,
+      featuredImage: imagePath
+    }));
+  };
+
   return (
     <Box minH="100vh" p={4}>
       <Container maxW="container.xl" py={8}>
         <HStack justify="space-between" mb={8}>
-          <Heading size="lg">Blog Post Editor</Heading>
+          <Heading size="lg">Create Blog Post</Heading>
           <HStack spacing={4}>
             <IconButton
               icon={showPreview ? <ViewOffIcon /> : <ViewIcon />}
@@ -234,7 +287,8 @@ ${formData.content}`;
                         <Button
                           onClick={formatTitle}
                           isLoading={isExecuting}
-                          colorScheme="teal"
+                          bg="brand.burntSienna"
+                          _hover={{ bg: 'brand.sandyBrown' }}
                           size="lg"
                           title="Format title using AP style"
                         >
@@ -245,13 +299,24 @@ ${formData.content}`;
 
                     <FormControl isRequired>
                       <FormLabel fontSize="lg">Date</FormLabel>
-                      <Input
-                        name="date"
-                        value={formData.date}
-                        onChange={handleInputChange}
-                        size="lg"
-                        variant="filled"
-                      />
+                      <HStack>
+                        <Input
+                          name="date-input"
+                          type="date"
+                          value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy-MM-dd')}
+                          onChange={handleDateChange}
+                          size="lg"
+                          variant="filled"
+                        />
+                        <Input
+                          name="time-input"
+                          type="time"
+                          value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'HH:mm')}
+                          onChange={handleDateChange}
+                          size="lg"
+                          variant="filled"
+                        />
+                      </HStack>
                     </FormControl>
 
                     <FormControl isRequired>
@@ -338,6 +403,29 @@ ${formData.content}`;
 
                     <Divider />
 
+                    <FormControl>
+                      <FormLabel fontSize="lg">Images</FormLabel>
+                      <ImageUploader
+                        onSelectFeatured={setFeaturedImage}
+                        featuredImage={formData.featuredImage}
+                      />
+                    </FormControl>
+
+                    {formData.featuredImage && (
+                      <Box>
+                        <Text fontSize="sm" mb={2}>Featured Image:</Text>
+                        <Image
+                          src={formData.featuredImage}
+                          alt="Featured image"
+                          maxH="200px"
+                          objectFit="cover"
+                          borderRadius="md"
+                        />
+                      </Box>
+                    )}
+
+                    <Divider />
+
                     <FormControl isRequired>
                       <FormLabel fontSize="lg">Content</FormLabel>
                       <Textarea
@@ -353,7 +441,8 @@ ${formData.content}`;
 
                     <Button
                       type="submit"
-                      colorScheme="blue"
+                      bg="brand.persianGreen"
+                      _hover={{ bg: 'brand.charcoal' }}
                       size="lg"
                       width="full"
                     >
@@ -375,10 +464,10 @@ ${formData.content}`;
                       borderRadius="md"
                       minH="400px"
                       sx={{
-                        'h1': { fontSize: '2xl', fontWeight: 'bold', marginY: '1em' },
-                        'h2': { fontSize: 'xl', fontWeight: 'bold', marginY: '0.8em' },
-                        'h3': { fontSize: 'lg', fontWeight: 'bold', marginY: '0.6em' },
-                        'h4, h5, h6': { fontWeight: 'bold', marginY: '0.4em' },
+                        'h1': { fontSize: '2xl', fontWeight: 'bold', marginY: '1em', color: 'brand.charcoal' },
+                        'h2': { fontSize: 'xl', fontWeight: 'bold', marginY: '0.8em', color: 'brand.charcoal' },
+                        'h3': { fontSize: 'lg', fontWeight: 'bold', marginY: '0.6em', color: 'brand.charcoal' },
+                        'h4, h5, h6': { fontWeight: 'bold', marginY: '0.4em', color: 'brand.charcoal' },
                         'p': { marginBottom: '1em' },
                         'ul, ol': {
                           marginLeft: '1.5em',
@@ -388,20 +477,20 @@ ${formData.content}`;
                         'li': { marginY: '0.2em' },
                         'blockquote': {
                           borderLeftWidth: '4px',
-                          borderLeftColor: colorMode === 'light' ? 'gray.200' : 'gray.600',
+                          borderLeftColor: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
                           paddingLeft: '1em',
                           marginY: '1em',
                           fontStyle: 'italic',
                         },
                         'code': {
                           fontFamily: 'mono',
-                          bg: colorMode === 'light' ? 'gray.100' : 'gray.700',
+                          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
                           padding: '0.2em 0.4em',
                           borderRadius: 'md',
                           fontSize: '0.9em',
                         },
                         'pre': {
-                          bg: colorMode === 'light' ? 'gray.100' : 'gray.700',
+                          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
                           padding: '1em',
                           borderRadius: 'md',
                           overflowX: 'auto',
@@ -411,7 +500,7 @@ ${formData.content}`;
                           bg: 'transparent',
                         },
                         'a': {
-                          color: colorMode === 'light' ? 'blue.600' : 'blue.300',
+                          color: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
                           textDecoration: 'underline',
                         },
                         'img': {
@@ -420,6 +509,7 @@ ${formData.content}`;
                         },
                         'hr': {
                           marginY: '2em',
+                          borderColor: colorMode === 'light' ? 'brand.charcoal' : 'brand.saffron',
                         },
                         'table': {
                           width: 'full',
@@ -429,7 +519,7 @@ ${formData.content}`;
                         'th, td': {
                           borderWidth: '1px',
                           padding: '0.5em',
-                          borderColor: colorMode === 'light' ? 'gray.200' : 'gray.600',
+                          borderColor: colorMode === 'light' ? 'brand.charcoal' : 'brand.saffron',
                         },
                       }}
                     >
