@@ -60,6 +60,11 @@ export default function (eleventyConfig) {
         });
     });
 
+    // Add this filter to exclude draft posts
+    eleventyConfig.addFilter("excludeDrafts", function(posts) {
+        return posts.filter(post => !post.data.draft);
+    });
+
     /* HTML Stuff */
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {});
 
