@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -29,6 +29,7 @@ import {
   Badge,
   Image,
   Tooltip,
+  Flex,
 } from '@chakra-ui/react';
 import { SunIcon, MoonIcon, ViewIcon, ViewOffIcon, EditIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import ReactMarkdown from 'react-markdown';
@@ -193,73 +194,68 @@ export default function BlogEditor() {
   const [showPreview, setShowPreview] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
   const [showAdvancedFields, setShowAdvancedFields] = useState(true);
+  const [drafts, setDrafts] = useState([]);
+  const [showDrafts, setShowDrafts] = useState(false);
 
   const [formData, setFormData] = useState({
     title: '',
-    date: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
-    categories: [],
-    tags: ['post'], // Default tag
-    layout: 'layouts/post', // Default layout
+    date: format(new Date(), 'yyyy-MM-dd'),
     content: '',
+    tags: [],
+    featuredImage: '',
+    isDraft: false,
     newTag: '',
-    newCategory: '',
-    featuredImage: '', // Add featured image field
+    currentDraftFile: null,
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
   };
 
   const addItem = (type) => {
-    const newItemKey = `new${type.charAt(0).toUpperCase() + type.slice(1)}`;
-    const itemsKey = `${type}s`;
-
-    if (formData[newItemKey].trim()) {
-      setFormData((prev) => ({
-        ...prev,
-        [itemsKey]: [...prev[itemsKey], prev[newItemKey].trim()],
-        [newItemKey]: '',
-      }));
+    if (type === 'tags' && formData.newTag.trim()) {
+      setFormData({
+        ...formData,
+        tags: [...formData.tags, formData.newTag.trim()],
+        newTag: '',
+      });
     }
   };
 
   const removeItem = (type, index) => {
-    const itemsKey = `${type}s`;
-    // Prevent removing 'post' tag if it's the default one
-    if (type === 'tag' && formData[itemsKey][index] === 'post') {
-      toast({
-        title: "Cannot remove 'post' tag",
-        description: "The 'post' tag is required",
-        status: 'warning',
-        duration: 3000,
-        isClosable: true,
+    if (type === 'tags') {
+      const newTags = [...formData.tags];
+      newTags.splice(index, 1);
+      setFormData({
+        ...formData,
+        tags: newTags,
       });
-      return;
     }
-    setFormData((prev) => ({
-      ...prev,
-      [itemsKey]: prev[itemsKey].filter((_, i) => i !== index),
-    }));
   };
 
   const generateMarkdown = () => {
     const frontmatter = {
-      date: formData.date,
-      categories: formData.categories,
-      tags: formData.tags,
-      layout: formData.layout,
-      permalink: formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '/',
       title: formData.title,
+      date: formData.date,
+      tags: formData.tags,
+      layout: 'layouts/post',
     };
 
-    // Add image to frontmatter if one is selected
     if (formData.featuredImage) {
-      frontmatter.image = formData.featuredImage;
+      frontmatter.featuredImage = formData.featuredImage;
+    }
+
+    if (formData.isDraft) {
+      frontmatter.draft = true;
     }
 
     return `---
-${YAML.stringify(frontmatter)}---
+${YAML.stringify(frontmatter)}
+---
 
 ${formData.content}`;
   };
@@ -278,17 +274,34 @@ ${formData.content}`;
           content: markdown,
           title: formData.title,
           date: formData.date,
+          isDraft: formData.isDraft,
+          currentDraftFile: formData.currentDraftFile,
         }),
       });
 
       if (!response.ok) throw new Error('Failed to save post');
 
+      // If this was a draft that we're now publishing, clear the currentDraftFile
+      if (formData.isDraft === false && formData.currentDraftFile) {
+        setFormData({
+          ...formData,
+          currentDraftFile: null,
+        });
+      }
+
       toast({
-        title: 'Post saved successfully!',
+        title: `Post ${formData.isDraft ? 'draft' : ''} saved successfully!`,
         status: 'success',
         duration: 3000,
         isClosable: true,
       });
+
+      // Refresh the drafts list
+      const draftsResponse = await fetch('/api/list-drafts');
+      if (draftsResponse.ok) {
+        const data = await draftsResponse.json();
+        setDrafts(data.drafts || []);
+      }
     } catch (error) {
       toast({
         title: 'Error saving post',
@@ -356,47 +369,123 @@ ${formData.content}`;
 
   const handleDateChange = (e) => {
     const { name, value } = e.target;
-    const currentDate = parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date());
-    let newDate;
+    setFormData({
+      ...formData,
+      date: value,
+    });
+  };
 
-    if (name === 'date-input') {
-      // When date changes, keep the existing time
-      const [year, month, day] = value.split('-');
-      newDate = new Date(
-        year,
-        month - 1,
-        day,
-        currentDate.getHours(),
-        currentDate.getMinutes(),
-        currentDate.getSeconds()
-      );
-    } else if (name === 'time-input') {
-      // When time changes, keep the existing date
-      const [hours, minutes] = value.split(':');
-      newDate = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        currentDate.getDate(),
-        hours,
-        minutes,
-        0
-      );
-    }
+  const setFeaturedImage = (imagePath) => {
+    setFormData({
+      ...formData,
+      featuredImage: imagePath,
+    });
+  };
 
-    if (newDate) {
-      setFormData(prev => ({
-        ...prev,
-        date: format(newDate, 'yyyy-MM-dd HH:mm:ss')
-      }));
+  // Load drafts on component mount
+  useEffect(() => {
+    const fetchDrafts = async () => {
+      try {
+        const response = await fetch('/api/list-drafts');
+        if (!response.ok) throw new Error('Failed to fetch drafts');
+
+        const data = await response.json();
+        setDrafts(data.drafts || []);
+      } catch (error) {
+        console.error('Error fetching drafts:', error);
+        toast({
+          title: 'Error fetching drafts',
+          description: error.message,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    };
+
+    fetchDrafts();
+  }, [toast]);
+
+  // Load a draft post
+  const loadDraft = async (filename) => {
+    try {
+      const response = await fetch(`/api/load-draft?filename=${encodeURIComponent(filename)}`);
+      if (!response.ok) throw new Error('Failed to load draft');
+
+      const data = await response.json();
+
+      // Update form data with draft content
+      setFormData({
+        ...formData,
+        title: data.title,
+        date: format(new Date(data.date), 'yyyy-MM-dd'),
+        content: data.content,
+        tags: data.tags || [],
+        featuredImage: data.featuredImage || '',
+        isDraft: true,
+        currentDraftFile: filename,
+      });
+
+      toast({
+        title: 'Draft loaded successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error('Error loading draft:', error);
+      toast({
+        title: 'Error loading draft',
+        description: error.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
-  // Add handler for setting featured image
-  const setFeaturedImage = (imagePath) => {
-    setFormData(prev => ({
-      ...prev,
-      featuredImage: imagePath
-    }));
+  // Delete a draft post
+  const deleteDraft = async (filename) => {
+    try {
+      const response = await fetch(`/api/delete-draft?filename=${encodeURIComponent(filename)}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Failed to delete draft');
+
+      // Remove the draft from the list
+      setDrafts(drafts.filter(draft => draft.filename !== filename));
+
+      // If the deleted draft was the one currently being edited, reset the form
+      if (formData.currentDraftFile === filename) {
+        setFormData({
+          ...formData,
+          title: '',
+          date: format(new Date(), 'yyyy-MM-dd'),
+          content: '',
+          tags: [],
+          featuredImage: '',
+          isDraft: false,
+          currentDraftFile: null,
+        });
+      }
+
+      toast({
+        title: 'Draft deleted successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error('Error deleting draft:', error);
+      toast({
+        title: 'Error deleting draft',
+        description: error.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -428,211 +517,230 @@ ${formData.content}`;
           </HStack>
         </HStack>
 
-        <form onSubmit={handleSubmit}>
-          <Grid templateColumns={showPreview ? ['1fr', null, null, 'repeat(2, 1fr)'] : '1fr'} gap={8}>
-            <GridItem>
-              <Card>
-                <CardBody>
-                  <VStack spacing={6} align="stretch">
-                    <FormControl isRequired>
-                      <FormLabel fontSize="lg">Title</FormLabel>
-                      <HStack>
-                        <Input
-                          name="title"
-                          value={formData.title}
-                          onChange={handleInputChange}
-                          size="lg"
-                          variant="filled"
-                        />
-                        <Button
-                          onClick={formatTitle}
-                          isLoading={isExecuting}
-                          bg="brand.burntSienna"
-                          _hover={{ bg: 'brand.sandyBrown' }}
-                          size="lg"
-                          title="Format title using AP style"
-                        >
-                          Format
-                        </Button>
-                      </HStack>
-                    </FormControl>
+        <VStack spacing={8} align="stretch">
+          {/* Drafts Section */}
+          <Card>
+            <CardBody>
+              <Flex justify="space-between" align="center" mb={4}>
+                <Heading size="md">Draft Posts</Heading>
+                <Button
+                  size="sm"
+                  onClick={() => setShowDrafts(!showDrafts)}
+                  rightIcon={showDrafts ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                >
+                  {showDrafts ? 'Hide Drafts' : 'Show Drafts'}
+                </Button>
+              </Flex>
 
-                    <Collapse in={showAdvancedFields}>
-                      <VStack spacing={6} align="stretch">
-                        <FormControl isRequired>
-                          <FormLabel fontSize="lg">Date</FormLabel>
-                          <HStack>
-                            <Input
-                              name="date-input"
-                              type="date"
-                              value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy-MM-dd')}
-                              onChange={handleDateChange}
-                              size="lg"
-                              variant="filled"
-                            />
-                            <Input
-                              name="time-input"
-                              type="time"
-                              value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'HH:mm')}
-                              onChange={handleDateChange}
-                              size="lg"
-                              variant="filled"
-                            />
-                          </HStack>
-                        </FormControl>
-
-                        <FormControl isRequired>
-                          <FormLabel fontSize="lg">Layout</FormLabel>
-                          <Input
-                            name="layout"
-                            value={formData.layout}
-                            onChange={handleInputChange}
-                            size="lg"
-                            variant="filled"
-                            placeholder="layouts/post"
-                          />
-                        </FormControl>
-
-                        <FormControl>
-                          <FormLabel fontSize="lg">Categories</FormLabel>
-                          <HStack mb={2}>
-                            <Input
-                              name="newCategory"
-                              value={formData.newCategory}
-                              onChange={handleInputChange}
-                              placeholder="Add a category"
-                              variant="filled"
-                            />
-                            <Button
-                              onClick={() => addItem('category')}
-                              colorScheme="blue"
-                            >
-                              Add
-                            </Button>
-                          </HStack>
-                          <Box minH="40px">
-                            <HStack spacing={2} wrap="wrap">
-                              {formData.categories.map((category, index) => (
-                                <Tag
-                                  key={index}
-                                  size="lg"
-                                  borderRadius="full"
-                                  variant="solid"
-                                  colorScheme="blue"
-                                >
-                                  <TagLabel>{category}</TagLabel>
-                                  <TagCloseButton onClick={() => removeItem('category', index)} />
-                                </Tag>
-                              ))}
-                            </HStack>
-                          </Box>
-                        </FormControl>
-
-                        <FormControl>
-                          <FormLabel fontSize="lg">Tags</FormLabel>
-                          <HStack mb={2}>
-                            <Input
-                              name="newTag"
-                              value={formData.newTag}
-                              onChange={handleInputChange}
-                              placeholder="Add a tag"
-                              variant="filled"
-                            />
-                            <Button
-                              onClick={() => addItem('tag')}
-                              colorScheme="green"
-                            >
-                              Add
-                            </Button>
-                          </HStack>
-                          <Box minH="40px">
-                            <HStack spacing={2} wrap="wrap">
-                              {formData.tags.map((tag, index) => (
-                                <Tag
-                                  key={index}
-                                  size="lg"
-                                  borderRadius="full"
-                                  variant="solid"
-                                  colorScheme="green"
-                                >
-                                  <TagLabel>{tag}</TagLabel>
-                                  <TagCloseButton onClick={() => removeItem('tag', index)} />
-                                </Tag>
-                              ))}
-                            </HStack>
-                          </Box>
-                        </FormControl>
-
-                        <Divider />
-
-                        <FormControl>
-                          <FormLabel fontSize="lg">Images</FormLabel>
-                          <ImageUploader
-                            onSelectFeatured={setFeaturedImage}
-                            featuredImage={formData.featuredImage}
-                          />
-                        </FormControl>
-
-                        {formData.featuredImage && (
-                          <Box>
-                            <Text fontSize="sm" mb={2}>Featured Image:</Text>
-                            <Image
-                              src={formData.featuredImage}
-                              alt="Featured image"
-                              maxH="200px"
-                              objectFit="cover"
-                              borderRadius="md"
-                            />
-                          </Box>
-                        )}
-                      </VStack>
-                    </Collapse>
-
-                    <Divider />
-
-                    <FormControl isRequired>
-                      <FormLabel fontSize="lg">Content</FormLabel>
-                      <Textarea
-                        name="content"
-                        value={formData.content}
-                        onChange={handleInputChange}
-                        minH="400px"
-                        variant="filled"
-                        size="lg"
-                        fontFamily="mono"
-                      />
-                    </FormControl>
-
-                    <Button
-                      type="submit"
-                      bg="brand.persianGreen"
-                      _hover={{ bg: 'brand.charcoal' }}
-                      size="lg"
-                      width="full"
-                    >
-                      Save Post
-                    </Button>
+              <Collapse in={showDrafts}>
+                {drafts.length === 0 ? (
+                  <Text color="gray.500">No draft posts found.</Text>
+                ) : (
+                  <VStack align="stretch" spacing={2}>
+                    {drafts.map((draft) => (
+                      <Flex
+                        key={draft.filename}
+                        justify="space-between"
+                        align="center"
+                        p={3}
+                        borderWidth="1px"
+                        borderRadius="md"
+                        _hover={{ bg: colorMode === 'light' ? 'gray.50' : 'whiteAlpha.100' }}
+                      >
+                        <Box>
+                          <Text fontWeight="bold">{draft.title}</Text>
+                          <Text fontSize="sm" color="gray.500">
+                            {format(new Date(draft.date), 'MMMM d, yyyy')}
+                          </Text>
+                        </Box>
+                        <HStack spacing={2}>
+                          <Button
+                            size="sm"
+                            colorScheme="blue"
+                            onClick={() => loadDraft(draft.filename)}
+                          >
+                            Load
+                          </Button>
+                          <Button
+                            size="sm"
+                            colorScheme="red"
+                            onClick={() => deleteDraft(draft.filename)}
+                          >
+                            Delete
+                          </Button>
+                        </HStack>
+                      </Flex>
+                    ))}
                   </VStack>
-                </CardBody>
-              </Card>
-            </GridItem>
+                )}
+              </Collapse>
+            </CardBody>
+          </Card>
 
-            {showPreview && (
+          <form onSubmit={handleSubmit}>
+            <Grid templateColumns={showPreview ? ['1fr', null, null, 'repeat(2, 1fr)'] : '1fr'} gap={8}>
               <GridItem>
                 <Card>
                   <CardBody>
-                    <Heading size="md" mb={4}>Preview</Heading>
-                    <MarkdownPreview
-                      content={formData.content}
-                      title={formData.title}
-                      colorMode={colorMode}
-                    />
+                    <VStack spacing={4} align="stretch">
+                      <FormControl isRequired>
+                        <FormLabel>Title</FormLabel>
+                        <HStack>
+                          <Input
+                            name="title"
+                            value={formData.title}
+                            onChange={handleInputChange}
+                            placeholder="Enter post title"
+                          />
+                          <Button
+                            onClick={formatTitle}
+                            isLoading={isExecuting}
+                            colorScheme="teal"
+                            title="Format title using AP style"
+                          >
+                            Format
+                          </Button>
+                        </HStack>
+                      </FormControl>
+
+                      <FormControl isRequired>
+                        <FormLabel>Date</FormLabel>
+                        <Input
+                          name="date"
+                          type="date"
+                          value={formData.date}
+                          onChange={handleDateChange}
+                        />
+                      </FormControl>
+
+                      <FormControl display="flex" alignItems="center">
+                        <FormLabel mb="0">
+                          Save as Draft
+                        </FormLabel>
+                        <Switch
+                          name="isDraft"
+                          isChecked={formData.isDraft}
+                          onChange={handleInputChange}
+                          colorScheme="blue"
+                        />
+                      </FormControl>
+
+                      <Collapse in={showAdvancedFields} style={{ width: '100%' }}>
+                        <VStack spacing={4} align="stretch">
+                          <FormControl>
+                            <FormLabel>Featured Image</FormLabel>
+                            <ImageUploader
+                              onSelectFeatured={setFeaturedImage}
+                              featuredImage={formData.featuredImage}
+                            />
+                            {formData.featuredImage && (
+                              <Box mt={2}>
+                                <Image
+                                  src={formData.featuredImage}
+                                  alt="Featured"
+                                  maxH="200px"
+                                  borderRadius="md"
+                                />
+                                <Button
+                                  size="sm"
+                                  colorScheme="red"
+                                  mt={2}
+                                  onClick={() => setFeaturedImage('')}
+                                >
+                                  Remove
+                                </Button>
+                              </Box>
+                            )}
+                          </FormControl>
+
+                          <FormControl>
+                            <FormLabel>Tags</FormLabel>
+                            <VStack align="stretch" spacing={2}>
+                              <HStack spacing={2} wrap="wrap">
+                                {formData.tags.map((tag, index) => (
+                                  <Tag
+                                    key={index}
+                                    size="md"
+                                    borderRadius="full"
+                                    variant="solid"
+                                    colorScheme="blue"
+                                  >
+                                    <TagLabel>{tag}</TagLabel>
+                                    <TagCloseButton onClick={() => removeItem('tags', index)} />
+                                  </Tag>
+                                ))}
+                              </HStack>
+                              <HStack>
+                                <Input
+                                  name="newTag"
+                                  value={formData.newTag}
+                                  onChange={handleInputChange}
+                                  placeholder="Add a tag"
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      e.preventDefault();
+                                      addItem('tags');
+                                    }
+                                  }}
+                                />
+                                <Button onClick={() => addItem('tags')}>Add</Button>
+                              </HStack>
+                            </VStack>
+                          </FormControl>
+                        </VStack>
+                      </Collapse>
+                    </VStack>
                   </CardBody>
                 </Card>
               </GridItem>
-            )}
-          </Grid>
-        </form>
+
+              <GridItem>
+                <Card>
+                  <CardBody>
+                    <VStack spacing={4}>
+                      <FormControl isRequired>
+                        <FormLabel>Content</FormLabel>
+                        <Textarea
+                          name="content"
+                          value={formData.content}
+                          onChange={handleInputChange}
+                          placeholder="Write your post content in Markdown"
+                          minH="400px"
+                          fontFamily="monospace"
+                        />
+                      </FormControl>
+                    </VStack>
+                  </CardBody>
+                </Card>
+              </GridItem>
+
+              {showPreview && (
+                <GridItem colSpan={2}>
+                  <Card>
+                    <CardBody>
+                      <Heading size="md" mb={4}>Preview</Heading>
+                      <MarkdownPreview
+                        content={formData.content}
+                        title={formData.title}
+                        colorMode={colorMode}
+                      />
+                    </CardBody>
+                  </Card>
+                </GridItem>
+              )}
+            </Grid>
+
+            <Flex justify="space-between" mt={6}>
+              <Button
+                type="submit"
+                colorScheme={formData.isDraft ? "yellow" : "blue"}
+                size="lg"
+              >
+                {formData.isDraft ? "Save as Draft" : "Publish Post"}
+              </Button>
+            </Flex>
+          </form>
+        </VStack>
       </Container>
     </Box>
   );
