@@ -28,12 +28,163 @@ import {
   Code,
   Badge,
   Image,
+  Tooltip,
 } from '@chakra-ui/react';
-import { SunIcon, MoonIcon, ViewIcon, ViewOffIcon, EditIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon, ViewIcon, ViewOffIcon, EditIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { format, parse } from 'date-fns';
 import YAML from 'yaml';
 import ImageUploader from '../components/ImageUploader';
+
+const MarkdownPreview = ({ content, title, colorMode }) => {
+  return (
+    <Box
+      className="markdown-preview"
+      p={4}
+      borderRadius="md"
+      minH="400px"
+      sx={{
+        'h1': {
+          fontSize: '2xl',
+          fontWeight: 'bold',
+          marginY: '1em',
+          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900',
+          borderBottom: '2px solid',
+          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
+          paddingBottom: '0.3em'
+        },
+        'h2': {
+          fontSize: 'xl',
+          fontWeight: 'bold',
+          marginY: '0.8em',
+          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900',
+          borderBottom: '1px solid',
+          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
+          paddingBottom: '0.3em'
+        },
+        'h3': {
+          fontSize: 'lg',
+          fontWeight: 'bold',
+          marginY: '0.6em',
+          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
+        },
+        'h4, h5, h6': {
+          fontWeight: 'bold',
+          marginY: '0.4em',
+          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
+        },
+        'p': {
+          marginBottom: '1em',
+          lineHeight: '1.6'
+        },
+        'ul, ol': {
+          marginLeft: '1.5em',
+          marginBottom: '1em',
+          listStylePosition: 'outside',
+          'li': {
+            marginY: '0.2em',
+            lineHeight: '1.6'
+          }
+        },
+        'blockquote': {
+          borderLeftWidth: '4px',
+          borderLeftColor: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
+          paddingLeft: '1em',
+          marginY: '1em',
+          fontStyle: 'italic',
+          color: colorMode === 'light' ? 'gray.600' : 'whiteAlpha.800',
+          backgroundColor: colorMode === 'light' ? 'gray.50' : 'whiteAlpha.100',
+          padding: '1em',
+          borderRadius: 'md'
+        },
+        'code': {
+          fontFamily: 'mono',
+          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
+          padding: '0.2em 0.4em',
+          borderRadius: 'md',
+          fontSize: '0.9em',
+          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
+        },
+        'pre': {
+          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
+          padding: '1em',
+          borderRadius: 'md',
+          overflowX: 'auto',
+          marginY: '1em'
+        },
+        'pre code': {
+          padding: 0,
+          bg: 'transparent',
+          color: 'inherit'
+        },
+        'a': {
+          color: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
+          textDecoration: 'underline',
+          _hover: {
+            textDecoration: 'none'
+          }
+        },
+        'img': {
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: 'md',
+          marginY: '1em'
+        },
+        'table': {
+          width: '100%',
+          borderCollapse: 'collapse',
+          marginY: '1em'
+        },
+        'th, td': {
+          border: '1px solid',
+          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
+          padding: '0.5em',
+          textAlign: 'left'
+        },
+        'th': {
+          backgroundColor: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
+          fontWeight: 'bold'
+        },
+        'hr': {
+          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
+          marginY: '2em'
+        }
+      }}
+    >
+      {title && <h1>{title}</h1>}
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          code: ({ node, inline, className, children, ...props }) => {
+            const match = /language-(\w+)/.exec(className || '');
+            return !inline && match ? (
+              <Code
+                className={className}
+                {...props}
+                p={4}
+                borderRadius="md"
+                display="block"
+                whiteSpace="pre"
+                overflowX="auto"
+              >
+                {String(children).replace(/\n$/, '')}
+              </Code>
+            ) : (
+              <Code className={className} {...props}>
+                {children}
+              </Code>
+            );
+          }
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </Box>
+  );
+};
 
 export default function BlogEditor() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -41,6 +192,7 @@ export default function BlogEditor() {
   const gridColumns = useBreakpointValue({ base: 1, lg: 2 });
   const [showPreview, setShowPreview] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
+  const [showAdvancedFields, setShowAdvancedFields] = useState(true);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -253,6 +405,14 @@ ${formData.content}`;
         <HStack justify="space-between" mb={8}>
           <Heading size="lg">Create Blog Post</Heading>
           <HStack spacing={4}>
+            <Tooltip label={showAdvancedFields ? "Hide advanced fields" : "Show advanced fields"}>
+              <IconButton
+                icon={showAdvancedFields ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                onClick={() => setShowAdvancedFields(!showAdvancedFields)}
+                variant="ghost"
+                aria-label="Toggle advanced fields"
+              />
+            </Tooltip>
             <IconButton
               icon={showPreview ? <ViewOffIcon /> : <ViewIcon />}
               onClick={() => setShowPreview(!showPreview)}
@@ -297,132 +457,136 @@ ${formData.content}`;
                       </HStack>
                     </FormControl>
 
-                    <FormControl isRequired>
-                      <FormLabel fontSize="lg">Date</FormLabel>
-                      <HStack>
-                        <Input
-                          name="date-input"
-                          type="date"
-                          value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy-MM-dd')}
-                          onChange={handleDateChange}
-                          size="lg"
-                          variant="filled"
-                        />
-                        <Input
-                          name="time-input"
-                          type="time"
-                          value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'HH:mm')}
-                          onChange={handleDateChange}
-                          size="lg"
-                          variant="filled"
-                        />
-                      </HStack>
-                    </FormControl>
-
-                    <FormControl isRequired>
-                      <FormLabel fontSize="lg">Layout</FormLabel>
-                      <Input
-                        name="layout"
-                        value={formData.layout}
-                        onChange={handleInputChange}
-                        size="lg"
-                        variant="filled"
-                        placeholder="layouts/post"
-                      />
-                    </FormControl>
-
-                    <FormControl>
-                      <FormLabel fontSize="lg">Categories</FormLabel>
-                      <HStack mb={2}>
-                        <Input
-                          name="newCategory"
-                          value={formData.newCategory}
-                          onChange={handleInputChange}
-                          placeholder="Add a category"
-                          variant="filled"
-                        />
-                        <Button
-                          onClick={() => addItem('category')}
-                          colorScheme="blue"
-                        >
-                          Add
-                        </Button>
-                      </HStack>
-                      <Box minH="40px">
-                        <HStack spacing={2} wrap="wrap">
-                          {formData.categories.map((category, index) => (
-                            <Tag
-                              key={index}
+                    <Collapse in={showAdvancedFields}>
+                      <VStack spacing={6} align="stretch">
+                        <FormControl isRequired>
+                          <FormLabel fontSize="lg">Date</FormLabel>
+                          <HStack>
+                            <Input
+                              name="date-input"
+                              type="date"
+                              value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy-MM-dd')}
+                              onChange={handleDateChange}
                               size="lg"
-                              borderRadius="full"
-                              variant="solid"
+                              variant="filled"
+                            />
+                            <Input
+                              name="time-input"
+                              type="time"
+                              value={format(parse(formData.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'HH:mm')}
+                              onChange={handleDateChange}
+                              size="lg"
+                              variant="filled"
+                            />
+                          </HStack>
+                        </FormControl>
+
+                        <FormControl isRequired>
+                          <FormLabel fontSize="lg">Layout</FormLabel>
+                          <Input
+                            name="layout"
+                            value={formData.layout}
+                            onChange={handleInputChange}
+                            size="lg"
+                            variant="filled"
+                            placeholder="layouts/post"
+                          />
+                        </FormControl>
+
+                        <FormControl>
+                          <FormLabel fontSize="lg">Categories</FormLabel>
+                          <HStack mb={2}>
+                            <Input
+                              name="newCategory"
+                              value={formData.newCategory}
+                              onChange={handleInputChange}
+                              placeholder="Add a category"
+                              variant="filled"
+                            />
+                            <Button
+                              onClick={() => addItem('category')}
                               colorScheme="blue"
                             >
-                              <TagLabel>{category}</TagLabel>
-                              <TagCloseButton onClick={() => removeItem('category', index)} />
-                            </Tag>
-                          ))}
-                        </HStack>
-                      </Box>
-                    </FormControl>
+                              Add
+                            </Button>
+                          </HStack>
+                          <Box minH="40px">
+                            <HStack spacing={2} wrap="wrap">
+                              {formData.categories.map((category, index) => (
+                                <Tag
+                                  key={index}
+                                  size="lg"
+                                  borderRadius="full"
+                                  variant="solid"
+                                  colorScheme="blue"
+                                >
+                                  <TagLabel>{category}</TagLabel>
+                                  <TagCloseButton onClick={() => removeItem('category', index)} />
+                                </Tag>
+                              ))}
+                            </HStack>
+                          </Box>
+                        </FormControl>
 
-                    <FormControl>
-                      <FormLabel fontSize="lg">Tags</FormLabel>
-                      <HStack mb={2}>
-                        <Input
-                          name="newTag"
-                          value={formData.newTag}
-                          onChange={handleInputChange}
-                          placeholder="Add a tag"
-                          variant="filled"
-                        />
-                        <Button
-                          onClick={() => addItem('tag')}
-                          colorScheme="green"
-                        >
-                          Add
-                        </Button>
-                      </HStack>
-                      <Box minH="40px">
-                        <HStack spacing={2} wrap="wrap">
-                          {formData.tags.map((tag, index) => (
-                            <Tag
-                              key={index}
-                              size="lg"
-                              borderRadius="full"
-                              variant="solid"
+                        <FormControl>
+                          <FormLabel fontSize="lg">Tags</FormLabel>
+                          <HStack mb={2}>
+                            <Input
+                              name="newTag"
+                              value={formData.newTag}
+                              onChange={handleInputChange}
+                              placeholder="Add a tag"
+                              variant="filled"
+                            />
+                            <Button
+                              onClick={() => addItem('tag')}
                               colorScheme="green"
                             >
-                              <TagLabel>{tag}</TagLabel>
-                              <TagCloseButton onClick={() => removeItem('tag', index)} />
-                            </Tag>
-                          ))}
-                        </HStack>
-                      </Box>
-                    </FormControl>
+                              Add
+                            </Button>
+                          </HStack>
+                          <Box minH="40px">
+                            <HStack spacing={2} wrap="wrap">
+                              {formData.tags.map((tag, index) => (
+                                <Tag
+                                  key={index}
+                                  size="lg"
+                                  borderRadius="full"
+                                  variant="solid"
+                                  colorScheme="green"
+                                >
+                                  <TagLabel>{tag}</TagLabel>
+                                  <TagCloseButton onClick={() => removeItem('tag', index)} />
+                                </Tag>
+                              ))}
+                            </HStack>
+                          </Box>
+                        </FormControl>
 
-                    <Divider />
+                        <Divider />
 
-                    <FormControl>
-                      <FormLabel fontSize="lg">Images</FormLabel>
-                      <ImageUploader
-                        onSelectFeatured={setFeaturedImage}
-                        featuredImage={formData.featuredImage}
-                      />
-                    </FormControl>
+                        <FormControl>
+                          <FormLabel fontSize="lg">Images</FormLabel>
+                          <ImageUploader
+                            onSelectFeatured={setFeaturedImage}
+                            featuredImage={formData.featuredImage}
+                          />
+                        </FormControl>
 
-                    {formData.featuredImage && (
-                      <Box>
-                        <Text fontSize="sm" mb={2}>Featured Image:</Text>
-                        <Image
-                          src={formData.featuredImage}
-                          alt="Featured image"
-                          maxH="200px"
-                          objectFit="cover"
-                          borderRadius="md"
-                        />
-                      </Box>
-                    )}
+                        {formData.featuredImage && (
+                          <Box>
+                            <Text fontSize="sm" mb={2}>Featured Image:</Text>
+                            <Image
+                              src={formData.featuredImage}
+                              alt="Featured image"
+                              maxH="200px"
+                              objectFit="cover"
+                              borderRadius="md"
+                            />
+                          </Box>
+                        )}
+                      </VStack>
+                    </Collapse>
 
                     <Divider />
 
@@ -458,73 +622,11 @@ ${formData.content}`;
                 <Card>
                   <CardBody>
                     <Heading size="md" mb={4}>Preview</Heading>
-                    <Box
-                      className="markdown-preview"
-                      p={4}
-                      borderRadius="md"
-                      minH="400px"
-                      sx={{
-                        'h1': { fontSize: '2xl', fontWeight: 'bold', marginY: '1em', color: 'brand.charcoal' },
-                        'h2': { fontSize: 'xl', fontWeight: 'bold', marginY: '0.8em', color: 'brand.charcoal' },
-                        'h3': { fontSize: 'lg', fontWeight: 'bold', marginY: '0.6em', color: 'brand.charcoal' },
-                        'h4, h5, h6': { fontWeight: 'bold', marginY: '0.4em', color: 'brand.charcoal' },
-                        'p': { marginBottom: '1em' },
-                        'ul, ol': {
-                          marginLeft: '1.5em',
-                          marginBottom: '1em',
-                          listStylePosition: 'outside',
-                        },
-                        'li': { marginY: '0.2em' },
-                        'blockquote': {
-                          borderLeftWidth: '4px',
-                          borderLeftColor: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
-                          paddingLeft: '1em',
-                          marginY: '1em',
-                          fontStyle: 'italic',
-                        },
-                        'code': {
-                          fontFamily: 'mono',
-                          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
-                          padding: '0.2em 0.4em',
-                          borderRadius: 'md',
-                          fontSize: '0.9em',
-                        },
-                        'pre': {
-                          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
-                          padding: '1em',
-                          borderRadius: 'md',
-                          overflowX: 'auto',
-                        },
-                        'pre code': {
-                          padding: 0,
-                          bg: 'transparent',
-                        },
-                        'a': {
-                          color: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
-                          textDecoration: 'underline',
-                        },
-                        'img': {
-                          maxWidth: '100%',
-                          height: 'auto',
-                        },
-                        'hr': {
-                          marginY: '2em',
-                          borderColor: colorMode === 'light' ? 'brand.charcoal' : 'brand.saffron',
-                        },
-                        'table': {
-                          width: 'full',
-                          marginY: '1em',
-                          borderCollapse: 'collapse',
-                        },
-                        'th, td': {
-                          borderWidth: '1px',
-                          padding: '0.5em',
-                          borderColor: colorMode === 'light' ? 'brand.charcoal' : 'brand.saffron',
-                        },
-                      }}
-                    >
-                      <ReactMarkdown>{formData.content || '*No content yet*'}</ReactMarkdown>
-                    </Box>
+                    <MarkdownPreview
+                      content={formData.content}
+                      title={formData.title}
+                      colorMode={colorMode}
+                    />
                   </CardBody>
                 </Card>
               </GridItem>
