@@ -7,7 +7,7 @@
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve",
-    "dev": "ELEVENTY_ENV=development eleventy --serve"
+    "dev": "ELEVENTY_ENV=development eleventy --serve --incremental"
   },
   "keywords": [],
   "author": "",
