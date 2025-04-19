@@ -38,6 +38,7 @@ import rehypeRaw from 'rehype-raw';
 import { format, parse } from 'date-fns';
 import YAML from 'yaml';
 import ImageUploader from '../components/ImageUploader';
+import MarkdownEditor from '../components/MarkdownEditor';
 
 const MarkdownPreview = ({ content, title, colorMode }) => {
   return (
@@ -193,7 +194,7 @@ export default function BlogEditor() {
   const gridColumns = useBreakpointValue({ base: 1, lg: 2 });
   const [showPreview, setShowPreview] = useState(true);
   const [isExecuting, setIsExecuting] = useState(false);
-  const [showAdvancedFields, setShowAdvancedFields] = useState(true);
+  const [isFocusMode, setIsFocusMode] = useState(false);
   const [drafts, setDrafts] = useState([]);
   const [showDrafts, setShowDrafts] = useState(false);
 
@@ -494,12 +495,12 @@ ${formData.content}`;
         <HStack justify="space-between" mb={8}>
           <Heading size="lg">Create Blog Post</Heading>
           <HStack spacing={4}>
-            <Tooltip label={showAdvancedFields ? "Hide advanced fields" : "Show advanced fields"}>
+            <Tooltip label={isFocusMode ? "Exit focus mode" : "Enter focus mode"}>
               <IconButton
-                icon={showAdvancedFields ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                onClick={() => setShowAdvancedFields(!showAdvancedFields)}
+                icon={isFocusMode ? <ViewOffIcon /> : <ViewIcon />}
+                onClick={() => setIsFocusMode(!isFocusMode)}
                 variant="ghost"
-                aria-label="Toggle advanced fields"
+                aria-label="Toggle focus mode"
               />
             </Tooltip>
             <IconButton
@@ -519,113 +520,115 @@ ${formData.content}`;
 
         <VStack spacing={8} align="stretch">
           {/* Drafts Section */}
-          <Card>
-            <CardBody>
-              <Flex justify="space-between" align="center" mb={4}>
-                <Heading size="md">Draft Posts</Heading>
-                <Button
-                  size="sm"
-                  onClick={() => setShowDrafts(!showDrafts)}
-                  rightIcon={showDrafts ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                >
-                  {showDrafts ? 'Hide Drafts' : 'Show Drafts'}
-                </Button>
-              </Flex>
+          {!isFocusMode && (
+            <Card>
+              <CardBody>
+                <Flex justify="space-between" align="center" mb={4}>
+                  <Heading size="md">Draft Posts</Heading>
+                  <Button
+                    size="sm"
+                    onClick={() => setShowDrafts(!showDrafts)}
+                    rightIcon={showDrafts ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                  >
+                    {showDrafts ? 'Hide Drafts' : 'Show Drafts'}
+                  </Button>
+                </Flex>
 
-              <Collapse in={showDrafts}>
-                {drafts.length === 0 ? (
-                  <Text color="gray.500">No draft posts found.</Text>
-                ) : (
-                  <VStack align="stretch" spacing={2}>
-                    {drafts.map((draft) => (
-                      <Flex
-                        key={draft.filename}
-                        justify="space-between"
-                        align="center"
-                        p={3}
-                        borderWidth="1px"
-                        borderRadius="md"
-                        _hover={{ bg: colorMode === 'light' ? 'gray.50' : 'whiteAlpha.100' }}
-                      >
-                        <Box>
-                          <Text fontWeight="bold">{draft.title}</Text>
-                          <Text fontSize="sm" color="gray.500">
-                            {format(new Date(draft.date), 'MMMM d, yyyy')}
-                          </Text>
-                        </Box>
-                        <HStack spacing={2}>
-                          <Button
-                            size="sm"
-                            colorScheme="blue"
-                            onClick={() => loadDraft(draft.filename)}
-                          >
-                            Load
-                          </Button>
-                          <Button
-                            size="sm"
-                            colorScheme="red"
-                            onClick={() => deleteDraft(draft.filename)}
-                          >
-                            Delete
-                          </Button>
-                        </HStack>
-                      </Flex>
-                    ))}
-                  </VStack>
-                )}
-              </Collapse>
-            </CardBody>
-          </Card>
+                <Collapse in={showDrafts}>
+                  {drafts.length === 0 ? (
+                    <Text color="gray.500">No draft posts found.</Text>
+                  ) : (
+                    <VStack align="stretch" spacing={2}>
+                      {drafts.map((draft) => (
+                        <Flex
+                          key={draft.filename}
+                          justify="space-between"
+                          align="center"
+                          p={3}
+                          borderWidth="1px"
+                          borderRadius="md"
+                          _hover={{ bg: colorMode === 'light' ? 'gray.50' : 'whiteAlpha.100' }}
+                        >
+                          <Box>
+                            <Text fontWeight="bold">{draft.title}</Text>
+                            <Text fontSize="sm" color="gray.500">
+                              {format(new Date(draft.date), 'MMMM d, yyyy')}
+                            </Text>
+                          </Box>
+                          <HStack spacing={2}>
+                            <Button
+                              size="sm"
+                              colorScheme="blue"
+                              onClick={() => loadDraft(draft.filename)}
+                            >
+                              Load
+                            </Button>
+                            <Button
+                              size="sm"
+                              colorScheme="red"
+                              onClick={() => deleteDraft(draft.filename)}
+                            >
+                              Delete
+                            </Button>
+                          </HStack>
+                        </Flex>
+                      ))}
+                    </VStack>
+                  )}
+                </Collapse>
+              </CardBody>
+            </Card>
+          )}
 
           <form onSubmit={handleSubmit}>
-            <Grid templateColumns={showPreview ? ['1fr', null, null, 'repeat(2, 1fr)'] : '1fr'} gap={8}>
-              <GridItem>
-                <Card>
-                  <CardBody>
-                    <VStack spacing={4} align="stretch">
-                      <FormControl isRequired>
-                        <FormLabel>Title</FormLabel>
-                        <HStack>
+            <Grid templateColumns={showPreview && !isFocusMode ? ['1fr', null, null, 'repeat(2, 1fr)'] : '1fr'} gap={8}>
+              {!isFocusMode && (
+                <GridItem>
+                  <Card>
+                    <CardBody>
+                      <VStack spacing={4} align="stretch">
+                        <FormControl isRequired>
+                          <FormLabel>Title</FormLabel>
+                          <HStack>
+                            <Input
+                              name="title"
+                              value={formData.title}
+                              onChange={handleInputChange}
+                              placeholder="Enter post title"
+                            />
+                            <Button
+                              onClick={formatTitle}
+                              isLoading={isExecuting}
+                              colorScheme="teal"
+                              title="Format title using AP style"
+                            >
+                              Format
+                            </Button>
+                          </HStack>
+                        </FormControl>
+
+                        <FormControl isRequired>
+                          <FormLabel>Date</FormLabel>
                           <Input
-                            name="title"
-                            value={formData.title}
-                            onChange={handleInputChange}
-                            placeholder="Enter post title"
+                            name="date"
+                            type="date"
+                            value={formData.date}
+                            onChange={handleDateChange}
                           />
-                          <Button
-                            onClick={formatTitle}
-                            isLoading={isExecuting}
-                            colorScheme="teal"
-                            title="Format title using AP style"
-                          >
-                            Format
-                          </Button>
-                        </HStack>
-                      </FormControl>
+                        </FormControl>
 
-                      <FormControl isRequired>
-                        <FormLabel>Date</FormLabel>
-                        <Input
-                          name="date"
-                          type="date"
-                          value={formData.date}
-                          onChange={handleDateChange}
-                        />
-                      </FormControl>
+                        <FormControl display="flex" alignItems="center">
+                          <FormLabel mb="0">
+                            Save as Draft
+                          </FormLabel>
+                          <Switch
+                            name="isDraft"
+                            isChecked={formData.isDraft}
+                            onChange={handleInputChange}
+                            colorScheme="blue"
+                          />
+                        </FormControl>
 
-                      <FormControl display="flex" alignItems="center">
-                        <FormLabel mb="0">
-                          Save as Draft
-                        </FormLabel>
-                        <Switch
-                          name="isDraft"
-                          isChecked={formData.isDraft}
-                          onChange={handleInputChange}
-                          colorScheme="blue"
-                        />
-                      </FormControl>
-
-                      <Collapse in={showAdvancedFields} style={{ width: '100%' }}>
                         <VStack spacing={4} align="stretch">
                           <FormControl>
                             <FormLabel>Featured Image</FormLabel>
@@ -688,11 +691,11 @@ ${formData.content}`;
                             </VStack>
                           </FormControl>
                         </VStack>
-                      </Collapse>
-                    </VStack>
-                  </CardBody>
-                </Card>
-              </GridItem>
+                      </VStack>
+                    </CardBody>
+                  </Card>
+                </GridItem>
+              )}
 
               <GridItem>
                 <Card>
@@ -700,13 +703,10 @@ ${formData.content}`;
                     <VStack spacing={4}>
                       <FormControl isRequired>
                         <FormLabel>Content</FormLabel>
-                        <Textarea
-                          name="content"
+                        <MarkdownEditor
                           value={formData.content}
-                          onChange={handleInputChange}
-                          placeholder="Write your post content in Markdown"
-                          minH="400px"
-                          fontFamily="monospace"
+                          onChange={(value) => setFormData({ ...formData, content: value })}
+                          minH={isFocusMode ? "calc(100vh - 200px)" : "400px"}
                         />
                       </FormControl>
                     </VStack>
@@ -714,7 +714,7 @@ ${formData.content}`;
                 </Card>
               </GridItem>
 
-              {showPreview && (
+              {showPreview && !isFocusMode && (
                 <GridItem colSpan={2}>
                   <Card>
                     <CardBody>
