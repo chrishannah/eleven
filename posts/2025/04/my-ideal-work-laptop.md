@@ -5,6 +5,7 @@ tags:
   - laptop
   - post
 layout: layouts/post
+permalink: my-ideal-world-laptop/
 
 ---
 
