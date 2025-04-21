@@ -1,0 +1,147 @@
+---
+layout: layouts/base
+---
+
+<article class="h-entry page-with-toc">
+    <header>
+        {% if image %}
+            <img class="u-featured" src="{{ image }}" alt="{{ title }}"/>
+        {% endif %}
+        <h1 id="title" class="p-name">
+            {{ title }}
+        </h1>
+        {% if description %}
+            <p class="page-description">{{ description }}</p>
+        {% endif %}
+    </header>
+
+    <div class="page-container">
+        <div class="post-body">
+            <div class="toc-container">
+                <h2>Table of Contents</h2>
+                <nav class="toc-content">
+                    {% set toc_content = content | toc %}
+                    {{ toc_content | safe }}
+                </nav>
+            </div>
+
+            <div class="e-content">
+                {{ content | safe }}
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+.page-description {
+    font-size: var(--text-lg);
+    color: var(--meta-text);
+    margin-bottom: var(--space-lg);
+}
+
+.page-container {
+    margin-top: var(--space-lg);
+}
+
+.toc-container {
+    background: var(--quote-background);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    width: 100%;
+}
+
+.toc-container h2 {
+    font-size: var(--text-lg);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--hr);
+}
+
+.toc-content {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.toc-item {
+    display: block;
+    padding: var(--space-xs) 0;
+    width: 100%;
+}
+
+.toc-item a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s ease;
+    display: block;
+    width: 100%;
+}
+
+.toc-item a:hover {
+    color: var(--accent);
+}
+
+.level-2 { padding-left: 0; }
+.level-3 { padding-left: var(--space-sm); }
+.level-4 { padding-left: var(--space-md); }
+
+.post-body {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Add smooth scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add some spacing between sections */
+.e-content h2 {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+}
+
+.e-content h3 {
+    margin-top: var(--space-lg);
+}
+
+.e-content h4 {
+    margin-top: var(--space-md);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add IDs to all headers in the content
+    const content = document.querySelector('.e-content');
+    const headers = content.querySelectorAll('h2, h3, h4');
+
+    headers.forEach(header => {
+        // Create a URL-friendly ID from the header text
+        const text = header.textContent.trim();
+        const id = text.toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric chars with hyphens
+            .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+
+        // Set the ID on the header
+        header.id = id;
+    });
+
+    // Add smooth scrolling behavior to TOC links
+    const tocLinks = document.querySelectorAll('.toc-content a');
+    tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+

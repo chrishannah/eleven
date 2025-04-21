@@ -65,6 +65,43 @@ export default function (eleventyConfig) {
         return posts.filter(post => !post.data.draft);
     });
 
+    /* Table of Contents Filter */
+    eleventyConfig.addFilter("toc", function(content) {
+        if (!content) return '';
+
+        // Extract headers from HTML content
+        const headerRegex = /<h([2-4])[^>]*>(.*?)<\/h\1>/g;
+        const headers = [];
+        let match;
+
+        while ((match = headerRegex.exec(content)) !== null) {
+            const level = parseInt(match[1]);
+            const text = match[2].replace(/<[^>]+>/g, ''); // Remove any HTML inside the header
+            // Create a URL-friendly ID from the header text
+            const id = text.toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric chars with hyphens
+                .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+
+            headers.push({
+                level,
+                text,
+                id
+            });
+        }
+
+        if (headers.length === 0) return '';
+
+        // Generate TOC HTML
+        let tocHtml = '';
+        headers.forEach((header) => {
+            tocHtml += `<div class="toc-item level-${header.level}">
+                <a href="#${header.id}">${header.text}</a>
+            </div>`;
+        });
+
+        return tocHtml;
+    });
+
     /* HTML Stuff */
     eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {});
 
