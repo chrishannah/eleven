@@ -4,6 +4,7 @@ layout: layouts/base
 
 <article class="h-entry">
     <header>
+        {% include "partials/living-document-notice.njk" %}
         {% if image %}
             <img class="u-featured" src="{{ image }}"/>
         {% endif %}
@@ -13,6 +14,9 @@ layout: layouts/base
         <h1 id="title" class="p-name">
             <a href="{{ url | url }}">{{ title }}</a>
         </h1>
+        {% if description %}
+            <p class="page-description">{{ description }}</p>
+        {% endif %}
     </header>
 
     <div class="post-body">

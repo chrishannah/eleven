@@ -1549,3 +1549,313 @@ body.lightbox-open #container {
         right: 4rem; /* Position to the left of the menu toggle */
     }
 }
+
+/* Page with TOC Layout */
+.page-with-toc .page-description {
+    font-size: var(--text-lg);
+    color: var(--meta-text);
+    margin-bottom: var(--space-lg);
+}
+
+.living-document-notice {
+    margin: 1.2rem 0;
+    padding: 0.8rem;
+    background-color: var(--quote-background);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+}
+
+.living-document-notice p {
+    margin: 0;
+    color: var(--text);
+}
+
+.page-with-toc .page-container {
+    margin-top: var(--space-lg);
+}
+
+.page-with-toc .toc-container {
+    background: var(--quote-background);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.page-with-toc .toc-container h2 {
+    font-size: var(--text-lg);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--hr);
+}
+
+.page-with-toc .toc-content {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.page-with-toc .toc-item {
+    display: block;
+    padding: var(--space-xs) 0;
+    width: 100%;
+}
+
+.page-with-toc .toc-item a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: color 0.2s ease;
+    display: block;
+    width: 100%;
+}
+
+.page-with-toc .toc-item a:hover {
+    color: var(--accent);
+}
+
+.page-with-toc .level-2 { padding-left: 0; }
+.page-with-toc .level-3 { padding-left: var(--space-sm); }
+.page-with-toc .level-4 { padding-left: var(--space-md); }
+
+.page-with-toc .post-body {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Table of Contents */
+.toc-container {
+    background: var(--quote-background);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toc-container h2 {
+    font-size: var(--text-lg);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--hr);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.toc-content {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.toc-item {
+    display: block;
+    padding: var(--space-xs) 0;
+    width: 100%;
+    line-height: var(--leading-snug);
+}
+
+.toc-item a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0;
+    position: relative;
+}
+
+.toc-item a:hover {
+    color: var(--accent);
+    padding-left: 0.5rem;
+}
+
+.level-2 {
+    padding-left: 0;
+    font-weight: 500;
+}
+.level-3 {
+    padding-left: var(--space-sm);
+    font-weight: 400;
+}
+.level-4 {
+    padding-left: var(--space-md);
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+/* Page with TOC Layout - update these styles too for consistency */
+.page-with-toc .toc-container {
+    background: var(--quote-background);
+    border-radius: 8px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.page-with-toc .toc-container h2 {
+    font-size: var(--text-lg);
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--hr);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.page-with-toc .toc-content {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.page-with-toc .toc-item {
+    display: block;
+    padding: var(--space-xs) 0;
+    width: 100%;
+    line-height: var(--leading-snug);
+}
+
+.page-with-toc .toc-item a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0;
+    position: relative;
+}
+
+.page-with-toc .toc-item a:hover {
+    color: var(--accent);
+    padding-left: 0.5rem;
+}
+
+.page-with-toc .level-2 {
+    padding-left: 0;
+    font-weight: 500;
+}
+.page-with-toc .level-3 {
+    padding-left: var(--space-sm);
+    font-weight: 400;
+}
+.page-with-toc .level-4 {
+    padding-left: var(--space-md);
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+/* Markdown Content */
+.markdown-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: var(--leading-tight);
+}
+
+.markdown-content h1 {
+    font-size: var(--text-3xl);
+    border-bottom: 1px solid var(--hr);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h2 {
+    font-size: var(--text-2xl);
+}
+
+.markdown-content h3 {
+    font-size: var(--text-xl);
+}
+
+.markdown-content p {
+    margin-bottom: 1.5rem;
+    line-height: var(--leading-relaxed);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content code {
+    font-family: var(--monospace);
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    background: var(--code-background);
+    color: var(--code-text);
+}
+
+.markdown-content pre {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--code-background);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.markdown-content pre code {
+    padding: 0;
+    background: none;
+}
+
+.markdown-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--accent);
+    background: var(--quote-background);
+    font-style: italic;
+}
+
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+/* Page Layout */
+.page-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: var(--text-3xl);
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.page-description {
+    font-size: var(--text-lg);
+    color: var(--meta-text);
+    margin-bottom: 2rem;
+}

@@ -4,13 +4,28 @@ layout: layouts/base
 
 <article class="h-entry">
 	<header>
+		{% include "partials/living-document-notice.njk" %}
 		{% if image %}
 			<img class="u-featured" src="{{ image }}"/>
 		{% endif %}
 		<h1 id="title" class="p-name">
 			{{ title }}
 		</h1>
+		{% if description %}
+			<p class="page-description">{{ description }}</p>
+		{% endif %}
+
 	</header>
+
+	{% if toc %}
+		<div class="toc-container">
+			<h2>Table of Contents</h2>
+			<nav class="toc-content">
+				{% set toc_content = content | toc %}
+				{{ toc_content | safe }}
+			</nav>
+		</div>
+	{% endif %}
 
 	<div class="post-body">
 		<div class="e-content">

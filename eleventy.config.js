@@ -70,7 +70,7 @@ export default function (eleventyConfig) {
         if (!content) return '';
 
         // Extract headers from HTML content
-        const headerRegex = /<h([2-4])[^>]*>(.*?)<\/h\1>/g;
+        const headerRegex = /<h([1-4])[^>]*>(.*?)<\/h\1>/g;
         const headers = [];
         let match;
 
