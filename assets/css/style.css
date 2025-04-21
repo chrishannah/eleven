@@ -84,7 +84,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
   border-top: 1rem solid var(--accent);
-  font-size: 16px;
+  font-size: 18px;
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga" 1, "kern" 1;
 }
