@@ -19,7 +19,6 @@ layout: layouts/base
 
 	{% if toc %}
 		<div class="toc-container">
-			<h2>Table of Contents</h2>
 			<nav class="toc-content">
 				{% set toc_content = content | toc %}
 				{{ toc_content | safe }}
