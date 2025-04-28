@@ -3,6 +3,7 @@
   --header-text: #000000ee;
   --accent: #ff163a;
   --accent-dark: #c9102c;
+  --warning: #ecc80d;
   --bg: #fff6f6;
   --link: var(--accent);
   --link-visited: var(--accent);
@@ -53,6 +54,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --accent: #ff163a;
+    --warning: #ffda18
     --bg: #161616;
     --hr: rgb(67, 67, 67);
     --header-text: #ffffffee;
@@ -1561,7 +1563,7 @@ body.lightbox-open #container {
     margin: 1.2rem 0;
     padding: 0.8rem;
     background-color: var(--quote-background);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--warning);
     border-radius: 4px;
     font-size: var(--text-base);
     line-height: var(--leading-normal);
