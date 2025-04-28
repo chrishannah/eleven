@@ -1,18 +1,14 @@
 // Theme icon toggle functionality
 const themeIconToggle = {
     init() {
-        this.theme = localStorage.getItem('theme') || 'auto';
+        this.theme = localStorage.getItem('theme') || 'dark';
         this.applyTheme();
         this.createIconToggle();
     },
 
     applyTheme() {
         const root = document.documentElement;
-        if (this.theme === 'auto') {
-            root.removeAttribute('data-theme');
-        } else {
-            root.setAttribute('data-theme', this.theme);
-        }
+        root.setAttribute('data-theme', this.theme);
         localStorage.setItem('theme', this.theme);
     },
 
@@ -40,7 +36,7 @@ const themeIconToggle = {
 
         // Add click event
         iconToggle.addEventListener('click', () => {
-            this.cycleTheme();
+            this.toggleTheme();
             this.updateIcon(svg);
         });
 
@@ -48,7 +44,7 @@ const themeIconToggle = {
         iconToggle.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                this.cycleTheme();
+                this.toggleTheme();
                 this.updateIcon(svg);
             }
         });
@@ -60,16 +56,9 @@ const themeIconToggle = {
         document.body.appendChild(iconToggle);
     },
 
-    cycleTheme() {
-        // Cycle through themes: auto -> light -> dark -> auto
-        if (this.theme === 'auto') {
-            this.theme = 'light';
-        } else if (this.theme === 'light') {
-            this.theme = 'dark';
-        } else {
-            this.theme = 'auto';
-        }
-
+    toggleTheme() {
+        // Toggle between light and dark
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
         this.applyTheme();
     },
 
@@ -79,17 +68,7 @@ const themeIconToggle = {
             svg.removeChild(svg.firstChild);
         }
 
-        if (this.theme === 'auto') {
-            // Auto theme icon (settings gear)
-            const gear = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            gear.setAttribute('d', 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z');
-            svg.appendChild(gear);
-
-            const gearTeeth = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            gearTeeth.setAttribute('d', 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z');
-            svg.appendChild(gearTeeth);
-
-        } else if (this.theme === 'light') {
+        if (this.theme === 'light') {
             // Light theme icon (sun)
             const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             circle.setAttribute('cx', '12');
