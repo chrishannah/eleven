@@ -32,5 +32,13 @@
     "send-webmention": "^2.0.0",
     "sharp": "^0.33.5",
     "simple-icons": "^14.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishannah/eleven.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrishannah/eleven/issues"
+  },
+  "homepage": "https://github.com/chrishannah/eleven#readme"
 }
