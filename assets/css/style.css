@@ -23,9 +23,12 @@
   --image-frame: #4e4e4e;
   --meta-text: #797979;
   --heading-text: #fff6f6;
-  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
-  --header: var(--body);
-  --monospace: 'SF Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  --serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --monospace: 'SF Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', monospace;
+  --sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --body: var(--sans-serif);
+  --header: var(--serif);
 
   /* Font Sizes */
   --text-xs: 0.875rem;     /* 14px */
@@ -609,6 +612,7 @@ article {
   margin-bottom: var(--space-xl);
   padding-bottom: var(--space-lg);
   border-bottom: 1px solid var(--hr);
+  font-family: var(--body);
 }
 
 article:last-child {
@@ -1516,40 +1520,6 @@ body.lightbox-open #container {
     --code-background: #111;
     --code-text: #a3e4ff;
     --site-title: #c9102c;
-}
-
-/* Theme Icon Toggle */
-.theme-icon-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.2s ease;
-    color: var(--text);
-    background: none;
-}
-
-.theme-icon-toggle:hover {
-    transform: scale(1.1);
-}
-
-.theme-icon-toggle:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-}
-
-/* Adjust for mobile menu toggle */
-@media (max-width: 768px) {
-    .theme-icon-toggle {
-        top: 1rem;
-        right: 4rem; /* Position to the left of the menu toggle */
-    }
 }
 
 /* Page with TOC Layout */
