@@ -1,5 +1,5 @@
 :root {
-  --header-bg: #rgb(250, 231, 231);
+  --header-bg: rgb(250, 231, 231);
   --header-text: #000000ee;
   --accent: #ff163a;
   --accent-dark: #c9102c;
@@ -57,7 +57,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --accent: #ff163a;
-    --warning: #ffda18
+    --warning: #ffda18;
     --bg: #161616;
     --hr: rgb(67, 67, 67);
     --header-text: #ffffffee;
