@@ -3,45 +3,66 @@ layout: layouts/archive
 permalink: archive/
 title: Archive
 ---
+
+<p class="large-text">A chronological collection of all posts, micro updates, and thoughts from across the years.</p>
+
 {% set currentYear = 1000 %}
 {% set currentMonth = 12 %}
+{% set firstMonthPrinted = false %}
 
 {% for post in collections.post | reverse %}
-	{% set postYear = post
-		.data
-		.date
-		.getFullYear() %}
+  {% set postYear = post.data.date.getFullYear() %}
+  {% set postMonth = post.data.date.getMonth() %}
 
-	{% set postMonth = post
-		.data
-		.date
-		.getMonth() %}
+  {% if postYear != currentYear %}
+    {% if firstMonthPrinted %}
+      </div>
+    {% endif %}
+    {% if currentMonth != 12 or currentYear != 1000 %}
+      <hr class="year-divider">
+    {% endif %}
+  {% endif %}
 
-	{% if postYear != currentYear %}
-		{% if firstMonthPrinted %}
-			<hr>
-		{% endif %}
-	{% endif %}
+  {% if postMonth != currentMonth or postYear != currentYear %}
+    {% if firstMonthPrinted and postYear == currentYear %}
+      </div>
+    {% endif %}
+    <h3 class="archive-month-header">{{ postMonth | monthNumberToName }} {{ postYear }}</h3>
+    <div class="archive-month-group">
+  {% endif %}
 
-	{% if postMonth != currentMonth %}
-		{% if firstMonthPrinted %}
-	</ul>
-{% endif %}
-<h3>{{ postMonth | monthNumberToName }}
-	{{ postYear }}</h3>
-<ul>
-{% endif %}
+  <article class="list-card archive-card">
+    <div class="list-card-main">
+      {% if post.data.title %}
+        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
+      {% else %}
+        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+      {% endif %}
 
-<li>
-	{% if post.data.title %}
-		<a href="/{{ post.data.permalink }}">{{ post.data.title }}</a>
-	{% else %}
-		<a href="/{{ post.data.permalink }}">{{ post.content | microExcerpt }}</a>
-	{% endif %}
-</li>
+      {% if post.data.summary %}
+        <div class="archive-summary">{{ post.data.summary }}</div>
+      {% endif %}
 
-{% set currentYear = postYear %}
-{% set currentMonth = postMonth %}
-{% set firstMonthPrinted = true %}
+      <div class="archive-meta">
+        {# Display raw date string, or basic formatting #}
+        {{ post.data.date.toDateString() }}
+        {% if post.data.tags %}
+          • {{ post.data.tags | join(" • ") }}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if post.data.image %}
+      <img src="{{ post.data.image }}" alt="" class="list-card-image"/>
+    {% endif %}
+  </article>
+
+  {% set currentYear = postYear %}
+  {% set currentMonth = postMonth %}
+  {% set firstMonthPrinted = true %}
 
 {% endfor %}
+
+{% if firstMonthPrinted %}
+</div>
+{% endif %}

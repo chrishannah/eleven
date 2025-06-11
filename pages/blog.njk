@@ -3,7 +3,7 @@ layout: layouts/base
 tags:
   - nav
 navtitle: Posts
-title: Blog
+title: ''
 pagination:
   data: collections.all
   size: 10
@@ -13,9 +13,7 @@ permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
 ---
 
 {% if pagination.pageNumber == 0 %}
-<p style="margin-bottom: 2em;">
-Below is a feed of all of my articles, status updates, photos, and essays, enjoy!
-<hr />
+<p class="large-text">Below is a feed of all of my articles, status updates, photos, and essays, enjoy!</p>
 {% endif %}
 
 {% for post in posts %}

@@ -3,6 +3,7 @@ date: 2024-10-14 20:19:01+01:00
 title: Early Praise Kills Projects
 permalink: early-praise-kills-projects/
 layout: layouts/post
+summary: Explores how sharing your creative work too soon—and receiving praise or criticism early—can sap motivation and derail projects, with advice to seek feedback later in the process for more meaningful results.
 tags:
   - post
   - essay
@@ -50,6 +51,6 @@ Being snarky and pithy on social media is lazy. Being contrarian just to promp
 
 ---
 
-I don't claim to be the wisest person on the planet, or the one with all or a few answers. I just want to plant a seed in people's heads that makes them think just one time more before making an announcement. 
+I don't claim to be the wisest person on the planet, or the one with all or a few answers. I just want to plant a seed in people's heads that makes them think just one time more before making an announcement.
 
 Not all social media posts need to be essays, not all morning runs need to be a marathon, and you don't need to turn every project into your life's work. However, don't sell yourself short, reach the finish line. Enjoy the journey, and when it comes to receiving praise, I'm sure you and your work would have earned it.

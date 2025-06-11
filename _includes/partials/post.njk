@@ -1,27 +1,20 @@
-<article class="h-entry">
-	<header>
-		{% if post.data.image %}
-			<img class="u-featured" src="{{ post.data.image }}"/>
-		{% endif %}
-		<div class="post-meta">
-			<time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
-		</div>
-		<h1 id="title" class="p-name">
-			<a href="{{ post.url | url }}">{{ post.data.title }}</a>
-		</h1>
-	</header>
-
-	<div class="post-body">
-		<div class="e-content">
-			{{ post.content | safe }}
-		</div>
-
-		<div class="post-meta">
-			<p>
-				<a style="display: none;" rel="author" class="p-author h-card" href="…">Chris Hannah</a>
-				<a class="u-url" href="{{ post.url | url }}">Permalink</a>
-			</p>
-		</div>
-	</div>
-
+<article class="list-card h-entry post-listing">
+  <div class="list-card-main">
+    <h1 class="p-name list-card-title">
+      <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+    </h1>
+    <div class="post-meta">
+      <p><time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time></p>
+    </div>
+    <div class="e-content">
+      {{ post.content | safe }}
+    </div>
+    <div class="post-meta">
+      <p><a style="display: none;" rel="author" class="p-author h-card" href="…">Chris Hannah</a>
+      <a class="u-url" href="{{ post.url | url }}">Permalink</a></p>
+    </div>
+  </div>
+  {% if post.data.image %}
+    <img src="{{ post.data.image }}" alt="" class="list-card-image" />
+  {% endif %}
 </article>

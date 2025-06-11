@@ -14,24 +14,41 @@
   }
 }
 ---
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="{{ metadata.url }}" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>{{ metadata.title }}</title>
-		<link>{{ metadata.url }}</link>
-		<atom:link href="{{ permalink | absoluteUrl(metadata.url) }}" rel="self" type="application/rss+xml"/>
-		<description>{{ metadata.subtitle }}</description>
-		<language>{{ metadata.language }}</language>
-		{% for post in collections.essay | reverse | limit(20) %}
-			{%- set absolutePostUrl=post.url | absoluteUrl(metadata.url) %}
-			<item>
-				<title>{{ post.data.title }}</title>
-				<link>{{ absolutePostUrl }}</link>
-				<description>{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
-				<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
-				<dc:creator>{{ metadata.author.name }}</dc:creator>
-				<guid>{{ absolutePostUrl }}</guid>
-			</item>
-		{% endfor %}
-	</channel>
-</rss>
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>Essays</h1>
+    <p class="large-text">Long-form thoughts on photography, tech, and personal observations</p>
+  </header>
+
+  <ul class="essay-list">
+    {% for post in collections.essay | reverse %}
+      <li class="essay-card">
+        {% if post.data.image %}
+        <img
+          src="{{ post.data.image | image }}"
+          alt="Essay thumbnail"
+          class="essay-thumb"
+          loading="lazy"
+          width="56"
+          height="56"
+        >
+        {% endif %}
+        <div class="essay-info">
+          <a href="{{ post.url }}" class="essay-title">{{ post.data.title }}</a>
+          <div class="essay-meta">
+            {{ post.date | dateFilter("d MMM yyyy") }} •
+            {{ post.data.tags | filterTagList | join(" • ") }}
+          </div>
+          {% if post.data.summary %}
+          <div class="essay-desc">{{ post.data.summary }}</div>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</article>
+{% endblock %}

@@ -5,7 +5,6 @@ categories:
 - Work
 - essay
 date: 2022-03-20 18:18:51+00:00
-description: ''
 image: https://images.unsplash.com/photo-1489844981779-7f06e8e0fdbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDU4fHxtZWNoYW5pY2FsJTIwdGltZXxlbnwwfHx8fDE2NTkwOTI5Nzc&ixlib=rb-1.2.1&q=80&w=2000
 layout: layouts/post
 permalink: having-control-over-your-own-day/
@@ -15,6 +14,7 @@ tags:
 - Work
 - essay
 - post
+description: "Reflects on the desire for personal autonomy in daily routines, questioning traditional work schedules and advocating for flexible hours to achieve a more satisfying and free life."
 title: Having Control Over Your Own Day
 ---
 
