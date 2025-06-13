@@ -826,10 +826,6 @@ article {
   font-family: var(--body);
 }
 
-article:last-child {
-  border-bottom: none;
-}
-
 .e-content {
   margin: var(--space-lg) auto;
   font-size: var(--text-base);

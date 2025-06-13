@@ -47,7 +47,7 @@ title: Archive
         {# Display raw date string, or basic formatting #}
         {{ post.data.date.toDateString() }}
         {% if post.data.tags %}
-          • {{ post.data.tags | join(" • ") }}
+          • {{ post.data.tags | filterTagList | join(" • ") }}
         {% endif %}
       </div>
     </div>

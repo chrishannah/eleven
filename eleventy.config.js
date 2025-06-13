@@ -61,12 +61,12 @@ export default function (eleventyConfig) {
     });
 
     // Add this filter to exclude draft posts
-    eleventyConfig.addFilter("excludeDrafts", function(posts) {
+    eleventyConfig.addFilter("excludeDrafts", function (posts) {
         return posts.filter(post => !post.data.draft);
     });
 
     /* Table of Contents Filter */
-    eleventyConfig.addFilter("toc", function(content) {
+    eleventyConfig.addFilter("toc", function (content) {
         if (!content) return '';
 
         // Extract headers from HTML content
@@ -139,6 +139,14 @@ export default function (eleventyConfig) {
     Object.keys(postFilters).forEach((filterName) => {
         eleventyConfig.addFilter(filterName, postFilters[filterName]);
     });
+
+    function filterTagList(tags) {
+        return (tags || []).filter(
+            (tag) => ["post", "micro", "link"].indexOf(tag) === -1
+        );
+    }
+
+    eleventyConfig.addFilter("filterTagList", filterTagList);
 
     /* Watch for changes */
     eleventyConfig.addWatchTarget("./assets/css/");
