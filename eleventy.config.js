@@ -42,8 +42,8 @@ export default function (eleventyConfig) {
         satoriOptions: {
             fonts: [
                 {
-                    name: "Inter",
-                    data: fs.readFileSync("./static/fonts/Inter.ttf"),
+                    name: "Helvetica",
+                    data: fs.readFileSync("./static/fonts/Helvetica.ttf"),
                     style: "normal",
                 },
             ],
