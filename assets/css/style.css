@@ -324,7 +324,7 @@ nav ul li a:hover {
 main {
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
+  width: auto;
   max-width: 80ch;
 }
 
