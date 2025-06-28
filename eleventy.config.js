@@ -43,7 +43,7 @@ export default function (eleventyConfig) {
             fonts: [
                 {
                     name: "Inter",
-                    data: fs.readFileSync("./static/fonts/iowan.ttf"),
+                    data: fs.readFileSync("./static/fonts/Inter.ttf"),
                     style: "normal",
                 },
             ],
