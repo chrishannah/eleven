@@ -27,7 +27,12 @@
 			<item>
 				<title>{{ post.data.title }}</title>
 				<link>{{ absolutePostUrl }}</link>
-				<description>{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
+				<description>
+					{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
+					{% if permalink %}
+						<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ permalink }}" alt="" style="width:1px;height:1px;border:0;"/>
+					{% endif %}
+				</description>
 				<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
 				<dc:creator>{{ metadata.author.name }}</dc:creator>
 				<guid>{{ absolutePostUrl }}</guid>

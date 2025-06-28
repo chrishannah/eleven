@@ -22,16 +22,16 @@ permalink: "micro/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
   {% endif %}
 {% endfor %}
 
-<nav style="margin-top: 2rem;">
+<nav class="pagination">
   {% if pagination.href.previous %}
     <span class="page-item">
-      <a class="page-link" href="{{ pagination.href.previous }}"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>Newer</a>
+      <a class="page-link" href="{{ pagination.href.previous }}">← Newer</a>
     </span>
   {% endif %}
 
   {% if pagination.href.next %}
     <span class="page-item">
-      <a class="page-link" href="{{ pagination.href.next }}">Older<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a>
+      <a class="page-link" href="{{ pagination.href.next }}">Older →</a>
     </span>
   {% endif %}
 </nav>

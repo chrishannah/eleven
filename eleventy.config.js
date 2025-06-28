@@ -142,7 +142,7 @@ export default function (eleventyConfig) {
 
     function filterTagList(tags) {
         return (tags || []).filter(
-            (tag) => ["post", "micro", "link"].indexOf(tag) === -1
+            (tag) => ["post", "micro", "link", "essay"].indexOf(tag) === -1
         );
     }
 

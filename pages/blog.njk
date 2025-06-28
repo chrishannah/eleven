@@ -13,7 +13,8 @@ permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
 ---
 
 {% if pagination.pageNumber == 0 %}
-<p class="large-text">Below is a feed of all of my articles, status updates, photos, and essays, enjoy!</p>
+<p class="intro-text">Below is a feed of all of my articles, status updates, photos, and essays, enjoy!</p>
+<hr />
 {% endif %}
 
 {% for post in posts %}
@@ -26,16 +27,16 @@ permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
   {% endif %}
 {% endfor %}
 
-<nav style="margin-top: 2rem;">
+<nav class="pagination">
   {% if pagination.href.previous %}
-    <span class="page-item">
-      <a class="page-link" href="{{ pagination.href.previous }}"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>Newer</a>
+    <span id="newer">
+      <a href="{{ pagination.href.previous }}">← Newer</a>
     </span>
   {% endif %}
 
   {% if pagination.href.next %}
-    <span class="page-item">
-      <a class="page-link" href="{{ pagination.href.next }}">Older<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a>
+    <span id="older">
+      <a href="{{ pagination.href.next }}">Older →</a>
     </span>
   {% endif %}
 </nav>

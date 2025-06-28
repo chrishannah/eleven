@@ -4,26 +4,37 @@ permalink: essays/
 title: Essays
 ---
 
-{%- for post in collections.essay | reverse %}
-  {% set postYear = post.data.date.getFullYear() %}
+{% for post in collections.essay | reverse %}
+  {% set postYear = post
+    .data
+    .date
+    .getFullYear() %}
   {% if postYear != currentYear %}
     <h3>{{ postYear }}</h3>
     <div class="essays-year-group">
-  {% endif %}
-
-  <div class="essay-listing">
-    <div class="essay-listing-main">
-      <a href="/{{ post.data.permalink }}" class="essay-title-link">
-        {{ post.data.title }}
-      </a>
-      {% if post.data.summary %}
-        <div class="essay-summary">{{ post.data.summary }}</div>
-      {% endif %}
-    </div>
-    {% if post.data.image %}
-      <img src="{{ post.data.image }}" alt="" class="essay-listing-image" />
     {% endif %}
-  </div>
 
-  {% set currentYear = postYear %}
-{%- endfor %}
+    <li>
+      <span class="post-meta monospace-font">{{ post.data.date | fixedDisplayDate }}</span>
+
+<strong>
+      {% if post.data.title %}
+        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
+      {% else %}
+        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+      {% endif %}
+
+</strong>
+      {% if post.data.summary %}
+       -  {{ post.data.summary }}
+      {% endif %}
+
+      {% if post.data.tags | filterTagList %}
+        {% for tag in post.data.tags | filterTagList %}
+          <span class="post-meta monospace-font">#{{tag}}</span>
+        {% endfor %}
+      {% endif %}
+    </li>
+
+    {% set currentYear = postYear %}
+  {% endfor %}

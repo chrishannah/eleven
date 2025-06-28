@@ -3,40 +3,34 @@ layout: layouts/base
 ---
 
 <article class="h-entry">
-    <header>
-        {% include "partials/living-document-notice.njk" %}
-        {% if image %}
-            <img class="u-featured" src="{{ image }}"/>
-        {% endif %}
-        <div class="post-meta">
-            <p><time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time></p>
-        </div>
-        <h1 id="title" class="p-name">
-            <a href="{{ url | url }}">{{ title }}</a>
-        </h1>
-        {% if description %}
-            <p class="page-description">{{ description }}</p>
-        {% endif %}
-    </header>
+    {% if image %}
+        <img src="{{ image }}" alt="" class="list-card-image"/>
+    {% endif %}
 
-    <div class="post-body">
-        <div class="e-content">
-            {{ content | safe }}
-        </div>
-        <div class="post-meta">
-            <p>
-                <a style="display: none;" rel="author" class="p-author h-card" href="…">Chris Hannah</a>
-                <a class="u-url" href="{{ page.url | url }}">Permalink</a><br/>
-                <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
-            </p>
-        </div>
+    <h1 class="p-name">
+        <a href="{{ url | url }}">{{ title }}</a>
+    </h1>
 
+    <div class="post-meta">
         <p>
-            <button class="tinylytics_kudos"></button>
+            <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
         </p>
-
-        <div class="post-comments">
-            <div id="webmentions"></div>
-        </div>
     </div>
+
+    <div class="content">
+        {{ content | safe }}
+    </div>
+
+    <div class="post-meta">
+        <p>
+            <a style="display: none;" rel="author" class="p-author h-card" href="…">Chris Hannah</a>
+            <a class="u-url" href="{{ url | url }}">Permalink</a>
+            <br/>
+            <a href="mailto:chris@chrishannah.me?subject=RE%3A%20{{ title }}">Reply via Email</a>
+        </p>
+    </div>
+
+    <p>
+        <button class="tinylytics_kudos"></button>
+    </p>
 </article>

@@ -5,6 +5,10 @@ const dateFilters = {
 		return moment(date).format("D MMM YYYY");
 	},
 
+	fixedDisplayDate: (date) => {
+		return moment(date).format("DD MMM YYYY");
+	},
+
 	monthNumberToName: (month) => {
 		switch (month) {
 			case 0:
