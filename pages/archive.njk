@@ -46,7 +46,11 @@ title: Archive
   {% if post.data.title %}
     <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
   {% else %}
-    <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+    {% if post.data.tags and "quote" in post.data.tags %}
+      <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.quote | microExcerpt }}</a>
+    {% else %}
+      <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+    {% endif %}
   {% endif %}
 
   {% if post.data.summary %}
@@ -54,7 +58,7 @@ title: Archive
   {% endif %}
 
   {% if post.data.tags | filterTagList %}
-     {% for tag in post.data.tags | filterTagList %}
+    {% for tag in post.data.tags | filterTagList %}
       <span class="post-meta monospace-font">#{{tag}}</span>
     {% endfor %}
   {% endif %}

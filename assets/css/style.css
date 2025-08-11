@@ -20,6 +20,7 @@
 
   --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
   --monospace: 'SF Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  --serif: 'Times New Roman', Times, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -279,6 +280,11 @@ nav {
   text-align: center;
 }
 
+.navigation-small {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 nav ul {
   margin: 0;
   padding: 0;
@@ -319,13 +325,36 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
+.home-button {
+  font-weight: bold;
+  color: var(--accent) !important;
+}
+
+.small-nav {
+  display: inline-block;
+}
+
+.small-nav li {
+  display: inline-block;
+  font-size: 1em;
+  font-family: var(--monospace);
+}
+
+.left-nav {
+  float: left;
+}
+
+.right-nav {
+  float: right;
+}
+
 /* Main */
 
 main {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-width: 80ch;
+  max-width: 70ch;
 }
 
 .intro-text {
@@ -353,7 +382,6 @@ footer {
 article {
   margin-top: 2em;
   margin-bottom: 4em;
-  line-height: 1.2;
 }
 
 .p-name {
@@ -394,6 +422,28 @@ blockquote {
   padding-left: 2em;
   border-left: 4px solid var(--accent);
   background-color: var(--quote-background);
+   quotes: "“" "”";
 }
 
+.big-quote {
+  font-size: 2em;
+  font-family: var(--serif);
+  padding: 0.4em;
+  border: none;
+  background: none;
+}
 
+.big-quote cite {
+  font-size: 0.5em;
+  font-family: var(--body);
+}
+
+blockquote:before {
+  display: block;
+  font-size: 2em;
+  content: open-quote;
+  height: 1px;
+  margin-left: -0.5em;
+  position: relative;
+  top: -0.6empx;
+}

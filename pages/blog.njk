@@ -9,6 +9,7 @@ pagination:
   size: 10
   reverse: true
   alias: posts
+home: true
 permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
 ---
 
@@ -22,6 +23,8 @@ permalink: "{{ pagination.pageNumber | getBlogPermalinkSuffixFromPageNum }}"
     {% include "partials/micro.njk" %}
   {% elseif post.data.tags and "link" in post.data.tags%}
     {% include "partials/link.njk" %}
+  {% elseif post.data.tags and "quote" in post.data.tags%}
+    {% include "partials/quote.njk" %}
   {% else %}
     {% include "partials/post.njk" %}
   {% endif %}

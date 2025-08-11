@@ -69,10 +69,15 @@
 
     <body>
         <div id="container">
-            <header>
-                {% include "header.njk" %}
-            </header>
-            {% include "nav.njk" %}
+            {% if home %}
+                <header>
+                    {% include "header.njk" %}
+                </header>
+                {% include "nav.njk" %}
+            {% else %}
+                {% include "header-small.njk" %}
+            {% endif %}
+
             <main>
                 {{ content | safe }}
             </main>

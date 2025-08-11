@@ -1,0 +1,22 @@
+<article class="h-entry">
+	{% if image %}
+		<img src="{{ post.data.image }}" alt="" class="list-card-image"/>
+	{% endif %}
+
+	<div class="post-meta">
+		<p>
+			<time class="dt-published" datetime="{{ post.data.date }}">{{ date | displayDate }}</time>
+		</p>
+	</div>
+
+	<div class="content">
+		{{ post.content | safe }}
+	</div>
+
+	<div class="post-meta">
+    <p>
+      <a style="display: none;" rel="author" class="p-author h-card" href="…">Chris Hannah</a>
+      <a class="u-url" href="{{ post.url | url }}">Permalink</a>
+    </p>
+  </div>
+</article>
