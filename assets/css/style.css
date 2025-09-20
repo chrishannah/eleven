@@ -58,7 +58,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-smooth: auto;
-  font-size: 14px;
+  font-size: 15px;
   text-rendering: optimizeLegibility;
   line-height: 1.4;
 }
@@ -354,7 +354,7 @@ main {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-width: 70ch;
+  max-width: 80ch;
 }
 
 .intro-text {
