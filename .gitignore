@@ -1,3 +1,7 @@
 node_modules/
 public/
 posts/.obsidian/
+
+# Ghost migration exports (regenerate with: node ghost-migration.mjs)
+ghost-export/
+ghost-import.zip
