@@ -3,31 +3,22 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import crypto from 'crypto';
-import MarkdownIt from 'markdown-it';
-import footnote from 'markdown-it-footnote';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Initialize markdown parser
-const md = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true
-}).use(footnote);
 
 // Configuration
 const CONFIG = {
   postsDir: path.join(__dirname, 'posts'),
   staticDir: path.join(__dirname, 'static'),
   exportDir: path.join(__dirname, 'ghost-export'),
-  imagesDir: path.join(__dirname, 'ghost-export', 'images'),
   siteDomain: 'https://chrishannah.me',
-  ghostVersion: '5.0.0'
+  ghostVersion: '5.0.0',
+  maxFileSize: 100 * 1024 * 1024, // 100MB in bytes
+  authorSlug: 'chris'
 };
 
-// Simple frontmatter parser
+// Simple YAML frontmatter parser
 function parseFrontmatter(content) {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
@@ -47,18 +38,17 @@ function parseFrontmatter(content) {
   const lines = frontmatterText.split('\n');
 
   for (let line of lines) {
-    // Check for array notation
-    if (line.trim().startsWith('[') && line.trim().endsWith(']')) {
-      // JSON array format
+    // Check for JSON array notation: tags: ["post", "micro"]
+    if (line.includes(':') && line.includes('[') && line.includes(']')) {
       const colonIndex = line.indexOf(':');
-      if (colonIndex !== -1) {
-        const key = line.substring(0, colonIndex).trim();
-        const value = line.substring(colonIndex + 1).trim();
-        try {
-          frontmatter[key] = JSON.parse(value);
-        } catch (e) {
-          frontmatter[key] = value;
-        }
+      const key = line.substring(0, colonIndex).trim();
+      const value = line.substring(colonIndex + 1).trim();
+      try {
+        // Parse JSON array
+        frontmatter[key] = JSON.parse(value);
+      } catch (e) {
+        // If JSON parsing fails, treat as string
+        frontmatter[key] = value;
       }
       continue;
     }
@@ -79,16 +69,18 @@ function parseFrontmatter(content) {
       const value = line.substring(colonIndex + 1).trim();
 
       if (value) {
+        // Direct value
         frontmatter[currentKey] = value;
         currentKey = null;
         currentValue = [];
         inArray = false;
       } else {
+        // Array or multiline value follows
         currentValue = [];
         inArray = true;
       }
     } else if (currentKey && line.trim().startsWith('-')) {
-      // Array item
+      // YAML array item
       const item = line.trim().substring(1).trim();
       currentValue.push(item);
     } else if (currentKey) {
@@ -109,25 +101,45 @@ function parseFrontmatter(content) {
   return { frontmatter, content: bodyContent };
 }
 
-// Extract images from markdown content
-function extractImages(content, baseUrl) {
-  const images = [];
-  const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
-  let match;
+// Remove or fix markdown footnotes
+function removeFootnotes(html) {
+  // Remove footnote reference links [^1]
+  html = html.replace(/\[\^(\d+)\]/g, '');
 
-  while ((match = imageRegex.exec(content)) !== null) {
-    const imageUrl = match[2];
-    images.push(imageUrl);
+  // Remove footnote sections at the bottom
+  html = html.replace(/<section class="footnotes">[\s\S]*?<\/section>/g, '');
+  html = html.replace(/<div class="footnotes">[\s\S]*?<\/div>/g, '');
+
+  // Remove footnote-style links at the end
+  html = html.replace(/\n\n\[\^(\d+)\]:.*$/gm, '');
+
+  return html;
+}
+
+// Generate a good title for micro posts
+function generateMicroTitle(content, date) {
+  // Remove HTML tags
+  const plainText = content.replace(/<[^>]*>/g, '').trim();
+
+  // Remove extra whitespace
+  const cleaned = plainText.replace(/\s+/g, ' ');
+
+  // Try to get first sentence
+  const firstSentence = cleaned.split(/[.!?]\s/)[0];
+
+  if (firstSentence && firstSentence.length > 10 && firstSentence.length <= 100) {
+    return firstSentence;
   }
 
-  // Also check for HTML img tags
-  const htmlImgRegex = /<img[^>]+src=["']([^"']+)["']/g;
-  while ((match = htmlImgRegex.exec(content)) !== null) {
-    const imageUrl = match[1];
-    images.push(imageUrl);
+  // If first sentence is too short or long, take first 60 chars
+  if (cleaned.length > 10) {
+    const truncated = cleaned.substring(0, 60).trim();
+    return truncated + (cleaned.length > 60 ? '...' : '');
   }
 
-  return images;
+  // Fallback to date-based title
+  const dateStr = new Date(date).toISOString().split('T')[0];
+  return `Micro post from ${dateStr}`;
 }
 
 // Get all markdown files recursively
@@ -151,69 +163,22 @@ function getMarkdownFiles(dir, fileList = []) {
   return fileList;
 }
 
-// Copy image file to export directory
-function copyImage(imageUrl, imagesExportDir) {
-  let localPath = null;
+// Check if post is a favourite/like post
+function isFavouritePost(filePath, frontmatter) {
+  const fileName = path.basename(filePath, '.md');
 
-  // Handle different image URL formats
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    // External URL - extract path if it's from chrishannah.me
-    if (imageUrl.includes('chrishannah.me')) {
-      const urlPath = imageUrl.replace(/^https?:\/\/[^\/]+/, '');
-      localPath = path.join(__dirname, 'static', urlPath.replace(/^\//, ''));
-    } else {
-      // External image, can't copy
-      return imageUrl;
-    }
-  } else {
-    // Relative path
-    localPath = path.join(__dirname, imageUrl.replace(/^\//, ''));
+  // Check filename
+  if (fileName.startsWith('favourite-') || fileName.startsWith('like-')) {
+    return true;
   }
 
-  if (localPath && fs.existsSync(localPath)) {
-    const fileName = path.basename(localPath);
-    const destPath = path.join(imagesExportDir, fileName);
-
-    // Handle duplicate filenames
-    let finalDestPath = destPath;
-    let counter = 1;
-    while (fs.existsSync(finalDestPath)) {
-      const ext = path.extname(fileName);
-      const base = path.basename(fileName, ext);
-      finalDestPath = path.join(imagesExportDir, `${base}-${counter}${ext}`);
-      counter++;
-    }
-
-    fs.copyFileSync(localPath, finalDestPath);
-    return path.basename(finalDestPath);
+  // Check permalink
+  if (frontmatter.permalink && frontmatter.permalink.includes('/favourite/')) {
+    return true;
   }
 
-  return imageUrl;
-}
-
-// Process images in content
-function processContentImages(content, imagesExportDir) {
-  const images = extractImages(content);
-  const imageMap = new Map();
-
-  images.forEach(imageUrl => {
-    const newPath = copyImage(imageUrl, imagesExportDir);
-    imageMap.set(imageUrl, newPath);
-  });
-
-  // Replace image URLs in content
-  let processedContent = content;
-  imageMap.forEach((newPath, oldUrl) => {
-    // Only replace if it's not an external URL or if we successfully copied it
-    if (!newPath.startsWith('http')) {
-      processedContent = processedContent.replace(
-        new RegExp(oldUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
-        `__GHOST_URL__/content/images/${newPath}`
-      );
-    }
-  });
-
-  return processedContent;
+  // Check content for favourite marker
+  return false;
 }
 
 // Convert post to Ghost format
@@ -221,17 +186,27 @@ function convertToGhostPost(filePath, id) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const { frontmatter, content: body } = parseFrontmatter(content);
 
+  // Skip favourite posts
+  if (isFavouritePost(filePath, frontmatter)) {
+    return null;
+  }
+
   // Determine post type and status
-  let postType = 'post';
   const layout = frontmatter.layout || '';
 
-  // Parse tags
+  // Parse tags - handle both array and string formats
   let tags = [];
   if (frontmatter.tags) {
     if (Array.isArray(frontmatter.tags)) {
       tags = frontmatter.tags;
     } else if (typeof frontmatter.tags === 'string') {
-      tags = frontmatter.tags.split(',').map(t => t.trim());
+      // Try to parse as JSON first
+      try {
+        tags = JSON.parse(frontmatter.tags);
+      } catch (e) {
+        // Otherwise split by comma
+        tags = frontmatter.tags.split(',').map(t => t.trim());
+      }
     }
   }
 
@@ -243,8 +218,19 @@ function convertToGhostPost(filePath, id) {
     tags = [...tags, ...cats];
   }
 
-  // Remove 'post', 'micro', 'link' from tags as these are content types
-  tags = tags.filter(t => !['post', 'micro', 'link'].includes(t));
+  // Clean up tags: remove system tags, lowercase, remove brackets and quotes
+  tags = tags
+    .filter(t => t && !['post', 'micro', 'link'].includes(t.toLowerCase()))
+    .map(t => {
+      // Remove quotes and brackets
+      let cleaned = t.replace(/["'\[\]]/g, '').trim();
+      // Lowercase
+      return cleaned.toLowerCase();
+    })
+    .filter(t => t.length > 0);
+
+  // Add internal tag to hide from homepage
+  tags.push('#migrated');
 
   // Parse date
   let publishedDate = new Date();
@@ -255,12 +241,17 @@ function convertToGhostPost(filePath, id) {
   // Get title
   let title = frontmatter.title || '';
 
-  // For micro posts without title, generate one from content or date
-  if (!title && layout.includes('micro')) {
-    const plainText = body.replace(/<[^>]*>/g, '').trim();
-    title = plainText.substring(0, 50) + (plainText.length > 50 ? '...' : '');
-    if (!title) {
-      title = `Micro post from ${publishedDate.toISOString().split('T')[0]}`;
+  // Clean up title - remove quotes, empty strings, etc.
+  if (title) {
+    title = title.replace(/^["']|["']$/g, '').trim();
+  }
+
+  // For micro posts or posts without proper title, generate one
+  if (!title || title === '' || title.toLowerCase() === 'untitled' || title === 'null') {
+    if (layout.includes('micro') || !title) {
+      title = generateMicroTitle(body, publishedDate);
+    } else {
+      title = 'Untitled Post';
     }
   }
 
@@ -274,37 +265,24 @@ function convertToGhostPost(filePath, id) {
       .replace(/^-|-$/g, '');
   }
 
-  // Process content
-  let html = body;
+  // Process content - use as-is since it's already HTML or markdown
+  let html = body.trim();
 
-  // Convert markdown to HTML if needed
-  if (!body.startsWith('<')) {
-    html = md.render(body);
-  }
-
-  // Process images
-  html = processContentImages(html, CONFIG.imagesDir);
-
-  // Handle featured image
-  let featureImage = null;
-  if (frontmatter.image) {
-    const copiedImage = copyImage(frontmatter.image, CONFIG.imagesDir);
-    if (!copiedImage.startsWith('http')) {
-      featureImage = `__GHOST_URL__/content/images/${copiedImage}`;
-    } else {
-      featureImage = copiedImage;
-    }
-  }
+  // Remove footnotes
+  html = removeFootnotes(html);
 
   // For link posts, add the link at the top
   if (frontmatter.link) {
     html = `<p><a href="${frontmatter.link}">${frontmatter.link}</a></p>\n\n${html}`;
   }
 
+  // Handle featured image - don't include, as we're not exporting images
+  let featureImage = null;
+
   // Create Ghost post object
   const ghostPost = {
     id: id.toString(),
-    title: title || 'Untitled',
+    title: title,
     slug: slug || `post-${id}`,
     mobiledoc: null,
     html: html,
@@ -314,7 +292,7 @@ function convertToGhostPost(filePath, id) {
     type: 'post',
     status: 'published',
     locale: null,
-    visibility: 'public',
+    visibility: 'public', // Public but hidden from homepage via #migrated tag
     email_recipient_filter: 'none',
     created_at: publishedDate.toISOString(),
     updated_at: publishedDate.toISOString(),
@@ -329,95 +307,109 @@ function convertToGhostPost(filePath, id) {
   return { post: ghostPost, tags: tags };
 }
 
+// Split posts into chunks based on file size
+function splitIntoChunks(posts, tagMap, maxSize) {
+  const chunks = [];
+  let currentChunk = {
+    posts: [],
+    posts_meta: [],
+    tags: [],
+    posts_tags: [],
+    posts_authors: []
+  };
+
+  // Estimate size (rough estimation)
+  let currentSize = 0;
+  const baseSize = 1000; // Base JSON structure overhead
+
+  for (const postData of posts) {
+    const postSize = JSON.stringify(postData).length;
+
+    // If adding this post would exceed max size, start new chunk
+    if (currentSize + postSize > maxSize && currentChunk.posts.length > 0) {
+      chunks.push(currentChunk);
+      currentChunk = {
+        posts: [],
+        posts_meta: [],
+        tags: [],
+        posts_tags: [],
+        posts_authors: []
+      };
+      currentSize = baseSize;
+    }
+
+    currentChunk.posts.push(postData.post);
+    currentChunk.posts_authors.push(postData.author);
+    currentChunk.posts_tags.push(...postData.postTags);
+    currentSize += postSize;
+  }
+
+  // Add last chunk
+  if (currentChunk.posts.length > 0) {
+    chunks.push(currentChunk);
+  }
+
+  // Add tags to each chunk
+  const allTags = Array.from(tagMap.values());
+  chunks.forEach(chunk => {
+    chunk.tags = allTags;
+  });
+
+  return chunks;
+}
+
 // Main migration function
 async function migrate() {
   console.log('🚀 Starting Ghost migration...\n');
 
-  // Create export directories
+  // Create export directory
   if (!fs.existsSync(CONFIG.exportDir)) {
     fs.mkdirSync(CONFIG.exportDir, { recursive: true });
-  }
-  if (!fs.existsSync(CONFIG.imagesDir)) {
-    fs.mkdirSync(CONFIG.imagesDir, { recursive: true });
   }
 
   console.log('📁 Finding all posts...');
   const markdownFiles = getMarkdownFiles(CONFIG.postsDir);
   console.log(`   Found ${markdownFiles.length} markdown files\n`);
 
-  // Initialize Ghost export structure
-  const ghostData = {
-    db: [{
-      meta: {
-        exported_on: Date.now(),
-        version: CONFIG.ghostVersion
-      },
-      data: {
-        posts: [],
-        posts_meta: [],
-        tags: [],
-        posts_tags: [],
-        users: [{
-          id: '1',
-          name: 'Chris Hannah',
-          slug: 'chris',
-          email: 'blog@chrishannah.me',
-          profile_image: null,
-          cover_image: null,
-          bio: null,
-          website: 'https://chrishannah.me',
-          location: null,
-          accessibility: null,
-          status: 'active',
-          locale: null,
-          visibility: 'public',
-          meta_title: null,
-          meta_description: null,
-          tour: null,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }],
-        posts_authors: []
-      }
-    }]
-  };
-
+  // Initialize data structures
+  const allPosts = [];
   const tagMap = new Map();
   let tagIdCounter = 1;
+  let skippedCount = 0;
 
   console.log('📝 Converting posts...');
   let processedCount = 0;
+  let postId = 1;
 
-  for (let i = 0; i < markdownFiles.length; i++) {
-    const filePath = markdownFiles[i];
-    const postId = i + 1;
-
+  for (const filePath of markdownFiles) {
     try {
-      const { post, tags } = convertToGhostPost(filePath, postId);
-      ghostData.db[0].data.posts.push(post);
+      const result = convertToGhostPost(filePath, postId);
 
-      // Add author relationship
-      ghostData.db[0].data.posts_authors.push({
-        id: postId.toString(),
-        post_id: postId.toString(),
-        author_id: '1',
-        sort_order: 0
-      });
+      if (!result) {
+        // Post was skipped (favourite post)
+        skippedCount++;
+        continue;
+      }
+
+      const { post, tags } = result;
 
       // Process tags
+      const postTags = [];
       tags.forEach(tagName => {
         if (tagName && tagName.trim()) {
           if (!tagMap.has(tagName)) {
             const tagId = tagIdCounter++;
-            tagMap.set(tagName, tagId);
+            const tagSlug = tagName.startsWith('#')
+              ? tagName.substring(1)
+              : tagName.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-            ghostData.db[0].data.tags.push({
+            tagMap.set(tagName, {
               id: tagId.toString(),
               name: tagName,
-              slug: tagName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+              slug: tagSlug,
               description: null,
               feature_image: null,
-              visibility: 'public',
+              visibility: tagName.startsWith('#') ? 'internal' : 'public',
               meta_title: null,
               meta_description: null,
               created_at: new Date().toISOString(),
@@ -425,83 +417,127 @@ async function migrate() {
             });
           }
 
-          const tagId = tagMap.get(tagName);
-          ghostData.db[0].data.posts_tags.push({
-            id: `${postId}-${tagId}`,
+          const tag = tagMap.get(tagName);
+          postTags.push({
+            id: `${postId}-${tag.id}`,
             post_id: postId.toString(),
-            tag_id: tagId.toString(),
+            tag_id: tag.id,
             sort_order: 0
           });
         }
       });
 
+      // Add author relationship
+      const author = {
+        id: postId.toString(),
+        post_id: postId.toString(),
+        author_id: '1',
+        sort_order: 0
+      };
+
+      allPosts.push({
+        post,
+        author,
+        postTags
+      });
+
+      postId++;
       processedCount++;
+
       if (processedCount % 100 === 0) {
-        console.log(`   Processed ${processedCount}/${markdownFiles.length} posts...`);
+        console.log(`   Processed ${processedCount}/${markdownFiles.length - skippedCount} posts...`);
       }
     } catch (error) {
       console.error(`   ⚠️  Error processing ${filePath}:`, error.message);
     }
   }
 
-  console.log(`   ✅ Processed ${processedCount} posts\n`);
+  console.log(`   ✅ Processed ${processedCount} posts`);
+  console.log(`   ⏭️  Skipped ${skippedCount} favourite posts\n`);
 
-  // Write Ghost import file
-  console.log('💾 Writing Ghost import file...');
-  const exportPath = path.join(CONFIG.exportDir, 'ghost-import.json');
-  fs.writeFileSync(exportPath, JSON.stringify(ghostData, null, 2));
-  console.log(`   ✅ Saved to: ${exportPath}\n`);
+  // Create user object
+  const user = {
+    id: '1',
+    name: 'Chris Hannah',
+    slug: CONFIG.authorSlug,
+    email: 'blog@chrishannah.me',
+    profile_image: null,
+    cover_image: null,
+    bio: null,
+    website: 'https://chrishannah.me',
+    location: null,
+    accessibility: null,
+    status: 'active',
+    locale: null,
+    visibility: 'public',
+    meta_title: null,
+    meta_description: null,
+    tour: null,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  };
 
-  // Copy static images
-  console.log('🖼️  Copying static images...');
-  if (fs.existsSync(CONFIG.staticDir)) {
-    const staticImagesDir = path.join(CONFIG.staticDir, 'images');
-    if (fs.existsSync(staticImagesDir)) {
-      copyDirectoryRecursive(staticImagesDir, CONFIG.imagesDir);
-      console.log(`   ✅ Copied images from static directory\n`);
-    }
+  // Split into chunks
+  console.log('📦 Splitting into chunks (max 100MB each)...');
+  const chunks = splitIntoChunks(allPosts, tagMap, CONFIG.maxFileSize * 0.9); // 90% of max to be safe
+  console.log(`   Created ${chunks.length} chunk(s)\n`);
+
+  // Write each chunk
+  for (let i = 0; i < chunks.length; i++) {
+    const chunk = chunks[i];
+    const ghostData = {
+      db: [{
+        meta: {
+          exported_on: Date.now(),
+          version: CONFIG.ghostVersion
+        },
+        data: {
+          posts: chunk.posts,
+          posts_meta: [],
+          tags: chunk.tags,
+          posts_tags: chunk.posts_tags,
+          users: [user],
+          posts_authors: chunk.posts_authors
+        }
+      }]
+    };
+
+    const fileName = chunks.length > 1 ? `ghost-import-part${i + 1}.json` : 'ghost-import.json';
+    const exportPath = path.join(CONFIG.exportDir, fileName);
+
+    console.log(`💾 Writing ${fileName}...`);
+    fs.writeFileSync(exportPath, JSON.stringify(ghostData, null, 2));
+
+    const stats = fs.statSync(exportPath);
+    const sizeMB = (stats.size / (1024 * 1024)).toFixed(2);
+    console.log(`   ✅ Saved ${fileName} (${sizeMB} MB)\n`);
   }
 
   // Print summary
   console.log('📊 Migration Summary:');
-  console.log(`   Posts: ${ghostData.db[0].data.posts.length}`);
-  console.log(`   Tags: ${ghostData.db[0].data.tags.length}`);
+  console.log(`   Posts: ${processedCount}`);
+  console.log(`   Skipped: ${skippedCount} (favourites)`);
+  console.log(`   Tags: ${tagMap.size}`);
+  console.log(`   Author: ${CONFIG.authorSlug}`);
+  console.log(`   Export files: ${chunks.length}`);
   console.log(`   Export location: ${CONFIG.exportDir}`);
   console.log('\n✨ Migration complete!\n');
   console.log('📦 Next steps:');
-  console.log('   1. Create a ZIP file of the ghost-export directory');
-  console.log('   2. In Ghost Admin, go to Settings → Labs → Import content');
-  console.log('   3. Upload the ZIP file');
-  console.log('   4. Ghost will import all posts, tags, and images\n');
-}
-
-// Helper function to copy directory recursively
-function copyDirectoryRecursive(src, dest) {
-  if (!fs.existsSync(dest)) {
-    fs.mkdirSync(dest, { recursive: true });
-  }
-
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-
-  for (let entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDirectoryRecursive(srcPath, dest); // Flatten directory structure
-    } else if (entry.isFile() && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(entry.name)) {
-      // Handle duplicate filenames
-      let finalDestPath = destPath;
-      let counter = 1;
-      while (fs.existsSync(finalDestPath)) {
-        const ext = path.extname(entry.name);
-        const base = path.basename(entry.name, ext);
-        finalDestPath = path.join(dest, `${base}-${counter}${ext}`);
-        counter++;
-      }
-      fs.copyFileSync(srcPath, finalDestPath);
+  if (chunks.length > 1) {
+    console.log(`   1. Import each file separately in Ghost Admin (Settings → Labs → Import)`);
+    for (let i = 0; i < chunks.length; i++) {
+      console.log(`      - ghost-import-part${i + 1}.json`);
     }
+  } else {
+    console.log('   1. In Ghost Admin, go to Settings → Labs → Import content');
+    console.log('   2. Upload ghost-import.json');
   }
+  console.log('\n📌 Important notes:');
+  console.log('   - All posts are tagged with #migrated (internal tag)');
+  console.log('   - To hide from homepage, filter out posts with #migrated tag in your theme');
+  console.log('   - Favourite posts were excluded from migration');
+  console.log('   - Footnotes have been removed from all posts');
+  console.log('   - All tags are lowercase without brackets or quotes\n');
 }
 
 // Run migration
