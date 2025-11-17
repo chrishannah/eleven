@@ -5,29 +5,27 @@ This directory contains a complete export of your 11ty blog ready for import int
 ## 📊 Migration Summary
 
 **Content Migrated:**
-- **1,182 posts** (blog posts, micro posts, link posts, photo posts, quotes, etc.)
-- **501 unique tags** (derived from post tags and categories)
-- **1,550 images** (all locally stored images from your blog)
-- **1 author** (Chris Hannah)
+- **1,180 posts** (blog posts, micro posts, link posts, photo posts, quotes, etc.)
+  - 2 favourite posts excluded
+- **473 unique tags** (derived from post tags and categories)
+  - All lowercase, no brackets or quotes
+  - System tags ('post', 'micro', 'link') filtered out
+- **1 author** (Chris Hannah, slug: 'chris')
 - **All metadata** including:
   - Publication dates
-  - Featured images (where available)
   - Post excerpts/descriptions
   - Custom permalinks (converted to slugs)
   - Post types and layouts
+  - Intelligent titles for micro posts
 
 ## 📦 What's Included
 
 ### Files Generated
 
-1. **`ghost-import.zip`** (1.8 GB)
-   - This is the main file you'll import into Ghost
-   - Contains the JSON export and all images
-   - Ready for direct upload to Ghost
-
-2. **`ghost-export/`** directory contains:
-   - `ghost-import.json` - The Ghost-compatible JSON export
-   - `images/` - All 1,550 images from your blog
+1. **`ghost-export/`** directory contains:
+   - `ghost-import.json` - The Ghost-compatible JSON export (4.01 MB)
+   - **Note:** Images are NOT included in this export to keep file size manageable
+   - If multiple files: `ghost-import-part1.json`, `ghost-import-part2.json`, etc.
 
 ## 🚀 How to Import into Ghost
 
@@ -40,16 +38,37 @@ Make sure you have a Ghost blog set up (either self-hosted or Ghost.com).
 2. Navigate to **Settings → Labs**
 3. Scroll down to **Import content**
 4. Click **Import content**
-5. Upload the `ghost-import.zip` file
-6. Wait for the import to complete (this may take a few minutes due to the size)
+5. Upload `ghost-export/ghost-import.json`
+6. Wait for the import to complete
+
+If you have multiple files (ghost-import-part1.json, etc.), import them one at a time in order.
 
 ### Step 3: Verify the Import
 
 After import, Ghost will show you a summary. Verify:
-- All 1,182 posts were imported
-- Images are displaying correctly
-- Tags are properly assigned
+- All 1,180 posts were imported
+- Tags are properly assigned (all lowercase)
 - Dates are correct
+- Micro posts have appropriate titles
+
+### Step 4: Hide Migrated Posts from Homepage
+
+All imported posts are tagged with `#migrated` (an internal tag). To hide them from your homepage:
+
+**Option 1: Theme Code (Recommended)**
+Edit your theme's `index.hbs` or home template to filter out posts with the `#migrated` tag:
+
+```handlebars
+{{#get "posts" filter="tag:-hash-migrated" limit="15"}}
+  {{#foreach posts}}
+    <!-- Your post card template -->
+  {{/foreach}}
+{{/get}}
+```
+
+**Option 2: Manual Selection**
+- Remove the `#migrated` tag from posts you want to appear on the homepage
+- Keep the tag on posts that should remain hidden
 
 ## 📝 Content Type Mapping
 
@@ -66,52 +85,61 @@ Your 11ty blog content was mapped to Ghost as follows:
 
 ## 🖼️ Image Handling
 
-**Local Images:**
-- 1,550 images were copied from your blog
-- Images are referenced using Ghost's `__GHOST_URL__` placeholder
-- Ghost will automatically update these to the correct URLs on import
+**Images are NOT included in this export** to keep file sizes manageable and importable into Ghost.
 
-**External Images:**
-- Images hosted externally (including some from chrishannah.me CDN) remain as external URLs
-- You can manually download and re-upload these later if desired
+**Image URLs in posts:**
+- Images remain referenced with their original URLs (e.g., `https://chrishannah.me/images/...`)
+- These will continue to work as long as your current site remains online
+- If you want to migrate images, you'll need to:
+  1. Download images from your current site
+  2. Re-upload them to Ghost
+  3. Update post content with new URLs
 
 **Featured Images:**
-- 135 posts have featured images
-- These were extracted from the `image:` frontmatter field
-- They'll appear as the hero image in Ghost
+- Not included in this export
+- You can manually set featured images in Ghost after import
 
 ## 🏷️ Tags
 
-**Total Tags: 501**
+**Total Tags: 473**
 
 Tags were created from:
 - Post `tags` arrays from frontmatter
 - Post `categories` from frontmatter
 - System tags like 'post', 'micro', 'link' were filtered out
 
-All tags are set to **public** visibility.
+**Tag Formatting:**
+- All tags are **lowercase**
+- No brackets, quotes, or special characters
+- Properly slugified for Ghost
+
+**Special Tags:**
+- `#migrated` - Internal tag added to all posts to hide from homepage
 
 ## ✅ What Works Automatically
 
 After import, the following will work automatically:
 - ✅ All post content (HTML preserved)
 - ✅ Post dates and times
-- ✅ Featured images
-- ✅ Tags and tag relationships
+- ✅ Tags and tag relationships (all lowercase, properly formatted)
 - ✅ Post slugs (URLs)
 - ✅ Published status (all posts imported as published)
-- ✅ Author attribution
-- ✅ Images embedded in content
+- ✅ Author attribution (slug: 'chris')
+- ✅ Intelligent titles for micro posts
+- ✅ Posts hidden from homepage via `#migrated` tag
+- ✅ Footnotes removed
+- ✅ Favourite posts excluded
 
 ## ⚠️ Manual Adjustments Needed
 
 You may want to manually adjust:
 
-1. **Post Types**: Some content might be better as Ghost "pages" rather than posts
-2. **Membership Settings**: All posts are imported as "public" - adjust if you want member-only content
-3. **External Images**: Some older posts reference external images that you may want to re-upload
-4. **Custom Excerpts**: Only posts with explicit `description` fields have excerpts
-5. **Code Blocks**: Check that code formatting looks correct in Ghost's editor
+1. **Homepage Visibility**: Configure your theme to filter out `#migrated` tag (see Step 4 above)
+2. **Post Selection**: Remove `#migrated` tag from posts you want on the homepage
+3. **Images**: Images reference original URLs - migrate manually if needed
+4. **Featured Images**: Set featured images manually in Ghost if desired
+5. **Post Types**: Some content might be better as Ghost "pages" rather than posts
+6. **Custom Excerpts**: Only posts with explicit `description` fields have excerpts
 
 ## 🔧 Technical Details
 
@@ -125,30 +153,40 @@ You may want to manually adjust:
 
 ## 📌 Post-Import Checklist
 
-- [ ] Verify post count (should be 1,182)
+- [ ] Verify post count (should be 1,180)
 - [ ] Check a few sample posts to ensure formatting is correct
-- [ ] Verify images are displaying
-- [ ] Review and clean up tags if needed
+- [ ] Verify tags are all lowercase and properly formatted
+- [ ] Configure theme to hide `#migrated` posts from homepage
+- [ ] Select posts to appear on homepage (remove `#migrated` tag)
+- [ ] Check that micro posts have appropriate titles
+- [ ] Verify images are displaying (they use original URLs)
 - [ ] Set up any Ghost-specific features (newsletters, memberships, etc.)
 - [ ] Configure your theme and design
 - [ ] Set up redirects from old URLs to new ones (if needed)
-- [ ] Update any broken external image links
 
 ## 🆘 Troubleshooting
 
 **Import fails:**
 - Make sure you're using Ghost 5.x or newer
-- Check that the ZIP file uploaded completely
-- Try uploading just the JSON file without images if the ZIP is too large
+- Check that the JSON file uploaded completely
+- If you have multiple parts, import them in order
 
 **Images not showing:**
-- Ghost's importer should handle the `__GHOST_URL__` placeholder automatically
-- If images don't appear, check the Ghost content/images directory
-- External images (those not in the ZIP) will maintain their original URLs
+- Images use original URLs from chrishannah.me
+- As long as your current site is online, images will work
+- To migrate images, download and re-upload them manually to Ghost
+
+**Posts appearing on homepage:**
+- Edit your theme to filter out posts with `#migrated` tag
+- See "Step 4: Hide Migrated Posts from Homepage" above
 
 **Duplicate content:**
 - If you need to re-import, delete all content first in Ghost Admin
 - Ghost doesn't automatically deduplicate on import
+
+**Tags not right:**
+- All tags should be lowercase now
+- If you see uppercase tags, re-run the migration script
 
 ## 📚 Additional Resources
 
@@ -159,12 +197,26 @@ You may want to manually adjust:
 ## 🎉 Success!
 
 Your blog is now ready to import into Ghost! This migration includes:
-- **12+ years** of content (2013-2025)
+- **1,180 posts** from 12+ years of blogging (2013-2025)
 - All content types from your 11ty blog
+- **473 properly formatted tags** (all lowercase)
 - Complete metadata and relationships
-- All locally-stored images
+- **Intelligent micro post titles**
+- **Footnotes removed** for cleaner content
+- **Favourite posts excluded**
+- **Posts hidden from homepage** via `#migrated` tag
 
 Good luck with your Ghost blog!
+
+## 🔧 Re-running the Migration
+
+If you need to regenerate the export:
+
+```bash
+node ghost-migration.mjs
+```
+
+This will create a fresh export with all the latest fixes.
 
 ---
 
