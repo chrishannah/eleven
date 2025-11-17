@@ -12,6 +12,7 @@ const CONFIG = {
   postsDir: path.join(__dirname, 'posts'),
   staticDir: path.join(__dirname, 'static'),
   exportDir: path.join(__dirname, 'ghost-export'),
+  imagesDir: path.join(__dirname, 'ghost-export', 'content', 'images'),
   siteDomain: 'https://chrishannah.me',
   ghostVersion: '5.0.0',
   maxFileSize: 100 * 1024 * 1024, // 100MB in bytes
@@ -142,6 +143,91 @@ function generateMicroTitle(content, date) {
   return `Micro post from ${dateStr}`;
 }
 
+// Extract images from markdown content
+function extractImages(content) {
+  const images = [];
+
+  // Markdown images: ![alt](url)
+  const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  let match;
+  while ((match = imageRegex.exec(content)) !== null) {
+    images.push(match[2]);
+  }
+
+  // HTML img tags
+  const htmlImgRegex = /<img[^>]+src=["']([^"']+)["']/g;
+  while ((match = htmlImgRegex.exec(content)) !== null) {
+    images.push(match[1]);
+  }
+
+  return images;
+}
+
+// Copy image file to export directory
+function copyImage(imageUrl, imagesExportDir) {
+  let localPath = null;
+
+  // Handle different image URL formats
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    // External URL - extract path if it's from chrishannah.me
+    if (imageUrl.includes('chrishannah.me')) {
+      const urlPath = imageUrl.replace(/^https?:\/\/[^\/]+/, '');
+      localPath = path.join(__dirname, 'static', urlPath.replace(/^\//, ''));
+    } else {
+      // External image, can't copy
+      return imageUrl;
+    }
+  } else {
+    // Relative path
+    localPath = path.join(__dirname, imageUrl.replace(/^\//, ''));
+  }
+
+  if (localPath && fs.existsSync(localPath)) {
+    const fileName = path.basename(localPath);
+    const destPath = path.join(imagesExportDir, fileName);
+
+    // Handle duplicate filenames
+    let finalDestPath = destPath;
+    let counter = 1;
+    while (fs.existsSync(finalDestPath)) {
+      const ext = path.extname(fileName);
+      const base = path.basename(fileName, ext);
+      finalDestPath = path.join(imagesExportDir, `${base}-${counter}${ext}`);
+      counter++;
+    }
+
+    try {
+      fs.copyFileSync(localPath, finalDestPath);
+      return '__GHOST_URL__/content/images/' + path.basename(finalDestPath);
+    } catch (e) {
+      console.error(`   ⚠️  Could not copy image: ${localPath}`);
+      return imageUrl;
+    }
+  }
+
+  return imageUrl;
+}
+
+// Process images in content
+function processContentImages(content, imagesExportDir) {
+  const images = extractImages(content);
+  let processedContent = content;
+
+  images.forEach(imageUrl => {
+    const newPath = copyImage(imageUrl, imagesExportDir);
+    if (newPath !== imageUrl) {
+      // Replace all occurrences of this image URL
+      const escapedUrl = imageUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      processedContent = processedContent.replace(
+        new RegExp(escapedUrl, 'g'),
+        newPath
+      );
+    }
+  });
+
+  return processedContent;
+}
+
 // Get all markdown files recursively
 function getMarkdownFiles(dir, fileList = []) {
   const files = fs.readdirSync(dir);
@@ -177,8 +263,41 @@ function isFavouritePost(filePath, frontmatter) {
     return true;
   }
 
-  // Check content for favourite marker
   return false;
+}
+
+// Copy directory recursively
+function copyDirectoryRecursive(src, dest) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+
+  for (let entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      // Recursively copy subdirectories but flatten to root
+      copyDirectoryRecursive(srcPath, dest);
+    } else if (entry.isFile() && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(entry.name)) {
+      // Handle duplicate filenames
+      let finalDestPath = destPath;
+      let counter = 1;
+      while (fs.existsSync(finalDestPath)) {
+        const ext = path.extname(entry.name);
+        const base = path.basename(entry.name, ext);
+        finalDestPath = path.join(dest, `${base}-${counter}${ext}`);
+        counter++;
+      }
+      try {
+        fs.copyFileSync(srcPath, finalDestPath);
+      } catch (e) {
+        // Skip files that can't be copied
+      }
+    }
+  }
 }
 
 // Convert post to Ghost format
@@ -268,6 +387,9 @@ function convertToGhostPost(filePath, id) {
   // Process content - use as-is since it's already HTML or markdown
   let html = body.trim();
 
+  // Process images in content
+  html = processContentImages(html, CONFIG.imagesDir);
+
   // Remove footnotes
   html = removeFootnotes(html);
 
@@ -276,8 +398,11 @@ function convertToGhostPost(filePath, id) {
     html = `<p><a href="${frontmatter.link}">${frontmatter.link}</a></p>\n\n${html}`;
   }
 
-  // Handle featured image - don't include, as we're not exporting images
+  // Handle featured image
   let featureImage = null;
+  if (frontmatter.image) {
+    featureImage = copyImage(frontmatter.image, CONFIG.imagesDir);
+  }
 
   // Create Ghost post object
   const ghostPost = {
@@ -362,9 +487,12 @@ function splitIntoChunks(posts, tagMap, maxSize) {
 async function migrate() {
   console.log('🚀 Starting Ghost migration...\n');
 
-  // Create export directory
+  // Create export directories
   if (!fs.existsSync(CONFIG.exportDir)) {
     fs.mkdirSync(CONFIG.exportDir, { recursive: true });
+  }
+  if (!fs.existsSync(CONFIG.imagesDir)) {
+    fs.mkdirSync(CONFIG.imagesDir, { recursive: true });
   }
 
   console.log('📁 Finding all posts...');
@@ -377,7 +505,7 @@ async function migrate() {
   let tagIdCounter = 1;
   let skippedCount = 0;
 
-  console.log('📝 Converting posts...');
+  console.log('📝 Converting posts and copying images...');
   let processedCount = 0;
   let postId = 1;
 
@@ -455,6 +583,22 @@ async function migrate() {
   console.log(`   ✅ Processed ${processedCount} posts`);
   console.log(`   ⏭️  Skipped ${skippedCount} favourite posts\n`);
 
+  // Copy static images
+  console.log('🖼️  Copying static images...');
+  if (fs.existsSync(CONFIG.staticDir)) {
+    const staticImagesDir = path.join(CONFIG.staticDir, 'images');
+    if (fs.existsSync(staticImagesDir)) {
+      copyDirectoryRecursive(staticImagesDir, CONFIG.imagesDir);
+      console.log(`   ✅ Copied images from static directory\n`);
+    }
+  }
+
+  // Count images
+  const imageFiles = fs.readdirSync(CONFIG.imagesDir).filter(f =>
+    /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(f)
+  );
+  console.log(`   📸 Total images: ${imageFiles.length}\n`);
+
   // Create user object
   const user = {
     id: '1',
@@ -518,26 +662,23 @@ async function migrate() {
   console.log(`   Posts: ${processedCount}`);
   console.log(`   Skipped: ${skippedCount} (favourites)`);
   console.log(`   Tags: ${tagMap.size}`);
+  console.log(`   Images: ${imageFiles.length}`);
   console.log(`   Author: ${CONFIG.authorSlug}`);
   console.log(`   Export files: ${chunks.length}`);
   console.log(`   Export location: ${CONFIG.exportDir}`);
   console.log('\n✨ Migration complete!\n');
   console.log('📦 Next steps:');
-  if (chunks.length > 1) {
-    console.log(`   1. Import each file separately in Ghost Admin (Settings → Labs → Import)`);
-    for (let i = 0; i < chunks.length; i++) {
-      console.log(`      - ghost-import-part${i + 1}.json`);
-    }
-  } else {
-    console.log('   1. In Ghost Admin, go to Settings → Labs → Import content');
-    console.log('   2. Upload ghost-import.json');
-  }
+  console.log('   1. Create a ZIP of the ghost-export directory');
+  console.log('   2. In Ghost Admin, go to Settings → Labs → Import content');
+  console.log('   3. Upload the ZIP file');
+  console.log('   4. Ghost will import posts, tags, and images');
   console.log('\n📌 Important notes:');
   console.log('   - All posts are tagged with #migrated (internal tag)');
   console.log('   - To hide from homepage, filter out posts with #migrated tag in your theme');
   console.log('   - Favourite posts were excluded from migration');
   console.log('   - Footnotes have been removed from all posts');
-  console.log('   - All tags are lowercase without brackets or quotes\n');
+  console.log('   - All tags are lowercase without brackets or quotes');
+  console.log(`   - ${imageFiles.length} images copied to content/images directory\n`);
 }
 
 // Run migration
