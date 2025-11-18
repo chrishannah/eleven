@@ -30,6 +30,22 @@ function getFileSize(filePath) {
   }
 }
 
+function stripQuotes(value) {
+  if (!value || typeof value !== 'string') return value;
+
+  // Remove leading and trailing quotes (both single and double)
+  // Handle cases like 'value', "value", 'value", "value'
+  const trimmed = value.trim();
+
+  // Check if starts with quote and ends with quote
+  if ((trimmed.startsWith("'") || trimmed.startsWith('"')) &&
+      (trimmed.endsWith("'") || trimmed.endsWith('"'))) {
+    return trimmed.substring(1, trimmed.length - 1);
+  }
+
+  return trimmed;
+}
+
 function parseFrontmatter(content) {
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---/;
   const match = content.match(frontmatterRegex);
@@ -65,7 +81,7 @@ function parseFrontmatter(content) {
     // Handle YAML list items: - tag1
     if (line.startsWith('- ')) {
       if (currentArray) {
-        currentArray.push(line.substring(2).trim());
+        currentArray.push(stripQuotes(line.substring(2).trim()));
       }
       continue;
     }
@@ -76,13 +92,13 @@ function parseFrontmatter(content) {
       const key = line.substring(0, colonIndex).trim();
       const value = line.substring(colonIndex + 1).trim();
 
-      if (value === '') {
+      if (value === '' || value === "''" || value === '""') {
         // Empty value, might start an array
         currentKey = key;
         currentArray = [];
         frontmatter[key] = currentArray;
       } else {
-        frontmatter[key] = value;
+        frontmatter[key] = stripQuotes(value);
         currentKey = null;
         currentArray = null;
       }
@@ -286,6 +302,10 @@ function convertPostToGhost(filePath, postId) {
 
   // Get title
   let title = frontmatter.title || '';
+  // Ensure title is a string
+  if (typeof title !== 'string') {
+    title = '';
+  }
 
   // Generate title for micro posts if missing
   if (!title || title.toLowerCase() === 'untitled' || title === 'null') {
