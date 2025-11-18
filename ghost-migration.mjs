@@ -459,7 +459,6 @@ async function main() {
 
     // Create post-tag relationships
     const postTags = tags.map((tagName, index) => ({
-      id: `ghost-posts-tags-${postId}-${index}`,
       post_id: post.id,
       tag_id: tagMap.get(tagName).id,
       sort_order: index
@@ -467,7 +466,6 @@ async function main() {
 
     // Create post-author relationship
     const postAuthor = {
-      id: `ghost-posts-authors-${postId}`,
       post_id: post.id,
       author_id: '1',
       sort_order: 0
@@ -584,6 +582,15 @@ async function main() {
             meta_description: null,
             tour: null,
             last_seen: null,
+            created_at: new Date().toISOString(),
+            created_by: '1',
+            updated_at: new Date().toISOString(),
+            updated_by: '1'
+          }],
+          roles: [{
+            id: '1',
+            name: 'Administrator',
+            description: 'Administrators',
             created_at: new Date().toISOString(),
             created_by: '1',
             updated_at: new Date().toISOString(),
