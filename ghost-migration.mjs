@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { randomUUID } from 'crypto';
 import archiver from 'archiver';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -348,7 +349,7 @@ function convertPostToGhost(filePath, postId) {
 
   const post = {
     id: postId,
-    uuid: `ghost-${postId}`,
+    uuid: randomUUID(),
     title: title,
     slug: slug,
     mobiledoc: null,
@@ -447,7 +448,7 @@ async function main() {
       if (!tagMap.has(tagName)) {
         const isInternal = tagName.startsWith('#');
         tagMap.set(tagName, {
-          id: `ghost-tag-${tagMap.size + 1}`,
+          id: `${tagMap.size + 1}`,
           name: isInternal ? tagName.substring(1) : tagName,
           slug: (isInternal ? tagName.substring(1) : tagName).toLowerCase().replace(/\s+/g, '-'),
           description: null,
