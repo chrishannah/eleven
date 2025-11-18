@@ -6,14 +6,14 @@ This directory contains a complete export of your 11ty blog ready for import int
 
 **Content Migrated:**
 - **1,180 posts** (blog posts, micro posts, link posts, photo posts, quotes, etc.)
-  - 2 favourite posts excluded
+  - 3 favourite posts excluded
 - **473 unique tags** (derived from post tags and categories)
   - All lowercase, no brackets or quotes
   - System tags ('post', 'micro', 'link') filtered out
-- **1,550 images** (all locally stored images from your blog)
+- **544 images** (all images used in migrated posts)
   - Featured images included
   - Images embedded in posts
-  - All images from static/images directory
+  - Only images actually referenced in posts are included
 - **1 author** (Chris Hannah, slug: 'chris')
 - **All metadata** including:
   - Publication dates
@@ -26,15 +26,24 @@ This directory contains a complete export of your 11ty blog ready for import int
 
 ### Files Generated
 
-1. **`ghost-import.zip`** (1.8 GB)
-   - This is the main file you'll import into Ghost
-   - Contains the JSON export and all 1,550 images
-   - Ready for direct upload to Ghost
+**7 ZIP files** (split for Ghost's 100MB import limit):
 
-2. **`ghost-export/`** directory contains:
-   - `ghost-import.json` - The Ghost-compatible JSON export (4.02 MB)
-   - `content/images/` - All 1,550 images from your blog
-   - If multiple JSON files: `ghost-import-part1.json`, `ghost-import-part2.json`, etc.
+1. **`ghost-import-part1.zip`** (59 MB) - 468 posts, 61 images
+2. **`ghost-import-part2.zip`** (85 MB) - 48 posts, 33 images
+3. **`ghost-import-part3.zip`** (87 MB) - 83 posts, 58 images
+4. **`ghost-import-part4.zip`** (88 MB) - 180 posts, 111 images
+5. **`ghost-import-part5.zip`** (92 MB) - 145 posts, 186 images
+6. **`ghost-import-part6.zip`** (89 MB) - 131 posts, 60 images
+7. **`ghost-import-part7.zip`** (86 MB) - 125 posts, 35 images
+
+Each ZIP file contains:
+- Ghost-compatible JSON export
+- Associated images for posts in that chunk
+- Ready for direct upload to Ghost
+
+**`ghost-export/`** directory contains:
+- `chunk-1/` through `chunk-7/` directories
+- Each chunk has `ghost-import.json` and `content/images/` subdirectory
 
 ## 🚀 How to Import into Ghost
 
@@ -43,16 +52,28 @@ Make sure you have a Ghost blog set up (either self-hosted or Ghost.com).
 
 ### Step 2: Import the Content
 
+**Your blog has been split into 7 ZIP files to stay under Ghost's 100MB import limit.**
+
+You'll need to import each file **in order**:
+
 1. Log into your Ghost Admin panel
 2. Navigate to **Settings → Labs**
 3. Scroll down to **Import content**
-4. Click **Import content**
-5. Upload `ghost-import.zip` (contains both JSON and all images)
-6. Wait for the import to complete (may take a few minutes due to size)
+4. Upload `ghost-import-part1.zip`
+5. Wait for the import to complete (may take a few minutes)
+6. Repeat steps 3-5 for each remaining file:
+   - `ghost-import-part2.zip`
+   - `ghost-import-part3.zip`
+   - `ghost-import-part4.zip`
+   - `ghost-import-part5.zip`
+   - `ghost-import-part6.zip`
+   - `ghost-import-part7.zip`
 
-**Alternative:** If you have multiple JSON files, you can upload them individually:
-- Upload `ghost-export/ghost-import.json` (or part1, part2, etc.)
-- Images will be included automatically from the content/images directory
+**Important Notes:**
+- Import files in sequential order (part1, part2, part3, etc.)
+- Each file contains both posts and their associated images
+- All files must be imported to get your complete blog content
+- Ghost will automatically handle duplicate images across parts
 
 ### Step 3: Verify the Import
 
@@ -99,21 +120,22 @@ Your 11ty blog content was mapped to Ghost as follows:
 **All images are included in this export!**
 
 **Images Included:**
-- **1,550 images** copied from your blog
+- **544 images** copied from your blog (only images used in migrated posts)
 - Images are referenced using Ghost's `__GHOST_URL__` placeholder
 - Ghost will automatically update these to the correct URLs on import
 
 **What's Copied:**
-- Featured images (135 posts have featured images)
+- Featured images from posts
 - Images embedded in post content
-- All images from the `static/images/` directory
-- Images from posts directories
+- Only images actually referenced in migrated posts
+- Images distributed across chunks based on which posts use them
 
 **Image Processing:**
 - All image URLs are automatically converted to Ghost format
 - Duplicate image filenames are handled automatically
-- Images are stored in `ghost-export/content/images/` directory
+- Images are stored in each chunk's `content/images/` directory
 - On import, Ghost will place them in the correct location
+- Same image may appear in multiple chunks if used by posts in different chunks
 
 ## 🏷️ Tags
 
@@ -145,7 +167,7 @@ After import, the following will work automatically:
 - ✅ Posts hidden from homepage via `#migrated` tag
 - ✅ Footnotes removed
 - ✅ Favourite posts excluded
-- ✅ **All 1,550 images** imported and linked correctly
+- ✅ **All 544 images** imported and linked correctly
 - ✅ **Featured images** set automatically
 - ✅ **Images in content** work out of the box
 
@@ -170,9 +192,9 @@ You may want to manually adjust:
 
 ## 📌 Post-Import Checklist
 
-- [ ] Verify post count (should be 1,180)
+- [ ] Verify post count (should be 1,180 across all imports)
 - [ ] Check a few sample posts to ensure formatting is correct
-- [ ] Verify images are displaying correctly (all 1,550 should be imported)
+- [ ] Verify images are displaying correctly (all 544 images should be imported)
 - [ ] Check that featured images appear on posts
 - [ ] Verify tags are all lowercase and properly formatted
 - [ ] Configure theme to hide `#migrated` posts from homepage
@@ -186,15 +208,17 @@ You may want to manually adjust:
 
 **Import fails:**
 - Make sure you're using Ghost 5.x or newer
-- Check that the ZIP file uploaded completely (it's 1.8 GB)
-- If upload fails, try uploading just the JSON file without images
-- If you have multiple JSON parts, import them in order
+- Import files in sequential order (part1, part2, part3, etc.)
+- Each ZIP file is under 100MB, so upload size shouldn't be an issue
+- If a specific part fails, check the Ghost logs for details
+- You can skip a failed part and continue with the next (though you'll miss those posts)
 
 **Images not showing:**
 - Ghost should automatically handle the `__GHOST_URL__` placeholder
 - If images don't appear, check the Ghost content/images directory
-- All images are included in the ZIP file
-- Make sure the ZIP file uploaded completely
+- Each chunk includes only the images used by posts in that chunk
+- Make sure all ZIP files were imported successfully
+- Ghost will handle duplicate images across chunks automatically
 
 **Posts appearing on homepage:**
 - Edit your theme to filter out posts with `#migrated` tag
@@ -220,12 +244,13 @@ Your blog is now ready to import into Ghost! This migration includes:
 - **1,180 posts** from 12+ years of blogging (2013-2025)
 - All content types from your 11ty blog
 - **473 properly formatted tags** (all lowercase)
-- **1,550 images** (all locally stored media from your site)
+- **544 images** (all images used in migrated posts)
 - Complete metadata and relationships
 - **Intelligent micro post titles**
 - **Footnotes removed** for cleaner content
 - **Favourite posts excluded**
 - **Posts hidden from homepage** via `#migrated` tag
+- **7 chunked ZIP files** (all under 100MB for easy import)
 
 Good luck with your Ghost blog!
 
