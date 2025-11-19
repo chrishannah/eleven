@@ -3,7 +3,6 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { randomUUID } from 'crypto';
 import archiver from 'archiver';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -349,7 +348,7 @@ function convertPostToGhost(filePath, postId) {
 
   const post = {
     id: postId,
-    uuid: randomUUID(),
+    uuid: `ghost-${postId}`,
     title: title,
     slug: slug,
     mobiledoc: null,
@@ -438,7 +437,7 @@ async function main() {
 
   console.log('📝 Converting posts...');
   for (const filePath of mdFiles) {
-    const result = convertPostToGhost(filePath, postId.toString());
+    const result = convertPostToGhost(filePath, `ghost-${postId}`);
     if (!result) continue; // Skip favourites
 
     const { post, tags, images, size } = result;
@@ -448,7 +447,7 @@ async function main() {
       if (!tagMap.has(tagName)) {
         const isInternal = tagName.startsWith('#');
         tagMap.set(tagName, {
-          id: `${tagMap.size + 1}`,
+          id: `ghost-tag-${tagMap.size + 1}`,
           name: isInternal ? tagName.substring(1) : tagName,
           slug: (isInternal ? tagName.substring(1) : tagName).toLowerCase().replace(/\s+/g, '-'),
           description: null,
@@ -459,6 +458,7 @@ async function main() {
 
     // Create post-tag relationships
     const postTags = tags.map((tagName, index) => ({
+      id: `ghost-posts-tags-${postId}-${index}`,
       post_id: post.id,
       tag_id: tagMap.get(tagName).id,
       sort_order: index
@@ -466,6 +466,7 @@ async function main() {
 
     // Create post-author relationship
     const postAuthor = {
+      id: `ghost-posts-authors-${postId}`,
       post_id: post.id,
       author_id: '1',
       sort_order: 0
@@ -563,7 +564,35 @@ async function main() {
           posts_meta: chunk.posts_meta,
           tags: chunk.tags,
           posts_tags: chunk.posts_tags,
-          posts_authors: chunk.posts_authors
+          posts_authors: chunk.posts_authors,
+          users: [{
+            id: '1',
+            name: 'Chris Hannah',
+            slug: CONFIG.authorSlug,
+            email: 'chris@chrishannah.me',
+            profile_image: null,
+            cover_image: null,
+            bio: null,
+            website: CONFIG.siteDomain,
+            location: null,
+            accessibility: null,
+            status: 'active',
+            locale: null,
+            visibility: 'public',
+            meta_title: null,
+            meta_description: null,
+            tour: null,
+            last_seen: null,
+            created_at: new Date().toISOString(),
+            created_by: '1',
+            updated_at: new Date().toISOString(),
+            updated_by: '1'
+          }],
+          roles_users: [{
+            id: '1',
+            role_id: '1',
+            user_id: '1'
+          }]
         }
       }]
     };
