@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^21.0.2",
+    "archiver": "^7.0.1",
     "cheerio": "^1.0.0",
     "eleventy-plugin-blog-tools": "^0.4.1",
     "lodash": "^4.17.21",
