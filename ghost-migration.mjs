@@ -438,7 +438,7 @@ async function main() {
 
   console.log('📝 Converting posts...');
   for (const filePath of mdFiles) {
-    const result = convertPostToGhost(filePath, `ghost-${postId}`);
+    const result = convertPostToGhost(filePath, postId.toString());
     if (!result) continue; // Skip favourites
 
     const { post, tags, images, size } = result;
