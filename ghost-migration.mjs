@@ -563,44 +563,7 @@ async function main() {
           posts_meta: chunk.posts_meta,
           tags: chunk.tags,
           posts_tags: chunk.posts_tags,
-          posts_authors: chunk.posts_authors,
-          users: [{
-            id: '1',
-            name: 'Chris Hannah',
-            slug: CONFIG.authorSlug,
-            email: 'chris@chrishannah.me',
-            profile_image: null,
-            cover_image: null,
-            bio: null,
-            website: CONFIG.siteDomain,
-            location: null,
-            accessibility: null,
-            status: 'active',
-            locale: null,
-            visibility: 'public',
-            meta_title: null,
-            meta_description: null,
-            tour: null,
-            last_seen: null,
-            created_at: new Date().toISOString(),
-            created_by: '1',
-            updated_at: new Date().toISOString(),
-            updated_by: '1'
-          }],
-          roles: [{
-            id: '1',
-            name: 'Administrator',
-            description: 'Administrators',
-            created_at: new Date().toISOString(),
-            created_by: '1',
-            updated_at: new Date().toISOString(),
-            updated_by: '1'
-          }],
-          roles_users: [{
-            id: '1',
-            role_id: '1',
-            user_id: '1'
-          }]
+          posts_authors: chunk.posts_authors
         }
       }]
     };
