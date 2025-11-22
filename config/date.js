@@ -9,6 +9,11 @@ const dateFilters = {
 		return moment(date).format("DD MMM YYYY");
 	},
 
+	dayAndMonth: (date) => {
+		return moment(date).format("DD MMM");
+
+	},
+
 	monthNumberToName: (month) => {
 		switch (month) {
 			case 0:

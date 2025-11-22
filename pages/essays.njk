@@ -4,37 +4,41 @@ permalink: essays/
 title: Essays
 ---
 
-{% for post in collections.essay | reverse %}
-  {% set postYear = post
-    .data
-    .date
-    .getFullYear() %}
-  {% if postYear != currentYear %}
-    <h3>{{ postYear }}</h3>
-    <div class="essays-year-group">
-    {% endif %}
+<ul class="archive-list">
 
-    <li>
-      <span class="post-meta monospace-font">{{ post.data.date | fixedDisplayDate }}</span>
-
-<strong>
-      {% if post.data.title %}
-        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
-      {% else %}
-        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+  {% for post in collections.essay | reverse %}
+    {% set postYear = post
+      .data
+      .date
+      .getFullYear() %}
+    {% if postYear != currentYear %}
+      <h3>{{ postYear }}</h3>
+      <div class="essays-year-group">
       {% endif %}
 
-</strong>
-      {% if post.data.summary %}
+      <li>
+        <span class="post-meta monospace-font">{{ post.data.date | dayAndMonth }} ・ </span>
+
+        <strong>
+          {% if post.data.title %}
+            <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
+          {% else %}
+            <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+          {% endif %}
+
+        </strong>
+        {% if post.data.summary %}
        -  {{ post.data.summary }}
-      {% endif %}
+        {% endif %}
 
-      {% if post.data.tags | filterTagList %}
-        {% for tag in post.data.tags | filterTagList %}
-          <span class="post-meta monospace-font">#{{tag}}</span>
-        {% endfor %}
-      {% endif %}
-    </li>
+        {% if post.data.tags | filterTagList %}
+          {% for tag in post.data.tags | filterTagList %}
+            <span class="post-meta monospace-font">#{{tag}}</span>
+          {% endfor %}
+        {% endif %}
+      </li>
 
-    {% set currentYear = postYear %}
-  {% endfor %}
+      {% set currentYear = postYear %}
+    {% endfor %}
+
+  </ul>
