@@ -153,6 +153,9 @@ export default function (eleventyConfig) {
     /* Watch for changes */
     eleventyConfig.addWatchTarget("./assets/css/");
 
+    /* Ignore files in base folder */
+    eleventyConfig.ignores.add("/*.MD");
+
     /* Development mode optimizations */
     if (isDevelopment) {
         // Ignore OG image templates

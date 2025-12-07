@@ -3,11 +3,7 @@
     <img src="{{ post.data.image }}" alt="" class="list-card-image"/>
   {% endif %}
 
-  <div class="post-meta">
-    <p>
-      <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
-    </p>
-  </div>
+  <time class="post-date dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
 
   <div class="content">
     {{ post.content | safe }}

@@ -7,10 +7,7 @@ const numberFilters = {
 	},
 
 	getBlogPermalinkSuffixFromPageNum: (pageNumber) => {
-		if (pageNumber == 0) {
-			return "/";
-		}
-		return "page/" + (pageNumber + 1) + "/";
+		return "/page/" + (pageNumber + 1) + "/";
 	},
 };
 

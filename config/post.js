@@ -1,5 +1,10 @@
 const postFilters = {
 	microExcerpt: (content) => {
+		// Handle undefined or null content
+		if (!content) {
+			return '"..."';
+		}
+
 		try {
 			content = content
 				// Remove HTML tags
