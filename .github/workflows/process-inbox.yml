@@ -1,0 +1,89 @@
+name: Process Inbox
+
+on:
+  push:
+    paths:
+      - 'inbox/*.md'
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Process drafts
+        run: |
+          shopt -s nullglob
+          for draft in inbox/*.md; do
+            [ -f "$draft" ] || continue
+
+            filename=$(basename "$draft")
+            echo "Processing: $filename"
+
+            # Extract title from first H1 (# Title)
+            title=$(grep -m 1 '^# ' "$draft" | sed 's/^# //')
+
+            if [ -z "$title" ]; then
+              echo "No H1 header found in $filename, skipping"
+              continue
+            fi
+
+            echo "Title: $title"
+
+            # Generate slug from title (lowercase, replace non-alphanumeric with hyphens)
+            slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')
+            echo "Slug: $slug"
+
+            # Get current date
+            year=$(date +%Y)
+            month=$(date +%m)
+            date_full=$(date +%Y-%m-%d)
+
+            # Create target directory
+            target_dir="posts/$year/$month"
+            mkdir -p "$target_dir"
+
+            # Generate filename with underscores (matching your convention)
+            slug_snake=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/^_|_$//g')
+            target_file="$target_dir/${slug_snake}.md"
+
+            # Get content after the H1 line
+            content=$(sed '1,/^# /d' "$draft")
+
+            # Build the post with frontmatter
+            cat > "$target_file" << EOF
+---
+title: $title
+date: $date_full
+tags:
+  - post
+layout: layouts/post
+permalink: $slug/
+---
+$content
+EOF
+
+            echo "Created: $target_file"
+
+            # Remove the draft
+            rm "$draft"
+            echo "Removed draft: $draft"
+          done
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          # Check if there are changes to commit
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add posts/ inbox/
+          git commit -m "Publish drafts to posts"
+          git push
