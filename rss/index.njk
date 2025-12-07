@@ -29,7 +29,7 @@ xmlns:atom="http://www.w3.org/2005/Atom">
         <title>{{ post.data.title }}</title>
         <link>{{ absolutePostUrl }}</link>
         <description>
-          <![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]>
+          <![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]>
         </description>
         <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
         <dc:creator>{{ metadata.author.name }}</dc:creator>
