@@ -24,6 +24,9 @@ export default function (eleventyConfig) {
     // Disable this error for the project.
     eleventyConfig.configureErrorReporting({ allowMissingExtensions: true });
 
+    /* Development mode check */
+    const isDevelopment = process.env.ELEVENTY_ENV === 'development';
+
     /* passthrough copy static folders */
     eleventyConfig.addPassthroughCopy({ "static/text-shot": "text-shot" });
     eleventyConfig.addPassthroughCopy({ "static/2020": "2020" });
@@ -37,7 +40,6 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif}");
 
     /* OG Image */
-    const isDevelopment = process.env.ELEVENTY_ENV === 'development';
     eleventyConfig.addPlugin(EleventyPluginOgImage, {
         satoriOptions: {
             fonts: [
@@ -150,6 +152,26 @@ export default function (eleventyConfig) {
 
     /* Watch for changes */
     eleventyConfig.addWatchTarget("./assets/css/");
+
+    /* Development mode optimizations */
+    if (isDevelopment) {
+        // Ignore OG image templates
+        eleventyConfig.ignores.add("**/*.og.njk");
+
+        // Ignore old posts to speed up initial dev build
+        // Comment out the lines below if you need to work on old posts
+        eleventyConfig.ignores.add("posts/2013/**");
+        eleventyConfig.ignores.add("posts/2015/**");
+        eleventyConfig.ignores.add("posts/2016/**");
+        eleventyConfig.ignores.add("posts/2017/**");
+        eleventyConfig.ignores.add("posts/2018/**");
+        eleventyConfig.ignores.add("posts/2019/**");
+        eleventyConfig.ignores.add("posts/2020/**");
+        eleventyConfig.ignores.add("posts/2021/**");
+        eleventyConfig.ignores.add("posts/2022/**");
+        eleventyConfig.ignores.add("posts/2023/**");
+        // Keep 2024 and 2025 for recent posts
+    }
 
     return {
         passthroughFileCopy: true,
