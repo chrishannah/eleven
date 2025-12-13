@@ -13,6 +13,7 @@
     --color-bg: #fafaf8;
     --color-border: #e5e5e0;
     --color-white: #ffffff;
+    --color-code-bg: #f5f5f0;
 
     /* Typography */
     --font-serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
@@ -51,6 +52,19 @@
     /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-base: 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #e5e5e5;
+        --color-secondary: #999;
+        --color-accent: #ff8000;
+        --color-accent-dark: #ff9933;
+        --color-bg: #1a1a1a;
+        --color-border: #333;
+        --color-white: #242424;
+        --color-code-bg: #242424;
+    }
 }
 
 /* Reset & Base Styles */
@@ -182,6 +196,15 @@ nav a {
 nav a:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
+}
+
+nav .nav-separator {
+    color: var(--color-secondary);
+    font-size: var(--text-sm);
+}
+
+nav a.nav-external {
+    color: var(--color-secondary);
 }
 
 nav ul {
