@@ -1,0 +1,12 @@
+{
+    "name": "Chris Hannah",
+    "email": "chris@chrishannah.me",
+    "url": "https://chrishannah.me",
+    "photo": "/cv/profile.jpg",
+    "social": {
+        "mastodon": "https://fosstodon.org/@chrishannah",
+        "twitter": "https://x.com/chrishannah",
+        "github": "https://github.com/chrishannah",
+        "microblog": "https://micro.blog/ChrisHannah"
+    }
+}

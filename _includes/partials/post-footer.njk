@@ -1,0 +1,16 @@
+<div class="post-meta">
+    <p>
+        <a rel="author" class="p-author h-card h-card-hidden" href="{{ author.url }}">{{ author.name }}</a>
+        <a class="u-url" href="{{ url | url }}">Permalink</a>
+        {% if link %}
+            <br/>
+            <a class="u-url" href="{{ link | url }}">Source</a>
+        {% endif %}
+        <br/>
+        <a href="mailto:{{ author.email }}?subject=RE%3A%20{{ title }}">Reply via Email</a>
+    </p>
+</div>
+
+<p>
+    <button class="tinylytics_kudos"></button>
+</p>

@@ -2,6 +2,20 @@ function initLightbox() {
     // Add click listeners to all images except profile images and icons
     const images = document.querySelectorAll('img:not(.u-photo):not([width="24"]):not([height="24"]), img.hero');
 
+    // Single keydown handler for all lightboxes
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape') {
+            const lightbox = document.querySelector('.lightbox');
+            if (lightbox) {
+                lightbox.remove();
+                document.body.classList.remove('lightbox-open');
+            }
+        }
+    }
+
+    // Add keyboard listener once
+    document.addEventListener('keydown', handleEscapeKey);
+
     images.forEach(img => {
         // Make images clickable with a pointer cursor
         img.style.cursor = 'pointer';
@@ -33,14 +47,6 @@ function initLightbox() {
             lightbox.addEventListener('click', function(e) {
                 if (e.target === lightbox) {
                     this.remove();
-                    document.body.classList.remove('lightbox-open');
-                }
-            });
-
-            // Add keyboard support for closing
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    lightbox.remove();
                     document.body.classList.remove('lightbox-open');
                 }
             });

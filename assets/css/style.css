@@ -700,11 +700,8 @@ button:hover {
 }
 
 /* Microformats (hidden elements) */
-.h-card,
-.p-author,
-.u-url[style*="display: none"],
-.u-url[hidden] {
-    /* Keep hidden as needed for microformats */
+.h-card-hidden {
+    display: none;
 }
 
 /* Responsive Design */

@@ -28,13 +28,10 @@ export default function (eleventyConfig) {
     const isDevelopment = process.env.ELEVENTY_ENV === 'development';
 
     /* passthrough copy static folders */
-    eleventyConfig.addPassthroughCopy({ "static/text-shot": "text-shot" });
-    eleventyConfig.addPassthroughCopy({ "static/2020": "2020" });
-    eleventyConfig.addPassthroughCopy({ "static/cv": "cv" });
-    eleventyConfig.addPassthroughCopy({ "static/prntsc": "prntsc" });
-    eleventyConfig.addPassthroughCopy({ "static/fonts": "fonts" });
-    eleventyConfig.addPassthroughCopy({ "static/images": "images" });
-    eleventyConfig.addPassthroughCopy({ "static/videos": "videos" });
+    const staticFolders = ["text-shot", "2020", "cv", "prntsc", "fonts", "images", "videos"];
+    staticFolders.forEach(folder => {
+        eleventyConfig.addPassthroughCopy({ [`static/${folder}`]: folder });
+    });
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
 
     eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif}");
@@ -163,18 +160,13 @@ export default function (eleventyConfig) {
         eleventyConfig.ignores.add("**/*.og.njk");
 
         // Ignore old posts to speed up initial dev build
-        // Comment out the lines below if you need to work on old posts
-        eleventyConfig.ignores.add("posts/2013/**");
-        eleventyConfig.ignores.add("posts/2015/**");
-        eleventyConfig.ignores.add("posts/2016/**");
-        eleventyConfig.ignores.add("posts/2017/**");
-        eleventyConfig.ignores.add("posts/2018/**");
-        eleventyConfig.ignores.add("posts/2019/**");
-        eleventyConfig.ignores.add("posts/2020/**");
-        eleventyConfig.ignores.add("posts/2021/**");
-        eleventyConfig.ignores.add("posts/2022/**");
-        eleventyConfig.ignores.add("posts/2023/**");
-        // Keep 2024 and 2025 for recent posts
+        // Only build posts from the last 2 years
+        const currentYear = new Date().getFullYear();
+        const oldYears = [2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+            .filter(year => year < currentYear - 1);
+        oldYears.forEach(year => {
+            eleventyConfig.ignores.add(`posts/${year}/**`);
+        });
     }
 
     return {
