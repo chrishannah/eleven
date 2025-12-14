@@ -4,28 +4,52 @@
 		width: 100%;
 		display: flex;
 		flexDirection: column;
-		alignItems: center;
+		justifyContent: space-between;
+		backgroundColor: #fafaf8;
+		fontFamily: Inter;
+		padding: 60;
+	}
+	.content {
+		display: flex;
+		flexDirection: column;
+		flex: 1;
 		justifyContent: center;
-		backgroundColor: #ffffff;
-		fontSize: 80;
-		fontWeight: 600;
-		color: rgb(25,25,25);
-		padding: 40;
-		textAlign: center;
-
 	}
 	.title {
-		marginTop: 40;
-		fontSize: 80;
+		fontSize: 72;
+		fontWeight: 500;
+		color: #1a1a1a;
+		lineHeight: 1.2;
+	}
+	.date {
+		marginTop: 24;
+		fontSize: 28;
+		color: #666;
+	}
+	.footer {
+		display: flex;
+		justifyContent: space-between;
+		alignItems: center;
+		borderTop: 2px solid #e5e5e0;
+		paddingTop: 30;
 	}
 	.site {
-		marginTop: 80;
-		fontSize: 40;
+		fontSize: 32;
 		color: #ff8000;
-		fontWeight: 1000;
+		fontWeight: 500;
+	}
+	.url {
+		fontSize: 28;
+		color: #666;
 	}
 </style>
 <div class="root">
-	<div class="title">{{ title }}</div>
-	<div class="site">Chris Hannah</div>
+	<div class="content">
+		<div class="title">{{ title }}</div>
+		{% if date %}<div class="date">{{ date | readableDate }}</div>{% endif %}
+	</div>
+	<div class="footer">
+		<div class="site">Chris Hannah</div>
+		<div class="url">chrishannah.me</div>
+	</div>
 </div>
