@@ -151,8 +151,13 @@ export default function (eleventyConfig) {
     /* Watch for changes */
     eleventyConfig.addWatchTarget("./assets/css/");
 
-    /* Ignore files in base folder */
-    eleventyConfig.ignores.add("/*.MD");
+    /* Ignore directories and files not needed for the build */
+    eleventyConfig.ignores.add("*.md");
+    eleventyConfig.ignores.add("*.MD");
+    eleventyConfig.ignores.add("inbox/**");
+    eleventyConfig.ignores.add("blog-editor/**");
+    eleventyConfig.ignores.add("api/**");
+    eleventyConfig.ignores.add("ghost-export/**");
 
     /* Development mode optimizations */
     if (isDevelopment) {
@@ -172,7 +177,11 @@ export default function (eleventyConfig) {
     return {
         passthroughFileCopy: true,
         dir: {
+            input: ".",
             output: "public",
+            includes: "_includes",
+            data: "_data",
         },
+        templateFormats: ["njk", "md", "liquid"],
     };
 }
