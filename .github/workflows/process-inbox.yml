@@ -55,8 +55,8 @@ jobs:
 
             # Build the post with frontmatter
             printf '%s\n' "---" "title: $title" "date: $date_full" "tags:" "  - post" "layout: layouts/post" "permalink: $slug/" "---" > "$target_file"
-            # Append content after the H1 line
-            sed '1,/^# /d' "$draft" >> "$target_file"
+            # Append content after the first line (the H1)
+            tail -n +2 "$draft" >> "$target_file"
 
             echo "Created: $target_file"
 
