@@ -53,21 +53,19 @@ jobs:
             slug_snake=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g; s/^_|_$//g')
             target_file="$target_dir/${slug_snake}.md"
 
-            # Get content after the H1 line
-            content=$(sed '1,/^# /d' "$draft")
-
-            # Build the post with frontmatter
-            {
-              echo "---"
-              echo "title: $title"
-              echo "date: $date_full"
-              echo "tags:"
-              echo "  - post"
-              echo "layout: layouts/post"
-              echo "permalink: $slug/"
-              echo "---"
-              echo "$content"
-            } > "$target_file"
+            # Build the post with frontmatter, then append content
+            cat > "$target_file" << FRONTMATTER
+---
+title: $title
+date: $date_full
+tags:
+  - post
+layout: layouts/post
+permalink: $slug/
+---
+FRONTMATTER
+            # Append content after the H1 line
+            sed '1,/^# /d' "$draft" >> "$target_file"
 
             echo "Created: $target_file"
 
