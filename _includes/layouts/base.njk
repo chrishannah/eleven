@@ -57,11 +57,12 @@
             <meta property="og:image" content="{{ image }}">
             <meta property="twitter:image" content="{{ image }}">
             <meta property="twitter:card" content="summary_large_image">
+        {% elif title and env.ELEVENTY_ENV != 'development' %}
+            <meta property="og:image" content="https://chrishannah.me/api/og?title={{ title | urlencode }}">
+            <meta property="twitter:image" content="https://chrishannah.me/api/og?title={{ title | urlencode }}">
+            <meta property="twitter:card" content="summary_large_image">
         {% else %}
             <meta property="twitter:card" content="summary">
-            {% if title %}
-                {% ogImage "_includes/images/og-image.og.njk", { title:  title } %}
-            {% endif %}
         {% endif %}
 
         {% if title %}

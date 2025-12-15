@@ -3,3 +3,5 @@ public/
 posts/.obsidian/
 .claude
 inbox/.obsidian
+.vercel
+.env*.local

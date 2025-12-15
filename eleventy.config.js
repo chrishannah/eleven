@@ -1,5 +1,4 @@
 import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
-import EleventyPluginOgImage from "eleventy-plugin-og-image";
 import dateFilters from "./config/date.js";
 import numberFilters from "./config/number.js";
 import postFilters from "./config/post.js";
@@ -7,7 +6,6 @@ import blogTools from "eleventy-plugin-blog-tools";
 import { inspect } from "node:util";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginIcons from "eleventy-plugin-icons";
-import fs from "node:fs";
 import markdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
 
@@ -35,21 +33,6 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
 
     eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif}");
-
-    /* OG Image */
-    eleventyConfig.addPlugin(EleventyPluginOgImage, {
-        satoriOptions: {
-            fonts: [
-                {
-                    name: "Inter",
-                    data: fs.readFileSync("./static/fonts/Inter-Regular.ttf"),
-                    weight: 400,
-                    style: "normal",
-                },
-            ],
-        },
-        generateOnBuild: !isDevelopment, // Skip generation in development mode
-    });
 
     /* Collections */
     eleventyConfig.addCollection("all", function (collectionApi) {
@@ -161,9 +144,6 @@ export default function (eleventyConfig) {
 
     /* Development mode optimizations */
     if (isDevelopment) {
-        // Ignore OG image templates
-        eleventyConfig.ignores.add("**/*.og.njk");
-
         // Ignore old posts to speed up initial dev build
         // Only build posts from the last 2 years
         const currentYear = new Date().getFullYear();
