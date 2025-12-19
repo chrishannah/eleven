@@ -4,15 +4,12 @@ layout: layouts/page.njk
 permalink: subscribe/
 ---
 
-You can subscribe to the whole website, including blog posts, micro posts, and essays via the main RSS feed at [chrishannah.me/index.xml][all].
+You can subscribe to this blog using an RSS reader. Choose from the feeds below depending on what content you'd like to follow.
 
-However, if you want to only subscribe to a specific type of content, then you can do so with these RSS feeds:
+The main feed includes blog posts, micro posts, and essays: [chrishannah.me/feed](feed://chrishannah.me/feed)
 
-- Blog Posts - [/posts.xml][posts]
-- Micro Posts - [/micro.xml][micro]
-- Essays - [essays.xml][essays]
+If you'd prefer to subscribe to specific types of content:
 
-[all]: https://chrishannah.me/index.xml
-[posts]: https://chrishannah.me/posts.xml
-[micro]: https://chrishannah.me/micro.xml
-[essays]: https://chrishannah.me/essays.xml
+- **Blog Posts**: [chrishannah.me/feed/posts](feed://chrishannah.me/feed/posts)
+- **Micro Posts**: [chrishannah.me/feed/micro](feed://chrishannah.me/feed/micro)
+- **Essays**: [chrishannah.me/feed/essays](feed://chrishannah.me/feed/essays)
