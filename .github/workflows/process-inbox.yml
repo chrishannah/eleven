@@ -3,7 +3,7 @@ name: Process Inbox
 on:
   push:
     paths:
-      - 'inbox/*.md'
+      - 'inbox/*'
     branches:
       - master
 
@@ -20,6 +20,13 @@ jobs:
       - name: Process drafts
         run: |
           shopt -s nullglob
+
+          # Get current date info (same for all files in this run)
+          year=$(date +%Y)
+          month=$(date +%m)
+          date_full=$(date +%Y-%m-%d)
+          target_dir="posts/$year/$month"
+
           for draft in inbox/*.md; do
             [ -f "$draft" ] || continue
 
@@ -40,13 +47,7 @@ jobs:
             slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')
             echo "Slug: $slug"
 
-            # Get current date
-            year=$(date +%Y)
-            month=$(date +%m)
-            date_full=$(date +%Y-%m-%d)
-
             # Create target directory
-            target_dir="posts/$year/$month"
             mkdir -p "$target_dir"
 
             # Generate filename with underscores (matching your convention)
@@ -63,6 +64,18 @@ jobs:
             # Remove the draft
             rm "$draft"
             echo "Removed draft: $draft"
+          done
+
+          # Move any remaining files (images) to the target directory
+          for file in inbox/*; do
+            [ -f "$file" ] || continue
+
+            filename=$(basename "$file")
+            echo "Moving image: $filename to $target_dir/"
+
+            mkdir -p "$target_dir"
+            mv "$file" "$target_dir/"
+            echo "Moved: $filename"
           done
 
       - name: Commit and push changes
