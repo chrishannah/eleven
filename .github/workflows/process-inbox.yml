@@ -26,6 +26,7 @@ jobs:
           month=$(date +%m)
           date_full=$(date +%Y-%m-%d)
           target_dir="posts/$year/$month"
+          image_path="/$year/$month"
 
           for draft in inbox/*.md; do
             [ -f "$draft" ] || continue
@@ -56,8 +57,10 @@ jobs:
 
             # Build the post with frontmatter
             printf '%s\n' "---" "title: $title" "date: $date_full" "tags:" "  - post" "layout: layouts/post" "permalink: $slug/" "---" > "$target_file"
-            # Append content after the first line (the H1)
-            tail -n +2 "$draft" >> "$target_file"
+
+            # Append content after the first line (the H1), rewriting image paths
+            # Convert ![](image.png) to ![](/YYYY/MM/image.png)
+            tail -n +2 "$draft" | sed -E "s|!\[([^]]*)\]\(([^/)][^)]*\.(png|jpg|jpeg|gif|webp))\)|![\1](${image_path}/\2)|g" >> "$target_file"
 
             echo "Created: $target_file"
 
