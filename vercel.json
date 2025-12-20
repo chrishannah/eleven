@@ -1,18 +1,16 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "redirects": [
-    { "source": "/index.xml", "destination": "/feed", "permanent": true },
-    { "source": "/rss", "destination": "/feed", "permanent": true },
-    { "source": "/essays.xml", "destination": "/feed/essays", "permanent": true },
-    { "source": "/posts.xml", "destination": "/feed/posts", "permanent": true },
-    { "source": "/micro.xml", "destination": "/feed/micro", "permanent": true }
-  ],
   "rewrites": [
     { "source": "/feed", "destination": "/feed/index.xml" },
     { "source": "/feed/essays", "destination": "/feed/essays/index.xml" },
     { "source": "/feed/posts", "destination": "/feed/posts/index.xml" },
     { "source": "/feed/micro", "destination": "/feed/micro/index.xml" },
+    { "source": "/index.xml", "destination": "/feed/index.xml" },
+    { "source": "/rss", "destination": "/feed/index.xml" },
+    { "source": "/essays.xml", "destination": "/feed/essays/index.xml" },
+    { "source": "/posts.xml", "destination": "/feed/posts/index.xml" },
+    { "source": "/micro.xml", "destination": "/feed/micro/index.xml" },
     { "source": "/api/og", "destination": "/api/og" }
   ]
 }
