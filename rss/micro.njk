@@ -25,14 +25,9 @@
 		{% for post in collections.micro | reverse | limit(20) %}
 			{%- set absolutePostUrl=post.url | absoluteUrl(metadata.url) %}
 			<item>
-				<title>{{ post.data.title }}</title>
+				<title><![CDATA[{{ post.data.title }}]]></title>
 				<link>{{ absolutePostUrl }}</link>
-				<description>
-					{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}
-					{% if permalink %}
-						<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ permalink }}" alt="" style="width:1px;height:1px;border:0;"/>
-					{% endif %}
-				</description>
+				<description><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]></description>
 				<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
 				<dc:creator>{{ metadata.author.name }}</dc:creator>
 				<guid>{{ absolutePostUrl }}</guid>
