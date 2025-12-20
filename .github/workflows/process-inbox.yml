@@ -60,7 +60,7 @@ jobs:
 
             # Append content after the first line (the H1), rewriting image paths
             # Convert ![](image.png) to ![](/YYYY/MM/image.png)
-            tail -n +2 "$draft" | sed -E "s|!\[([^]]*)\]\(([^/)][^)]*\.(png|jpg|jpeg|gif|webp))\)|![\1](${image_path}/\2)|g" >> "$target_file"
+            tail -n +2 "$draft" | sed -E "s#!\[([^]]*)\]\(([^/)][^)]*\.(png|jpg|jpeg|gif|webp))\)#![\1](${image_path}/\2)#g" >> "$target_file"
 
             echo "Created: $target_file"
 
