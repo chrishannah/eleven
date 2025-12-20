@@ -57,7 +57,7 @@ So now, if I want to quickly post something to the blog, I just need to create a
 
 In fact, the [last post][lp] on this blog was published via this Git action.
 
-And now with this post, the inbox processing feature will also handle images. I simply gave it an example scenario of placing 2 files in the inbox folder, `post.md` and `image.jpeg` and the post contents having the image referenced as `![](image.jpeg)`. From that, it updated the script to move the images to the correct location, ensuring that the relative link will work.
+And now with this post, the inbox processing feature will also handle images. I simply gave it an example scenario of placing 2 files in the inbox folder, `post.md` and `image.jpeg` and the post contents having the image referenced as `![](/2025/12/image.jpeg)`. From that, it updated the script to move the images to the correct location, ensuring that the relative link will work.
 
 ## Home Page Excerpts
 
