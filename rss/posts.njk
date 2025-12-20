@@ -28,7 +28,7 @@
 				<title><![CDATA[{{ post.data.title }}]]></title>
 				<link>{{ absolutePostUrl }}</link>
 				<description>{{ post.templateContent | striptags | truncate(200) }}</description>
-				<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]></content:encoded>
+				<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | safe }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]></content:encoded>
 				<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
 				<dc:creator>{{ metadata.author.name }}</dc:creator>
 				<guid>{{ absolutePostUrl }}</guid>
