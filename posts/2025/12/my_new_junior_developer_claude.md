@@ -21,21 +21,21 @@ Once I had that design style document ready, I used Claude Code to first create 
 
 After not much time, I had a new site design that I was very happy with.
 
-![](/2025/12/redesign-1.png)
+![](/posts/2025/12/redesign-1.png)
 
-![](/2025/12/redesign-2.png)
+![](/posts/2025/12/redesign-2.png)
 
-![](/2025/12/redesign-3.png)
+![](/posts/2025/12/redesign-3.png)
 
 Once the site was built, it was quite easy to make small additions such as dark mode, better fonts, etc. The understanding of the code and context around what the site is still impresses me. The fact that I can say "change the nav bar on the home page to X", and it can work out what file and bit of code to change is pretty cool.
 
 ## Open Graph Images
 
-The next thing I tackled was the [open graph images][og] that are generated for each blog post, which are displayed when posting to social media. I had built something before for this, but I was never happy with it. 
+The next thing I tackled was the [open graph images][og] that are generated for each blog post, which are displayed when posting to social media. I had built something before for this, but I was never happy with it.
 
 So first I asked Claude to redesign the image to fit with the theme's colours, ensuring that the post title, site title, and site url are in the image. It came up with something simple, and I thought it was good enough for now. It's not spectacular, but it's clear, and it fits with the site's design.
 
-![](/2025/12/og.png)
+![](/posts/2025/12/og.png)
 
 Once it was being generated, I was asking it many questions about how it could be refactored to make it faster, not always generated locally, and a few other improvements. In the end, it swapped out the existing image generation which was creating a static image for every post, for a Vercel serverless function that dynamically generates the OG image based on the post title being passed as a parameter.
 
@@ -43,7 +43,7 @@ Under the hood it uses [Satori][st] to generate the images. After they're genera
 
 ## Post Inbox
 
-The next thing I asked Claude was to come up with ideas on how I could make posting to this blog easier. 
+The next thing I asked Claude was to come up with ideas on how I could make posting to this blog easier.
 
 At the core, every post on this blog comes from a Markdown file in a specific folder structure, with some frontmatter to control things like the permalink, layout, tags, etc. It's then deployed via Vercel after detecting changes in the Git repo.
 
@@ -63,20 +63,20 @@ And now with this post, the inbox processing feature will also handle images. I 
 
 When the home page was initially built, the blog section was just a list of titles, without any content. And while I liked the minimal style, sometimes a title can't capture the meaning of a post. So I decided I wanted a short excerpt displayed, just to give a quick feel of what the post is about.
 
-![](/2025/12/excerpt.png)
+![](/posts/2025/12/excerpt.png)
 
 There was a bit of trial and error to get it looking right. But in the end it looks like this:
 
 1. Clean up the whitespace, remove HTML tags and Markdown formatting.
 2. If content is shorter than max excerpt size (300 characters) simply use that.
 3. If the excerpt ends mid-word, cut to the previous word.
-4. If the final line of the excerpt is less than 30 characters, remove it. 
+4. If the final line of the excerpt is less than 30 characters, remove it.
 
 I expect in the future I will add a way to add a specific excerpt divider in a post. But at least this gives me a good default behaviour.
 
 ## RSS Feed Optimisation
 
-This was a small task I completed with Claude today. I had a few different RSS feeds being generated for this blog, including a few duplicates of the main feed that were due to previous blog platform migrations. 
+This was a small task I completed with Claude today. I had a few different RSS feeds being generated for this blog, including a few duplicates of the main feed that were due to previous blog platform migrations.
 
 I wanted to clean it up, so I first asked Claude to analyse what RSS feeds were being generated. It found 5:
 
@@ -98,7 +98,7 @@ That seemed a bit ugly to me, so I asked it to restructure to only generate 4 ac
 
 Claude changed the feed generation to use these new outputs, and updated the Vercel configuration to rewrite these feeds to the older locations so nothing breaks.
 
-At the same time, the RSS feeds were updated to follow the RSS specification. 
+At the same time, the RSS feeds were updated to follow the RSS specification.
 
 
 
