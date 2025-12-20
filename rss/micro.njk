@@ -15,7 +15,7 @@
 }
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="{{ metadata.url }}" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xml:base="{{ metadata.url }}" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>{{ metadata.title }}</title>
 		<link>{{ metadata.url }}</link>
@@ -27,7 +27,8 @@
 			<item>
 				<title><![CDATA[{{ post.data.title }}]]></title>
 				<link>{{ absolutePostUrl }}</link>
-				<description><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]></description>
+				<description>{{ post.templateContent | striptags | truncate(200) }}</description>
+				<content:encoded><![CDATA[{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}<img src="https://tinylytics.app/pixel/e7KoNsv_jq9FizddEYyk.gif?path={{ post.url }}" alt="" style="width:1px;height:1px;border:0;"/>]]></content:encoded>
 				<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
 				<dc:creator>{{ metadata.author.name }}</dc:creator>
 				<guid>{{ absolutePostUrl }}</guid>
