@@ -1,0 +1,9 @@
+https://neatnik.net/calendar/?year=2026
+# Printable Year Calendar
+
+> If you print this page, you’ll get a nifty calendar that displays all of the year’s dates on a single page. It will automatically fit on a single sheet of paper of any size. For best results, adjust your print settings to landscape orientation and disable the header and footer.
+
+I just came across this via Hacker News. It seems to scale and adapt well to any
+size and orientation.
+
+I think I may end up printing this out at work. Could be a good way to visualise the year.
