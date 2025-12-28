@@ -58,6 +58,26 @@
             </header>
 
             <main>
+                <section class="links-section">
+                    <h2>Links</h2>
+                    <ul class="link-list">
+                        {% set recentLinks = collections.link | reverse | limit(5) %}
+                        {% for post in recentLinks %}
+                            <li>
+                                <a href="{{ post.url }}">{{ post.data.title }}</a>
+                                <a href="{{ post.data.link }}" class="external-link" title="Visit original" aria-label="Visit original">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                        <polyline points="15 3 21 3 21 9"/>
+                                        <line x1="10" y1="14" x2="21" y2="3"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="/links/" class="section-more">All Links →</a>
+                </section>
+
                 <section class="writing-section">
                     <h2>Writing</h2>
                     <div class="blog-nav">
@@ -67,7 +87,7 @@
                     </div>
 
                     <div class="recent-posts">
-                        {% set recentPosts = collections.all | reverse | limit(8) %}
+                        {% set recentPosts = collections.post | reverse | limit(5) %}
                         {% for post in recentPosts %}
                             <article class="post-item">
                                 <time class="post-date" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
