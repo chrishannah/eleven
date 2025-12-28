@@ -1,0 +1,101 @@
+name: Process Link Posts
+
+on:
+  push:
+    paths:
+      - 'inbox-links/*'
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Process link posts
+        run: |
+          shopt -s nullglob
+
+          for draft in inbox-links/*.md; do
+            [ -f "$draft" ] || continue
+
+            filename=$(basename "$draft")
+            echo "Processing: $filename"
+
+            # Get current date/time info
+            year=$(date +%Y)
+            month=$(date +%m)
+            datetime=$(date +%Y-%m-%d\ %H:%M:%S)
+            slug=$(date +%Y-%m-%d-%H-%M)
+            target_dir="posts/$year/$month"
+
+            # Extract URL from first line
+            link_url=$(head -n 1 "$draft")
+
+            if [ -z "$link_url" ]; then
+              echo "No URL found on first line of $filename, skipping"
+              continue
+            fi
+
+            echo "Link URL: $link_url"
+
+            # Extract title from H1 on second line
+            title=$(sed -n '2p' "$draft" | sed 's/^# //')
+
+            if [ -z "$title" ]; then
+              echo "No H1 header found on line 2 of $filename, skipping"
+              continue
+            fi
+
+            echo "Title: $title"
+
+            # Create target directory
+            mkdir -p "$target_dir"
+
+            target_file="$target_dir/${slug}.md"
+
+            # Build the post with frontmatter
+            cat > "$target_file" << EOF
+          ---
+          categories:
+          - link
+          date: $datetime
+          layout: layouts/link
+          permalink: link/$slug/
+          tags:
+          - link
+          link: $link_url
+          title: $title
+          ---
+
+          EOF
+
+            # Append content after line 2 (skip URL and title)
+            tail -n +3 "$draft" >> "$target_file"
+
+            echo "Created: $target_file"
+
+            # Remove the draft
+            rm "$draft"
+            echo "Removed draft: $draft"
+          done
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          # Check if there are changes to commit
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add posts/ inbox-links/
+          git commit -m "Publish link post"
+          git push
