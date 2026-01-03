@@ -1,11 +1,4 @@
----
-title: Clicks Communicator
-date: 2026-01-03
-tags:
-  - post
-layout: layouts/post
-permalink: clicks-communicator/
----
+https://clicksphone.com/en/communicator
 
 # Clicks Communicator
 
