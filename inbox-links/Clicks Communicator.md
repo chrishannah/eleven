@@ -1,5 +1,4 @@
 https://clicksphone.com/en/communicator
-
 # Clicks Communicator
 
 [Clicks](https://clicksphone.com/en/communicator):
@@ -10,7 +9,7 @@ https://clicksphone.com/en/communicator
 
 That tagline definitely got my attention.
 
-Based on the design and some of the copy, it made me think it was a more focused phone. 
+Based on the design and some of the copy, it made me think it was a more focused phone.
 
 It's noticeably smaller, there's a smaller screen, physical keyboard, single camera, and a headphone jack.
 
@@ -20,6 +19,6 @@ I don't see why it couldn't be used as a primary phone, but the second-phone ide
 
 Nevertheless, I'm still interested.
 
-There's a possibility that this idea of a dedicated device will fit into the growing use of other dedicated devices, such as iPods, cameras, etc. 
+There's a possibility that this idea of a dedicated device will fit into the growing use of other dedicated devices, such as iPods, cameras, etc.
 
 It's obviously still a smartphone, but it's at least targeted as being a dedicated communication device, rather than an all-purpose handheld computer. The question is, will that actually make a difference?
