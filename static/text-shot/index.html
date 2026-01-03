@@ -1,173 +1,172 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<title>Text Shot</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="keywords" content="app,utility,text shot,image,share" />
-		<meta name="theme-color" content="#fffdfb" media="(prefers-color-scheme: light)">
-		<meta name="theme-color" content="#1d1d1d" media="(prefers-color-scheme: dark)">
-		<script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js" defer></script>
+<head>
+	<title>Text Shot</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="app,utility,text shot,image,share" />
+	<meta name="theme-color" content="#fffdfb" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#1d1d1d" media="(prefers-color-scheme: dark)">
+	<script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js" defer></script>
 
-		<style>
+	<style>
+		:root {
+			--accent: #FF8100;
+			--bg: #fffdfb;
+			--link: var(--accent);
+			--link-visited: var(--accent);
+			--link-active: var(--accent);
+			--code-background: rgb(255, 245, 234);
+			--code-text: rgb(211, 31, 31);
+			--hr: #908a83;
+			--table-border: rgb(240, 240, 240);
+			--table-head-bg: rgb(240, 240, 240);
+			--table-row-bg: rgb(255, 245, 234);
+			--table-row-bg-alt: rgb(250, 250, 250);
+			--site-title: rgb(105, 105, 105);
+			--text: rgb(25, 25, 25);
+			--quote-text: rgb(75, 75, 75);
+			--quote-background: rgb(255, 245, 234);
+			--image-frame: rgb(255, 245, 234);
+			--meta-text: rgb(75, 75, 75);
+			--heading-text: rgb(73, 73, 73);
+			--sans-serif: system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+			--serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, serif;
+			--monospace: Consolas, monaco, monospace;
+		}
+
+		@media (prefers-color-scheme: dark) {
 			:root {
-				--accent: #FF8100;
-				--bg: #fffdfb;
-				--link: var(--accent);
-				--link-visited: var(--accent);
-				--link-active: var(--accent);
-				--code-background: rgb(255, 245, 234);
-				--code-text: rgb(211, 31, 31);
-				--hr: #908a83;
-				--table-border: rgb(240, 240, 240);
-				--table-head-bg: rgb(240, 240, 240);
-				--table-row-bg: rgb(255, 245, 234);
-				--table-row-bg-alt: rgb(250, 250, 250);
-				--site-title: rgb(105, 105, 105);
-				--text: rgb(25, 25, 25);
-				--quote-text: rgb(75, 75, 75);
-				--quote-background: rgb(255, 245, 234);
-				--image-frame: rgb(255, 245, 234);
-				--meta-text: rgb(75, 75, 75);
-				--heading-text: rgb(73, 73, 73);
-				--sans-serif: system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-				--serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, serif;
-				--monospace: Consolas, monaco, monospace;
+				/* Colours */
+				--bg: #1d1d1d;
+				--hr: rgb(67, 67, 67);
+				--table-border: rgb(37, 37, 37);
+				--table-head-bg: rgb(37, 37, 37);
+				--table-row-bg: rgb(65, 65, 65);
+				--table-row-bg-alt: rgb(50, 50, 50);
+				--site-title: rgb(255, 255, 255);
+				--text: rgb(255, 255, 255);
+				--quote-text: rgb(166, 166, 166);
+				--quote-background: rgb(68, 64, 60);
+				--image-frame: rgb(11, 11, 11);
+				--meta-text: rgb(171, 171, 171);
+				--heading-text: rgb(228, 224, 224);
 			}
+		}
 
-			@media (prefers-color-scheme: dark) {
-				:root {
-					/* Colours */
-					--bg: #1d1d1d;
-					--hr: rgb(67, 67, 67);
-					--table-border: rgb(37, 37, 37);
-					--table-head-bg: rgb(37, 37, 37);
-					--table-row-bg: rgb(65, 65, 65);
-					--table-row-bg-alt: rgb(50, 50, 50);
-					--site-title: rgb(255, 255, 255);
-					--text: rgb(255, 255, 255);
-					--quote-text: rgb(166, 166, 166);
-					--quote-background: rgb(68, 64, 60);
-					--image-frame: rgb(11, 11, 11);
-					--meta-text: rgb(171, 171, 171);
-					--heading-text: rgb(228, 224, 224);
-				}
-			}
+		/* Global */
+		html {
+			background-color: var(--bg);
+			line-height: 1.75;
+			font-size: 1.05rem;
+			color: var(--text);
+			font-family: var(--serif);
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			font-smooth: auto;
+		}
 
-			/* Global */
-			html {
-				background-color: var(--bg);
-				line-height: 1.75;
-				font-size: 1.05rem;
-				color: var(--text);
-				font-family: var(--serif);
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-				font-smooth: auto;
-			}
+		body {
+			max-width: 80ch;
+			padding: 3em 1em;
+			margin: auto;
+		}
 
-			body {
-				max-width: 80ch;
-				padding: 3em 1em;
-				margin: auto;
-			}
+		/* Headings */
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: var(--serif);
+			color: var(--heading-text);
+		}
 
-			/* Headings */
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-family: var(--serif);
-				color: var(--heading-text);
-			}
+		/* Links */
+		a:link {
+			color: var(--link);
+		}
 
-			/* Links */
-			a:link {
-				color: var(--link);
-			}
+		a:visited {
+			color: var(--link-visited);
+		}
 
-			a:visited {
-				color: var(--link-visited);
-			}
+		a:active {
+			color: var(--link-active);
+		}
 
-			a:active {
-				color: var(--link-active);
-			}
+		#icon {
+			max-width: 120px;
+		}
 
-			#icon {
-				max-width: 120px;
-			}
+		img,
+		video {
+			height: auto;
+			width: auto;
+			max-width: 100%;
+		}
 
-			img,
-			video {
-				height: auto;
-				width: auto;
-				max-width: 100%;
-			}
+		.button {
+			background-color: #AE321E;
+			border: none;
+			border-radius: 8px;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			cursor: pointer;
+			line-height: 1.75;
+			font-size: 1.05rem;
+			font-family: var(--serif);
+		}
+	</style>
+</head>
 
-			.button {
-				background-color: #AE321E;
-				border: none;
-				border-radius: 8px;
-				color: white;
-				padding: 15px 32px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				cursor: pointer;
-				line-height: 1.75;
-				font-size: 1.05rem;
-				font-family: var(--serif);
-			}
+<body>
+	<img src="/text-shot/images/icon.png" id="icon" />
+	<h1>Text Shot</h1>
+	<p><a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot</a> is a universal
+		(iOS/iPadOS/macOS) application that lets you take text snippets and create beautiful
+		shareable images (text shots).</p>
 
-		</style>
-	</head>
+	<p>You can add a title, source, author, and the quote, or just a few of them!</p>
+	<p>From there, you can choose a theme, font, and a size, to customise how each text shot looks.</p>
+	<p>It also supports styling your text with bold and italics using the Markdown syntax.</p>
+	<p>Check out <a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot on the App Store!</a></p>
+	<h2>Shortcuts Integration</h2>
+	<p>You can also find all of this functionality inside of a "Create Text Shot" action in the Shortcuts app. Which
+		means, you can even build your own automations to make the process of creating and sharing your text shots
+		even easier.</p>
+	<p><a href="https://www.icloud.com/shortcuts/21943fefb09a4dc8bbe317c8ed2010f5">Download the example
+			Shortcut</a>.</p>
+	<h2>Pricing</h2>
+	<p>Text Shot costs £2.99/$2.99/€2.99, and will come as a universal
+		(iOS/iPadOS/macOS) app.</p>
+	<h2>Reviews</h2>
+	<p><em>"Text Shot follows Text Case as an indispensable tool in dealing with text."</em> - <a
+			href="https://www.iphoneblog.de/2023/06/21/text-shot-sperrt-buchstaben-in-ein-png/">iPhoneBlog.de</a>
+	</p>
+	<p><em>"The new App Text Shot creates beautifully prepared images from quotes."</em> - <a
+			href="https://www.wuv.de/Themen/Tech/App-Tipps-zum-Wochenende-Lyd-Text-Shot-und-Rapid-Reminders">W&V</a>
+	</p>
+	<p><em>"Text Shot shares selected texts as graphics."</em> - <a
+			href="https://www.ifun.de/text-shot-teilt-ausgewaehlte-texte-als-grafiken-212378/">ifun.de</a>
+	</p>
+	<h2>Screenshots</h2>
+	<h2>Screenshots</h2>
+	<h3>iPhone</h3>
+	<a href="/text-shot/images/iphone.jpg"><img src="/text-shot/images/iphone-small.jpg" /></a>
+	<h3>iPad</h3>
+	<a href="/text-shot/images/ipad.jpg"><img src="/text-shot/images/ipad-small.jpg" /></a>
+	<h3>Mac</h3>
+	<a href="/text-shot/images/mac.jpg"><img src="/text-shot/images/mac-small.jpg" /></a>
+	<h2>More Information</h2>
+	<p>For information on Text Shot, information on upcoming features, or for a chance to give some feedback, you
+		can <a rel="me" href="https://fosstodon.org/@chrishannah">find Chris Hannah on Mastodon</a>.</p>
 
-	<body>
-		<img src="/text-shot/images/icon.png" id="icon" />
-		<h1>Text Shot</h1>
-		<p><a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot</a> is a universal
-			(iOS/iPadOS/macOS) application that lets you take text snippets and create beautiful
-			shareable images (text shots).</p>
-
-		<p>You can add a title, source, author, and the quote, or just a few of them!</p>
-		<p>From there, you can choose a theme, font, and a size, to customise how each text shot looks.</p>
-		<p>It also supports styling your text with bold and italics using the Markdown syntax.</p>
-		<p>Check out <a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot on the App Store!</a></p>
-		<h2>Shortcuts Integration</h2>
-		<p>You can also find all of this functionality inside of a "Create Text Shot" action in the Shortcuts app. Which
-			means, you can even build your own automations to make the process of creating and sharing your text shots
-			even easier.</p>
-		<p><a href="https://www.icloud.com/shortcuts/21943fefb09a4dc8bbe317c8ed2010f5">Download the example
-				Shortcut</a>.</p>
-		<h2>Pricing</h2>
-		<p>Text Shot costs £2.99/$2.99/€2.99, and will come as a universal
-			(iOS/iPadOS/macOS) app.</p>
-		<h2>Reviews</h2>
-		<p><em>"Text Shot follows Text Case as an indispensable tool in dealing with text."</em> - <a
-				href="https://www.iphoneblog.de/2023/06/21/text-shot-sperrt-buchstaben-in-ein-png/">iPhoneBlog.de</a>
-		</p>
-		<p><em>"The new App Text Shot creates beautifully prepared images from quotes."</em> - <a
-				href="https://www.wuv.de/Themen/Tech/App-Tipps-zum-Wochenende-Lyd-Text-Shot-und-Rapid-Reminders">W&V</a>
-		</p>
-		<p><em>"Text Shot shares selected texts as graphics."</em> - <a
-				href="https://www.ifun.de/text-shot-teilt-ausgewaehlte-texte-als-grafiken-212378/">ifun.de</a>
-		</p>
-		<h2>Screenshots</h2>
-		<h2>Screenshots</h2>
-		<h3>iPhone</h3>
-		<a href="/text-shot/images/iphone.jpg"><img src="/text-shot/images/iphone-small.jpg" /></a>
-		<h3>iPad</h3>
-		<a href="/text-shot/images/ipad.jpg"><img src="/text-shot/images/ipad-small.jpg" /></a>
-		<h3>Mac</h3>
-		<a href="e/text-shot/images/mac.jpg"><img src="/text-shot/images/mac-small.jpg" /></a>
-		<h2>More Information</h2>
-		<p>For information on Text Shot, information on upcoming features, or for a chance to give some feedback, you
-			can <a rel="me" href="https://fosstodon.org/@chrishannah">find Chris Hannah on Mastodon</a>.</p>
-
-	</body>
+</body>
 
 </html>
