@@ -1,4 +1,11 @@
-# No More Snoozing Alarms
+---
+title: No More Snoozing Alarms
+date: 2026-01-15
+tags:
+  - post
+layout: layouts/post
+permalink: no-more-snoozing-alarms/
+---
 
 I heard about an app called [Awake](https://apps.apple.com/us/app/awake-smart-alarm-clock/id6747604910) [on MacStories](https://www.macstories.net/news/awake-a-considered-effective-alarm-for-chronic-snoozers/). It's an alarm clock app, which is specifically designed for heavy sleepers, or people who tend to enjoy pressing the snooze button in the morning. People like me.
 
