@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
         <style>
-            {% include "../../assets/css/style.css" %}
+{% include "../../assets/css/style.css" %}
         </style>
 
         <link rel="me" href="https://micro.blog/ChrisHannah"/>
@@ -63,16 +63,16 @@
                     <ul class="link-list">
                         {% set recentLinks = collections.link | reverse | limit(5) %}
                         {% for post in recentLinks %}
-                            <li>
-                                <a href="{{ post.url }}">{{ post.data.title }}</a>
-                                <a href="{{ post.data.link }}" class="external-link" title="Visit original" aria-label="Visit original">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                        <polyline points="15 3 21 3 21 9"/>
-                                        <line x1="10" y1="14" x2="21" y2="3"/>
-                                    </svg>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                            <a href="{{ post.data.link }}" class="external-link" title="Visit original" aria-label="Visit original">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                            </a>
+                        </li>
                         {% endfor %}
                     </ul>
                     <a href="/links/" class="section-more">All Links →</a>
@@ -89,13 +89,13 @@
                     <div class="recent-posts">
                         {% set recentPosts = collections.post | reverse | limit(5) %}
                         {% for post in recentPosts %}
-                            <article class="post-item">
-                                <time class="post-date" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
-                                <h3>
-                                    <a href="{{ post.url }}">{{ post.data.title or (post.content | microExcerpt) }}</a>
-                                </h3>
-                                <p class="post-excerpt">{{ post.content | excerpt | safe }}</p>
-                            </article>
+                        <article class="post-item">
+                            <time class="post-date" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
+                            <h3>
+                                <a href="{{ post.url }}">{{ post.data.title or (post.content | microExcerpt) }}</a>
+                            </h3>
+                            <p class="post-excerpt">{{ post.content | excerpt | safe }}</p>
+                        </article>
                         {% endfor %}
                     </div>
                 </section>
@@ -162,21 +162,66 @@
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
-                    X
-                </a>
+                            X
+                        </a>
                         <a href="https://fosstodon.org/@chrishannah" rel="me">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M23.193 7.88c0-5.207-3.411-6.733-3.411-6.733C18.062.357 15.108.025 12.041 0h-.076c-3.068.025-6.02.357-7.74 1.147 0 0-3.411 1.526-3.411 6.733 0 1.192-.023 2.618.015 4.13.124 5.092.934 10.11 5.641 11.355 2.17.574 4.034.695 5.536.612 2.722-.15 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.13.539c-2.165-.074-4.449-.233-4.799-2.891a5.499 5.499 0 0 1-.048-.745s2.125.52 4.817.643c1.646.075 3.19-.097 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.517-2.665.475-6.507.475-6.507zm-4.024 6.709h-2.497v-6.124c0-1.29-.543-1.944-1.628-1.944-1.2 0-1.801.776-1.801 2.312v3.349h-2.483v-3.35c0-1.535-.601-2.311-1.801-2.311-1.085 0-1.628.655-1.628 1.944v6.124H4.834V8.285c0-1.29.328-2.314.987-3.07.68-.759 1.569-1.147 2.674-1.147 1.278 0 2.246.491 2.886 1.474L12 6.585l.619-1.043c.64-.983 1.608-1.474 2.886-1.474 1.104 0 1.994.388 2.674 1.146.658.757.987 1.781.987 3.07v6.304z"/>
                             </svg>
-                    Mastodon
-                </a>
+                            Mastodon
+                        </a>
                         <a href="mailto:chris@chrishannah.me" rel="me">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                                 <path d="m2 7 10 6 10-6"/>
                             </svg>
-                    Email
-                </a>
+                            Email
+                        </a>
+                    </div>
+                </section>
+                <section class="blogroll-section">
+                    <h2>Blogroll</h2>
+                    <div class="miniroll-blogroll" style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 14px; line-height: 1.5; background: #ffffff; color: #1a1a1a; padding: 16px;">
+                        <h2 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e5e5e5;">Interesting Blogs</h2>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #e5e5e5;">
+                            <img src="https://harrisongg.com/favicon.svg" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://harrisongg.com/" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">@harrison</a>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #e5e5e5;">
+                            <img src="https://512pixels.net/wp-content/themes/512-kier/img/512-fav.png" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://512pixels.net/" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">512 Pixels</a>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #e5e5e5;">
+                            <img src="https://birchtree.me/content/images/size/w256h256/2025/03/birchtreefavi.png" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://birchtree.me/" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">BirchTree</a>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #e5e5e5;">
+                            <img src="https://blot.blog/favicon.ico" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://blot.blog/" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">blot.blog</a>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #e5e5e5;">
+                            <img src="https://cdf1982.com/favicon-32x32.png" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://cdf1982.com/" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">cdf1982.com</a>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 8px; padding: 8px 0;">
+                            <img src="https://world.hey.com/dhh/avatar-fb368b1ee9b185dc2a09b03eabdb61678dd55244" alt="" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;" onerror="this.style.display='none'" />
+                            <div style="flex: 1; min-width: 0;">
+                                <a href="https://world.hey.com/dhh" target="_blank" rel="noopener noreferrer" style="font-weight: 500; color: inherit; text-decoration: none;">David Heinemeier Hansson</a>
+                            </div>
+                        </div>
+                        <div style="font-size: 11px; color: #737373; margin-top: 12px; padding-top: 8px; border-top: 1px solid #e5e5e5;">
+                            Powered by <a href="https://miniroll.app" style="color: #f97316; text-decoration: none;">Miniroll</a>
+                        </div>
                     </div>
                 </section>
             </main>
