@@ -15,7 +15,7 @@ It's called [Miniroll](https://miniroll.app), and it's a way to create, share, a
 
 It's not just about your blogrolls either, as you can choose to make them public. Which means other people can too! So you can find other peoples blogrolls and find new blogs in the Explore section.
 
-![Explore page](/posts/2026/01/exlore.png)
+![Explore page](/posts/2026/01/explore.png)
 
 There's a whole bunch of features that Miniroll already supports, which is wild as it's only just "launched" today. But as of right now, every user can:
 
