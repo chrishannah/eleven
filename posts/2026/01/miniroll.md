@@ -1,4 +1,11 @@
-# Miniroll
+---
+title: Miniroll
+date: 2026-01-19
+tags:
+  - post
+layout: layouts/post
+permalink: miniroll/
+---
 
 This year is already off to a productive start, as I've launched my first new project!
 
