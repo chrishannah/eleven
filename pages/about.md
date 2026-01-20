@@ -24,9 +24,3 @@ permalink: about/
 <p class="home-bio">And for writing, I have a tendency to write about almost anything, in concentrated bursts. I'm currently trying to refine my writing into a more focussed approach where I write thought out <a id="b-link" href="https://chrishannah.me/essays">essays</a>, rather than short-lived thoughts. But you can find a full archive <a id="b-link" href="https://chrishannah.me/archive">here</a>.
     </p>
 
-    <script src="https://miniroll.app/embed/f899a4c4-5a18-4304-8b6a-e1832a33132a.js"
-  data-style="compact"></script>
-<noscript>
-  <p><a href="https://miniroll.app/embed/f899a4c4-5a18-4304-8b6a-e1832a33132a">View blogroll on Miniroll</a></p>
-</noscript>
-
