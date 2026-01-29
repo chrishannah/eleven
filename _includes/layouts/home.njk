@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
         <style>
-{% include "../../assets/css/style.css" %}
+            {% include "../../assets/css/style.css" %}
         </style>
 
         <link rel="me" href="https://micro.blog/ChrisHannah"/>
@@ -63,16 +63,16 @@
                     <ul class="link-list">
                         {% set recentLinks = collections.link | reverse | limit(5) %}
                         {% for post in recentLinks %}
-                        <li>
-                            <a href="{{ post.url }}">{{ post.data.title }}</a>
-                            <a href="{{ post.data.link }}" class="external-link" title="Visit original" aria-label="Visit original">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15 3 21 3 21 9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
-                                </svg>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ post.url }}">{{ post.data.title }}</a>
+                                <a href="{{ post.data.link }}" class="external-link" title="Visit original" aria-label="Visit original">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                        <polyline points="15 3 21 3 21 9"/>
+                                        <line x1="10" y1="14" x2="21" y2="3"/>
+                                    </svg>
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                     <a href="/links/" class="section-more">All Links →</a>
@@ -89,13 +89,13 @@
                     <div class="recent-posts">
                         {% set recentPosts = collections.post | reverse | limit(5) %}
                         {% for post in recentPosts %}
-                        <article class="post-item">
-                            <time class="post-date" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
-                            <h3>
-                                <a href="{{ post.url }}">{{ post.data.title or (post.content | microExcerpt) }}</a>
-                            </h3>
-                            <p class="post-excerpt">{{ post.content | excerpt | safe }}</p>
-                        </article>
+                            <article class="post-item">
+                                <time class="post-date" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time>
+                                <h3>
+                                    <a href="{{ post.url }}">{{ post.data.title or (post.content | microExcerpt) }}</a>
+                                </h3>
+                                <p class="post-excerpt">{{ post.content | excerpt | safe }}</p>
+                            </article>
                         {% endfor %}
                     </div>
                 </section>
@@ -185,16 +185,11 @@
                 </section>
                 <section class="blogroll-section">
                     <h2>Blogroll</h2>
-                    <iframe
-                            src="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a?title=true&description=false&max=8&random=true&suggest=true"
-                            width="100%"
-                            height="420"
-                            frameborder="0"
-                            style="border: none;"
-                            title="Blogroll"
-                            ></iframe>
+                    <script src="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a.js" data-show-title="true" data-style="magazine" data-random="true" data-show-suggest="true"></script>
                     <noscript>
-                        <p><a href="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a?title=true&description=false&max=8&random=true&suggest=true">View blogroll on Miniroll</a></p>
+                        <p>
+                            <a href="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a">View blogroll on Miniroll</a>
+                        </p>
                     </noscript>
                 </section>
             </main>
