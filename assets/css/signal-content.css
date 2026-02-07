@@ -462,3 +462,41 @@ button:hover {
         font-size: 1.1rem;
     }
 }
+
+/* 404 Error Page */
+.error-page {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.error-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.error-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    transition: all 0.15s;
+}
+
+.error-link:hover {
+    background: var(--hover-bg);
+}

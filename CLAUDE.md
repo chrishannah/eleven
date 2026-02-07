@@ -1,102 +1,75 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
-This is a personal blog built with Eleventy (11ty) v3, configured as an ES module. The site generates static HTML from Markdown posts and Nunjucks templates, outputting to the `public/` directory.
+Personal blog built with Eleventy (11ty) v3, configured as an ES module. Uses the **Signal Station** theme — a dark, monospace command-center design. Outputs static HTML to `public/`, deployed via Vercel from `master`.
 
 ## Build Commands
 
 ```bash
-# Development server with live reload
-npm run dev
-
-# Development server (basic)
-npm start
-
-# Production build
-npm run build
-
-# Create new blog post
-./new_post.sh "Post Title"
+npm run dev        # Dev server with live reload
+npm start          # Dev server (basic)
+npm run build      # Production build
+./new_post.sh "Post Title"  # Create new post (opens in Neovim)
 ```
-
-The `new_post.sh` script creates a new Markdown file in `posts/YYYY/MM/` with proper frontmatter and opens it in Neovim.
 
 ## Architecture
 
+### Signal Station Theme
+
+Two layout paths:
+- **Homepage** — `_includes/layouts/home-signal.njk` with 15 partials in `_includes/partials/signal/`
+- **Content pages** — `_includes/layouts/base.njk` with shared header/footer
+
+Homepage layout (`home-signal.njk`):
+- Header: brand, status, volume, issue, since
+- Main grid: latest writing, curated links, recent essays (left) | Instagram photo, live activity, projects, external sites, connect, blogroll (right)
+- Bottom grid: stats, milestones, system
+- Footer: post count, next milestone
+
+### Theme System
+
+Dark/light/auto via CSS custom properties and `data-theme` attribute on `<html>`.
+- `theme.js` reads `localStorage('theme-preference')`, sets `data-theme`, highlights active toggle button
+- Inline script in `<head>` prevents flash of wrong theme
+- CSS vars: `--bg`, `--text`, `--text-muted`, `--accent` (#ff8000), `--border`, `--success`, `--hover-bg`, `--code-bg`
+
+### CSS Files (inlined via Nunjucks `{% include %}`)
+
+| File | Purpose |
+|------|---------|
+| `assets/css/signal-station.css` | Homepage layout, grid, header, nav, footer, stats |
+| `assets/css/signal-content.css` | Article typography, forms, archive, pagination, 404 |
+| `assets/css/highlight.css` | Code syntax highlighting |
+| `assets/css/lightbox.css` | Image lightbox overlay |
+| `assets/css/tinylytics.css` | Tinylytics widget styling |
+
+### Client-Side JS (`assets/js/` → copied to `public/js/`)
+
+| File | Purpose |
+|------|---------|
+| `live-activity.js` | Fetches GitHub commits, Tinylytics page views/kudos, computes last deploy relative time |
+| `theme.js` | Theme toggle handler |
+| `highlight.js` | Code highlighting (loaded conditionally) |
+| `lightbox.js` | Image lightbox (loaded conditionally) |
+
+### Fonts
+
+- **JetBrains Mono** (Google Fonts) — UI, headings, nav, code
+- **Fraunces** (Google Fonts) — body text in articles
+- **IBM Plex Sans** — secondary UI font
+
 ### Content Structure
 
-Posts are organized by year and month in `posts/YYYY/MM/` and support multiple content types via tags:
-- `post` - Standard blog posts
-- `micro` - Short-form microblog posts
-- `link` - Link posts to external content
-- `essay` - Long-form essays
-- `quote` - Quote posts
+Posts in `posts/YYYY/MM/` with tags for content types:
+- `post` — standard blog posts
+- `micro` — short-form microblog
+- `link` — link posts to external content
+- `essay` — long-form essays
+- `quote` — quote posts
+- `photography` — photo posts
 
-Each content type has a corresponding layout template in `_includes/layouts/` and partial in `_includes/partials/`.
-
-### Configuration Files
-
-Custom filters are modularized in the `config/` directory:
-- `config/date.js` - Date formatting using moment.js
-- `config/number.js` - Number formatting utilities
-- `config/post.js` - Post content filters (microExcerpt, cleanUrl)
-
-All filters are imported and registered in `eleventy.config.js`.
-
-### Key Eleventy Features
-
-**Collections**: The "all" collection filters for markdown files excluding pages (line 55-61 in eleventy.config.js).
-
-**Draft Posts**: Posts with `draft: true` in frontmatter are excluded via the `excludeDrafts` filter.
-
-**Table of Contents**: The `toc` filter generates TOC HTML from h1-h4 headers in content.
-
-**OG Images**: Generated on production builds only (`ELEVENTY_ENV !== 'development'`) using eleventy-plugin-og-image with Helvetica font.
-
-**Markdown**: Uses markdown-it with markdown-it-footnote plugin for footnote support.
-
-### Micropub API
-
-The `api/` directory contains a Micropub implementation for posting to the blog remotely:
-- `micropub.mjs` - Main endpoint handling POST (create) and GET (config) requests
-- `buildPostContent.mjs` - Generates Markdown frontmatter and content
-- `createFileInGitHub.mjs` - Commits new posts to GitHub
-- `validateToken.mjs` - IndieAuth token validation
-- Supports "like-of" posts that send webmentions
-
-Deployed as serverless functions (see `api/vercel.json`).
-
-### Blog Editor
-
-The `blog-editor/` directory contains a separate Next.js application for editing blog posts via a web interface. It's a standalone React app using Chakra UI.
-
-### Static Assets
-
-- `static/` - Static files (fonts, images, videos, cv, etc.) copied to output
-- `assets/js/` - JavaScript files copied to `public/js/`
-- Images in `posts/**/*.{jpg,jpeg,png,gif}` are copied to output alongside posts
-
-### Template Structure
-
-- `_includes/layouts/base.njk` - Base layout template
-- `_includes/layouts/*.njk` - Content-type-specific layouts (post, micro, link, quote, page)
-- `_includes/partials/*.njk` - Reusable content partials for different post types
-- `_includes/header.njk`, `footer.njk`, `nav.njk` - Site structure components
-- `pages/*.njk` - Static pages (about, archive, contact, etc.)
-- `rss/*.njk` - RSS feed templates
-
-### RSS Feeds
-
-Multiple RSS feeds are generated from templates in `rss/`:
-- Main feed, posts feed, essays feed, micro feed
-- Uses @11ty/eleventy-plugin-rss
-
-## Content Frontmatter
-
-Standard post frontmatter structure:
+Frontmatter:
 ```yaml
 ---
 title: Post Title
@@ -105,9 +78,73 @@ tags:
   - post
 layout: layouts/post
 permalink: slug-here/
+draft: true  # optional, excludes from collections
+categories: ["Category"]  # optional
 ---
 ```
 
-Optional fields:
-- `draft: true` - Excludes from public collections
-- `categories: ["Category"]` - Grouping posts by category
+### Collections (`eleventy.config.js`)
+
+- `all` — all markdown files excluding pages
+- `essay` — filtered by tag
+- `link` — filtered by tag
+- `micro` — filtered by tag
+- `photography` — filtered by tag
+
+### Data Files (`_data/`)
+
+| File | Purpose |
+|------|---------|
+| `homepage.json` | Tagline, status, since year, current focus, system status, Instagram config |
+| `projects.json` | Projects list for homepage sidebar |
+| `social.json` | Social media links |
+| `external.json` | External sites for homepage sidebar |
+| `instagram.js` | Fetches latest photo from Behold.so API |
+| `build.js` | Exports build timestamp for deploy time display |
+| `site.json` | Site title, URL |
+| `author.json` | Author info |
+| `env.js` | Environment variables |
+
+### Config Files (`config/`)
+
+| File | Filters |
+|------|---------|
+| `config/date.js` | Date formatting (moment.js) |
+| `config/number.js` | Number formatting |
+| `config/post.js` | Post content filters (microExcerpt, cleanUrl) |
+| `config/stats.js` | Stats: daysPublishing, postsThisMonth, postsThisYear, daysSinceLastPost, volumeNumber, thousands, nextMilestone, longestStreak, bestMonth |
+
+### RSS Feeds (`rss/`)
+
+- `/feed/index.xml` — all posts
+- `/feed/posts/index.xml` — posts tagged `post`
+- `/feed/essays/index.xml` — essays
+- `/feed/micro/index.xml` — micro posts
+
+### OG Image Generator
+
+`api/og.mjs` — Vercel serverless function generating PNG OG images using satori + resvg. Uses JetBrains Mono font, dark background (#0a0a0a), orange accent for author name.
+
+### Micropub API (`api/`)
+
+Micropub implementation for remote posting:
+- `micropub.mjs` — POST (create) and GET (config)
+- `buildPostContent.mjs` — Markdown frontmatter generation
+- `createFileInGitHub.mjs` — Commits to GitHub
+- `validateToken.mjs` — IndieAuth token validation
+
+### Blog Editor (`blog-editor/`)
+
+Standalone Next.js app for editing posts via web interface (Chakra UI).
+
+### Static Assets
+
+`static/` subfolders copied to output: text-shot, 2020, cv, prntsc, fonts, images, videos.
+
+### Development Mode
+
+When `ELEVENTY_ENV=development`, old posts (>2 years) are ignored to speed up builds.
+
+## Deploy
+
+Vercel auto-deploys from `master`. Push to `master` triggers production build.

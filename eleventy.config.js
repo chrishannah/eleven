@@ -10,6 +10,8 @@ import pluginIcons from "eleventy-plugin-icons";
 import markdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
 
+const buildStart = Date.now();
+
 export default function (eleventyConfig) {
     const options = {
         html: true,
@@ -50,6 +52,14 @@ export default function (eleventyConfig) {
 
     eleventyConfig.addCollection("link", function (collectionApi) {
         return collectionApi.getFilteredByTag("link");
+    });
+
+    eleventyConfig.addCollection("micro", function (collectionApi) {
+        return collectionApi.getFilteredByTag("micro");
+    });
+
+    eleventyConfig.addCollection("photography", function (collectionApi) {
+        return collectionApi.getFilteredByTag("photography");
     });
 
     // Limit filter for slicing collections in templates
@@ -126,6 +136,10 @@ export default function (eleventyConfig) {
 
     /* Filters */
     eleventyConfig.addFilter("debug", (content) => `${inspect(content)}`);
+
+    eleventyConfig.addFilter("buildDuration", () => {
+        return ((Date.now() - buildStart) / 1000).toFixed(1);
+    });
 
     Object.keys(dateFilters).forEach((filterName) => {
         eleventyConfig.addFilter(filterName, dateFilters[filterName]);

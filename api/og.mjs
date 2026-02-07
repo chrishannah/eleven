@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 // Load font at module level
-const fontPath = join(process.cwd(), 'static/fonts/Inter-SemiBold.ttf');
+const fontPath = join(process.cwd(), 'static/fonts/JetBrainsMono-Regular.ttf');
 const fontData = readFileSync(fontPath);
 
 export default async function handler(req, res) {
@@ -20,8 +20,8 @@ export default async function handler(req, res) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          backgroundColor: '#fafaf8',
-          fontFamily: 'Inter',
+          backgroundColor: '#0a0a0a',
+          fontFamily: 'JetBrains Mono',
           padding: 60,
         },
         children: [
@@ -39,8 +39,8 @@ export default async function handler(req, res) {
                 props: {
                   style: {
                     fontSize: 72,
-                    fontWeight: 600,
-                    color: '#1a1a1a',
+                    fontWeight: 400,
+                    color: '#e0e0e0',
                     lineHeight: 1.2,
                   },
                   children: title,
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                borderTop: '2px solid #e5e5e0',
+                borderTop: '2px solid #1c1c1c',
                 paddingTop: 30,
               },
               children: [
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
                   props: {
                     style: {
                       fontSize: 28,
-                      color: '#666',
+                      color: '#555',
                     },
                     children: 'chrishannah.me',
                   },
@@ -91,9 +91,9 @@ export default async function handler(req, res) {
       height: 630,
       fonts: [
         {
-          name: 'Inter',
+          name: 'JetBrains Mono',
           data: fontData,
-          weight: 600,
+          weight: 400,
           style: 'normal',
         },
       ],

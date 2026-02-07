@@ -12,10 +12,10 @@
     </div>
     <div class="metric-row">
         <span class="metric-label">Last deploy</span>
-        <span class="metric-value" id="last-deploy">--</span>
+        <span class="metric-value" id="last-deploy" data-timestamp="{{ build.timestamp }}">--</span>
     </div>
     <div class="metric-row">
         <span class="metric-label">Build time</span>
-        <span class="metric-value" id="build-time">--</span>
+        <span class="metric-value">{{ "" | buildDuration }}s</span>
     </div>
 </div>

@@ -10,14 +10,14 @@
     </div>
     <div class="metric-row">
         <span class="metric-label">Next milestone</span>
-        <span class="metric-value live">#{{ homepage.nextMilestone }}</span>
+        <span class="metric-value live">#{{ allPosts | nextMilestone }}</span>
     </div>
     <div class="metric-row">
         <span class="metric-label">Longest streak</span>
-        <span class="metric-value">{{ homepage.longestStreak.value }} {{ homepage.longestStreak.unit }}</span>
+        <span class="metric-value">{{ allPosts | longestStreak }} days</span>
     </div>
     <div class="metric-row">
         <span class="metric-label">Best month</span>
-        <span class="metric-value">{{ homepage.bestMonth.month }} {{ homepage.bestMonth.year }}</span>
+        <span class="metric-value">{{ allPosts | bestMonth }}</span>
     </div>
 </div>
