@@ -18,6 +18,7 @@
     "eleventy-plugin-icons": "^4.5.1"
   },
   "dependencies": {
+    "@11ty/eleventy-fetch": "^5.1.1",
     "@octokit/rest": "^21.0.2",
     "@resvg/resvg-js": "^2.6.2",
     "@vercel/og": "^0.8.5",

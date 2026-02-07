@@ -7,21 +7,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
 
-        <meta name="theme-color" content="#ff8000" media="(prefers-color-scheme: light)">
-        <meta name="theme-color" content="#ff8000" media="(prefers-color-scheme: dark)">
+        <meta name="theme-color" content="#0a0a0a">
         <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
         <style>
-            {% include "../../assets/css/style.css" %}
+            {% include "../../assets/css/signal-station.css" %}
+            {% include "../../assets/css/signal-content.css" %}
             {% include "../../assets/css/highlight.css" %}
             {% include "../../assets/css/lightbox.css" %}
             {% include "../../assets/css/tinylytics.css" %}
-            {% include "../../assets/css/fonts.css" %}
         </style>
 
         <link rel="me" href="https://micro.blog/ChrisHannah"/>
@@ -37,7 +36,7 @@
         <link rel="alternate" type="application/rss+xml" href="https://chrishannah.me/feed" title="Chris Hannah">
 
         <!-- Analytics -->
-        <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js?hits&kudos=★" defer></script>
+        <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js?hits&kudos" defer></script>
 
         <!-- Open Graph -->
         <meta property="og:title" content="{{ title }}">
@@ -71,55 +70,101 @@
             <title>Chris Hannah</title>
         {% endif %}
 
+        <!-- Prevent flash of wrong theme -->
+        <script>
+            (function() {
+                var theme = localStorage.getItem('theme-preference') || 'auto';
+                document.documentElement.setAttribute('data-theme', theme);
+            })();
+        </script>
     </head>
 
     <body>
-        <div id="container">
-            {% if home %}
-                <header>
-                    {% include "header.njk" %}
-                </header>
-                {% include "nav.njk" %}
-            {% else %}
-                {% include "header-small.njk" %}
-            {% endif %}
+        <div class="container">
+            <!-- Header Block - same as homepage -->
+            <header class="header-block">
+                <div class="header-main">
+                    <div class="brand">
+                        <h1><a href="/">{{ site.title }}</a></h1>
+                        <span class="brand-sub">{{ homepage.tagline }}</span>
+                    </div>
+                    <div class="header-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Status</span>
+                            <span class="meta-value status-online"><span class="pulse"></span> {{ homepage.status.text }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Volume</span>
+                            <span class="meta-value">{{ homepage.since | volumeNumber }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Issue</span>
+                            <span class="meta-value">#{{ collections.all | excludeDrafts | length }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Since</span>
+                            <span class="meta-value">{{ homepage.since }}</span>
+                        </div>
+                    </div>
+                </div>
 
-            <main>
+                <nav class="signal-nav">
+                    <a href="/">Home</a>
+                    <a href="/archive/">Archive</a>
+                    <a href="/essays/">Essays</a>
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                    <a href="/subscribe/">Subscribe</a>
+                    <div class="theme-toggle">
+                        <button data-theme="light" title="Light mode">Light</button>
+                        <button data-theme="dark" title="Dark mode">Dark</button>
+                        <button data-theme="auto" title="System preference">Auto</button>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Content Block -->
+            <main class="content-block">
                 {{ content | safe }}
             </main>
-            <footer>
-                {% include "footer.njk" %}
+
+            <!-- Footer - same as homepage -->
+            {% set allPosts = collections.all | excludeDrafts %}
+            <footer class="signal-footer">
+                <span>{{ site.url | replace("https://", "") }}</span>
+                <span>Post <span class="hl">#{{ allPosts | length }}</span> of <span class="hl">&infin;</span></span>
+                <span>Next milestone: <span class="hl">#{{ homepage.nextMilestone }}</span></span>
+                <span>Powered by Eleventy</span>
             </footer>
         </div>
+
+        <script>
+            var codeHighlightingEnabled = document
+                .getElementsByTagName('code')
+                .length != 0;
+            if (codeHighlightingEnabled) {
+                const script = document.createElement("script");
+                script.src = 'https://chrishannah.me/js/highlight.js';
+                script.async = true;
+                document
+                    .body
+                    .appendChild(script);
+            }
+
+            var images = document.querySelectorAll('img:not(.u-photo):not([width="24"]):not([height="24"]), img.hero');
+            if (images.length > 0) {
+                const lightboxScript = document.createElement("script");
+                lightboxScript.src = '/js/lightbox.js';
+                lightboxScript.onload = function () {
+                    if (typeof initLightbox === 'function') {
+                        initLightbox();
+                    }
+                };
+                document
+                    .body
+                    .appendChild(lightboxScript);
+            }
+        </script>
+        <script src="/js/theme.js"></script>
     </body>
-
-    <script>
-        var codeHighlightingEnabled = document
-            .getElementsByTagName('code')
-            .length != 0;
-        if (codeHighlightingEnabled) {
-            const script = document.createElement("script");
-            script.src = 'https://chrishannah.me/js/highlight.js';
-            script.async = true;
-            document
-                .body
-                .appendChild(script);
-        }
-
-        // Check if there are images that would use lightbox
-        var images = document.querySelectorAll('img:not(.u-photo):not([width="24"]):not([height="24"]), img.hero');
-        if (images.length > 0) {
-            const lightboxScript = document.createElement("script");
-            lightboxScript.src = '/js/lightbox.js';
-            lightboxScript.onload = function () {
-                // Initialize lightbox after script loads
-                if (typeof initLightbox === 'function') {
-                    initLightbox();
-                }
-            };
-            document
-                .body
-                .appendChild(lightboxScript);
-        }
-    </script>
 </html>

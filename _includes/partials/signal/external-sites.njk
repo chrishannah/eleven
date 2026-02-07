@@ -1,0 +1,15 @@
+<div class="secondary-section">
+    <div class="section-head">
+        <span class="section-title">External Sites</span>
+    </div>
+    {% for site in external %}
+    <a href="{{ site.url }}" class="external-row" target="_blank" rel="noopener">
+        <span class="external-icon">{{ site.icon }}</span>
+        <div class="external-info">
+            <div class="external-name">{{ site.name }}</div>
+            <div class="external-desc">{{ site.description }}</div>
+        </div>
+        <span class="external-arrow">-></span>
+    </a>
+    {% endfor %}
+</div>

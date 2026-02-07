@@ -1,0 +1,40 @@
+<header class="header-block">
+    <div class="header-main">
+        <div class="brand">
+            <h1><a href="/">{{ site.title }}</a></h1>
+            <span class="brand-sub">{{ homepage.tagline }}</span>
+        </div>
+        <div class="header-meta">
+            <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value status-online"><span class="pulse"></span> {{ homepage.status.text }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Volume</span>
+                <span class="meta-value">{{ homepage.since | volumeNumber }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Issue</span>
+                <span class="meta-value">#{{ collections.all | excludeDrafts | length }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Since</span>
+                <span class="meta-value">{{ homepage.since }}</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="signal-nav">
+        <a href="/">Home</a>
+        <a href="/archive/">Archive</a>
+        <a href="/essays/">Essays</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/subscribe/">Subscribe</a>
+        <div class="theme-toggle">
+            <button data-theme="light" title="Light mode">Light</button>
+            <button data-theme="dark" title="Dark mode">Dark</button>
+            <button data-theme="auto" title="System preference">Auto</button>
+        </div>
+    </nav>
+</header>

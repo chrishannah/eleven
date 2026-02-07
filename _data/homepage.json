@@ -1,0 +1,26 @@
+{
+  "tagline": "Code, camera, keyboard.",
+  "status": {
+    "text": "Online",
+    "type": "online"
+  },
+  "since": 2015,
+  "currentFocus": "Writing",
+  "longestStreak": {
+    "value": 23,
+    "unit": "posts"
+  },
+  "bestMonth": {
+    "month": "Mar",
+    "year": 2023
+  },
+  "system": {
+    "status": "Healthy",
+    "uptime": "99.9%"
+  },
+  "nextMilestone": 850,
+  "instagram": {
+    "username": "chrishannah",
+    "feedId": ""
+  }
+}

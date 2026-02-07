@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Text Case",
+    "icon": "T",
+    "description": "Text transformation for iOS, Mac, and web",
+    "status": "Live",
+    "url": "https://textcase.app"
+  },
+  {
+    "name": "Miniroll",
+    "icon": "M",
+    "description": "Create, share, and embed blogrolls",
+    "status": "Live",
+    "url": "https://miniroll.app"
+  },
+  {
+    "name": "Pokeguessr",
+    "icon": "P",
+    "description": "Pokemon guessing game for the CLI",
+    "status": "Live",
+    "url": "https://github.com/chrishannah/pokeguessr"
+  },
+  {
+    "name": "Text Shot",
+    "icon": "S",
+    "description": "Share quotations as images",
+    "status": "Live",
+    "url": "https://chrishannah.me/text-shot/"
+  }
+]

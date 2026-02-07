@@ -1,0 +1,16 @@
+<div class="secondary-section">
+    <div class="section-head">
+        <span class="section-title">Projects</span>
+        <span class="section-meta">{{ projects | length }} apps</span>
+    </div>
+    {% for project in projects %}
+    <a href="{{ project.url }}" class="project-row" target="_blank" rel="noopener">
+        <span class="project-icon">{{ project.icon }}</span>
+        <div class="project-info">
+            <div class="project-name">{{ project.name }}</div>
+            <div class="project-desc">{{ project.description }}</div>
+        </div>
+        <span class="project-status">{{ project.status }}</span>
+    </a>
+    {% endfor %}
+</div>

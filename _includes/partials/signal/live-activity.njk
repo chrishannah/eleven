@@ -1,0 +1,27 @@
+{% set allPosts = collections.all | excludeDrafts %}
+
+<div class="activity-right">
+    <div class="section-head">
+        <span class="section-title">Live Activity</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Current focus</span>
+        <span class="metric-value live">{{ homepage.currentFocus }}</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Last post</span>
+        <span class="metric-value">{{ allPosts | daysSinceLastPost }}</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">GitHub</span>
+        <span class="metric-value" id="github-commits">--</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Page views today</span>
+        <span class="metric-value" id="page-views">--</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Kudos this week</span>
+        <span class="metric-value" id="kudos-week">--</span>
+    </div>
+</div>

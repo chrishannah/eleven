@@ -2,6 +2,7 @@ import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 import dateFilters from "./config/date.js";
 import numberFilters from "./config/number.js";
 import postFilters from "./config/post.js";
+import statsFilters from "./config/stats.js";
 import blogTools from "eleventy-plugin-blog-tools";
 import { inspect } from "node:util";
 import pluginRss from "@11ty/eleventy-plugin-rss";
@@ -43,8 +44,23 @@ export default function (eleventyConfig) {
         });
     });
 
+    eleventyConfig.addCollection("essay", function (collectionApi) {
+        return collectionApi.getFilteredByTag("essay");
+    });
+
+    eleventyConfig.addCollection("link", function (collectionApi) {
+        return collectionApi.getFilteredByTag("link");
+    });
+
+    // Limit filter for slicing collections in templates
+    eleventyConfig.addFilter("limit", function (arr, count) {
+        if (!arr) return [];
+        return arr.slice(0, count);
+    });
+
     // Add this filter to exclude draft posts
     eleventyConfig.addFilter("excludeDrafts", function (posts) {
+        if (!posts) return [];
         return posts.filter(post => !post.data.draft);
     });
 
@@ -123,6 +139,10 @@ export default function (eleventyConfig) {
         eleventyConfig.addFilter(filterName, postFilters[filterName]);
     });
 
+    Object.keys(statsFilters).forEach((filterName) => {
+        eleventyConfig.addFilter(filterName, statsFilters[filterName]);
+    });
+
     function filterTagList(tags) {
         return (tags || []).filter(
             (tag) => ["post", "micro", "link", "essay"].indexOf(tag) === -1
@@ -147,7 +167,7 @@ export default function (eleventyConfig) {
         // Ignore old posts to speed up initial dev build
         // Only build posts from the last 2 years
         const currentYear = new Date().getFullYear();
-        const oldYears = [2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+        const oldYears = [2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
             .filter(year => year < currentYear - 1);
         oldYears.forEach(year => {
             eleventyConfig.ignores.add(`posts/${year}/**`);

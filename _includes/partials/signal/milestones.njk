@@ -1,0 +1,23 @@
+{% set allPosts = collections.all | excludeDrafts %}
+
+<div class="bottom-section">
+    <div class="section-head">
+        <span class="section-title">Milestones</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Current post</span>
+        <span class="metric-value">#{{ allPosts | length }}</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Next milestone</span>
+        <span class="metric-value live">#{{ homepage.nextMilestone }}</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Longest streak</span>
+        <span class="metric-value">{{ homepage.longestStreak.value }} {{ homepage.longestStreak.unit }}</span>
+    </div>
+    <div class="metric-row">
+        <span class="metric-label">Best month</span>
+        <span class="metric-value">{{ homepage.bestMonth.month }} {{ homepage.bestMonth.year }}</span>
+    </div>
+</div>

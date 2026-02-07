@@ -1,0 +1,30 @@
+{% set allPosts = collections.all | excludeDrafts | reverse %}
+{% set postsOnly = [] %}
+{% for post in allPosts %}
+    {% set postTags = post.data.tags or [] %}
+    {% if not ('essay' in postTags) and not ('link' in postTags) %}
+        {% set postsOnly = (postsOnly.push(post), postsOnly) %}
+    {% endif %}
+{% endfor %}
+{% set recentPosts = postsOnly | limit(5) %}
+
+<div class="section-head">
+    <span class="section-title">Latest Writing</span>
+    <span class="section-meta">{{ allPosts | length }} posts</span>
+</div>
+{% for post in recentPosts %}
+<div class="signal-post-item">
+    <div class="post-date">
+        <span class="day">{{ post.data.date | dayNumber }}</span>
+        <span class="month-year">{{ post.data.date | monthYear }}</span>
+    </div>
+    <div class="post-content">
+        <h3><a href="{{ post.url }}">{{ post.data.title or (post.content | microExcerpt) }}</a></h3>
+        <p class="post-excerpt">{{ post.content | excerpt | safe }}</p>
+    </div>
+    {% if post.data.tags %}
+        {% set primaryTag = post.data.tags | first %}
+        <span class="post-tag">{{ primaryTag }}</span>
+    {% endif %}
+</div>
+{% endfor %}

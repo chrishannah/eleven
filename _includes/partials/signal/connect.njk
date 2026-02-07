@@ -1,0 +1,11 @@
+<div class="secondary-section">
+    <div class="section-head">
+        <span class="section-title">Connect</span>
+    </div>
+    {% for link in social %}
+    <div class="connect-row">
+        <a href="{{ link.url }}" target="_blank" rel="noopener me">{{ link.name }}</a>
+        <span class="connect-handle">{{ link.handle }}</span>
+    </div>
+    {% endfor %}
+</div>

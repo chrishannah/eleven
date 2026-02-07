@@ -1,0 +1,29 @@
+<div class="activity-left">
+    <div class="section-head">
+        <span class="section-title">Latest Photo</span>
+        <span class="section-meta">Instagram</span>
+    </div>
+    {% if instagram and instagram.imageUrl %}
+    <a href="{{ instagram.permalink }}" class="instagram-card" target="_blank" rel="noopener">
+        <div class="instagram-image">
+            <img src="{{ instagram.imageUrl }}" alt="{{ instagram.caption or 'Latest Instagram photo' }}" loading="lazy">
+        </div>
+    </a>
+    <div class="instagram-meta">
+        <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-link" target="_blank" rel="noopener">@{{ homepage.instagram.username }} -></a>
+        {% if instagram.timestamp %}
+        <span class="instagram-time">{{ instagram.timestamp | relativeTime }}</span>
+        {% endif %}
+    </div>
+    {% else %}
+    <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-card" target="_blank" rel="noopener">
+        <div class="instagram-image">
+            [Photo]
+        </div>
+    </a>
+    <div class="instagram-meta">
+        <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-link" target="_blank" rel="noopener">@{{ homepage.instagram.username }} -></a>
+        <span class="instagram-time"></span>
+    </div>
+    {% endif %}
+</div>

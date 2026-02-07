@@ -1,0 +1,22 @@
+[
+  {
+    "name": "X / Twitter",
+    "handle": "@chrishannah",
+    "url": "https://x.com/chrishannah"
+  },
+  {
+    "name": "Mastodon",
+    "handle": "@chrishannah",
+    "url": "https://fosstodon.org/@chrishannah"
+  },
+  {
+    "name": "Email",
+    "handle": "chris@chrishannah.me",
+    "url": "mailto:chris@chrishannah.me"
+  },
+  {
+    "name": "GitHub",
+    "handle": "chrishannah",
+    "url": "https://github.com/chrishannah"
+  }
+]

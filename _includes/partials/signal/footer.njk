@@ -1,0 +1,8 @@
+{% set allPosts = collections.all | excludeDrafts %}
+
+<footer class="signal-footer">
+    <span>{{ site.url | replace("https://", "") }}</span>
+    <span>Post <span class="hl">#{{ allPosts | length }}</span> of <span class="hl">&infin;</span></span>
+    <span>Next milestone: <span class="hl">#{{ homepage.nextMilestone }}</span></span>
+    <span>Powered by Eleventy</span>
+</footer>

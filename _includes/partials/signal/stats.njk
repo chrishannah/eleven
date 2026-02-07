@@ -1,0 +1,26 @@
+{% set allPosts = collections.all | excludeDrafts %}
+
+<div class="bottom-section">
+    <div class="section-head">
+        <span class="section-title">Stats</span>
+    </div>
+    <div class="stats-compact">
+        <div class="stat-compact">
+            <div class="stat-compact-value">{{ allPosts | length | thousands }}</div>
+            <div class="stat-compact-label">Posts</div>
+        </div>
+        <div class="stat-compact">
+            <div class="stat-compact-value">{{ homepage.since | daysPublishing | thousands }}</div>
+            <div class="stat-compact-label">Days</div>
+            <div class="stat-compact-note">publishing</div>
+        </div>
+        <div class="stat-compact">
+            <div class="stat-compact-value">{{ allPosts | postsThisMonth }}</div>
+            <div class="stat-compact-label">This Month</div>
+        </div>
+        <div class="stat-compact">
+            <div class="stat-compact-value">{{ allPosts | postsThisYear }}</div>
+            <div class="stat-compact-label">This Year</div>
+        </div>
+    </div>
+</div>

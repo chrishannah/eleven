@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="generator" content="Eleventy">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
+
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        {% include "../../assets/css/signal-station.css" %}
+    </style>
+
+    <link rel="me" href="https://micro.blog/ChrisHannah"/>
+    <link rel="me" href="https://github.com/chrishannah"/>
+    <link href="https://x.com/chrishannah" rel="me">
+    <link rel="webmention" href="https://webmention.io/chrishannah.me/webmention"/>
+    <link rel="pingback" href="https://webmention.io/chrishannah.me/xmlrpc"/>
+
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" href="https://chrishannah.me/feed" title="Chris Hannah">
+
+    <!-- Analytics -->
+    <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js?hits&kudos" defer></script>
+
+    <title>{{ title or site.title }}</title>
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme-preference') || 'auto';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        {% include "partials/signal/header.njk" %}
+
+        <main class="main-grid">
+            <!-- Primary: Writing -->
+            <div class="main-col">
+                {% include "partials/signal/latest-writing.njk" %}
+                {% include "partials/signal/curated-links.njk" %}
+                {% include "partials/signal/recent-essays.njk" %}
+            </div>
+
+            <!-- Secondary: Latest Activity, Projects, External Sites, Connect -->
+            <div class="secondary-col">
+                <div class="secondary-section activity-row">
+                    {% include "partials/signal/latest-photo.njk" %}
+                    {% include "partials/signal/live-activity.njk" %}
+                </div>
+
+                {% include "partials/signal/projects.njk" %}
+                {% include "partials/signal/external-sites.njk" %}
+                {% include "partials/signal/connect.njk" %}
+                {% include "partials/signal/blogroll.njk" %}
+            </div>
+        </main>
+
+        <!-- Bottom: Stats, Milestones, System -->
+        <div class="bottom-grid">
+            {% include "partials/signal/stats.njk" %}
+            {% include "partials/signal/milestones.njk" %}
+            {% include "partials/signal/system.njk" %}
+        </div>
+
+        {% include "partials/signal/footer.njk" %}
+    </div>
+
+    <script src="/js/live-activity.js" defer></script>
+    <script src="/js/theme.js"></script>
+</body>
+</html>
