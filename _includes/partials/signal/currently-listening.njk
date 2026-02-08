@@ -1,0 +1,18 @@
+{% if homepage.music and homepage.music.playlistId %}
+<div class="secondary-section">
+    <div class="section-head">
+        <span class="section-title">{{ homepage.music.label or "Currently Listening" }}</span>
+        <span class="section-meta">Spotify</span>
+    </div>
+    <div class="spotify-embed">
+        <iframe
+            src="https://open.spotify.com/embed/playlist/{{ homepage.music.playlistId }}?utm_source=generator&theme=0"
+            width="100%"
+            height="100"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+{% endif %}
