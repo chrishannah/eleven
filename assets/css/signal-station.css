@@ -705,6 +705,20 @@ body {
     color: var(--accent);
 }
 
+/* Kudos button in header meta */
+.header-kudos.tinylytics_kudos {
+    all: unset !important;
+    cursor: pointer !important;
+    color: var(--accent) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.7rem !important;
+    transition: opacity 0.15s !important;
+}
+
+.header-kudos.tinylytics_kudos:hover {
+    opacity: 0.7 !important;
+}
+
 @media (max-width: 600px) {
     .signal-footer { flex-direction: column; gap: 0.35rem; }
 }

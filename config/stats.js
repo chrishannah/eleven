@@ -20,15 +20,21 @@ const statsFilters = {
         }).length;
     },
 
-    // Count posts in current year
-    postsThisYear: (collection) => {
-        const currentYear = moment().year();
-
-        return collection.filter(post => {
-            const postDate = moment(post.date || post.data?.date);
-            return postDate.year() === currentYear;
-        }).length;
-    },
+    // Count posts in current year (cached per collection length to avoid recomputation)
+    postsThisYear: (() => {
+        let cachedLength = -1;
+        let cachedResult = 0;
+        return (collection) => {
+            if (collection.length === cachedLength) return cachedResult;
+            cachedLength = collection.length;
+            const currentYear = new Date().getFullYear();
+            cachedResult = collection.filter(post => {
+                const d = new Date(post.date || post.data?.date);
+                return d.getFullYear() === currentYear;
+            }).length;
+            return cachedResult;
+        };
+    })(),
 
     // Get relative time since last post
     daysSinceLastPost: (collection) => {

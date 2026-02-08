@@ -54,14 +54,20 @@ export default async function() {
             type: 'json'
         });
 
-        // Behold.so returns an array of posts
-        if (data && data.length > 0) {
-            const latestPost = data[0];
+        // Behold.so returns { posts: [...] }
+        const posts = data?.posts || data;
+        if (posts && posts.length > 0) {
+            const latestPost = posts[0];
+            // Prefer stable Behold-hosted URLs over expiring CDN URLs
+            const imageUrl = latestPost.sizes?.medium?.mediaUrl
+                || latestPost.sizes?.small?.mediaUrl
+                || latestPost.mediaUrl
+                || latestPost.thumbnailUrl;
             return {
-                imageUrl: latestPost.mediaUrl || latestPost.thumbnailUrl,
+                imageUrl,
                 permalink: latestPost.permalink,
                 timestamp: latestPost.timestamp,
-                caption: latestPost.caption,
+                caption: latestPost.caption || latestPost.prunedCaption,
                 configured: true
             };
         }

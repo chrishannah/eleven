@@ -14,14 +14,10 @@
     </div>
     <div class="metric-row">
         <span class="metric-label">GitHub</span>
-        <span class="metric-value" id="github-commits">--</span>
+        <span class="metric-value">{% if github.commitsThisWeek != null %}{{ github.commitsThisWeek }} commits/wk{% else %}--{% endif %}</span>
     </div>
     <div class="metric-row">
-        <span class="metric-label">Page views today</span>
+        <span class="metric-label">Page views</span>
         <span class="metric-value" id="page-views">--</span>
-    </div>
-    <div class="metric-row">
-        <span class="metric-label">Kudos this week</span>
-        <span class="metric-value" id="kudos-week">--</span>
     </div>
 </div>

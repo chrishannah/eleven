@@ -2,14 +2,27 @@
     <div class="section-head">
         <span class="section-title">Blogroll</span>
     </div>
-    <div class="blogroll-content">
-        <script src="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a.js"
-            data-show-title="true"
-            data-show-favicon="false"
-            data-show-description="false"
-            data-style="compact"
-            data-random="true"
-            data-show-suggest="true"></script>
+    <div class="blogroll-content" id="blogroll-container">
+        <script>
+            (function() {
+                var pref = localStorage.getItem('theme-preference') || 'auto';
+                var mode = pref;
+                if (pref === 'auto') {
+                    mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                var s = document.createElement('script');
+                s.id = 'miniroll-embed';
+                s.src = 'https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a.js';
+                s.setAttribute('data-show-title', 'true');
+                s.setAttribute('data-show-favicon', 'false');
+                s.setAttribute('data-show-description', 'false');
+                s.setAttribute('data-style', 'compact');
+                s.setAttribute('data-color-mode', mode);
+                s.setAttribute('data-random', 'true');
+                s.setAttribute('data-show-suggest', 'true');
+                document.getElementById('blogroll-container').appendChild(s);
+            })();
+        </script>
         <noscript>
             <p><a href="https://miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a">View blogroll on Miniroll</a></p>
         </noscript>

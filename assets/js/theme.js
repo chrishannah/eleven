@@ -9,6 +9,22 @@
         return localStorage.getItem(STORAGE_KEY) || 'auto';
     }
 
+    // Resolve the effective color mode (light or dark) for a given theme setting
+    function resolveColorMode(theme) {
+        if (theme === 'light' || theme === 'dark') return theme;
+        // 'auto' — check system preference
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    // Sync Miniroll embed iframe theme
+    function syncMinirollTheme(theme) {
+        var iframe = document.querySelector('.blogroll-content iframe');
+        if (!iframe || !iframe.src) return;
+        var url = new URL(iframe.src);
+        url.searchParams.set('color_mode', resolveColorMode(theme));
+        iframe.src = url.toString();
+    }
+
     // Apply theme to document
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
@@ -26,6 +42,7 @@
     function setTheme(theme) {
         localStorage.setItem(STORAGE_KEY, theme);
         applyTheme(theme);
+        syncMinirollTheme(theme);
     }
 
     // Initialize on page load
