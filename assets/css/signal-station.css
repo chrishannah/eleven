@@ -732,3 +732,86 @@ body {
 @media (max-width: 600px) {
     .signal-footer { flex-direction: column; gap: 0.35rem; }
 }
+
+/* ========================================
+   Mobile Responsive (iPhone ~393px)
+   ======================================== */
+@media (max-width: 600px) {
+    /* 1. Container padding — reclaim 32px horizontal space */
+    .container {
+        padding: 1rem;
+    }
+
+    /* 2. Header meta — allow wrapping, tighten gap */
+    .header-meta {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    /* 3. Nav bar — wrap links, shrink padding/font */
+    .signal-nav {
+        flex-wrap: wrap;
+    }
+
+    .signal-nav a {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .theme-toggle {
+        width: 100%;
+        margin-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    /* 4. Post items — stacked: date+tag top row, content full width below */
+    .signal-post-item {
+        grid-template-columns: 1fr auto;
+        gap: 0.25rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .post-date {
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+    }
+
+    .post-date .day {
+        font-size: 0.85rem;
+    }
+
+    .post-content {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .post-tag {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+    }
+
+    /* 5. Section head padding */
+    .section-head {
+        padding: 0.6rem 1rem;
+    }
+
+    /* 6. Row padding — tighten to match container */
+    .link-row,
+    .connect-row {
+        padding: 0.65rem 1rem;
+    }
+
+    .project-row,
+    .external-row {
+        padding: 0.7rem 1rem;
+    }
+
+    .blogroll-content {
+        padding: 1rem;
+    }
+}

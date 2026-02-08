@@ -461,6 +461,14 @@ button:hover {
     .page-title {
         font-size: 1.1rem;
     }
+
+    blockquote {
+        padding: 1rem;
+    }
+
+    pre {
+        padding: 1rem;
+    }
 }
 
 /* 404 Error Page */
