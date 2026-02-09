@@ -201,6 +201,14 @@ img {
     border-radius: 3px;
 }
 
+/* Iframes (YouTube, etc.) */
+.content iframe,
+.e-content iframe {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
 .content img,
 .e-content img {
     margin: 1.5rem 0;
