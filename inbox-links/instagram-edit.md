@@ -1,5 +1,4 @@
 https://www.youtube.com/watch?v=9hcguEn5wE8
-
 # how to edit photos like 2014 instagram
 
 The little number of followers I have on Instagram are probably going to unfollow me soon. I think I'm going to start sharing square-cropped and overfiltered photos again.
