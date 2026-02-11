@@ -37,6 +37,20 @@
         (function() {
             var theme = localStorage.getItem('theme-preference') || 'auto';
             document.documentElement.setAttribute('data-theme', theme);
+            {% if instagram.colorPalette %}
+            window.__colorPalette = {{ instagram.colorPalette | dump | safe }};
+            {% endif %}
+            if (window.__colorPalette && localStorage.getItem('dynamic-colors') === 'on') {
+                var p = window.__colorPalette;
+                var s = document.documentElement.style;
+                if (p.mutedLight) s.setProperty('--text', 'rgb(' + p.mutedLight + ')');
+                if (p.muted) s.setProperty('--text-muted', 'rgb(' + p.muted + ')');
+                if (p.vibrant) {
+                    s.setProperty('--accent', 'rgb(' + p.vibrant + ')');
+                    s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)');
+                }
+                if (p.vibrantDark) s.setProperty('--border', 'rgba(' + p.vibrantDark + ',0.3)');
+            }
         })();
     </script>
 </head>

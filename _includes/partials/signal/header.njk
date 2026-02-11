@@ -39,6 +39,9 @@
             <button data-theme="light" title="Light mode">Light</button>
             <button data-theme="dark" title="Dark mode">Dark</button>
             <button data-theme="auto" title="System preference">Auto</button>
+            {% if instagram.colorPalette %}
+            <button class="dynamic-toggle" title="Dynamic colors" aria-label="Toggle dynamic colors">✶</button>
+            {% endif %}
         </div>
     </nav>
 </header>

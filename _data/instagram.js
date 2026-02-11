@@ -24,6 +24,7 @@ export default async function() {
             permalink: null,
             timestamp: null,
             caption: null,
+            colorPalette: null,
             configured: false
         };
     }
@@ -42,6 +43,7 @@ export default async function() {
                 permalink: null,
                 timestamp: null,
                 caption: null,
+                colorPalette: null,
                 configured: true,
                 error: 'eleventy-fetch not installed'
             };
@@ -68,6 +70,7 @@ export default async function() {
                 permalink: latestPost.permalink,
                 timestamp: latestPost.timestamp,
                 caption: latestPost.caption || latestPost.prunedCaption,
+                colorPalette: latestPost.colorPalette || null,
                 configured: true
             };
         }
@@ -77,6 +80,7 @@ export default async function() {
             permalink: null,
             timestamp: null,
             caption: null,
+            colorPalette: null,
             configured: true,
             error: 'No posts found'
         };
@@ -88,6 +92,7 @@ export default async function() {
             permalink: null,
             timestamp: null,
             caption: null,
+            colorPalette: null,
             configured: true,
             error: error.message
         };

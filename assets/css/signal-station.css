@@ -208,6 +208,29 @@ body {
     background: var(--hover-bg);
 }
 
+/* Dynamic Color Toggle */
+.theme-toggle .dynamic-toggle {
+    padding: 0.7rem 0.9rem;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.theme-toggle .dynamic-toggle:hover {
+    background: var(--hover-bg);
+    color: var(--accent);
+}
+
+.theme-toggle .dynamic-toggle.active {
+    color: var(--accent);
+    background: var(--hover-bg);
+}
+
 /* Blogroll */
 .blogroll-content {
     padding: 1rem 1.25rem;
