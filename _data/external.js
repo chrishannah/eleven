@@ -17,7 +17,7 @@ const sites = [
   },
 ];
 
-const faviconDir = path.join(__dirname, "..", "static", "images", "favicons");
+const faviconDir = path.join(__dirname, "..", "public", "images", "favicons");
 
 function getDomain(url) {
   return url.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
