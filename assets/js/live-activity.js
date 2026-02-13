@@ -43,6 +43,40 @@
         el.textContent = relative;
     }
 
+    // Fetch GitHub commits from the last 7 days
+    function fetchGitHubCommits() {
+        var el = document.getElementById('github-commits');
+        if (!el) return;
+
+        fetch('https://api.github.com/users/chrishannah/events/public?per_page=100')
+            .then(function(response) {
+                if (!response.ok) return null;
+                return response.json();
+            })
+            .then(function(events) {
+                if (!events) return;
+
+                var oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+                var commitCount = 0;
+                for (var i = 0; i < events.length; i++) {
+                    var event = events[i];
+                    if (event.type === 'PushEvent') {
+                        var eventDate = new Date(event.created_at);
+                        if (eventDate >= oneWeekAgo) {
+                            commitCount += event.payload.commits ? event.payload.commits.length : 0;
+                        }
+                    }
+                }
+
+                el.textContent = commitCount + ' commits/wk';
+            })
+            .catch(function() {
+                // Leave the default "--" on failure
+            });
+    }
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -52,6 +86,7 @@
 
     function init() {
         updateLastDeploy();
+        fetchGitHubCommits();
 
         // Tinylytics embed loads async — poll for its DOM elements
         var attempts = 0;
