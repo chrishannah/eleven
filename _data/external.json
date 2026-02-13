@@ -1,13 +1,11 @@
 [
   {
     "name": "Code and Culture",
-    "icon": "C",
     "description": "Long-form essays on tech and society",
     "url": "https://codeandculture.uk"
   },
   {
     "name": "Journeys Through Glass",
-    "icon": "J",
     "description": "Technology experiments and explorations",
     "url": "https://journeysthroughglass.net"
   }
