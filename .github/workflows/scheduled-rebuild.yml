@@ -1,0 +1,14 @@
+name: Scheduled Site Rebuild
+
+on:
+  schedule:
+    # Every 6 hours: midnight, 6am, noon, 6pm UTC
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy
+        run: curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
