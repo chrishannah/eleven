@@ -4,7 +4,7 @@
     </div>
     {% for site in external %}
     <a href="{{ site.url }}" class="external-row" target="_blank" rel="noopener">
-        <span class="external-icon">{{ site.icon }}</span>
+        <img class="external-icon" src="{{ site.favicon if site.favicon else 'https://www.google.com/s2/favicons?domain=' + site.domain + '&sz=32' }}" alt="" width="26" height="26" loading="lazy">
         <div class="external-info">
             <div class="external-name">{{ site.name }}</div>
             <div class="external-desc">{{ site.description }}</div>
