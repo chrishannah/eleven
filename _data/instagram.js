@@ -52,7 +52,7 @@ export default async function() {
         const url = `https://feeds.behold.so/${feedId}`;
 
         const data = await EleventyFetch(url, {
-            duration: '1h', // Cache for 1 hour
+            duration: '0s', // Always fetch fresh on build
             type: 'json'
         });
 
