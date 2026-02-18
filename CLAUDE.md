@@ -148,3 +148,30 @@ When `ELEVENTY_ENV=development`, old posts (>2 years) are ignored to speed up bu
 ## Deploy
 
 Vercel auto-deploys from `master`. Push to `master` triggers production build.
+
+## Project-Specific Learnings
+
+### Navigation Architecture (learned 2026-02-18)
+**Critical:** Main site navigation is in `_includes/partials/signal/header.njk`, NOT in `_includes/partials/signal/nav.njk`.
+- `header.njk` contains the actual nav used sitewide
+- `nav.njk` exists but is used differently (or not at all)
+- Always edit header.njk for navigation changes
+
+### Data Architecture: Projects vs External Sites (learned 2026-02-18)
+**Two separate data sources:**
+- `_data/projects.json` - Software projects, apps, tools (Miniroll, Text Case, etc.)
+- `_data/external.js` - External writing sites (Code and Culture, Journeys Through Glass)
+
+**Homepage displays both separately:**
+- "Projects" section → pulls from projects.json
+- "External Sites" section → pulls from external.js
+
+**Rule:** Never add the same item to both files (causes duplicates on homepage)
+
+**For /projects page:** Pull from BOTH sources to show everything together
+
+### Workflow Best Practices (learned 2026-02-18)
+- Always use feature branches - never commit directly to master
+- Fizzy task descriptions don't support markdown - use plain text with extra line breaks
+- Vercel preview URLs show actual build output - check them to verify changes work
+- CLAUDE.md should be updated with learnings after each significant piece of work
