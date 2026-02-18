@@ -12,6 +12,30 @@ permalink: /projects/
 <p class="intro-text">Things I'm building, writing, and maintaining.</p>
 
 <div class="projects-grid">
+  {% for site in external %}
+    <article class="project-card">
+      <div class="project-header">
+        <span class="project-icon">🌐</span>
+        <h2>
+          <a href="{{ site.url }}" target="_blank" rel="noopener">{{ site.name }}</a>
+        </h2>
+        <span class="project-status project-status--live">Live</span>
+      </div>
+      
+      <p class="project-description">{{ site.description }}</p>
+      
+      <div class="project-tags">
+        <span class="tag">Writing</span>
+      </div>
+      
+      <div class="project-links">
+        <a href="{{ site.url }}" target="_blank" rel="noopener" class="project-link">
+          Visit →
+        </a>
+      </div>
+    </article>
+  {% endfor %}
+  
   {% for project in projects %}
     <article class="project-card">
       <div class="project-header">

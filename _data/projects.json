@@ -1,21 +1,5 @@
 [
   {
-    "name": "Code and Culture",
-    "icon": "C",
-    "description": "Writing on software, culture, and the craft",
-    "status": "Live",
-    "url": "https://codeandculture.uk",
-    "tags": ["Writing", "Essays"]
-  },
-  {
-    "name": "Journeys Through Glass",
-    "icon": "J",
-    "description": "Thoughts on computing, tools, and workflows",
-    "status": "Live",
-    "url": "https://journeysthroughglass.net",
-    "tags": ["Writing", "Technology"]
-  },
-  {
     "name": "Miniroll",
     "icon": "M",
     "description": "Create, share, and embed blogrolls with RSS aggregation",
