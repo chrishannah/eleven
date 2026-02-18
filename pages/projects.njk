@@ -1,0 +1,173 @@
+---
+layout: layouts/base
+tags:
+  - nav
+navtitle: Projects
+title: Projects
+permalink: /projects/
+---
+
+<h1>Projects</h1>
+
+<p class="intro-text">Things I'm building, writing, and maintaining.</p>
+
+<div class="projects-grid">
+  {% for project in projects %}
+    <article class="project-card">
+      <div class="project-header">
+        <span class="project-icon">{{ project.icon }}</span>
+        <h2>
+          {% if project.url %}
+            <a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a>
+          {% else %}
+            {{ project.name }}
+          {% endif %}
+        </h2>
+        <span class="project-status project-status--{{ project.status | lower | replace(' ', '-') }}">
+          {{ project.status }}
+        </span>
+      </div>
+      
+      <p class="project-description">{{ project.description }}</p>
+      
+      {% if project.tags %}
+        <div class="project-tags">
+          {% for tag in project.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="project-links">
+        {% if project.url %}
+          <a href="{{ project.url }}" target="_blank" rel="noopener" class="project-link">
+            Visit →
+          </a>
+        {% endif %}
+        {% if project.github %}
+          <a href="{{ project.github }}" target="_blank" rel="noopener" class="project-link project-link--github">
+            GitHub →
+          </a>
+        {% endif %}
+      </div>
+    </article>
+  {% endfor %}
+</div>
+
+<style>
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  transition: box-shadow 0.2s;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-icon {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-header h2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-header h2 a:hover {
+  text-decoration: underline;
+}
+
+.project-status {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.project-status--live {
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+
+.project-status--in-development {
+  background: #fff4e6;
+  color: #e67700;
+}
+
+.project-description {
+  color: var(--text-secondary, #666);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background: var(--tag-bg, #f0f0f0);
+  color: var(--tag-color, #555);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #e0e0e0);
+}
+
+.project-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--link-color, #0066cc);
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.project-link--github {
+  color: var(--github-color, #333);
+}
+</style>
