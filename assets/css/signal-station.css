@@ -147,9 +147,15 @@ body {
 .signal-nav {
     display: flex;
     background: rgba(255, 255, 255, 0.02);
+    position: relative;
 }
 
-.signal-nav a {
+/* Desktop navigation - default */
+.nav-desktop {
+    display: flex;
+}
+
+.nav-desktop a {
     padding: 0.7rem 1.25rem;
     color: var(--text);
     text-decoration: none;
@@ -159,10 +165,15 @@ body {
     border-bottom: none;
 }
 
-.signal-nav a:hover {
+.nav-desktop a:hover {
     background: var(--hover-bg);
     color: var(--accent);
     opacity: 1;
+}
+
+/* Mobile dropdown - hidden by default */
+.nav-mobile-dropdown {
+    display: none;
 }
 
 /* Theme Toggle */
@@ -231,28 +242,73 @@ body {
     background: var(--hover-bg);
 }
 
-/* Mobile navigation layout */
+/* Mobile navigation - dropdown layout */
 @media (max-width: 768px) {
-    .signal-nav {
-        flex-wrap: wrap;
+    /* Hide desktop nav, show mobile dropdown */
+    .nav-desktop {
+        display: none;
     }
     
-    /* Main navigation links - allow natural wrapping */
-    .signal-nav a {
-        flex: 0 0 auto;
-    }
-    
-    /* Theme toggle - force to new row, full width */
-    .theme-toggle {
-        flex: 0 0 100%;
-        margin-left: 0;
-        border-left: none;
-        border-top: 1px solid var(--border);
-    }
-    
-    /* Theme buttons - distribute evenly across row */
-    .theme-toggle button {
+    .nav-mobile-dropdown {
+        display: block;
         flex: 1;
+    }
+    
+    /* Dropdown summary (Menu button) */
+    .nav-mobile-dropdown summary {
+        list-style: none;
+        padding: 0.7rem 1.25rem;
+        color: var(--text);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.15s;
+        user-select: none;
+        border-right: 1px solid var(--border);
+    }
+    
+    .nav-mobile-dropdown summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .nav-mobile-dropdown summary:hover {
+        background: var(--hover-bg);
+        color: var(--accent);
+    }
+    
+    /* Dropdown content */
+    .nav-mobile-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-top: none;
+        z-index: 100;
+    }
+    
+    .nav-mobile-links a {
+        display: block;
+        padding: 0.7rem 1.25rem;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: all 0.15s;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .nav-mobile-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-mobile-links a:hover {
+        background: var(--hover-bg);
+        color: var(--accent);
+    }
+    
+    /* Theme toggle - stays on right */
+    .theme-toggle {
+        border-left: none;
     }
 }
 
