@@ -231,6 +231,31 @@ body {
     background: var(--hover-bg);
 }
 
+/* Mobile navigation layout */
+@media (max-width: 768px) {
+    .signal-nav {
+        flex-wrap: wrap;
+    }
+    
+    /* Main navigation links - allow natural wrapping */
+    .signal-nav a {
+        flex: 0 0 auto;
+    }
+    
+    /* Theme toggle - force to new row, full width */
+    .theme-toggle {
+        flex: 0 0 100%;
+        margin-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+    
+    /* Theme buttons - distribute evenly across row */
+    .theme-toggle button {
+        flex: 1;
+    }
+}
+
 /* Blogroll */
 .blogroll-content {
     padding: 1rem 1.25rem;
