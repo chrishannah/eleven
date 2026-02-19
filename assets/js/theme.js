@@ -34,7 +34,7 @@
 
     // Update toggle button states (only theme buttons, not dynamic)
     function updateToggleButtons(activeTheme) {
-        document.querySelectorAll('.theme-toggle button[data-theme]').forEach(btn => {
+        document.querySelectorAll('.theme-toggle button[data-theme], .theme-mobile-options button[data-theme]').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === activeTheme);
         });
     }
@@ -85,8 +85,8 @@
         const theme = getStoredTheme();
         applyTheme(theme);
 
-        // Add click handlers to theme toggle buttons
-        document.querySelectorAll('.theme-toggle button[data-theme]').forEach(btn => {
+        // Add click handlers to theme toggle buttons (desktop + mobile)
+        document.querySelectorAll('.theme-toggle button[data-theme], .theme-mobile-options button[data-theme]').forEach(btn => {
             btn.addEventListener('click', () => {
                 setTheme(btn.dataset.theme);
             });
