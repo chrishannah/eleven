@@ -15,7 +15,12 @@ permalink: /projects/
   {% for site in external %}
     <article class="project-card">
       <div class="project-header">
-        <span class="project-icon">🌐</span>
+        {% if site.url %}
+          <img src="https://www.google.com/s2/favicons?domain={{ site.url | urlencode }}&sz=32" alt="" class="project-favicon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="project-icon project-icon--fallback" style="display:none;">🌐</span>
+        {% else %}
+          <span class="project-icon">🌐</span>
+        {% endif %}
         <h2>
           <a href="{{ site.url }}" target="_blank" rel="noopener">{{ site.name }}</a>
         </h2>
@@ -39,7 +44,12 @@ permalink: /projects/
   {% for project in projects %}
     <article class="project-card">
       <div class="project-header">
-        <span class="project-icon">{{ project.icon }}</span>
+        {% if project.url %}
+          <img src="https://www.google.com/s2/favicons?domain={{ project.url | urlencode }}&sz=32" alt="" class="project-favicon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span class="project-icon project-icon--fallback" style="display:none;">{{ project.icon or '📦' }}</span>
+        {% else %}
+          <span class="project-icon">{{ project.icon or '📦' }}</span>
+        {% endif %}
         <h2>
           {% if project.url %}
             <a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a>
@@ -87,15 +97,15 @@ permalink: /projects/
 }
 
 .project-card {
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1.5rem;
-  background: var(--card-bg, #fff);
+  background: var(--bg);
   transition: box-shadow 0.2s;
 }
 
 .project-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(128, 128, 128, 0.15);
 }
 
 .project-header {
@@ -104,6 +114,12 @@ permalink: /projects/
   gap: 0.75rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+}
+
+.project-favicon {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
 }
 
 .project-icon {
@@ -120,14 +136,16 @@ permalink: /projects/
   font-size: 1.25rem;
   flex: 1;
   min-width: 0;
+  color: var(--text);
 }
 
 .project-header h2 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--text);
 }
 
 .project-header h2 a:hover {
+  color: var(--accent);
   text-decoration: underline;
 }
 
@@ -141,17 +159,17 @@ permalink: /projects/
 }
 
 .project-status--live {
-  background: #e6f4ea;
-  color: #1e7e34;
+  background: var(--success);
+  color: var(--bg);
 }
 
 .project-status--in-development {
-  background: #fff4e6;
-  color: #e67700;
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .project-description {
-  color: var(--text-secondary, #666);
+  color: var(--text-muted);
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -164,12 +182,13 @@ permalink: /projects/
 }
 
 .tag {
-  background: var(--tag-bg, #f0f0f0);
-  color: var(--tag-color, #555);
+  background: var(--hover-bg);
+  color: var(--text);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
   font-weight: 500;
+  border: 1px solid var(--border);
 }
 
 .project-links {
@@ -177,14 +196,14 @@ permalink: /projects/
   gap: 1rem;
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border-color, #e0e0e0);
+  border-top: 1px solid var(--border);
 }
 
 .project-link {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  color: var(--link-color, #0066cc);
+  color: var(--accent);
 }
 
 .project-link:hover {
@@ -192,6 +211,10 @@ permalink: /projects/
 }
 
 .project-link--github {
-  color: var(--github-color, #333);
+  color: var(--text-muted);
+}
+
+.project-link--github:hover {
+  color: var(--accent);
 }
 </style>
