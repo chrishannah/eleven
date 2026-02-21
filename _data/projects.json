@@ -14,7 +14,7 @@
     "description": "A mini, personality‑driven coding agent with a TUI",
     "status": "In Development",
     "github": "https://github.com/chrishannah/minibrain",
-    "tags": ["Rust", "CLI", "AI"]
+    "tags": ["Go", "CLI", "AI"]
   },
   {
     "name": "Miniship",
