@@ -6,7 +6,7 @@
     "status": "Live",
     "url": "https://miniroll.app",
     "github": "https://github.com/chrishannah/miniroll",
-    "tags": ["React", "Web", "RSS"]
+    "tags": ["Next.js", "TypeScript", "RSS"]
   },
   {
     "name": "Minibrain",
@@ -22,7 +22,7 @@
     "description": "Project in active development",
     "status": "In Development",
     "github": "https://github.com/chrishannah/miniship",
-    "tags": ["Web"]
+    "tags": ["Next.js", "TypeScript"]
   },
   {
     "name": "Text Case",
@@ -31,7 +31,7 @@
     "status": "Live",
     "url": "https://textcase.app",
     "github": "https://github.com/chrishannah/Text-Case",
-    "tags": ["Swift", "iOS", "macOS", "React", "Rust", "CLI"]
+    "tags": ["Swift", "iOS", "macOS", "Ruby", "CLI"]
   },
   {
     "name": "Pokeguessr",
@@ -40,7 +40,7 @@
     "status": "Live",
     "url": "https://github.com/chrishannah/pokeguessr",
     "github": "https://github.com/chrishannah/pokeguessr",
-    "tags": ["Rust", "CLI", "Game"]
+    "tags": ["Node.js", "CLI", "Game"]
   },
   {
     "name": "Text Shot",
