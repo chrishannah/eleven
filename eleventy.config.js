@@ -34,6 +34,7 @@ export default function (eleventyConfig) {
         eleventyConfig.addPassthroughCopy({ [`static/${folder}`]: folder });
     });
     eleventyConfig.addPassthroughCopy({ "assets/js": "js" });
+    eleventyConfig.addPassthroughCopy("favicon.svg");
 
     eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif}");
 
