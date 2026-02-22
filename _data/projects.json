@@ -5,7 +5,6 @@
     "description": "Create, share, and embed blogrolls with RSS aggregation",
     "status": "Live",
     "url": "https://miniroll.app",
-    "github": "https://github.com/chrishannah/miniroll",
     "tags": ["Next.js", "TypeScript", "RSS"]
   },
   {
@@ -21,7 +20,7 @@
     "icon": "S",
     "description": "Project in active development",
     "status": "In Development",
-    "github": "https://github.com/chrishannah/miniship",
+    "url": "https://miniship.app",
     "tags": ["Next.js", "TypeScript"]
   },
   {
@@ -30,7 +29,6 @@
     "description": "Text transformation for iOS, Mac, web, and command line",
     "status": "Live",
     "url": "https://textcase.app",
-    "github": "https://github.com/chrishannah/Text-Case",
     "tags": ["Swift", "iOS", "macOS", "Ruby", "CLI"]
   },
   {
