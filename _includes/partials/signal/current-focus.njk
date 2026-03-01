@@ -1,0 +1,27 @@
+<div class="secondary-section">
+    <div class="section-head">
+        <span class="section-title">Current Focus</span>
+    </div>
+    <div class="focus-content" id="focus-container">
+        <script>
+            (function() {
+                var pref = localStorage.getItem('theme-preference') || 'auto';
+                var mode = pref;
+                if (pref === 'auto') {
+                    mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://minifocus.app/embed/chris';
+                iframe.setAttribute('data-color-mode', mode);
+                iframe.setAttribute('width', '100%');
+                iframe.setAttribute('height', '200');
+                iframe.setAttribute('frameborder', '0');
+                iframe.style.border = 'none';
+                document.getElementById('focus-container').appendChild(iframe);
+            })();
+        </script>
+        <noscript>
+            <p><a href="https://minifocus.app/u/chris">View focus on Minifocus</a></p>
+        </noscript>
+    </div>
+</div>
