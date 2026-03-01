@@ -7,16 +7,12 @@
     <div class="metric-row">
         <span class="metric-label">Current focus</span>
         {# <span class="metric-value live">{{ homepage.currentFocus }}</span> #}
-        <script>
-            fetch('https://minifocus.app/u/christest.txt')
-                .then(r => r.text())
-                .then(focus => {
-                    document
-                        .getElementById('focus')
-                        .textContent = focus;
-                });
-        </script>
-        <span id="focus"></span>
+        <iframe
+  src="https://minifocus.app/embed/chris"
+  width="100%"
+  height="200"
+  frameborder="0"
+></iframe>
     </div>
     <div class="metric-row">
         <span class="metric-label">Last post</span>
