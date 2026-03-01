@@ -6,7 +6,17 @@
     </div>
     <div class="metric-row">
         <span class="metric-label">Current focus</span>
-        <span class="metric-value live">{{ homepage.currentFocus }}</span>
+        {# <span class="metric-value live">{{ homepage.currentFocus }}</span> #}
+        <script>
+            fetch('https://minifocus.app/u/christest.txt')
+                .then(r => r.text())
+                .then(focus => {
+                    document
+                        .getElementById('focus')
+                        .textContent = focus;
+                });
+        </script>
+        <span id="focus"></span>
     </div>
     <div class="metric-row">
         <span class="metric-label">Last post</span>
@@ -14,7 +24,9 @@
     </div>
     <div class="metric-row">
         <span class="metric-label">GitHub</span>
-        <span class="metric-value">{% if github.commitsThisWeek != null %}{{ github.commitsThisWeek }} commits/wk{% else %}--{% endif %}</span>
+        <span class="metric-value">
+            {% if github.commitsThisWeek != null %}{{ github.commitsThisWeek }} commits/wk{% else %}--{% endif %}
+        </span>
     </div>
     <div class="metric-row">
         <span class="metric-label">Page views</span>
