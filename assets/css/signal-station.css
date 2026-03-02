@@ -561,6 +561,12 @@ body {
     flex-shrink: 0;
 }
 
+.project-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
 .project-info {
     flex: 1;
     min-width: 0;

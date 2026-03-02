@@ -2,10 +2,29 @@
   {
     "name": "Miniroll",
     "icon": "M",
+    "iconUrl": "/images/icons/miniroll.png",
     "description": "Create, share, and embed blogrolls with RSS aggregation",
     "status": "Live",
     "url": "https://miniroll.app",
     "tags": ["Next.js", "TypeScript", "RSS"]
+  },
+  {
+    "name": "Miniship",
+    "icon": "S",
+    "iconUrl": "/images/icons/miniship.png",
+    "description": "Simple, powerful changelog management",
+    "status": "Live",
+    "url": "https://miniship.app",
+    "tags": ["Next.js", "TypeScript"]
+  },
+  {
+    "name": "Minifocus",
+    "icon": "F",
+    "iconUrl": "/images/icons/minifocus.png",
+    "description": "Share your current focus anywhere",
+    "status": "Live",
+    "url": "https://minifocus.app",
+    "tags": ["Next.js", "TypeScript"]
   },
   {
     "name": "Minibrain",
@@ -14,14 +33,6 @@
     "status": "In Development",
     "github": "https://github.com/chrishannah/minibrain",
     "tags": ["Go", "CLI", "AI"]
-  },
-  {
-    "name": "Miniship",
-    "icon": "S",
-    "description": "Project in active development",
-    "status": "In Development",
-    "url": "https://miniship.app",
-    "tags": ["Next.js", "TypeScript"]
   },
   {
     "name": "Text Case",
