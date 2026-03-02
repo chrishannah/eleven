@@ -7,8 +7,6 @@ layout: layouts/post
 permalink: a-growing-collection-of-mini-apps/
 ---
 
-
-
 At the start of 2026, I wrote about [wanting to produce more this year](https://chrishannah.me/2026/), and so far I've been doing just that.
 
 Back in January I [launched Miniroll](https://chrishannah.me/miniroll/), a way to create, manage, share, and embed blogrolls.
