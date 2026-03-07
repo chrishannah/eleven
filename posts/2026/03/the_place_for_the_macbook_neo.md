@@ -1,4 +1,11 @@
-#  The Place for the MacBook Neo
+---
+title:  The Place for the MacBook Neo
+date: 2026-03-07
+tags:
+  - post
+layout: layouts/post
+permalink: the-place-for-the-macbook-neo/
+---
 
 There seems to be a very big gap in the capabilities of modern computers compared to the actual use case of the general person. Whether it's a phone, laptop, or any type of technology. Marketing and society seems to tell you that *everyone* needs to have the best version of everything.
 
