@@ -1,8 +1,8 @@
-The Mac I Want Doesn't Exist
+# The Mac I Want Doesn't Exist
 
-I've had a 14" M1 MacBook Pro for over 4 years now, and it's served me well since then. Apart from storage limitations (500 GB), I haven't felt held back by this machine at any point. 
+I've had a 14" M1 MacBook Pro for over 4 years now, and it's served me well since then. Apart from storage limitations (500 GB), I haven't felt held back by this machine at any point.
 
-However, I can't say I haven't been temped by shiny new things. Every time there's been a new generation of M chip released I wonder what the increase in performance would feel like. 
+However, I can't say I haven't been temped by shiny new things. Every time there's been a new generation of M chip released I wonder what the increase in performance would feel like.
 
 But performance on it's own is unlikely to convince me to upgrade. I usually need three things:
 
