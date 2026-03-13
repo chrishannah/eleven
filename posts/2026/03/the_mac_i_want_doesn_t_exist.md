@@ -1,4 +1,11 @@
-# The Mac I Want Doesn't Exist
+---
+title: The Mac I Want Doesn't Exist
+date: 2026-03-13
+tags:
+  - post
+layout: layouts/post
+permalink: the-mac-i-want-doesn-t-exist/
+---
 
 I've had a 14" M1 MacBook Pro for over 4 years now, and it's served me well since then. Apart from storage limitations (500 GB), I haven't felt held back by this machine at any point.
 
