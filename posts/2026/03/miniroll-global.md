@@ -6,7 +6,6 @@ tags:
   - Miniroll
 layout: layouts/post
 permalink: miniroll-global-feed/
-image: /posts/2026/03/miniroll-global.png
 ---
 
 One reason I built [Miniroll](https://www.miniroll.app) was because I wanted a place to discover new blogs to read. However, even if I added an explore page where you can view a random set of blogrolls and blogs that have been added, it's hard to judge a blog by a name.
