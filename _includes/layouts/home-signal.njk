@@ -64,20 +64,25 @@
         <main class="main-grid">
             <!-- Primary: Writing -->
             <div class="main-col">
-                {% include "partials/signal/latest-writing.njk" %}
-                {% include "partials/signal/curated-links.njk" %}
-                {% include "partials/signal/recent-essays.njk" %}
+                <div class="content-section section-writing">
+                    {% include "partials/signal/latest-writing.njk" %}
+                </div>
+                <div class="content-section section-links">
+                    {% include "partials/signal/curated-links.njk" %}
+                </div>
+                <div class="content-section section-essays">
+                    {% include "partials/signal/recent-essays.njk" %}
+                </div>
             </div>
 
             <!-- Secondary: Latest Activity, Projects, External Sites, Connect -->
             <div class="secondary-col">
                 <div class="secondary-section activity-row">
                     {% include "partials/signal/latest-photo.njk" %}
-                    {% include "partials/signal/live-activity.njk" %}
+                    {% include "partials/signal/currently-listening.njk" %}
                 </div>
 
                 {% include "partials/signal/current-focus.njk" %}
-                {% include "partials/signal/currently-listening.njk" %}
                 {% include "partials/signal/projects.njk" %}
                 {% include "partials/signal/external-sites.njk" %}
                 {% include "partials/signal/connect.njk" %}
@@ -88,7 +93,6 @@
         <!-- Bottom: Stats, Milestones, System -->
         <div class="bottom-grid">
             {% include "partials/signal/stats.njk" %}
-            {% include "partials/signal/milestones.njk" %}
             {% include "partials/signal/system.njk" %}
         </div>
 

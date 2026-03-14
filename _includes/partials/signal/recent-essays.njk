@@ -2,7 +2,7 @@
 {% set recentEssays = essayPosts | limit(3) %}
 
 <div class="section-head">
-    <span class="section-title">Recent Essays</span>
+    <span class="section-title">>> Recent Essays</span>
     <span class="section-meta">{{ essayPosts | length }} essays</span>
 </div>
 {% if recentEssays | length > 0 %}

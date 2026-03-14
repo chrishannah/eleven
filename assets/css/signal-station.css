@@ -368,6 +368,10 @@ body {
     padding: 1rem 1.25rem;
 }
 
+.miniroll-embed {
+    background: inherit !important;
+}
+
 /* Main Grid - Two columns for main content */
 .main-grid {
     display: grid;
@@ -395,11 +399,12 @@ body {
     align-items: center;
     padding: 0.75rem 1.25rem;
     background: rgba(255, 255, 255, 0.015);
+    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
 
 .section-title {
-    font-size: 0.65rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--accent);
@@ -408,6 +413,11 @@ body {
 .section-meta {
     font-size: 0.65rem;
     color: var(--text-muted);
+}
+
+/* Content section left borders */
+.content-section > .section-head {
+    border-left: 3px solid var(--accent);
 }
 
 /* Posts with big date like command center */
@@ -515,7 +525,7 @@ body {
 .link-row a {
     color: var(--text);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     transition: color 0.15s;
     border-bottom: none;
 }
@@ -663,7 +673,7 @@ body {
 
 .activity-left {
     border-right: 1px solid var(--border);
-    width: 232px;
+    width: 244px;
     flex-shrink: 0;
 }
 
@@ -767,7 +777,7 @@ body {
 /* Bottom Stats Grid */
 .bottom-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     border: 1px solid var(--border);
     border-top: none;
 }
@@ -863,11 +873,21 @@ body {
 /* Spotify Embed */
 .spotify-embed {
     padding: 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .spotify-embed iframe {
     border-radius: 4px;
     display: block;
+    flex: 1;
+}
+
+.activity-row > .secondary-section {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* Footer */
@@ -875,8 +895,7 @@ body {
     border: 1px solid var(--border);
     border-top: none;
     padding: 0.85rem 1.25rem;
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
     font-size: 0.7rem;
     color: var(--text-muted);
 }
@@ -900,7 +919,7 @@ body {
 }
 
 @media (max-width: 600px) {
-    .signal-footer { flex-direction: column; gap: 0.35rem; }
+    .signal-footer { }
 }
 
 /* ========================================
