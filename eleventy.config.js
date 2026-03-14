@@ -173,6 +173,7 @@ export default function (eleventyConfig) {
     eleventyConfig.ignores.add("*.md");
     eleventyConfig.ignores.add("*.MD");
     eleventyConfig.ignores.add("inbox/**");
+    eleventyConfig.ignores.add("inbox-links/**");
     eleventyConfig.ignores.add("blog-editor/**");
     eleventyConfig.ignores.add("api/**");
     eleventyConfig.ignores.add("ghost-export/**");
