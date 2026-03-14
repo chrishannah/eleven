@@ -1,0 +1,13 @@
+https://samhenri.gold/blog/20260312-this-is-not-the-computer-for-you/
+# “This Is Not The Computer For You”
+[Sam Henri Gold][post]:
+> There is a certain kind of computer review that is really a permission slip. It tells you what you’re allowed to want. It locates you in a taxonomy — student, creative, professional, power user — and assigns you a product. It is helpful. It is responsible. It has very little interest in what you might become.
+>
+>The MacBook Neo has attracted a lot of these reviews.
+
+This is one of my favourite pieces of writing I've read for a while.
+
+It reminds me of my own experience, when I was a teenager, saving up to get my
+first Mac. A base model 13" MacBook from around 2005/06. That limited machine
+opened me up to the world of Apple, development, blogging, and what essentially
+led to my career as a software engineer.
