@@ -10,14 +10,10 @@
                 if (pref === 'auto') {
                     mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
                 }
-                var iframe = document.createElement('iframe');
-                iframe.src = 'https://minifocus.app/embed/chris';
-                iframe.setAttribute('data-color-mode', mode);
-                iframe.setAttribute('width', '100%');
-                iframe.setAttribute('height', '110');
-                iframe.setAttribute('frameborder', '0');
-                iframe.style.border = 'none';
-                document.getElementById('focus-container').appendChild(iframe);
+                var s = document.createElement('script');
+                s.src = 'https://minifocus.app/embed/chris.js';
+                s.setAttribute('data-color-mode', mode);
+                document.getElementById('focus-container').appendChild(s);
             })();
         </script>
         <noscript>

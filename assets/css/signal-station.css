@@ -1,6 +1,5 @@
 /* ========================================
    Signal Station - Homepage Stylesheet
-   Dark theme with JetBrains Mono
    ======================================== */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -8,10 +7,9 @@
 /* Dark theme (default) */
 :root {
     --bg: #0a0a0a;
-    --text: #e0e0e0;
+    --text: #fff;
     --text-muted: #555;
     --accent: #ff8000;
-    --border: #1c1c1c;
     --success: #22c55e;
     --hover-bg: rgba(255, 128, 0, 0.1);
     --code-bg: rgba(255, 255, 255, 0.03);
@@ -23,7 +21,6 @@
     --text: #1a1a1a;
     --text-muted: #666;
     --accent: #e06000;
-    --border: #e0e0e0;
     --success: #16a34a;
     --hover-bg: rgba(255, 128, 0, 0.08);
     --code-bg: rgba(0, 0, 0, 0.04);
@@ -36,7 +33,6 @@
         --text: #1a1a1a;
         --text-muted: #666;
         --accent: #e06000;
-        --border: #e0e0e0;
         --success: #16a34a;
         --hover-bg: rgba(255, 128, 0, 0.08);
         --code-bg: rgba(0, 0, 0, 0.04);
@@ -57,10 +53,12 @@ body {
     padding: 1.5rem 2rem;
 }
 
-/* Header Block */
+/* ========================================
+   Header
+   ======================================== */
+
 .header-block {
-    border: 1px solid var(--border);
-    margin-bottom: 1px;
+    margin-bottom: 2rem;
 }
 
 .header-main {
@@ -68,21 +66,16 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1.75rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-}
-
-@media (max-width: 768px) {
-    .header-main { flex-direction: column; gap: 1rem; align-items: flex-start; }
 }
 
 .brand {
     display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 .brand h1 {
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: 500;
     color: var(--accent);
 }
@@ -93,7 +86,7 @@ body {
 }
 
 .brand-sub {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
 }
 
@@ -109,10 +102,6 @@ body {
     align-items: flex-end;
 }
 
-@media (max-width: 768px) {
-    .meta-item { align-items: flex-start; }
-}
-
 .meta-label {
     color: var(--text-muted);
     font-size: 0.55rem;
@@ -124,33 +113,15 @@ body {
     color: var(--accent);
 }
 
-.meta-value.status-online {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-}
+/* ========================================
+   Navigation
+   ======================================== */
 
-.pulse {
-    width: 6px;
-    height: 6px;
-    background: var(--success);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-}
-
-/* Navigation */
 .signal-nav {
     display: flex;
-    background: rgba(255, 255, 255, 0.02);
     position: relative;
 }
 
-/* Desktop navigation - default */
 .nav-desktop {
     display: flex;
 }
@@ -160,15 +131,12 @@ body {
     color: var(--text);
     text-decoration: none;
     font-size: 0.8rem;
-    border-right: 1px solid var(--border);
     transition: all 0.15s;
-    border-bottom: none;
 }
 
 .nav-desktop a:hover {
     background: var(--hover-bg);
     color: var(--accent);
-    opacity: 1;
 }
 
 /* Mobile dropdowns - hidden by default */
@@ -181,33 +149,17 @@ body {
 .theme-toggle {
     display: flex;
     margin-left: auto;
-    border-left: 1px solid var(--border);
 }
 
 .theme-toggle button {
     padding: 0.7rem 0.9rem;
     background: transparent;
-    border: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
+    border: 1px solid var(--hover-bg);
+    color: #ccc;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.15s;
-}
-
-[data-theme="light"] .theme-toggle button {
-    border-right-color: var(--border);
-}
-
-@media (prefers-color-scheme: light) {
-    [data-theme="auto"] .theme-toggle button {
-        border-right-color: var(--border);
-    }
-}
-
-.theme-toggle button:last-child {
-    border-right: none;
 }
 
 .theme-toggle button:hover {
@@ -220,13 +172,22 @@ body {
     background: var(--hover-bg);
 }
 
+[data-theme="light"] .theme-toggle button {
+    color: var(--text);
+}
+
+@media (prefers-color-scheme: light) {
+    [data-theme="auto"] .theme-toggle button {
+        color: var(--text);
+    }
+}
+
 /* Dynamic Color Toggle */
 .theme-toggle .dynamic-toggle {
     padding: 0.7rem 0.9rem;
     background: transparent;
     border: none;
-    border-left: 1px solid var(--border);
-    color: var(--text-muted);
+    color: var(--text);
     font-size: 1.3rem;
     line-height: 1;
     cursor: pointer;
@@ -243,26 +204,30 @@ body {
     background: var(--hover-bg);
 }
 
-/* Mobile navigation - dropdown layout */
+/* ========================================
+   Mobile Navigation
+   ======================================== */
+
 @media (max-width: 768px) {
-    /* Hide desktop versions */
+    .header-main {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .meta-item { align-items: flex-start; }
+
     .nav-desktop,
     .theme-desktop {
         display: none;
     }
-    
-    /* Show mobile dropdowns on same line */
-    .nav-mobile-dropdown {
-        display: block;
-        flex: 1;
-    }
-    
+
+    .nav-mobile-dropdown,
     .theme-mobile-dropdown {
         display: block;
         flex: 1;
     }
-    
-    /* Dropdown summary buttons (Navigation, Theme) */
+
     .nav-mobile-dropdown summary,
     .theme-mobile-dropdown summary {
         list-style: none;
@@ -272,36 +237,29 @@ body {
         cursor: pointer;
         transition: all 0.15s;
         user-select: none;
-        border-right: 1px solid var(--border);
+        border: 1px solid var(--hover-bg);
     }
-    
+
     .nav-mobile-dropdown summary::-webkit-details-marker,
     .theme-mobile-dropdown summary::-webkit-details-marker {
         display: none;
     }
-    
+
     .nav-mobile-dropdown summary:hover,
     .theme-mobile-dropdown summary:hover {
         background: var(--hover-bg);
         color: var(--accent);
     }
-    
-    .theme-mobile-dropdown summary {
-        border-right: none;
-    }
-    
-    /* Navigation dropdown content */
+
     .nav-mobile-links {
         position: absolute;
         top: 100%;
         left: 0;
         right: 50%;
         background: var(--bg);
-        border: 1px solid var(--border);
-        border-top: none;
         z-index: 100;
     }
-    
+
     .nav-mobile-links a {
         display: block;
         padding: 0.7rem 1.25rem;
@@ -309,37 +267,29 @@ body {
         text-decoration: none;
         font-size: 0.8rem;
         transition: all 0.15s;
-        border-bottom: 1px solid var(--border);
+        border: 1px solid var(--hover-bg);
     }
-    
-    .nav-mobile-links a:last-child {
-        border-bottom: none;
-    }
-    
+
     .nav-mobile-links a:hover {
         background: var(--hover-bg);
         color: var(--accent);
     }
-    
-    /* Theme dropdown content */
+
     .theme-mobile-options {
         position: absolute;
         top: 100%;
         left: 50%;
         right: 0;
         background: var(--bg);
-        border: 1px solid var(--border);
-        border-top: none;
         z-index: 100;
     }
-    
+
     .theme-mobile-options button {
         display: block;
         width: 100%;
         padding: 0.7rem 1.25rem;
         background: transparent;
-        border: none;
-        border-bottom: 1px solid var(--border);
+        border: 1px solid var(--hover-bg);
         color: var(--text);
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.8rem;
@@ -347,60 +297,44 @@ body {
         cursor: pointer;
         transition: all 0.15s;
     }
-    
-    .theme-mobile-options button:last-child {
-        border-bottom: none;
-    }
-    
+
     .theme-mobile-options button:hover {
         background: var(--hover-bg);
         color: var(--accent);
     }
-    
+
     .theme-mobile-options button.active {
         color: var(--accent);
         background: var(--hover-bg);
     }
 }
 
-/* Blogroll */
-.blogroll-content {
-    padding: 1rem 1.25rem;
-}
+/* ========================================
+   Main Grid Layout
+   ======================================== */
 
-.miniroll-embed {
-    background: inherit !important;
-}
-
-/* Main Grid - Two columns for main content */
 .main-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    border: 1px solid var(--border);
-    border-top: none;
+    grid-template-columns: 1.5fr 0.6fr;
+    gap: 16px;
 }
 
 @media (max-width: 900px) {
     .main-grid { grid-template-columns: 1fr; }
 }
 
-.main-col {
-    border-right: 1px solid var(--border);
-}
+/* ========================================
+   Section Headers
+   ======================================== */
 
-@media (max-width: 900px) {
-    .main-col { border-right: none; border-bottom: 1px solid var(--border); }
-}
-
-/* Section Headers */
 .section-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1.25rem;
-    background: rgba(255, 255, 255, 0.015);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    background: var(--hover-bg);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px;
 }
 
 .section-title {
@@ -415,71 +349,63 @@ body {
     color: var(--text-muted);
 }
 
-/* Content section left borders */
-.content-section > .section-head {
-    border-left: 3px solid var(--accent);
+/* ========================================
+   Feed Items (full content post list)
+   ======================================== */
+
+.signal-feed-item {
+    padding: 1.5rem 1.25rem;
 }
 
-/* Posts with big date like command center */
-.signal-post-item {
-    display: grid;
-    grid-template-columns: 85px 1fr auto;
-    gap: 1.25rem;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    align-items: start;
-    transition: background 0.15s;
+.feed-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
-.signal-post-item:last-child {
-    border-bottom: none;
-}
-
-.signal-post-item:hover {
-    background: rgba(255, 128, 0, 0.02);
-}
-
-.post-date {
-    text-align: left;
-}
-
-.post-date .day {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1;
-    display: block;
-}
-
-.post-date .month-year {
-    font-size: 0.65rem;
+.feed-date {
+    font-size: 0.9rem;
     color: var(--text-muted);
-    text-transform: uppercase;
 }
 
-.post-content h3 {
-    font-size: 0.95rem;
+.feed-title {
+    font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.75rem;
     font-family: 'JetBrains Mono', monospace;
 }
 
-.post-content h3 a {
+.feed-title a {
     color: var(--text);
     text-decoration: none;
-    transition: color 0.15s;
-    border-bottom: none;
 }
 
-.post-content h3 a:hover {
+.feed-title a:hover {
     color: var(--accent);
-    opacity: 1;
 }
 
-.post-excerpt {
-    font-size: 0.8rem;
+.feed-meta {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.feed-meta a {
     color: var(--text-muted);
-    line-height: 1.5;
+    text-decoration: none;
+}
+
+.feed-meta a:hover {
+    color: var(--accent);
+}
+
+/* Post type indicators */
+.post-type-indicator {
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    white-space: nowrap;
 }
 
 /* Featured Image in Post Listings */
@@ -495,124 +421,131 @@ body {
     max-height: 320px;
     object-fit: contain;
     border-radius: 3px;
-    border: 1px solid var(--border);
 }
 
-.post-tag {
-    font-size: 0.6rem;
-    padding: 0.2rem 0.5rem;
-    background: rgba(255, 128, 0, 0.1);
+/* Post list footer */
+.post-list-footer {
+    padding: 0.85rem 1.25rem;
+    text-align: center;
+}
+
+.post-list-footer a {
     color: var(--accent);
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-}
-
-/* Links */
-.link-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.65rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.link-row:last-child {
-    border-bottom: none;
-}
-
-.link-row a {
-    color: var(--text);
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.15s;
-    border-bottom: none;
+    font-size: 0.85rem;
 }
 
-.link-row a:hover {
-    color: var(--accent);
-    opacity: 1;
+.post-list-footer a:hover {
+    opacity: 0.7;
 }
 
-.link-arrow {
-    color: var(--accent);
-    font-size: 0.8rem;
-}
+/* ========================================
+   Secondary Column
+   ======================================== */
 
-/* Secondary Column */
 .secondary-col {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 }
 
-.secondary-section {
-    border-bottom: 1px solid var(--border);
+/* Focus embed */
+.focus-content {
 }
 
-.secondary-section:last-child {
-    border-bottom: none;
+/* Spotify Embed */
+.spotify-embed {
+    padding: 0.75rem;
 }
 
-/* Projects */
-.project-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.7rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
+.spotify-embed iframe {
+    border-radius: 4px;
+    display: block;
+}
+
+/* Instagram Card */
+.instagram-card {
+    display: block;
     text-decoration: none;
+    transition: background 0.15s;
 }
 
-.project-row:last-child {
-    border-bottom: none;
-}
-
-.project-row:hover {
+.instagram-card:hover {
     background: rgba(255, 128, 0, 0.02);
 }
 
-.project-icon {
-    width: 26px;
-    height: 26px;
-    background: rgba(255, 128, 0, 0.12);
+.instagram-image {
+    width: 200px;
+    height: 200px;
+    margin: 1rem;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 4px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent);
+    color: var(--text-muted);
     font-size: 0.7rem;
-    font-weight: 500;
-    flex-shrink: 0;
 }
 
-.project-icon-img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+.instagram-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.project-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.project-name {
-    font-size: 0.85rem;
-    color: var(--text);
-}
-
-.project-desc {
+.instagram-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
     font-size: 0.7rem;
+}
+
+.instagram-time {
     color: var(--text-muted);
 }
 
-.project-status {
-    font-size: 0.55rem;
-    color: var(--success);
-    text-transform: uppercase;
-    flex-shrink: 0;
+.instagram-link {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* ========================================
+   Bottom Grid (Connect, External, Stats)
+   ======================================== */
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 2rem;
+}
+
+.bottom-section .section-head {
+    padding: 0.6rem 1rem;
+}
+
+/* Connect */
+.connect-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.65rem 1.25rem;
+}
+
+.connect-row a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.15s;
+}
+
+.connect-row a:hover {
+    color: var(--accent);
+}
+
+.connect-handle {
+    font-size: 0.7rem;
+    color: var(--text-muted);
 }
 
 /* External Sites */
@@ -621,13 +554,8 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 0.7rem 1.25rem;
-    border-bottom: 1px solid var(--border);
     text-decoration: none;
     transition: background 0.15s;
-}
-
-.external-row:last-child {
-    border-bottom: none;
 }
 
 .external-row:hover {
@@ -661,148 +589,6 @@ body {
     font-size: 0.75rem;
 }
 
-/* Activity Row - Instagram + Live Activity side by side */
-.activity-row {
-    display: grid;
-    grid-template-columns: auto 1fr;
-}
-
-@media (max-width: 600px) {
-    .activity-row { grid-template-columns: 1fr; }
-}
-
-.activity-left {
-    border-right: 1px solid var(--border);
-    width: 244px;
-    flex-shrink: 0;
-}
-
-@media (max-width: 600px) {
-    .activity-left {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-    }
-}
-
-.activity-left .section-head,
-.activity-right .section-head {
-    border-bottom: 1px solid var(--border);
-}
-
-/* Instagram Card */
-.instagram-card {
-    display: block;
-    text-decoration: none;
-    transition: background 0.15s;
-}
-
-.instagram-card:hover {
-    background: rgba(255, 128, 0, 0.02);
-}
-
-.instagram-image {
-    width: 200px;
-    height: 200px;
-    margin: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-}
-
-@media (max-width: 600px) {
-    .instagram-image {
-        width: calc(100% - 2rem);
-    }
-}
-
-.instagram-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.instagram-meta {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.6rem 1rem;
-    font-size: 0.7rem;
-}
-
-.instagram-time {
-    color: var(--text-muted);
-}
-
-.instagram-link {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: none;
-}
-
-/* Connect */
-.connect-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.65rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.connect-row:last-child {
-    border-bottom: none;
-}
-
-.connect-row a {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.15s;
-    border-bottom: none;
-}
-
-.connect-row a:hover {
-    color: var(--accent);
-    opacity: 1;
-}
-
-.connect-handle {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-}
-
-/* Bottom Stats Grid */
-.bottom-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border: 1px solid var(--border);
-    border-top: none;
-}
-
-@media (max-width: 768px) {
-    .bottom-grid { grid-template-columns: 1fr; }
-}
-
-.bottom-section {
-    border-right: 1px solid var(--border);
-}
-
-.bottom-section:last-child {
-    border-right: none;
-}
-
-@media (max-width: 768px) {
-    .bottom-section { border-right: none; border-bottom: 1px solid var(--border); }
-    .bottom-section:last-child { border-bottom: none; }
-}
-
-.bottom-section .section-head {
-    padding: 0.6rem 1rem;
-}
-
 /* Stats Compact */
 .stats-compact {
     display: grid;
@@ -812,16 +598,6 @@ body {
 .stat-compact {
     padding: 0.75rem;
     text-align: center;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.stat-compact:nth-child(2n) {
-    border-right: none;
-}
-
-.stat-compact:nth-child(n+3) {
-    border-bottom: none;
 }
 
 .stat-compact-value {
@@ -845,58 +621,23 @@ body {
     margin-top: 0.1rem;
 }
 
-/* Metrics Compact */
-.metric-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.45rem 1rem;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.7rem;
-}
+/* ========================================
+   Footer
+   ======================================== */
 
-.metric-row:last-child {
-    border-bottom: none;
-}
-
-.metric-label {
-    color: var(--text-muted);
-}
-
-.metric-value {
-    color: var(--text);
-}
-
-.metric-value.live {
-    color: var(--accent);
-}
-
-/* Spotify Embed */
-.spotify-embed {
-    padding: 0.75rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.spotify-embed iframe {
-    border-radius: 4px;
-    display: block;
-    flex: 1;
-}
-
-.activity-row > .secondary-section {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-}
-
-/* Footer */
 .signal-footer {
-    border: 1px solid var(--border);
-    border-top: none;
+    margin-top: 2rem;
     padding: 0.85rem 1.25rem;
     text-align: center;
     font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.footer-sep {
     color: var(--text-muted);
 }
 
@@ -918,26 +659,30 @@ body {
     opacity: 0.7 !important;
 }
 
-@media (max-width: 600px) {
-    .signal-footer { }
+/* Miniroll embed */
+.miniroll-embed {
+    background: inherit !important;
+}
+
+/* Blogroll page */
+.blogroll-content {
+    padding: 1rem 1.25rem;
 }
 
 /* ========================================
-   Mobile Responsive (iPhone ~393px)
+   Mobile Responsive
    ======================================== */
+
 @media (max-width: 600px) {
-    /* 1. Container padding — reclaim 32px horizontal space */
     .container {
         padding: 1rem;
     }
 
-    /* 2. Header meta — allow wrapping, tighten gap */
     .header-meta {
         flex-wrap: wrap;
         gap: 1rem;
     }
 
-    /* 3. Nav bar — wrap links, shrink padding/font */
     .signal-nav {
         flex-wrap: wrap;
     }
@@ -947,57 +692,24 @@ body {
         font-size: 0.7rem;
     }
 
-    .theme-toggle {
-        width: 100%;
-        margin-left: 0;
-        border-left: none;
-        border-top: 1px solid var(--border);
+    .instagram-image {
+        width: calc(100% - 2rem);
     }
 
-    /* 4. Post items — stacked: date+tag top row, content full width below */
-    .signal-post-item {
-        grid-template-columns: 1fr auto;
-        gap: 0.25rem;
-        padding: 0.75rem 1rem;
-    }
-
-    .post-date {
-        grid-column: 1;
-        grid-row: 1;
-        display: flex;
-        align-items: baseline;
-        gap: 0.4rem;
-    }
-
-    .post-date .day {
-        font-size: 0.85rem;
-    }
-
-    .post-content {
-        grid-column: 1 / -1;
-        grid-row: 2;
-    }
-
-    .post-tag {
-        grid-column: 2;
-        grid-row: 1;
-        align-self: center;
-    }
-
-    /* 5. Section head padding */
     .section-head {
         padding: 0.6rem 1rem;
     }
 
-    /* 6. Row padding — tighten to match container */
-    .link-row,
     .connect-row {
         padding: 0.65rem 1rem;
     }
 
-    .project-row,
     .external-row {
         padding: 0.7rem 1rem;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
     }
 
     .blogroll-content {

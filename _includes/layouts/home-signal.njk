@@ -12,10 +12,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         {% include "../../assets/css/signal-station.css" %}
+        {% include "../../assets/css/signal-content.css" %}
     </style>
 
     <link rel="me" href="https://micro.blog/ChrisHannah"/>
@@ -52,7 +53,6 @@
                     s.setProperty('--accent', 'rgb(' + p.vibrant + ')');
                     s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)');
                 }
-                if (p.vibrantDark) s.setProperty('--border', 'rgba(' + p.vibrantDark + ',0.3)');
             }
         })();
     </script>
@@ -64,36 +64,22 @@
         <main class="main-grid">
             <!-- Primary: Writing -->
             <div class="main-col">
-                <div class="content-section section-writing">
-                    {% include "partials/signal/latest-writing.njk" %}
-                </div>
-                <div class="content-section section-links">
-                    {% include "partials/signal/curated-links.njk" %}
-                </div>
-                <div class="content-section section-essays">
-                    {% include "partials/signal/recent-essays.njk" %}
-                </div>
+                {% include "partials/signal/recent-posts.njk" %}
             </div>
 
-            <!-- Secondary: Latest Activity, Projects, External Sites, Connect -->
+            <!-- Secondary -->
             <div class="secondary-col">
-                <div class="secondary-section activity-row">
-                    {% include "partials/signal/latest-photo.njk" %}
-                    {% include "partials/signal/currently-listening.njk" %}
-                </div>
-
                 {% include "partials/signal/current-focus.njk" %}
-                {% include "partials/signal/projects.njk" %}
-                {% include "partials/signal/external-sites.njk" %}
-                {% include "partials/signal/connect.njk" %}
-                {% include "partials/signal/blogroll.njk" %}
+                {% include "partials/signal/latest-photo.njk" %}
+                {% include "partials/signal/currently-listening.njk" %}
             </div>
         </main>
 
         <!-- Bottom: Stats, Milestones, System -->
         <div class="bottom-grid">
+            {% include "partials/signal/connect.njk" %}
+            {% include "partials/signal/external-sites.njk" %}
             {% include "partials/signal/stats.njk" %}
-            {% include "partials/signal/system.njk" %}
         </div>
 
         {% include "partials/signal/footer.njk" %}

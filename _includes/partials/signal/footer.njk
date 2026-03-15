@@ -2,4 +2,12 @@
 
 <footer class="signal-footer">
     <span>Post <span class="hl">#{{ allPosts | length }}</span> of <span class="hl">&infin;</span></span>
+    <span class="footer-sep">·</span>
+    <span>{{ homepage.system.status }}</span>
+    <span class="footer-sep">·</span>
+    <span>Uptime {{ homepage.system.uptime }}</span>
+    <span class="footer-sep">·</span>
+    <span>Deployed <span id="last-deploy" data-timestamp="{{ build.timestamp }}">--</span></span>
+    <span class="footer-sep">·</span>
+    <span>Built in {{ "" | buildDuration }}s</span>
 </footer>

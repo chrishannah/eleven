@@ -1,0 +1,32 @@
+---
+layout: layouts/base
+title: Blogroll
+permalink: /blogroll/
+---
+
+<h1>Blogroll</h1>
+
+<p class="intro-text">Blogs I read and recommend.</p>
+
+<div class="blogroll-page" id="blogroll-container">
+    <script>
+        (function() {
+            var pref = localStorage.getItem('theme-preference') || 'auto';
+            var mode = pref;
+            if (pref === 'auto') {
+                mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+            var s = document.createElement('script');
+            s.src = 'https://www.miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a.js';
+            s.setAttribute('data-show-title', 'true');
+            s.setAttribute('data-show-latest-post', 'true');
+            s.setAttribute('data-random', 'true');
+            s.setAttribute('data-show-suggest', 'true');
+            s.setAttribute('data-color-mode', mode);
+            document.getElementById('blogroll-container').appendChild(s);
+        })();
+    </script>
+    <noscript>
+        <p><a href="https://www.miniroll.app/embed/f31b6ea6-d3fe-468e-b372-2a7f1bd07c1a">View blogroll on Miniroll</a></p>
+    </noscript>
+</div>
