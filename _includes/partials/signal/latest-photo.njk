@@ -3,26 +3,33 @@
         <span class="section-title">Latest Photo</span>
     </div>
     {% if instagram and instagram.imageUrl %}
-    <a href="{{ instagram.permalink }}" class="instagram-card" target="_blank" rel="noopener">
-        <div class="instagram-image">
+    <a href="{{ instagram.permalink }}" class="polaroid" target="_blank" rel="noopener">
+        <div class="polaroid-image">
             <img src="{{ instagram.imageUrl }}" alt="{{ instagram.caption or 'Latest Instagram photo' }}" loading="lazy">
         </div>
-    </a>
-    <div class="instagram-meta">
-        <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-link" target="_blank" rel="noopener">@{{ homepage.instagram.username }} -></a>
-        {% if instagram.timestamp %}
-        <span class="instagram-time">{{ instagram.timestamp | relativeTime }}</span>
+        {% if instagram.caption %}
+        <div class="polaroid-text">
+            <span>{{ instagram.caption }}</span>
+        </div>
         {% endif %}
-    </div>
-    {% else %}
-    <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-card" target="_blank" rel="noopener">
-        <div class="instagram-image">
-            [Photo]
+        <div class="polaroid-caption">
+            <span class="polaroid-handle">@{{ homepage.instagram.username }}</span>
+            {% if instagram.timestamp %}
+            <span class="polaroid-time">{{ instagram.timestamp | relativeTime }}</span>
+            {% endif %}
         </div>
     </a>
-    <div class="instagram-meta">
-        <a href="https://instagram.com/{{ homepage.instagram.username }}" class="instagram-link" target="_blank" rel="noopener">@{{ homepage.instagram.username }} -></a>
-        <span class="instagram-time"></span>
-    </div>
+    {% else %}
+    <a href="https://instagram.com/{{ homepage.instagram.username }}" class="polaroid" target="_blank" rel="noopener">
+        <div class="polaroid-image">
+            [Photo]
+        </div>
+        <div class="polaroid-caption">
+            <span class="polaroid-handle">@{{ homepage.instagram.username }}</span>
+        </div>
+    </a>
     {% endif %}
+    <script>
+        document.querySelector('.polaroid').style.setProperty('--polaroid-rotation', (Math.random() * 6 - 3).toFixed(1) + 'deg');
+    </script>
 </div>

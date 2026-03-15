@@ -463,51 +463,69 @@ body {
     display: block;
 }
 
-/* Instagram Card */
-.instagram-card {
+/* Polaroid Photo Card */
+.polaroid {
     display: block;
-    text-decoration: none;
-    transition: background 0.15s;
-}
-
-.instagram-card:hover {
-    background: rgba(255, 128, 0, 0.02);
-}
-
-.instagram-image {
-    width: 200px;
-    height: 200px;
+    background: #f5f5f0;
+    padding: 0.75rem 0.75rem 0;
     margin: 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    transform: rotate(var(--polaroid-rotation, -1.5deg));
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.polaroid-image {
+    width: 100%;
+    aspect-ratio: 1;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-muted);
+    background: #ddd;
+    color: #999;
     font-size: 0.7rem;
 }
 
-.instagram-image img {
+.polaroid-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.instagram-meta {
+.polaroid-text {
+    padding: 0.5rem 0.25rem 0;
+    font-size: 0.75rem;
+    color: #555;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.polaroid-caption {
     display: flex;
     justify-content: space-between;
-    padding: 0.6rem 1rem;
-    font-size: 0.7rem;
+    align-items: center;
+    padding: 0.6rem 0.25rem 0.75rem;
+    font-size: 0.65rem;
 }
 
-.instagram-time {
-    color: var(--text-muted);
+.polaroid-handle {
+    color: #555;
+    font-family: 'JetBrains Mono', monospace;
 }
 
-.instagram-link {
-    color: var(--accent);
-    text-decoration: none;
+.polaroid-time {
+    color: #999;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* ========================================
@@ -690,10 +708,6 @@ body {
     .signal-nav a {
         padding: 0.5rem 0.75rem;
         font-size: 0.7rem;
-    }
-
-    .instagram-image {
-        width: calc(100% - 2rem);
     }
 
     .section-head {
