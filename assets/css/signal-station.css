@@ -13,11 +13,11 @@
     --success: #22c55e;
     --hover-bg: rgba(255, 128, 0, 0.1);
     --code-bg: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.15);
 }
 
 /* Light theme */
-[data-theme="light"] {
+:root[data-theme="light"] {
     --bg: #fafafa;
     --text: #1a1a1a;
     --text-muted: #666;
@@ -25,12 +25,12 @@
     --success: #16a34a;
     --hover-bg: rgba(255, 128, 0, 0.08);
     --code-bg: rgba(0, 0, 0, 0.04);
-    --border: rgba(0, 0, 0, 0.1);
+    --border: rgba(0, 0, 0, 0.15);
 }
 
 /* Auto theme - follows system preference */
 @media (prefers-color-scheme: light) {
-    [data-theme="auto"] {
+    :root[data-theme="auto"] {
         --bg: #fafafa;
         --text: #1a1a1a;
         --text-muted: #666;
@@ -38,7 +38,7 @@
         --success: #16a34a;
         --hover-bg: rgba(255, 128, 0, 0.08);
         --code-bg: rgba(0, 0, 0, 0.04);
-        --border: rgba(0, 0, 0, 0.1);
+        --border: rgba(0, 0, 0, 0.15);
     }
 }
 

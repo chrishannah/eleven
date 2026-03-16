@@ -3,10 +3,8 @@
    Extends signal-station.css for articles/pages
    ======================================== */
 
-/* Content Block - bordered like homepage sections */
+/* Content Block */
 .content-block {
-    border: 1px solid var(--border);
-    border-top: none;
     padding: 2rem;
 }
 
@@ -397,7 +395,7 @@ input[type="url"] {
 input[type="button"],
 input[type="submit"],
 input[type="reset"],
-button {
+.content-block button {
     padding: 0.625rem 1.25rem;
     background: var(--accent);
     color: var(--bg);
@@ -413,7 +411,7 @@ button {
 input[type="button"]:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
-button:hover {
+.content-block button:hover {
     background: #e67300;
     border-color: #e67300;
 }

@@ -30,7 +30,7 @@
     "name": "Minibrain",
     "icon": "🧠",
     "description": "A mini, personality‑driven coding agent with a TUI",
-    "status": "In Development",
+    "status": "In Dev",
     "github": "https://github.com/chrishannah/minibrain",
     "tags": ["Go", "CLI", "AI"]
   },
