@@ -13,6 +13,7 @@
     --success: #22c55e;
     --hover-bg: rgba(255, 128, 0, 0.1);
     --code-bg: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
 }
 
 /* Light theme */
@@ -24,6 +25,7 @@
     --success: #16a34a;
     --hover-bg: rgba(255, 128, 0, 0.08);
     --code-bg: rgba(0, 0, 0, 0.04);
+    --border: rgba(0, 0, 0, 0.1);
 }
 
 /* Auto theme - follows system preference */
@@ -36,6 +38,7 @@
         --success: #16a34a;
         --hover-bg: rgba(255, 128, 0, 0.08);
         --code-bg: rgba(0, 0, 0, 0.04);
+        --border: rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -154,8 +157,8 @@ body {
 .theme-toggle button {
     padding: 0.7rem 0.9rem;
     background: transparent;
-    border: 1px solid var(--hover-bg);
-    color: #ccc;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     cursor: pointer;
@@ -164,6 +167,7 @@ body {
 
 .theme-toggle button:hover {
     background: var(--hover-bg);
+    border-color: var(--accent);
     color: var(--accent);
 }
 
@@ -172,18 +176,9 @@ body {
     background: var(--hover-bg);
 }
 
-[data-theme="light"] .theme-toggle button {
-    color: var(--text);
-}
-
-@media (prefers-color-scheme: light) {
-    [data-theme="auto"] .theme-toggle button {
-        color: var(--text);
-    }
-}
-
 /* Dynamic Color Toggle */
 .theme-toggle .dynamic-toggle {
+    margin-left: 0.5rem;
     padding: 0.7rem 0.9rem;
     background: transparent;
     border: none;
@@ -237,7 +232,7 @@ body {
         cursor: pointer;
         transition: all 0.15s;
         user-select: none;
-        border: 1px solid var(--hover-bg);
+        border: 1px solid var(--border);
     }
 
     .nav-mobile-dropdown summary::-webkit-details-marker,
@@ -267,7 +262,7 @@ body {
         text-decoration: none;
         font-size: 0.8rem;
         transition: all 0.15s;
-        border: 1px solid var(--hover-bg);
+        border: 1px solid var(--border);
     }
 
     .nav-mobile-links a:hover {
@@ -289,7 +284,7 @@ body {
         width: 100%;
         padding: 0.7rem 1.25rem;
         background: transparent;
-        border: 1px solid var(--hover-bg);
+        border: 1px solid var(--border);
         color: var(--text);
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.8rem;
