@@ -1,4 +1,11 @@
-# Cutting Down on my Phone Usage
+---
+title: Cutting Down on my Phone Usage
+date: 2026-03-22
+tags:
+  - post
+layout: layouts/post
+permalink: cutting-down-on-my-phone-usage/
+---
 
 After realising my average phone screen time was 6 hours a day, I've decided I want to start using it less. Although, I don't have any specific goals in mind just yet. 
 
