@@ -1,0 +1,82 @@
+{% set allPosts = collections.all | excludeDrafts %}
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <div class="footer-col-title">Pages</div>
+            <a href="/">Home</a>
+            <a href="/archive/">Blog</a>
+            <a href="/projects/">Projects</a>
+            <a href="/blogroll/">Blogroll</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/subscribe/">Subscribe</a>
+            <a href="/uses/">Uses</a>
+            <a href="/colophon/">Colophon</a>
+            <a href="/support/">Support</a>
+            <a href="/essays/">Essays</a>
+            <a href="/links/">Links</a>
+            <a href="https://micro.chrishannah.me">Micro</a>
+            <a href="/photography/">Photography</a>
+        </div>
+
+        <div class="footer-col">
+            <div class="footer-col-title">Projects</div>
+            {% for project in projects %}
+            <a href="{{ project.url or project.github }}" target="_blank" rel="noopener">{{ project.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="footer-col">
+            <div class="footer-col-title">Contact</div>
+            {% for link in social %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener me">{{ link.name }}</a>
+            {% endfor %}
+            <a href="https://micro.blog/ChrisHannah" target="_blank" rel="noopener me">Micro.blog</a>
+            <a href="https://instagram.com/{{ homepage.instagram.username }}" target="_blank" rel="noopener">Instagram</a>
+        </div>
+
+        <div class="footer-col">
+            <div class="footer-col-title">Now</div>
+            <div class="now-focus" id="focus-container">
+                <span class="focus-label">Focus</span>
+                <script>
+                    (function() {
+                        var pref = localStorage.getItem('theme-preference') || 'auto';
+                        var mode = pref;
+                        if (pref === 'auto') {
+                            mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                        }
+                        var s = document.createElement('script');
+                        s.src = 'https://minifocus.app/embed/chris.js';
+                        s.setAttribute('data-color-mode', mode);
+                        document.getElementById('focus-container').appendChild(s);
+                    })();
+                </script>
+                <noscript>
+                    <a href="https://minifocus.app/u/chris">View focus on Minifocus</a>
+                </noscript>
+            </div>
+            {% if instagram and instagram.imageUrl %}
+            <a href="{{ instagram.permalink }}" class="now-photo" target="_blank" rel="noopener">
+                <img src="{{ instagram.imageUrl }}" alt="{{ instagram.caption or 'Latest Instagram photo' }}" loading="lazy">
+            </a>
+            {% if instagram.timestamp %}
+            <div class="now-photo-caption">@{{ homepage.instagram.username }} · {{ instagram.timestamp | relativeTime }}</div>
+            {% endif %}
+            {% if instagram.colorPalette %}
+            <a href="#" class="dynamic-colors-toggle" id="dynamic-toggle" title="Toggle photo colours">✶</a>
+            {% endif %}
+            {% else %}
+            <a href="https://instagram.com/{{ homepage.instagram.username }}" class="now-photo" target="_blank" rel="noopener">
+                <img src="https://picsum.photos/seed/steno/400/400" alt="Latest Instagram photo" loading="lazy">
+            </a>
+            <div class="now-photo-caption">@{{ homepage.instagram.username }}</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        {{ site.url | replace("https://", "") }} · <span class="hl">#{{ allPosts | length }}</span> posts · Since {{ homepage.since }} · Powered by Eleventy
+    </div>
+</footer>

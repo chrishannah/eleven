@@ -7,16 +7,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
 
-        <meta name="theme-color" content="#0a0a0a">
+        <meta name="theme-color" content="#121110">
         <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=IBM+Plex+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
         <style>
-            {% include "../../assets/css/signal.css" %}
+            {% include "../../assets/css/steno.css" %}
             {% include "../../assets/css/highlight.css" %}
             {% include "../../assets/css/lightbox.css" %}
             {% include "../../assets/css/tinylytics.css" %}
@@ -83,116 +83,40 @@
                 if (window.__colorPalette && localStorage.getItem('dynamic-colors') === 'on') {
                     var p = window.__colorPalette;
                     var s = document.documentElement.style;
-                    if (p.mutedLight) s.setProperty('--text', 'rgb(' + p.mutedLight + ')');
-                    if (p.muted) s.setProperty('--text-muted', 'rgb(' + p.muted + ')');
-                    if (p.vibrant) {
-                        s.setProperty('--accent', 'rgb(' + p.vibrant + ')');
-                        s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)');
-                    }
-                    if (p.vibrantDark) s.setProperty('--border', 'rgba(' + p.vibrantDark + ',0.3)');
+                    if (p.mutedLight) { s.setProperty('--text', 'rgb(' + p.mutedLight + ')'); s.setProperty('--text-heading', 'rgb(' + p.mutedLight + ')'); }
+                    if (p.mutedDark) { s.setProperty('--text-muted', 'rgb(' + p.mutedDark + ')'); s.setProperty('--footer-dim', 'rgb(' + p.mutedDark + ')'); }
+                    if (p.muted) { s.setProperty('--text-body', 'rgb(' + p.muted + ')'); s.setProperty('--nav-text', 'rgb(' + p.muted + ')'); s.setProperty('--footer-text', 'rgb(' + p.muted + ')'); }
+                    if (p.vibrant) { s.setProperty('--accent', 'rgb(' + p.vibrant + ')'); s.setProperty('--accent-hover', 'rgb(' + p.vibrant + ')'); s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)'); }
+                    if (p.vibrantDark) { s.setProperty('--border', 'rgba(' + p.vibrantDark + ',0.3)'); s.setProperty('--border-light', 'rgba(' + p.vibrantDark + ',0.15)'); s.setProperty('--code-bg', 'rgba(' + p.vibrantDark + ',0.08)'); }
                 }
             })();
         </script>
     </head>
 
     <body>
-        <div class="container">
-            <!-- Header Block - same as homepage -->
-            <header class="header-block">
-                <div class="header-main">
-                    <div class="brand">
-                        <h1><a href="/">{{ site.title }}</a></h1>
-                        <span class="brand-sub">{{ homepage.tagline }}</span>
-                    </div>
-                    <div class="header-meta">
-                        <div class="meta-item">
-                            <span class="meta-label">Status</span>
-                            <span class="meta-value status-online"><span class="pulse"></span> {{ homepage.status.text }}</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Volume</span>
-                            <span class="meta-value">{{ homepage.since | volumeNumber }}</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Issue</span>
-                            <span class="meta-value">#{{ collections.all | excludeDrafts | postsThisYear }}</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Since</span>
-                            <span class="meta-value">{{ homepage.since }}</span>
-                        </div>
-                    </div>
+        <header class="site-header">
+            <h1><a href="/">{{ site.title }}</a></h1>
+            <div class="tagline">{{ homepage.tagline }}</div>
+            <nav class="site-nav">
+                <a href="/">Home</a>
+                <a href="/archive/">Archive</a>
+                <a href="/projects/">Projects</a>
+                <a href="/about/">About</a>
+                <a href="/subscribe/">Subscribe</a>
+                <div class="theme-toggle">
+                    <button data-theme="light" title="Light mode">Light</button>
+                    <button data-theme="dark" title="Dark mode">Dark</button>
+                    <button data-theme="auto" title="System preference">Auto</button>
                 </div>
+            </nav>
+        </header>
 
-                <nav class="signal-nav">
-                    <!-- Desktop navigation -->
-                    <div class="nav-desktop">
-                        <a href="/">Home</a>
-                        <a href="/archive/">Archive</a>
-                        <a href="/essays/">Essays</a>
-                        <a href="https://micro.chrishannah.me">Micro</a>
-                        <a href="/projects/">Projects</a>
-                        <a href="/about/">About</a>
-                        <a href="/contact/">Contact</a>
-                        <a href="/subscribe/">Subscribe</a>
-                        <a href="/blogroll/">Blogroll</a>
-                    </div>
+        <!-- Content Block -->
+        <main class="content-block">
+            {{ content | safe }}
+        </main>
 
-                    <!-- Mobile dropdown menu -->
-                    <details class="nav-mobile-dropdown">
-                        <summary>Navigation</summary>
-                        <div class="nav-mobile-links">
-                            <a href="/">Home</a>
-                            <a href="/archive/">Archive</a>
-                            <a href="/essays/">Essays</a>
-                            <a href="https://micro.chrishannah.me">Micro</a>
-                            <a href="/projects/">Projects</a>
-                            <a href="/about/">About</a>
-                            <a href="/contact/">Contact</a>
-                            <a href="/subscribe/">Subscribe</a>
-                        <a href="/blogroll/">Blogroll</a>
-                        </div>
-                    </details>
-
-                    <!-- Desktop theme toggle -->
-                    <div class="theme-toggle theme-desktop">
-                        <button data-theme="light" title="Light mode">Light</button>
-                        <button data-theme="dark" title="Dark mode">Dark</button>
-                        <button data-theme="auto" title="System preference">Auto</button>
-                        {% if instagram.colorPalette %}
-                        <button class="dynamic-toggle" title="Dynamic colors" aria-label="Toggle dynamic colors">✶</button>
-                        {% endif %}
-                    </div>
-
-                    <!-- Mobile theme dropdown -->
-                    <details class="theme-mobile-dropdown">
-                        <summary>Theme</summary>
-                        <div class="theme-mobile-options">
-                            <button data-theme="light" title="Light mode">Light</button>
-                            <button data-theme="dark" title="Dark mode">Dark</button>
-                            <button data-theme="auto" title="System preference">Auto</button>
-                            {% if instagram.colorPalette %}
-                            <button class="dynamic-toggle" title="Dynamic colors" aria-label="Toggle dynamic colors">✶</button>
-                            {% endif %}
-                        </div>
-                    </details>
-                </nav>
-            </header>
-
-            <!-- Content Block -->
-            <main class="content-block">
-                {{ content | safe }}
-            </main>
-
-            <!-- Footer - same as homepage -->
-            {% set allPosts = collections.all | excludeDrafts %}
-            <footer class="signal-footer">
-                <span>{{ site.url | replace("https://", "") }}</span>
-                <span>Post <span class="hl">#{{ allPosts | length }}</span> of <span class="hl">&infin;</span></span>
-                <span>Next milestone: <span class="hl">#{{ allPosts | nextMilestone }}</span></span>
-                <span>Powered by Eleventy</span>
-            </footer>
-        </div>
+        {% include "partials/steno/footer.njk" %}
 
         <script>
             var codeHighlightingEnabled = document
@@ -207,7 +131,7 @@
                     .appendChild(script);
             }
 
-            var images = document.querySelectorAll('img:not(.u-photo):not([width="24"]):not([height="24"]), img.hero');
+            var images = document.querySelectorAll('img:not(.u-photo):not(.project-icon):not([width="24"]):not([height="24"]), img.hero');
             if (images.length > 0) {
                 const lightboxScript = document.createElement("script");
                 lightboxScript.src = '/js/lightbox.js';

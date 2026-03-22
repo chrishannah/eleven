@@ -11,207 +11,53 @@ permalink: /projects/
 
 <p class="intro-text">Things I'm building, writing, and maintaining.</p>
 
-<div class="projects-grid">
-  {% for site in external %}
-    <article class="project-card">
-      <div class="project-header">
-        {% if site.url %}
-          <img src="https://www.google.com/s2/favicons?domain={{ site.url | urlencode }}&sz=32" alt="" class="project-favicon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <span class="project-icon project-icon--fallback" style="display:none;">🌐</span>
-        {% else %}
-          <span class="project-icon">🌐</span>
+{% for site in external %}
+<div class="project-item">
+    <div class="project-heading">
+        {% if site.favicon %}
+        <img src="{{ site.favicon }}" alt="" class="project-icon">
+        {% endif %}
+        <h2><a href="{{ site.url }}" target="_blank" rel="noopener">{{ site.name }}</a></h2>
+    </div>
+    <p class="project-description">{{ site.description }}</p>
+    <div class="project-links">
+        <a href="{{ site.url }}" target="_blank" rel="noopener">{{ site.url | replace("https://", "") }} →</a>
+    </div>
+</div>
+{% endfor %}
+
+{% for project in projects %}
+<div class="project-item">
+    <div class="project-heading">
+        {% if project.iconUrl %}
+        <img src="{{ project.iconUrl }}" alt="" class="project-icon">
+        {% endif %}
+        {% if project.status !== "Live" %}
+        <span class="project-status">{{ project.status }}</span>
         {% endif %}
         <h2>
-          <a href="{{ site.url }}" target="_blank" rel="noopener">{{ site.name }}</a>
+            {% if project.url %}
+                <a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a>
+            {% else %}
+                {{ project.name }}
+            {% endif %}
         </h2>
-        <span class="project-status project-status--live">Live</span>
-      </div>
-      
-      <p class="project-description">{{ site.description }}</p>
-      
-      <div class="project-tags">
-        <span class="tag">Writing</span>
-      </div>
-      
-      <div class="project-links">
-        <a href="{{ site.url }}" target="_blank" rel="noopener" class="project-link">
-          Visit →
-        </a>
-      </div>
-    </article>
-  {% endfor %}
-  
-  {% for project in projects %}
-    <article class="project-card">
-      <div class="project-header">
+    </div>
+    <p class="project-description">{{ project.description }}</p>
+    {% if project.tags %}
+    <div class="project-tags">
+        {% for tag in project.tags %}
+            <span class="project-tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="project-links">
         {% if project.url %}
-          <img src="https://www.google.com/s2/favicons?domain={{ project.url | urlencode }}&sz=32" alt="" class="project-favicon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <span class="project-icon project-icon--fallback" style="display:none;">{{ project.icon or '📦' }}</span>
-        {% else %}
-          <span class="project-icon">{{ project.icon or '📦' }}</span>
-        {% endif %}
-        <h2>
-          {% if project.url %}
-            <a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a>
-          {% else %}
-            {{ project.name }}
-          {% endif %}
-        </h2>
-        <span class="project-status project-status--{{ project.status | lower | replace(' ', '-') }}">
-          {{ project.status }}
-        </span>
-      </div>
-      
-      <p class="project-description">{{ project.description }}</p>
-      
-      {% if project.tags %}
-        <div class="project-tags">
-          {% for tag in project.tags %}
-            <span class="tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-      {% endif %}
-      
-      <div class="project-links">
-        {% if project.url %}
-          <a href="{{ project.url }}" target="_blank" rel="noopener" class="project-link">
-            Visit →
-          </a>
+            <a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.url | replace("https://", "") | replace("http://", "") }} →</a>
         {% endif %}
         {% if project.github %}
-          <a href="{{ project.github }}" target="_blank" rel="noopener" class="project-link project-link--github">
-            GitHub →
-          </a>
+            <a href="{{ project.github }}" target="_blank" rel="noopener">GitHub →</a>
         {% endif %}
-      </div>
-    </article>
-  {% endfor %}
+    </div>
 </div>
-
-<style>
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.project-card {
-  border-radius: 8px;
-  padding: 1.5rem;
-  background: var(--code-bg);
-  transition: box-shadow 0.2s;
-}
-
-.project-card:hover {
-  box-shadow: 0 4px 12px rgba(128, 128, 128, 0.15);
-}
-
-.project-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.project-favicon {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-}
-
-.project-icon {
-  font-size: 1.5rem;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-header h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  flex: 1;
-  min-width: 0;
-  color: var(--text);
-}
-
-.project-header h2 a {
-  text-decoration: none;
-  color: var(--text);
-}
-
-.project-header h2 a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
-.project-status {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 600;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.project-status--live {
-  background: var(--success);
-  color: var(--bg);
-}
-
-.project-status--in-dev {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-.project-description {
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.tag {
-  background: var(--hover-bg);
-  color: var(--text);
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
-
-.project-link {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--accent);
-}
-
-.project-link:hover {
-  text-decoration: underline;
-}
-
-.project-link--github {
-  color: var(--text-muted);
-}
-
-.project-link--github:hover {
-  color: var(--accent);
-}
-</style>
+{% endfor %}

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
 
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#121110">
     <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
 
     <!-- Fonts -->
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        {% include "../../assets/css/signal.css" %}
+        {% include "../../assets/css/steno.css" %}
     </style>
 
     <link rel="me" href="https://micro.blog/ChrisHannah"/>
@@ -46,48 +46,39 @@
             if (window.__colorPalette && localStorage.getItem('dynamic-colors') === 'on') {
                 var p = window.__colorPalette;
                 var s = document.documentElement.style;
-                if (p.mutedLight) s.setProperty('--text', 'rgb(' + p.mutedLight + ')');
-                if (p.muted) s.setProperty('--text-muted', 'rgb(' + p.muted + ')');
-                if (p.vibrant) {
-                    s.setProperty('--accent', 'rgb(' + p.vibrant + ')');
-                    s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)');
-                }
+                if (p.mutedLight) { s.setProperty('--text', 'rgb(' + p.mutedLight + ')'); s.setProperty('--text-heading', 'rgb(' + p.mutedLight + ')'); }
+                if (p.mutedDark) { s.setProperty('--text-muted', 'rgb(' + p.mutedDark + ')'); s.setProperty('--footer-dim', 'rgb(' + p.mutedDark + ')'); }
+                if (p.muted) { s.setProperty('--text-body', 'rgb(' + p.muted + ')'); s.setProperty('--nav-text', 'rgb(' + p.muted + ')'); s.setProperty('--footer-text', 'rgb(' + p.muted + ')'); }
+                if (p.vibrant) { s.setProperty('--accent', 'rgb(' + p.vibrant + ')'); s.setProperty('--accent-hover', 'rgb(' + p.vibrant + ')'); s.setProperty('--hover-bg', 'rgba(' + p.vibrant + ',0.1)'); }
+                if (p.vibrantDark) { s.setProperty('--border', 'rgba(' + p.vibrantDark + ',0.3)'); s.setProperty('--border-light', 'rgba(' + p.vibrantDark + ',0.15)'); s.setProperty('--code-bg', 'rgba(' + p.vibrantDark + ',0.08)'); }
             }
         })();
     </script>
 </head>
 <body>
-    <div class="container">
-        {% include "partials/signal/header.njk" %}
-
-        <main class="main-grid">
-            <!-- Primary: Writing -->
-            <div class="main-col">
-                {% include "partials/signal/recent-posts.njk" %}
+    <header class="site-header">
+        <h1><a href="/">{{ site.title }}</a></h1>
+        <div class="tagline">{{ homepage.tagline }}</div>
+        <nav class="site-nav">
+            <a href="/">Home</a>
+            <a href="/archive/">Archive</a>
+            <a href="/projects/">Projects</a>
+            <a href="/about/">About</a>
+            <a href="/subscribe/">Subscribe</a>
+            <div class="theme-toggle">
+                <button data-theme="light" title="Light mode">Light</button>
+                <button data-theme="dark" title="Dark mode">Dark</button>
+                <button data-theme="auto" title="System preference">Auto</button>
             </div>
+        </nav>
+    </header>
 
-            <!-- Secondary -->
-            <div class="secondary-col">
-                {% include "partials/signal/current-focus.njk" %}
-                {% include "partials/signal/latest-photo.njk" %}
-                {% include "partials/signal/currently-listening.njk" %}
-            </div>
-        </main>
+    <main>
+        {{ content | safe }}
+    </main>
 
-        <!-- Bottom: Stats, Milestones, System -->
-        <div class="bottom-grid">
-            {% include "partials/signal/connect.njk" %}
-            {% include "partials/signal/external-sites.njk" %}
-            {% include "partials/signal/stats.njk" %}
-        </div>
+    {% include "partials/steno/footer.njk" %}
 
-        {% include "partials/signal/footer.njk" %}
-    </div>
-
-    <!-- Hidden Tinylytics placeholder for live-activity.js to read -->
-    <span class="tinylytics_hits" style="display:none;"></span>
-
-    <script src="/js/live-activity.js" defer></script>
     <script src="/js/theme.js"></script>
 </body>
 </html>
