@@ -1,4 +1,11 @@
-# My Favourite Films
+---
+title: My Favourite Films
+date: 2026-03-23
+tags:
+  - post
+layout: layouts/post
+permalink: my-favourite-films/
+---
 
 I've been reflecting on my favourite films, and I've come up with three:
 
