@@ -1,4 +1,11 @@
-# One Week of Keeping an Eye on my Phone Usage
+---
+title: One Week of Keeping an Eye on my Phone Usage
+date: 2026-03-29
+tags:
+  - post
+layout: layouts/post
+permalink: one-week-of-keeping-an-eye-on-my-phone-usage/
+---
 
 A week ago I wrote about [wanting to cut down on phone usage](https://chrishannah.me/cutting-down-on-my-phone-usage/). I kept that idea in my mind throughout the week, and tried to get an idea of what the *problem* was.
 
