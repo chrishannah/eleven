@@ -70,8 +70,7 @@ jobs:
               IFS=',' read -ra tag_array <<< "$extra_tags"
               for tag in "${tag_array[@]}"; do
                 tag=$(echo "$tag" | sed 's/^ *//;s/ *$//')
-                tags_yaml="$tags_yaml
-  - $tag"
+                tags_yaml="${tags_yaml}"$'\n'"  - ${tag}"
               done
             fi
 
