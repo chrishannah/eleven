@@ -1,6 +1,16 @@
-https://www.versionmuseum.com/history-of/itunes-app
-# History of iTunes
-tags: music
+---
+categories:
+- link
+date: 2026-04-12 11:53:14
+layout: layouts/link
+permalink: link/history-of-itunes/
+tags:
+  - link
+  - music
+link: https://www.versionmuseum.com/history-of/itunes-app
+title: History of iTunes
+---
+
 I forget how key iTunes was to my music listening experience. The
 whole experience of buying music, whether physical or digital, and then managing
 your own music library felt great. And then having all the cover art together
