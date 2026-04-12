@@ -31,7 +31,8 @@ jobs:
             year=$(date +%Y)
             month=$(date +%m)
             datetime=$(date +%Y-%m-%d\ %H:%M:%S)
-            slug=$(date +%Y-%m-%d-%H-%M)
+            # Slug generated from title after extraction below
+            slug=""
             target_dir="posts/$year/$month"
 
             # Extract URL from first line
@@ -54,6 +55,29 @@ jobs:
 
             echo "Title: $title"
 
+            # Generate slug from title
+            slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//')
+
+            # Check for optional tags on line 3
+            content_start=3
+            extra_tags=""
+            line3=$(sed -n '3p' "$draft")
+            if echo "$line3" | grep -q '^tags:'; then
+              extra_tags=$(echo "$line3" | sed 's/^tags: *//')
+              content_start=4
+            fi
+
+            # Build tags list
+            tags_yaml="  - link"
+            if [ -n "$extra_tags" ]; then
+              IFS=',' read -ra tag_array <<< "$extra_tags"
+              for tag in "${tag_array[@]}"; do
+                tag=$(echo "$tag" | sed 's/^ *//;s/ *$//')
+                tags_yaml="$tags_yaml
+  - $tag"
+              done
+            fi
+
             # Create target directory
             mkdir -p "$target_dir"
 
@@ -68,15 +92,15 @@ jobs:
           layout: layouts/link
           permalink: link/$slug/
           tags:
-          - link
+          $tags_yaml
           link: $link_url
           title: $title
           ---
 
           EOF
 
-            # Append content after line 2 (skip URL and title)
-            tail -n +3 "$draft" >> "$target_file"
+            # Append content (skip URL, title, and optional tags line)
+            tail -n +$content_start "$draft" >> "$target_file"
 
             echo "Created: $target_file"
 
