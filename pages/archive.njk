@@ -13,7 +13,7 @@ title: Archive
   {% set currentMonth = 12 %}
   {% set firstMonthPrinted = false %}
 
-  {% for post in collections.post | reverse %}
+  {% for post in collections.all | reverse %}
     {% set postYear = post.data.date.getFullYear() %}
     {% set postMonth = post.data.date.getMonth() %}
 

@@ -1,0 +1,34 @@
+---
+layout: layouts/base
+---
+
+<article class="h-entry music-post">
+    {% if artwork %}
+        <img src="{{ artwork }}" alt="{{ title }} by {{ artist }}" class="music-artwork"/>
+    {% endif %}
+
+    <h1 class="p-name">
+        <a href="{{ url | url }}">{{ title }}</a>
+    </h1>
+
+    <div class="post-meta">
+        <p>
+            {% if artist %}
+                <span class="music-artist">{{ artist }}</span><br/>
+            {% endif %}
+            <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
+        </p>
+    </div>
+
+    {% if musicUrl %}
+        <div class="music-listen">
+            <a href="{{ musicUrl }}" class="music-link" target="_blank" rel="noopener">Listen →</a>
+        </div>
+    {% endif %}
+
+    <div class="content">
+        {{ content | safe }}
+    </div>
+
+    {% include "partials/post-footer.njk" %}
+</article>

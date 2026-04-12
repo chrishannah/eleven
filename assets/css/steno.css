@@ -779,6 +779,47 @@ button.submit-btn:hover {
 }
 
 /* ========================================
+   Music Posts
+   ======================================== */
+
+.music-artwork {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+}
+
+.music-artist {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.music-listen {
+    margin-bottom: 1.5rem;
+}
+
+.music-link {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--code-bg);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.15s;
+    text-decoration: none;
+}
+
+.music-link:hover {
+    background: var(--hover-bg);
+}
+
+/* ========================================
    Responsive
    ======================================== */
 
@@ -806,6 +847,11 @@ button.submit-btn:hover {
     .e-content,
     .post-body {
         font-size: 1.2rem;
+    }
+
+    .music-artwork {
+        width: 180px;
+        height: 180px;
     }
 }
 
