@@ -1,0 +1,44 @@
+---json
+{
+  "permalink": "/sitemap.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "url": "https://chrishannah.me/"
+  },
+  "staticPages": [
+    { "url": "/", "priority": "1.0" },
+    { "url": "/about/" },
+    { "url": "/archive/" },
+    { "url": "/blogroll/" },
+    { "url": "/colophon/" },
+    { "url": "/contact/" },
+    { "url": "/essays/" },
+    { "url": "/links/" },
+    { "url": "/micro/" },
+    { "url": "/photography/" },
+    { "url": "/projects/" },
+    { "url": "/subscribe/" },
+    { "url": "/support/" },
+    { "url": "/uses/" },
+    { "url": "/living/mac-setup-work/" },
+    { "url": "/text-case/guide/ios" }
+  ]
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- for page in staticPages %}
+  <url>
+    <loc>{{ page.url | absoluteUrl(metadata.url) }}</loc>
+    {%- if page.priority %}
+    <priority>{{ page.priority }}</priority>
+    {%- endif %}
+  </url>
+  {%- endfor %}
+  {%- for post in collections.all | excludeDrafts %}
+  <url>
+    <loc>{{ post.url | absoluteUrl(metadata.url) }}</loc>
+    <lastmod>{{ post.date | dateToRfc3339 }}</lastmod>
+  </url>
+  {%- endfor %}
+</urlset>
