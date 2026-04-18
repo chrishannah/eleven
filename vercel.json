@@ -1,6 +1,17 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "public",
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</sitemap.xml>; rel=\"sitemap\", </feed/index.xml>; rel=\"alternate\"; type=\"application/rss+xml\"; title=\"Chris Hannah\", </api/micropub>; rel=\"micropub\", <https://webmention.io/chrishannah.me/webmention>; rel=\"webmention\", <https://indieauth.com/auth>; rel=\"authorization_endpoint\", <https://tokens.indieauth.com/token>; rel=\"token_endpoint\""
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/feed", "destination": "/feed/index.xml" },
     { "source": "/feed/essays", "destination": "/feed/essays/index.xml" },
