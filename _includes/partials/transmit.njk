@@ -1,0 +1,18 @@
+<section class="transmit">
+	<div class="transmit-head">
+		<span class="transmit-label">// Transmit</span>
+		<p class="transmit-hint">Send a short message straight to my phone. Plain text, optional name, one-way — no reply guaranteed.</p>
+	</div>
+	<form class="transmit-form" method="POST" action="/api/transmit">
+		<label class="transmit-field">
+			<span>From (optional)</span>
+			<input type="text" name="from" maxlength="80" autocomplete="off">
+		</label>
+		<label class="transmit-field">
+			<span>Message</span>
+			<textarea name="message" maxlength="500" rows="3" required></textarea>
+		</label>
+		<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="transmit-honeypot">
+		<button class="submit-btn" type="submit">Transmit</button>
+	</form>
+</section>

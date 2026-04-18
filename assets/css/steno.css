@@ -631,6 +631,59 @@ button.submit-btn:hover {
     border-color: var(--accent-hover);
 }
 
+/* --- Transmit --- */
+
+.transmit {
+    margin: 3rem 0 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    background: var(--code-bg);
+}
+
+.transmit-head { margin-bottom: 1rem; }
+
+.transmit-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+}
+
+.transmit-hint {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-meta);
+    color: var(--text-muted);
+}
+
+.transmit-field {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.transmit-field > span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-meta);
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.transmit-field input,
+.transmit-field textarea { margin-bottom: 0; }
+
+.transmit-honeypot {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0;
+}
+
 /* --- Utilities --- */
 
 .h-card-hidden { display: none; }
