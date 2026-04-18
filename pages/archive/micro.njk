@@ -1,0 +1,12 @@
+---
+layout: layouts/archive
+permalink: archive/micro/
+title: Micro Archive
+---
+
+<p class="intro-text">A chronological collection of all micro posts.</p>
+
+<hr/>
+
+{% set archivePosts = collections.micro %}
+{% include "partials/archive-list.njk" %}

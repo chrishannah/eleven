@@ -4,60 +4,22 @@ permalink: archive/
 title: Archive
 ---
 
+<div class="content">
 <p class="intro-text">A chronological collection of all posts, micro updates, and thoughts from across the years.</p>
+
+<p>You can also view the archive for each type of post:</p>
+
+<ul>
+  <li><a href="/archive/post/">Posts</a></li>
+  <li><a href="/archive/essay/">Essays</a></li>
+  <li><a href="/archive/link/">Links</a></li>
+  <li><a href="/archive/micro/">Micro</a></li>
+  <li><a href="/archive/music/">Music</a></li>
+</ul>
+</div>
 
 <hr/>
 
-<ul class="archive-list">
-  {% set currentYear = 1000 %}
-  {% set currentMonth = 12 %}
-  {% set firstMonthPrinted = false %}
-
-  {% for post in collections.all | reverse %}
-    {% set postYear = post.data.date.getFullYear() %}
-    {% set postMonth = post.data.date.getMonth() %}
-
-    {% if postYear != currentYear %}
-      {% if firstMonthPrinted %}
-        </div>
-      {% endif %}
-      {% if currentMonth != 12 or currentYear != 1000 %}
-        <hr class="year-divider">
-      {% endif %}
-    {% endif %}
-
-    {% if postMonth != currentMonth or postYear != currentYear %}
-      {% if firstMonthPrinted and postYear == currentYear %}
-        </div>
-      {% endif %}
-      <h3 class="archive-month-header">{{ postMonth | monthNumberToName }} {{ postYear }}</h3>
-      <div class="archive-month-group">
-    {% endif %}
-
-    <li>
-      <span class="post-meta monospace-font">{{ post.data.date | dayAndMonth }} ・ </span>
-
-      {% if post.data.title %}
-        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
-      {% else %}
-        {% if post.data.tags and "quote" in post.data.tags %}
-          <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.quote | microExcerpt }}</a>
-        {% else %}
-          <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
-        {% endif %}
-      {% endif %}
-
-      {% if post.data.summary %}
-        {{ post.data.summary }}
-      {% endif %}
-    </li>
-
-    {% set currentYear = postYear %}
-    {% set currentMonth = postMonth %}
-    {% set firstMonthPrinted = true %}
-  {% endfor %}
-
-  {% if firstMonthPrinted %}
-    </div>
-  {% endif %}
-</ul>
+{% set archivePosts = collections.all %}
+{% set showType = true %}
+{% include "partials/archive-list.njk" %}

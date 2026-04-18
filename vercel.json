@@ -12,6 +12,12 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/essays", "destination": "/essay/", "permanent": true },
+    { "source": "/essays/", "destination": "/essay/", "permanent": true },
+    { "source": "/links", "destination": "/link/", "permanent": true },
+    { "source": "/links/", "destination": "/link/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/feed", "destination": "/feed/index.xml" },
     { "source": "/feed/essays", "destination": "/feed/essays/index.xml" },

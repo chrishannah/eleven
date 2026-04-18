@@ -586,12 +586,33 @@ h3.archive-month-header {
 }
 
 .archive-list li {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 0;
+    padding: 0.3rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    line-height: 1.4;
 }
 
-.archive-list li:last-child { border-bottom: none; }
+.archive-list li .archive-title {
+    flex: 1;
+}
+
+.archive-list li .archive-type {
+    font-size: var(--fs-meta);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-left: auto;
+}
+
+.archive-list li a.archive-type:hover { color: var(--accent); }
+
+.archive-list li .post-meta {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 .archive-title {
     color: var(--text-heading);

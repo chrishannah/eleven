@@ -1,0 +1,72 @@
+<ul class="archive-list">
+  {% set currentYear = 1000 %}
+  {% set currentMonth = 12 %}
+  {% set firstMonthPrinted = false %}
+
+  {% for post in archivePosts | reverse %}
+    {% set postYear = post.data.date.getFullYear() %}
+    {% set postMonth = post.data.date.getMonth() %}
+
+    {% if postYear != currentYear %}
+      {% if firstMonthPrinted %}
+        </div>
+      {% endif %}
+      {% if currentMonth != 12 or currentYear != 1000 %}
+        <hr class="year-divider">
+      {% endif %}
+    {% endif %}
+
+    {% if postMonth != currentMonth or postYear != currentYear %}
+      {% if firstMonthPrinted and postYear == currentYear %}
+        </div>
+      {% endif %}
+      <h3 class="archive-month-header">{{ postMonth | monthNumberToName }} {{ postYear }}</h3>
+      <div class="archive-month-group">
+    {% endif %}
+
+    {% set postTags = post.data.tags or [] %}
+    {% set archiveType = "" %}
+    {% set archiveTypeUrl = "" %}
+    {% if 'essay' in postTags %}
+      {% set archiveType = "Essay" %}{% set archiveTypeUrl = "/essay/" %}
+    {% elif 'link' in postTags %}
+      {% set archiveType = "Link" %}{% set archiveTypeUrl = "/link/" %}
+    {% elif 'micro' in postTags %}
+      {% set archiveType = "Micro" %}{% set archiveTypeUrl = "/micro/" %}
+    {% elif 'photography' in postTags %}
+      {% set archiveType = "Photo" %}{% set archiveTypeUrl = "/photography/" %}
+    {% elif 'quote' in postTags %}
+      {% set archiveType = "Quote" %}
+    {% elif 'music' in postTags %}
+      {% set archiveType = "Music" %}{% set archiveTypeUrl = "/music/" %}
+    {% else %}
+      {% set archiveType = "Post" %}{% set archiveTypeUrl = "/post/" %}
+    {% endif %}
+
+    <li>
+      <span class="post-meta monospace-font">{{ post.data.date | dayAndMonth }} ・ </span>
+
+      {% if post.data.title %}
+        <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.title }}</a>
+      {% else %}
+        {% if post.data.tags and "quote" in post.data.tags %}
+          <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.quote | microExcerpt }}</a>
+        {% else %}
+          <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
+        {% endif %}
+      {% endif %}
+
+      {% if showType %}
+        {% if archiveTypeUrl %}<a class="archive-type" href="{{ archiveTypeUrl }}">{{ archiveType }}</a>{% else %}<span class="archive-type">{{ archiveType }}</span>{% endif %}
+      {% endif %}
+    </li>
+
+    {% set currentYear = postYear %}
+    {% set currentMonth = postMonth %}
+    {% set firstMonthPrinted = true %}
+  {% endfor %}
+
+  {% if firstMonthPrinted %}
+    </div>
+  {% endif %}
+</ul>

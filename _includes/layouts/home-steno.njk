@@ -75,6 +75,7 @@
     </header>
 
     <main>
+        {% if title %}<h1 class="page-title">{{ title }}</h1>{% endif %}
         {{ content | safe }}
     </main>
 

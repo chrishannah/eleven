@@ -47,6 +47,10 @@ export default function (eleventyConfig) {
         });
     });
 
+    eleventyConfig.addCollection("post", function (collectionApi) {
+        return collectionApi.getFilteredByTag("post");
+    });
+
     eleventyConfig.addCollection("essay", function (collectionApi) {
         return collectionApi.getFilteredByTag("essay");
     });
