@@ -5,3 +5,4 @@ posts/.obsidian/
 inbox/.obsidian
 .vercel
 .env*.local
+.cache/
