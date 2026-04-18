@@ -57,7 +57,7 @@ Theme switch:
 | File | Purpose |
 |------|---------|
 | `steno.css` | Main stylesheet — variables, layout, typography, forms, header/nav/footer, cards, post entries, pagination, archive, 404, transmit |
-| `fonts.css` | `@font-face` declarations for self-hosted IBM Plex Sans. JetBrains Mono + Fraunces come from Google Fonts. |
+| `fonts.css` | Currently empty — reserved for future self-hosted `@font-face` declarations. |
 | `highlight.css` | Code syntax highlighting (paired with highlight.js, loaded conditionally) |
 | `lightbox.css` | Image lightbox overlay |
 | `tinylytics.css` | Tinylytics hits/kudos widget styling |
@@ -73,8 +73,7 @@ Theme switch:
 ### Fonts
 
 - **JetBrains Mono** (Google Fonts) — UI, headings, nav, code, meta
-- **Fraunces** (Google Fonts) — body text in articles
-- **IBM Plex Sans** — via `fonts.css` (secondary UI)
+- **IBM Plex Sans** (Google Fonts) — body text in articles, post excerpts, project descriptions
 
 ### Content Structure
 
