@@ -1,8 +1,18 @@
-# Lamy Fountain Pen
+---
+title: "Lamy Fountain Pen"
+date: 2026-04-13 21:27:14
+tags:
+  - post
+layout: layouts/post
+permalink: post/lamy/
+image: /posts/2026/04/lamy.png
+---
+
+#
 
 Fountain pens aren't new to me. I used them in school when learning how to write, and then I later used them to write multiple page essays. But for whatever reason[^1], when I left school, I didn't use one again. Until very recently, when I purchased a Lamy Safari Fountain Pen [^2].
 
-I chose this pen because I wanted a reasonably priced fountain pen, that I could use in my daily life at work and at home. Whether it was taking notes during a meeting, sketching out a few writing ideas, or simply to remember things. 
+I chose this pen because I wanted a reasonably priced fountain pen, that I could use in my daily life at work and at home. Whether it was taking notes during a meeting, sketching out a few writing ideas, or simply to remember things.
 
 What I thought would be a simple upgrade from a typical ballpoint pen, turned out to be a little nudge toward being more intentional. Not just with what I write, but how.
 
