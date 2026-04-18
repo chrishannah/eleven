@@ -93,6 +93,21 @@ hr {
     margin: 2rem 0;
 }
 
+/* --- Notification banner --- */
+
+.site-banner {
+    margin-bottom: 3rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-ui);
+    color: var(--text);
+    line-height: 1.6;
+    text-align: right;
+    opacity: 0.9;
+}
+
+.site-banner a { color: var(--accent); }
+.site-banner a:hover { color: var(--accent-hover); }
+
 /* --- Header --- */
 
 .site-header { margin-bottom: 3.5rem; }
@@ -181,7 +196,7 @@ hr {
 .post-entry h2 a:hover { color: var(--accent); }
 
 .post-entry .entry-excerpt {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     font-size: var(--fs-body);
     color: var(--text-body);
     line-height: 1.7;
@@ -357,8 +372,8 @@ article h1.p-name a:hover {
 .content,
 .e-content,
 .post-body {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 300;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-weight: 400;
     font-size: var(--fs-body);
     line-height: 1.8;
     color: var(--text);
@@ -758,7 +773,7 @@ button.submit-btn:hover {
 }
 
 .project-description {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     font-size: var(--fs-body);
     color: var(--text-body);
     line-height: 1.6;
