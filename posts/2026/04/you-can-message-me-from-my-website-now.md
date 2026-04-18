@@ -11,10 +11,10 @@ title: You Can Message Me From My Website Now
 ---
 
 
-I came across [a rather interesting idea](https://moddedbear.com/) [via Intial Charge](https://initialcharge.net/2026/02/jeremy-p-messaging-blog/):
+I came across [a rather interesting idea](https://moddedbear.com/adding-messaging-to-my-blog-was-my-best-idea-ever/) ([via Intial Charge](https://initialcharge.net/2026/02/jeremy-p-messaging-blog/)):
 
 > I added a widget to every page here that lets anyone in the world immediately send me a notification. Type a message, hit send, and it’ll pop up on my phone, watch, and computer near instantly.
-> 
+>
 > Is this a good idea? No. But it’s a funny idea, and that’s all that counts these days. Scroll to the bottom of this page if you want to give it a try.
 
 I liked the idea so much, I decided to implement it here on this blog! So at the
