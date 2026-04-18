@@ -1,5 +1,15 @@
-https://moddedbear.com/you-can-message-me-from-my-website-now
-# You Can Message Me From My Website Now
+---
+categories:
+- link
+date: 2026-04-18 20:09:01
+layout: layouts/link
+permalink: link/you-can-message-me-from-my-website-now/
+tags:
+  - link
+link: https://moddedbear.com/you-can-message-me-from-my-website-now
+title: You Can Message Me From My Website Now
+---
+
 
 I came across [a rather interesting idea](https://moddedbear.com/) [via Intial Charge](https://initialcharge.net/2026/02/jeremy-p-messaging-blog/):
 
