@@ -37,122 +37,77 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { format, parse } from 'date-fns';
 import YAML from 'yaml';
+import { useHotkeys } from 'react-hotkeys-hook';
 import ImageUploader from '../components/ImageUploader';
 import MarkdownEditor from '../components/MarkdownEditor';
 
-const MarkdownPreview = ({ content, title, colorMode }) => {
+const MarkdownPreview = ({ content, title }) => {
   return (
     <Box
       className="markdown-preview"
-      p={4}
+      p={6}
       borderRadius="md"
       minH="400px"
+      bg="tn.bg"
+      fontFamily={`'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif`}
+      color="tn.fg"
       sx={{
-        'h1': {
-          fontSize: '2xl',
-          fontWeight: 'bold',
-          marginY: '1em',
-          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900',
-          borderBottom: '2px solid',
-          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
-          paddingBottom: '0.3em'
+        'h1, h2, h3, h4, h5, h6': {
+          fontFamily: `'JetBrains Mono', ui-monospace, monospace`,
+          color: 'tn.fg',
+          letterSpacing: '-0.01em',
         },
-        'h2': {
-          fontSize: 'xl',
-          fontWeight: 'bold',
-          marginY: '0.8em',
-          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900',
-          borderBottom: '1px solid',
-          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
-          paddingBottom: '0.3em'
-        },
-        'h3': {
-          fontSize: 'lg',
-          fontWeight: 'bold',
-          marginY: '0.6em',
-          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
-        },
-        'h4, h5, h6': {
-          fontWeight: 'bold',
-          marginY: '0.4em',
-          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
-        },
-        'p': {
-          marginBottom: '1em',
-          lineHeight: '1.6'
-        },
+        'h1': { fontSize: '2xl', fontWeight: 'bold', marginY: '1em', borderBottom: '1px solid', borderColor: 'tn.fgGutter', paddingBottom: '0.3em' },
+        'h2': { fontSize: 'xl', fontWeight: 'bold', marginY: '0.8em', borderBottom: '1px solid', borderColor: 'tn.fgGutter', paddingBottom: '0.3em' },
+        'h3': { fontSize: 'lg', fontWeight: 'bold', marginY: '0.6em' },
+        'h4, h5, h6': { fontWeight: 'bold', marginY: '0.4em' },
+        'p': { marginBottom: '1em', lineHeight: '1.7' },
         'ul, ol': {
           marginLeft: '1.5em',
           marginBottom: '1em',
           listStylePosition: 'outside',
-          'li': {
-            marginY: '0.2em',
-            lineHeight: '1.6'
-          }
+          'li': { marginY: '0.2em', lineHeight: '1.7' },
         },
         'blockquote': {
-          borderLeftWidth: '4px',
-          borderLeftColor: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
+          borderLeftWidth: '3px',
+          borderLeftColor: 'tn.purple',
           paddingLeft: '1em',
           marginY: '1em',
           fontStyle: 'italic',
-          color: colorMode === 'light' ? 'gray.600' : 'whiteAlpha.800',
-          backgroundColor: colorMode === 'light' ? 'gray.50' : 'whiteAlpha.100',
+          color: 'tn.fgDark',
+          bg: 'tn.bgDark',
           padding: '1em',
-          borderRadius: 'md'
+          borderRadius: 'md',
         },
         'code': {
-          fontFamily: 'mono',
-          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
-          padding: '0.2em 0.4em',
-          borderRadius: 'md',
+          fontFamily: `'JetBrains Mono', ui-monospace, monospace`,
+          bg: 'tn.bgDark',
+          padding: '0.15em 0.35em',
+          borderRadius: 'sm',
           fontSize: '0.9em',
-          color: colorMode === 'light' ? 'gray.800' : 'whiteAlpha.900'
+          color: 'tn.orange',
         },
         'pre': {
-          bg: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
+          bg: 'tn.bgDark',
+          border: '1px solid',
+          borderColor: 'tn.fgGutter',
           padding: '1em',
           borderRadius: 'md',
           overflowX: 'auto',
-          marginY: '1em'
+          marginY: '1em',
         },
-        'pre code': {
-          padding: 0,
-          bg: 'transparent',
-          color: 'inherit'
-        },
+        'pre code': { padding: 0, bg: 'transparent', color: 'tn.fg' },
         'a': {
-          color: colorMode === 'light' ? 'brand.persianGreen' : 'brand.saffron',
+          color: 'tn.blue',
           textDecoration: 'underline',
-          _hover: {
-            textDecoration: 'none'
-          }
+          textUnderlineOffset: '2px',
+          _hover: { textDecoration: 'none' },
         },
-        'img': {
-          maxWidth: '100%',
-          height: 'auto',
-          borderRadius: 'md',
-          marginY: '1em'
-        },
-        'table': {
-          width: '100%',
-          borderCollapse: 'collapse',
-          marginY: '1em'
-        },
-        'th, td': {
-          border: '1px solid',
-          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
-          padding: '0.5em',
-          textAlign: 'left'
-        },
-        'th': {
-          backgroundColor: colorMode === 'light' ? 'gray.100' : 'whiteAlpha.200',
-          fontWeight: 'bold'
-        },
-        'hr': {
-          borderColor: colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200',
-          marginY: '2em'
-        }
+        'img': { maxWidth: '100%', height: 'auto', borderRadius: 'md', marginY: '1em' },
+        'table': { width: '100%', borderCollapse: 'collapse', marginY: '1em' },
+        'th, td': { border: '1px solid', borderColor: 'tn.fgGutter', padding: '0.5em', textAlign: 'left' },
+        'th': { bg: 'tn.bgDark', fontWeight: 'bold' },
+        'hr': { borderColor: 'tn.fgGutter', marginY: '2em' },
       }}
     >
       {title && <h1>{title}</h1>}
@@ -197,6 +152,8 @@ export default function BlogEditor() {
   const [isFocusMode, setIsFocusMode] = useState(false);
   const [drafts, setDrafts] = useState([]);
   const [showDrafts, setShowDrafts] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
+  const [showContent, setShowContent] = useState(true);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -208,6 +165,31 @@ export default function BlogEditor() {
     newTag: '',
     currentDraftFile: null,
   });
+
+  useHotkeys(
+    'mod+s',
+    (e) => {
+      e.preventDefault();
+      document.querySelector('form')?.requestSubmit();
+    },
+    { enableOnFormTags: true, enableOnContentEditable: true },
+  );
+  useHotkeys(
+    'mod+shift+p',
+    (e) => {
+      e.preventDefault();
+      setShowPreview((p) => !p);
+    },
+    { enableOnFormTags: true, enableOnContentEditable: true },
+  );
+  useHotkeys(
+    'mod+period',
+    (e) => {
+      e.preventDefault();
+      setIsFocusMode((f) => !f);
+    },
+    { enableOnFormTags: true, enableOnContentEditable: true },
+  );
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -494,27 +476,31 @@ ${formData.content}`;
       <Container maxW="container.xl" py={8}>
         <HStack justify="space-between" mb={8}>
           <Heading size="lg">Create Blog Post</Heading>
-          <HStack spacing={4}>
-            <Tooltip label={isFocusMode ? "Exit focus mode" : "Enter focus mode"}>
-              <IconButton
-                icon={isFocusMode ? <ViewOffIcon /> : <ViewIcon />}
-                onClick={() => setIsFocusMode(!isFocusMode)}
-                variant="ghost"
-                aria-label="Toggle focus mode"
-              />
-            </Tooltip>
-            <IconButton
-              icon={showPreview ? <ViewOffIcon /> : <ViewIcon />}
+          <HStack spacing={2}>
+            <Button
+              size="sm"
+              variant="ghost"
+              leftIcon={isFocusMode ? <ViewOffIcon /> : <ViewIcon />}
+              onClick={() => setIsFocusMode(!isFocusMode)}
+            >
+              {isFocusMode ? 'Exit focus' : 'Focus'}
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              leftIcon={showPreview ? <ViewOffIcon /> : <ViewIcon />}
               onClick={() => setShowPreview(!showPreview)}
+            >
+              {showPreview ? 'Hide preview' : 'Show preview'}
+            </Button>
+            <Button
+              size="sm"
               variant="ghost"
-              aria-label="Toggle preview"
-            />
-            <IconButton
-              icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              leftIcon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
-              variant="ghost"
-              aria-label="Toggle color mode"
-            />
+            >
+              {colorMode === 'light' ? 'Dark' : 'Light'}
+            </Button>
           </HStack>
         </HStack>
 
@@ -581,11 +567,22 @@ ${formData.content}`;
           )}
 
           <form onSubmit={handleSubmit}>
-            <Grid templateColumns={showPreview && !isFocusMode ? ['1fr', null, null, 'repeat(2, 1fr)'] : '1fr'} gap={8}>
+            <VStack spacing={6} align="stretch">
               {!isFocusMode && (
-                <GridItem>
-                  <Card>
-                    <CardBody>
+                <Card>
+                  <CardBody>
+                    <Flex justify="space-between" align="center" mb={showDetails ? 4 : 0}>
+                      <Heading size="md">Post Details</Heading>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => setShowDetails(!showDetails)}
+                        rightIcon={showDetails ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                      >
+                        {showDetails ? 'Collapse' : 'Expand'}
+                      </Button>
+                    </Flex>
+                    <Collapse in={showDetails}>
                       <VStack spacing={4} align="stretch">
                         <FormControl isRequired>
                           <FormLabel>Title</FormLabel>
@@ -692,43 +689,48 @@ ${formData.content}`;
                           </FormControl>
                         </VStack>
                       </VStack>
-                    </CardBody>
-                  </Card>
-                </GridItem>
-              )}
-
-              <GridItem>
-                <Card>
-                  <CardBody>
-                    <VStack spacing={4}>
-                      <FormControl isRequired>
-                        <FormLabel>Content</FormLabel>
-                        <MarkdownEditor
-                          value={formData.content}
-                          onChange={(value) => setFormData({ ...formData, content: value })}
-                          minH={isFocusMode ? "calc(100vh - 200px)" : "400px"}
-                        />
-                      </FormControl>
-                    </VStack>
+                    </Collapse>
                   </CardBody>
                 </Card>
-              </GridItem>
+              )}
+
+              <Card>
+                <CardBody>
+                  <Flex justify="space-between" align="center" mb={showContent || isFocusMode ? 4 : 0}>
+                    <Heading size="md">Content</Heading>
+                    {!isFocusMode && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => setShowContent(!showContent)}
+                        rightIcon={showContent ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                      >
+                        {showContent ? 'Collapse' : 'Expand'}
+                      </Button>
+                    )}
+                  </Flex>
+                  <Collapse in={showContent || isFocusMode}>
+                    <MarkdownEditor
+                      value={formData.content}
+                      onChange={(value) => setFormData({ ...formData, content: value })}
+                      minH={isFocusMode ? 'calc(100vh - 200px)' : '400px'}
+                    />
+                  </Collapse>
+                </CardBody>
+              </Card>
 
               {showPreview && !isFocusMode && (
-                <GridItem colSpan={2}>
-                  <Card>
-                    <CardBody>
-                      <Heading size="md" mb={4}>Preview</Heading>
-                      <MarkdownPreview
-                        content={formData.content}
-                        title={formData.title}
-                        colorMode={colorMode}
-                      />
-                    </CardBody>
-                  </Card>
-                </GridItem>
+                <Card>
+                  <CardBody>
+                    <Heading size="md" mb={4}>Preview</Heading>
+                    <MarkdownPreview
+                      content={formData.content}
+                      title={formData.title}
+                    />
+                  </CardBody>
+                </Card>
               )}
-            </Grid>
+            </VStack>
 
             <Flex justify="space-between" mt={6}>
               <Button

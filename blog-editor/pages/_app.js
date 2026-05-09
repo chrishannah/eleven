@@ -1,117 +1,154 @@
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
-import { extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, extendTheme } from '@chakra-ui/react';
+import { tokyoNightStorm, tokyoNightDay } from '../lib/tokyoNight';
 
-const colors = {
-  brand: {
-    charcoal: '#264653',
-    persianGreen: '#2A9D8F',
-    saffron: '#E9C46A',
-    sandyBrown: '#F4A261',
-    burntSienna: '#E76F51',
-    charcoalDark: '#1a2f38',
-    charcoalLight: '#315a6b',
-  },
-};
+const semanticToken = (light, dark) => ({ default: light, _dark: dark });
 
 const theme = extendTheme({
   config: {
     initialColorMode: 'system',
     useSystemColorMode: true,
   },
-  colors,
+  fonts: {
+    heading: `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace`,
+    body: `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace`,
+    mono: `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace`,
+  },
+  semanticTokens: {
+    colors: {
+      'tn.bg': semanticToken(tokyoNightDay.bg, tokyoNightStorm.bg),
+      'tn.bgDark': semanticToken(tokyoNightDay.bgDark, tokyoNightStorm.bgDark),
+      'tn.bgHighlight': semanticToken(tokyoNightDay.bgHighlight, tokyoNightStorm.bgHighlight),
+      'tn.fg': semanticToken(tokyoNightDay.fg, tokyoNightStorm.fg),
+      'tn.fgDark': semanticToken(tokyoNightDay.fgDark, tokyoNightStorm.fgDark),
+      'tn.fgGutter': semanticToken(tokyoNightDay.fgGutter, tokyoNightStorm.fgGutter),
+      'tn.comment': semanticToken(tokyoNightDay.comment, tokyoNightStorm.comment),
+      'tn.cyan': semanticToken(tokyoNightDay.cyan, tokyoNightStorm.cyan),
+      'tn.blue': semanticToken(tokyoNightDay.blue, tokyoNightStorm.blue),
+      'tn.purple': semanticToken(tokyoNightDay.purple, tokyoNightStorm.purple),
+      'tn.green': semanticToken(tokyoNightDay.green, tokyoNightStorm.green),
+      'tn.yellow': semanticToken(tokyoNightDay.yellow, tokyoNightStorm.yellow),
+      'tn.orange': semanticToken(tokyoNightDay.orange, tokyoNightStorm.orange),
+      'tn.red': semanticToken(tokyoNightDay.red, tokyoNightStorm.red),
+      'tn.selection': semanticToken(tokyoNightDay.selection, tokyoNightStorm.selection),
+    },
+  },
   styles: {
-    global: (props) => ({
+    global: {
       body: {
-        bg: props.colorMode === 'dark' ? 'brand.charcoalDark' : 'gray.50',
-        color: props.colorMode === 'dark' ? 'whiteAlpha.900' : 'gray.800',
+        bg: 'tn.bg',
+        color: 'tn.fg',
       },
-    }),
+      '::selection': {
+        bg: 'tn.selection',
+      },
+    },
   },
   components: {
     Button: {
-      defaultProps: {
-        colorScheme: 'teal',
-      },
+      defaultProps: { colorScheme: 'tnBlue' },
+      baseStyle: { fontWeight: 'medium', borderRadius: 'md' },
       variants: {
-        solid: (props) => ({
-          bg: props.colorScheme === 'teal' ? 'brand.persianGreen' : undefined,
-          _hover: {
-            bg: props.colorScheme === 'teal' ? 'brand.charcoal' : undefined,
-          },
-        }),
+        solid: (props) => {
+          const map = {
+            tnBlue: { bg: 'tn.blue', color: props.colorMode === 'light' ? 'white' : 'tn.bgDark' },
+            tnYellow: { bg: 'tn.yellow', color: 'tn.bgDark' },
+            tnRed: { bg: 'tn.red', color: 'white' },
+            tnGreen: { bg: 'tn.green', color: 'tn.bgDark' },
+            tnPurple: { bg: 'tn.purple', color: 'tn.bgDark' },
+            blue: { bg: 'tn.blue', color: 'tn.bgDark' },
+            yellow: { bg: 'tn.yellow', color: 'tn.bgDark' },
+            red: { bg: 'tn.red', color: 'white' },
+            teal: { bg: 'tn.cyan', color: 'tn.bgDark' },
+          };
+          const style = map[props.colorScheme] || map.tnBlue;
+          return { ...style, _hover: { opacity: 0.85 }, _active: { opacity: 0.75 } };
+        },
+        ghost: {
+          color: 'tn.fgDark',
+          _hover: { bg: 'tn.bgHighlight', color: 'tn.fg' },
+        },
+        outline: {
+          borderColor: 'tn.fgGutter',
+          color: 'tn.fg',
+          _hover: { bg: 'tn.bgHighlight' },
+        },
+      },
+    },
+    IconButton: {
+      baseStyle: {
+        color: 'tn.fgDark',
+        _hover: { bg: 'tn.bgHighlight', color: 'tn.fg' },
       },
     },
     Card: {
-      baseStyle: (props) => ({
+      baseStyle: {
         container: {
-          bg: props.colorMode === 'dark' ? 'brand.charcoal' : 'white',
-          boxShadow: props.colorMode === 'dark' ? '0 4px 6px rgba(0, 0, 0, 0.4)' : 'lg',
+          bg: 'tn.bgDark',
+          boxShadow: 'none',
+          borderRadius: 'lg',
         },
-      }),
+      },
+    },
+    Input: {
+      defaultProps: { variant: 'filled' },
+      variants: {
+        filled: {
+          field: {
+            bg: 'tn.bg',
+            border: '1px solid',
+            borderColor: 'transparent',
+            color: 'tn.fg',
+            _hover: { bg: 'tn.bg', borderColor: 'tn.comment' },
+            _focus: { bg: 'tn.bg', borderColor: 'tn.blue' },
+            _placeholder: { color: 'tn.comment' },
+          },
+        },
+      },
+    },
+    Textarea: {
+      defaultProps: { variant: 'filled' },
+      variants: {
+        filled: {
+          bg: 'tn.bg',
+          border: '1px solid',
+          borderColor: 'tn.fgGutter',
+          color: 'tn.fg',
+          _hover: { bg: 'tn.bg', borderColor: 'tn.comment' },
+          _focus: { bg: 'tn.bg', borderColor: 'tn.blue' },
+          _placeholder: { color: 'tn.comment' },
+        },
+      },
     },
     Tag: {
       variants: {
         solid: (props) => ({
           container: {
-            bg: props.colorScheme === 'blue' ? 'brand.persianGreen' :
-                props.colorScheme === 'green' ? 'brand.saffron' : undefined,
-            color: props.colorScheme === 'green' ? 'black' : 'white',
+            bg: props.colorScheme === 'red' ? 'tn.red' : 'tn.purple',
+            color: 'tn.bgDark',
           },
         }),
       },
-    },
-    Input: {
-      variants: {
-        filled: (props) => ({
-          field: {
-            bg: props.colorMode === 'dark' ? 'whiteAlpha.50' : 'gray.100',
-            _hover: {
-              bg: props.colorMode === 'dark' ? 'whiteAlpha.100' : 'gray.200',
-            },
-            _focus: {
-              bg: props.colorMode === 'dark' ? 'whiteAlpha.100' : 'gray.200',
-              borderColor: 'brand.persianGreen',
-            },
-          },
-        }),
-      },
-    },
-    Textarea: {
-      variants: {
-        filled: (props) => ({
-          bg: props.colorMode === 'dark' ? 'whiteAlpha.50' : 'gray.100',
-          _hover: {
-            bg: props.colorMode === 'dark' ? 'whiteAlpha.100' : 'gray.200',
-          },
-          _focus: {
-            bg: props.colorMode === 'dark' ? 'whiteAlpha.100' : 'gray.200',
-            borderColor: 'brand.persianGreen',
-          },
-        }),
-      },
-    },
-    IconButton: {
-      baseStyle: (props) => ({
-        color: props.colorMode === 'dark' ? 'whiteAlpha.900' : undefined,
-        _hover: {
-          bg: props.colorMode === 'dark' ? 'whiteAlpha.200' : 'gray.200',
-        },
-      }),
     },
     Heading: {
-      baseStyle: (props) => ({
-        color: props.colorMode === 'dark' ? 'whiteAlpha.900' : 'brand.charcoal',
-      }),
+      baseStyle: { color: 'tn.fg', letterSpacing: '-0.01em' },
     },
     FormLabel: {
-      baseStyle: (props) => ({
-        color: props.colorMode === 'dark' ? 'whiteAlpha.900' : undefined,
-      }),
+      baseStyle: { color: 'tn.fgDark', fontSize: 'sm', textTransform: 'uppercase', letterSpacing: '0.05em' },
     },
     Divider: {
-      baseStyle: (props) => ({
-        borderColor: props.colorMode === 'dark' ? 'whiteAlpha.300' : 'gray.200',
-      }),
+      baseStyle: { borderColor: 'tn.fgGutter' },
+    },
+    Switch: {
+      baseStyle: {
+        track: { _checked: { bg: 'tn.blue' } },
+      },
+    },
+    Tooltip: {
+      baseStyle: {
+        bg: 'tn.bgHighlight',
+        color: 'tn.fg',
+        borderRadius: 'md',
+      },
     },
   },
 });
