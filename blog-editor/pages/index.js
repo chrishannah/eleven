@@ -40,6 +40,7 @@ import YAML from 'yaml';
 import { useHotkeys } from 'react-hotkeys-hook';
 import ImageUploader from '../components/ImageUploader';
 import MarkdownEditor from '../components/MarkdownEditor';
+import useAutosave, { readAutosave, clearAutosave } from '../hooks/useAutosave';
 
 const MarkdownPreview = ({ content, title }) => {
   return (
@@ -191,6 +192,32 @@ export default function BlogEditor() {
     { enableOnFormTags: true, enableOnContentEditable: true },
   );
 
+  const { status: autosaveStatus, lastSavedAt } = useAutosave(formData);
+
+  // Offer to restore localStorage on first mount if newer content exists
+  useEffect(() => {
+    const key = `editor:autosave:${formData.currentDraftFile || 'new-post'}`;
+    const saved = readAutosave(key);
+    if (!saved || !saved.formData) return;
+    const isEmpty = !formData.title && !formData.content;
+    if (!isEmpty) return;
+    const hasContent = saved.formData.title || saved.formData.content;
+    if (!hasContent) return;
+    if (typeof window !== 'undefined' && window.confirm('Restore unsaved changes from your last session?')) {
+      setFormData(saved.formData);
+    } else {
+      try { localStorage.removeItem(key); } catch {}
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Dirty indicator in the document title
+  useEffect(() => {
+    const base = formData.title?.trim() || 'Untitled';
+    const prefix = autosaveStatus === 'dirty' || autosaveStatus === 'saving' ? '• ' : '';
+    document.title = `${prefix}${base} — Editor`;
+  }, [formData.title, autosaveStatus]);
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -263,6 +290,8 @@ ${formData.content}`;
       });
 
       if (!response.ok) throw new Error('Failed to save post');
+
+      clearAutosave(formData);
 
       // If this was a draft that we're now publishing, clear the currentDraftFile
       if (formData.isDraft === false && formData.currentDraftFile) {
@@ -475,7 +504,18 @@ ${formData.content}`;
     <Box minH="100vh" p={4}>
       <Container maxW="container.xl" py={8}>
         <HStack justify="space-between" mb={8}>
-          <Heading size="lg">Create Blog Post</Heading>
+          <HStack spacing={4} align="baseline">
+            <Heading size="lg">Create Blog Post</Heading>
+            <Text fontSize="sm" color="tn.comment">
+              {autosaveStatus === 'saving' && 'Saving…'}
+              {autosaveStatus === 'dirty' && 'Unsaved'}
+              {autosaveStatus === 'saved' &&
+                (lastSavedAt
+                  ? `Saved ${Math.max(1, Math.round((Date.now() - lastSavedAt) / 1000))}s ago`
+                  : 'Saved')}
+              {autosaveStatus === 'error' && 'Autosave failed'}
+            </Text>
+          </HStack>
           <HStack spacing={2}>
             <Button
               size="sm"

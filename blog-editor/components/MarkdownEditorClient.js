@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { Box, HStack, IconButton, Tooltip, Text, useColorMode } from '@chakra-ui/react';
+import { Box, HStack, IconButton, Tooltip, Text, useColorMode, useToast } from '@chakra-ui/react';
 import { LinkIcon, ChatIcon } from '@chakra-ui/icons';
 import CodeMirror from '@uiw/react-codemirror';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
@@ -7,6 +7,7 @@ import { EditorView, keymap } from '@codemirror/view';
 import { Prec } from '@codemirror/state';
 import { tokyoNight } from '@uiw/codemirror-theme-tokyo-night';
 import { tokyoNightDay } from '@uiw/codemirror-theme-tokyo-night-day';
+import { uploadImage, isImageFile } from '../lib/uploadImage';
 
 // Toggle-aware wrap: if selection is already wrapped with `wrap`, unwrap. Otherwise wrap.
 const wrapToggle = (view, wrap, wrapEnd = wrap, placeholder = '') => {
@@ -83,6 +84,7 @@ const insertAt = (view, text, cursorOffsetFromEnd = 0) => {
 const MarkdownEditorClient = ({ value, onChange, minH = '400px' }) => {
   const { colorMode } = useColorMode();
   const viewRef = useRef(null);
+  const toast = useToast();
 
   const runOnView = useCallback((fn) => {
     if (viewRef.current) {
@@ -90,6 +92,84 @@ const MarkdownEditorClient = ({ value, onChange, minH = '400px' }) => {
       viewRef.current.focus();
     }
   }, []);
+
+  const handleImageFile = useCallback(
+    async (view, file, insertAtPos) => {
+      const placeholder = `![Uploading ${file.name || 'image'}…]()`;
+      const pos = insertAtPos ?? view.state.selection.main.from;
+      view.dispatch({
+        changes: { from: pos, insert: placeholder + '\n' },
+        selection: { anchor: pos + placeholder.length },
+      });
+
+      const toastId = toast({
+        title: `Uploading ${file.name || 'pasted image'}…`,
+        status: 'loading',
+        duration: null,
+      });
+
+      try {
+        const path = await uploadImage(file);
+        const alt = (file.name || 'image').replace(/\.[^.]+$/, '');
+        const final = `![${alt}](${path})`;
+        const cur = view.state.doc.toString();
+        const idx = cur.indexOf(placeholder);
+        if (idx >= 0) {
+          view.dispatch({
+            changes: { from: idx, to: idx + placeholder.length, insert: final },
+          });
+        }
+        toast.update(toastId, {
+          title: 'Image uploaded',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
+      } catch (err) {
+        const cur = view.state.doc.toString();
+        const idx = cur.indexOf(placeholder);
+        if (idx >= 0) {
+          view.dispatch({
+            changes: { from: idx, to: idx + placeholder.length + 1, insert: '' },
+          });
+        }
+        toast.update(toastId, {
+          title: 'Upload failed',
+          description: err.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    },
+    [toast],
+  );
+
+  const dropPasteHandlers = useMemo(
+    () =>
+      EditorView.domEventHandlers({
+        drop(event, view) {
+          const files = Array.from(event.dataTransfer?.files || []).filter(isImageFile);
+          if (!files.length) return false;
+          event.preventDefault();
+          const pos = view.posAtCoords({ x: event.clientX, y: event.clientY }) ?? view.state.selection.main.from;
+          files.forEach((file) => handleImageFile(view, file, pos));
+          return true;
+        },
+        paste(event, view) {
+          const items = Array.from(event.clipboardData?.items || []);
+          const files = items
+            .filter((it) => it.kind === 'file')
+            .map((it) => it.getAsFile())
+            .filter(isImageFile);
+          if (!files.length) return false;
+          event.preventDefault();
+          files.forEach((file) => handleImageFile(view, file));
+          return true;
+        },
+      }),
+    [handleImageFile],
+  );
 
   const customKeymap = useMemo(
     () =>
@@ -133,6 +213,7 @@ const MarkdownEditorClient = ({ value, onChange, minH = '400px' }) => {
       markdown({ base: markdownLanguage }),
       EditorView.lineWrapping,
       customKeymap,
+      dropPasteHandlers,
       EditorView.theme({
         '&': {
           fontSize: '15px',
@@ -143,7 +224,7 @@ const MarkdownEditorClient = ({ value, onChange, minH = '400px' }) => {
         '.cm-focused': { outline: 'none' },
       }),
     ],
-    [customKeymap],
+    [customKeymap, dropPasteHandlers],
   );
 
   return (
