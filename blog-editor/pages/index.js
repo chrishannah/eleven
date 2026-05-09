@@ -46,72 +46,119 @@ const MarkdownPreview = ({ content, title }) => {
   return (
     <Box
       className="markdown-preview"
-      p={6}
+      bg="tn.bg"
       borderRadius="md"
       minH="400px"
-      bg="tn.bg"
-      fontFamily={`'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif`}
-      color="tn.fg"
+      px={{ base: 6, md: 10 }}
+      py={{ base: 8, md: 12 }}
       sx={{
-        'h1, h2, h3, h4, h5, h6': {
+        '.preview-inner': {
+          maxWidth: '720px',
+          marginX: 'auto',
+          fontFamily: `'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif`,
+          fontSize: '1.05rem',
+          lineHeight: '1.8',
+          color: 'tn.fg',
+        },
+        '.preview-inner > * + *': { marginTop: '1.25em' },
+        '.preview-inner h1, .preview-inner h2, .preview-inner h3, .preview-inner h4, .preview-inner h5, .preview-inner h6': {
           fontFamily: `'JetBrains Mono', ui-monospace, monospace`,
           color: 'tn.fg',
+          fontWeight: 600,
           letterSpacing: '-0.01em',
+          lineHeight: '1.3',
         },
-        'h1': { fontSize: '2xl', fontWeight: 'bold', marginY: '1em', borderBottom: '1px solid', borderColor: 'tn.fgGutter', paddingBottom: '0.3em' },
-        'h2': { fontSize: 'xl', fontWeight: 'bold', marginY: '0.8em', borderBottom: '1px solid', borderColor: 'tn.fgGutter', paddingBottom: '0.3em' },
-        'h3': { fontSize: 'lg', fontWeight: 'bold', marginY: '0.6em' },
-        'h4, h5, h6': { fontWeight: 'bold', marginY: '0.4em' },
-        'p': { marginBottom: '1em', lineHeight: '1.7' },
-        'ul, ol': {
-          marginLeft: '1.5em',
-          marginBottom: '1em',
+        '.preview-inner h1.preview-title': {
+          fontSize: '2.2rem',
+          color: 'tn.orange',
+          marginTop: 0,
+          marginBottom: '2rem',
+          paddingBottom: '1rem',
+          borderBottom: '1px solid',
+          borderColor: 'tn.fgGutter',
+        },
+        '.preview-inner h1': { fontSize: '1.8rem', marginTop: '2.5em' },
+        '.preview-inner h2': { fontSize: '1.45rem', marginTop: '2.25em' },
+        '.preview-inner h3': { fontSize: '1.2rem', marginTop: '2em' },
+        '.preview-inner h4': { fontSize: '1.05rem', marginTop: '1.75em' },
+        '.preview-inner h5, .preview-inner h6': { fontSize: '0.95rem', marginTop: '1.5em' },
+        '.preview-inner p': { marginTop: 0 },
+        '.preview-inner ul, .preview-inner ol': {
+          paddingLeft: '1.5em',
           listStylePosition: 'outside',
-          'li': { marginY: '0.2em', lineHeight: '1.7' },
         },
-        'blockquote': {
-          borderLeftWidth: '3px',
-          borderLeftColor: 'tn.purple',
-          paddingLeft: '1em',
-          marginY: '1em',
-          fontStyle: 'italic',
+        '.preview-inner li + li': { marginTop: '0.4em' },
+        '.preview-inner li > p': { marginBottom: 0 },
+        '.preview-inner blockquote': {
+          borderLeft: '3px solid',
+          borderLeftColor: 'tn.orange',
+          paddingLeft: '1.25em',
+          marginLeft: 0,
           color: 'tn.fgDark',
-          bg: 'tn.bgDark',
-          padding: '1em',
-          borderRadius: 'md',
+          fontStyle: 'italic',
         },
-        'code': {
+        '.preview-inner blockquote p': { margin: 0 },
+        '.preview-inner code': {
           fontFamily: `'JetBrains Mono', ui-monospace, monospace`,
           bg: 'tn.bgDark',
-          padding: '0.15em 0.35em',
+          padding: '0.15em 0.4em',
           borderRadius: 'sm',
           fontSize: '0.9em',
           color: 'tn.orange',
         },
-        'pre': {
+        '.preview-inner pre': {
           bg: 'tn.bgDark',
-          border: '1px solid',
-          borderColor: 'tn.fgGutter',
-          padding: '1em',
+          padding: '1.1em 1.25em',
           borderRadius: 'md',
           overflowX: 'auto',
-          marginY: '1em',
+          fontSize: '0.92rem',
+          lineHeight: '1.6',
         },
-        'pre code': { padding: 0, bg: 'transparent', color: 'tn.fg' },
-        'a': {
-          color: 'tn.blue',
+        '.preview-inner pre code': { padding: 0, bg: 'transparent', color: 'tn.fg', fontSize: 'inherit' },
+        '.preview-inner a': {
+          color: 'tn.orange',
           textDecoration: 'underline',
-          textUnderlineOffset: '2px',
-          _hover: { textDecoration: 'none' },
+          textUnderlineOffset: '3px',
+          textDecorationThickness: '1px',
+          _hover: { color: 'tn.yellow' },
         },
-        'img': { maxWidth: '100%', height: 'auto', borderRadius: 'md', marginY: '1em' },
-        'table': { width: '100%', borderCollapse: 'collapse', marginY: '1em' },
-        'th, td': { border: '1px solid', borderColor: 'tn.fgGutter', padding: '0.5em', textAlign: 'left' },
-        'th': { bg: 'tn.bgDark', fontWeight: 'bold' },
-        'hr': { borderColor: 'tn.fgGutter', marginY: '2em' },
+        '.preview-inner img': {
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: 'md',
+          display: 'block',
+          marginX: 'auto',
+        },
+        '.preview-inner figure': { marginX: 0 },
+        '.preview-inner table': {
+          width: '100%',
+          borderCollapse: 'collapse',
+          fontSize: '0.95rem',
+        },
+        '.preview-inner th, .preview-inner td': {
+          borderBottom: '1px solid',
+          borderColor: 'tn.fgGutter',
+          padding: '0.6em 0.75em',
+          textAlign: 'left',
+        },
+        '.preview-inner th': { color: 'tn.fgDark', fontWeight: 600, borderBottomColor: 'tn.comment' },
+        '.preview-inner hr': {
+          border: 0,
+          borderTop: '1px solid',
+          borderColor: 'tn.fgGutter',
+          marginY: '3em',
+        },
+        '.preview-inner .post-meta': {
+          fontFamily: `'JetBrains Mono', ui-monospace, monospace`,
+          fontSize: '0.85rem',
+          color: 'tn.comment',
+          marginTop: '-1.25rem',
+          marginBottom: '2rem',
+        },
       }}
     >
-      {title && <h1>{title}</h1>}
+      <Box className="preview-inner">
+        {title && <h1 className="preview-title">{title}</h1>}
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
@@ -140,6 +187,7 @@ const MarkdownPreview = ({ content, title }) => {
       >
         {content}
       </ReactMarkdown>
+      </Box>
     </Box>
   );
 };
