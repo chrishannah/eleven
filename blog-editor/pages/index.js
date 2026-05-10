@@ -41,6 +41,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import ImageUploader from '../components/ImageUploader';
 import MarkdownEditor from '../components/MarkdownEditor';
 import useAutosave, { readAutosave, clearAutosave } from '../hooks/useAutosave';
+import { POST_TYPES, POST_TYPE_LIST, buildMarkdown, slugify, autoExcerpt } from '../lib/postTypes';
 
 const MarkdownPreview = ({ content, title }) => {
   return (
@@ -205,15 +206,32 @@ export default function BlogEditor() {
   const [showContent, setShowContent] = useState(true);
 
   const [formData, setFormData] = useState({
+    postType: 'post',
     title: '',
     date: format(new Date(), 'yyyy-MM-dd'),
     content: '',
     tags: [],
+    categories: [],
+    slug: '',
+    excerpt: '',
     featuredImage: '',
     isDraft: false,
     newTag: '',
+    newCategory: '',
     currentDraftFile: null,
+    // Type-specific extras (only emitted if non-empty)
+    link: '',
+    source: '',
+    attribution: '',
+    quoteSource: '',
+    artist: '',
+    artwork: '',
+    musicUrl: '',
+    summary: '',
+    image: '',
   });
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
+  const [tagSuggestions, setTagSuggestions] = useState([]);
 
   useHotkeys(
     'mod+s',
@@ -259,6 +277,24 @@ export default function BlogEditor() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Auto-derive slug from title unless the user has typed in the slug field
+  useEffect(() => {
+    if (slugManuallyEdited) return;
+    const derived = slugify(formData.title);
+    if (derived !== formData.slug) {
+      setFormData((f) => ({ ...f, slug: derived }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.title, slugManuallyEdited]);
+
+  // Fetch tag suggestions once on mount
+  useEffect(() => {
+    fetch('/api/list-tags')
+      .then((r) => (r.ok ? r.json() : { tags: [] }))
+      .then((data) => setTagSuggestions((data.tags || []).map((t) => t.tag)))
+      .catch(() => {});
+  }, []);
+
   // Dirty indicator in the document title
   useEffect(() => {
     const base = formData.title?.trim() || 'Untitled';
@@ -275,52 +311,31 @@ export default function BlogEditor() {
   };
 
   const addItem = (type) => {
-    if (type === 'tags' && formData.newTag.trim()) {
-      setFormData({
-        ...formData,
-        tags: [...formData.tags, formData.newTag.trim()],
-        newTag: '',
-      });
-    }
+    const fieldKey = type === 'tags' ? 'newTag' : 'newCategory';
+    const value = (formData[fieldKey] || '').trim();
+    if (!value) return;
+    setFormData({
+      ...formData,
+      [type]: [...(formData[type] || []), value],
+      [fieldKey]: '',
+    });
   };
 
   const removeItem = (type, index) => {
-    if (type === 'tags') {
-      const newTags = [...formData.tags];
-      newTags.splice(index, 1);
-      setFormData({
-        ...formData,
-        tags: newTags,
-      });
-    }
+    const next = [...(formData[type] || [])];
+    next.splice(index, 1);
+    setFormData({ ...formData, [type]: next });
   };
 
-  const generateMarkdown = () => {
-    const frontmatter = {
-      title: formData.title,
-      date: formData.date,
-      tags: formData.tags,
-      layout: 'layouts/post',
-    };
-
-    if (formData.featuredImage) {
-      frontmatter.featuredImage = formData.featuredImage;
-    }
-
-    if (formData.isDraft) {
-      frontmatter.draft = true;
-    }
-
-    return `---
-${YAML.stringify(frontmatter)}
----
-
-${formData.content}`;
+  const addTagValue = (value) => {
+    const v = (value || '').trim();
+    if (!v || formData.tags.includes(v)) return;
+    setFormData({ ...formData, tags: [...formData.tags, v] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const markdown = generateMarkdown();
+    const markdown = buildMarkdown(formData);
 
     try {
       const response = await fetch('/api/save-post', {
@@ -474,17 +489,36 @@ ${formData.content}`;
 
       const data = await response.json();
 
-      // Update form data with draft content
+      // Infer postType from the layout (or fall back to 'post')
+      const inferredType =
+        Object.entries(POST_TYPES).find(
+          ([, t]) => t.layout === data.layout,
+        )?.[0] || 'post';
+
       setFormData({
         ...formData,
-        title: data.title,
+        postType: inferredType,
+        title: data.title || '',
         date: format(new Date(data.date), 'yyyy-MM-dd'),
-        content: data.content,
+        content: data.content || '',
         tags: data.tags || [],
+        categories: data.categories || [],
+        slug: data.permalink ? data.permalink.replace(/\/$/, '').split('/').pop() : slugify(data.title || ''),
+        excerpt: data.excerpt || '',
         featuredImage: data.featuredImage || '',
+        link: data.link || '',
+        source: data.source || '',
+        attribution: data.attribution || '',
+        quoteSource: data.quoteSource || '',
+        artist: data.artist || '',
+        artwork: data.artwork || '',
+        musicUrl: data.musicUrl || '',
+        summary: data.summary || '',
+        image: data.image || '',
         isDraft: true,
         currentDraftFile: filename,
       });
+      setSlugManuallyEdited(true);
 
       toast({
         title: 'Draft loaded successfully',
@@ -672,7 +706,23 @@ ${formData.content}`;
                     </Flex>
                     <Collapse in={showDetails}>
                       <VStack spacing={4} align="stretch">
-                        <FormControl isRequired>
+                        <FormControl>
+                          <FormLabel>Post Type</FormLabel>
+                          <HStack spacing={1} wrap="wrap">
+                            {POST_TYPE_LIST.map((t) => (
+                              <Button
+                                key={t.key}
+                                size="sm"
+                                variant={formData.postType === t.key ? 'solid' : 'outline'}
+                                onClick={() => setFormData({ ...formData, postType: t.key })}
+                              >
+                                {t.label}
+                              </Button>
+                            ))}
+                          </HStack>
+                        </FormControl>
+
+                        <FormControl isRequired={POST_TYPES[formData.postType]?.titleRequired}>
                           <FormLabel>Title</FormLabel>
                           <HStack>
                             <Input
@@ -684,7 +734,7 @@ ${formData.content}`;
                             <Button
                               onClick={formatTitle}
                               isLoading={isExecuting}
-                              colorScheme="teal"
+                              variant="outline"
                               title="Format title using AP style"
                             >
                               Format
@@ -692,20 +742,78 @@ ${formData.content}`;
                           </HStack>
                         </FormControl>
 
-                        <FormControl isRequired>
-                          <FormLabel>Date</FormLabel>
-                          <Input
-                            name="date"
-                            type="date"
-                            value={formData.date}
-                            onChange={handleDateChange}
+                        <HStack spacing={4} align="flex-start">
+                          <FormControl isRequired>
+                            <FormLabel>Date</FormLabel>
+                            <Input
+                              name="date"
+                              type="date"
+                              value={formData.date}
+                              onChange={handleDateChange}
+                            />
+                          </FormControl>
+                          <FormControl>
+                            <FormLabel>Slug</FormLabel>
+                            <Input
+                              name="slug"
+                              value={formData.slug}
+                              onChange={(e) => {
+                                setSlugManuallyEdited(true);
+                                setFormData({ ...formData, slug: e.target.value });
+                              }}
+                              placeholder="auto-from-title"
+                            />
+                          </FormControl>
+                        </HStack>
+
+                        {POST_TYPES[formData.postType]?.fields.map((field) => (
+                          <FormControl key={field.key} isRequired={field.required}>
+                            <FormLabel>{field.label}</FormLabel>
+                            {field.type === 'textarea' ? (
+                              <Textarea
+                                name={field.key}
+                                value={formData[field.key] || ''}
+                                onChange={handleInputChange}
+                                placeholder={field.placeholder}
+                                rows={3}
+                              />
+                            ) : (
+                              <Input
+                                name={field.key}
+                                type={field.type === 'url' ? 'url' : 'text'}
+                                value={formData[field.key] || ''}
+                                onChange={handleInputChange}
+                                placeholder={field.placeholder}
+                              />
+                            )}
+                          </FormControl>
+                        ))}
+
+                        <FormControl>
+                          <FormLabel>
+                            Excerpt{' '}
+                            <Button
+                              size="xs"
+                              variant="ghost"
+                              ml={2}
+                              onClick={() =>
+                                setFormData({ ...formData, excerpt: autoExcerpt(formData.content) })
+                              }
+                            >
+                              Auto
+                            </Button>
+                          </FormLabel>
+                          <Textarea
+                            name="excerpt"
+                            value={formData.excerpt}
+                            onChange={handleInputChange}
+                            placeholder="Short summary used in feeds and previews"
+                            rows={2}
                           />
                         </FormControl>
 
                         <FormControl display="flex" alignItems="center">
-                          <FormLabel mb="0">
-                            Save as Draft
-                          </FormLabel>
+                          <FormLabel mb="0">Save as Draft</FormLabel>
                           <Switch
                             name="isDraft"
                             isChecked={formData.isDraft}
@@ -714,68 +822,121 @@ ${formData.content}`;
                           />
                         </FormControl>
 
-                        <VStack spacing={4} align="stretch">
-                          <FormControl>
-                            <FormLabel>Featured Image</FormLabel>
-                            <ImageUploader
-                              onSelectFeatured={setFeaturedImage}
-                              featuredImage={formData.featuredImage}
-                            />
-                            {formData.featuredImage && (
-                              <Box mt={2}>
-                                <Image
-                                  src={formData.featuredImage}
-                                  alt="Featured"
-                                  maxH="200px"
-                                  borderRadius="md"
-                                />
-                                <Button
-                                  size="sm"
-                                  colorScheme="red"
-                                  mt={2}
-                                  onClick={() => setFeaturedImage('')}
-                                >
-                                  Remove
-                                </Button>
-                              </Box>
-                            )}
-                          </FormControl>
+                        <FormControl>
+                          <FormLabel>Featured Image</FormLabel>
+                          <ImageUploader
+                            onSelectFeatured={setFeaturedImage}
+                            featuredImage={formData.featuredImage}
+                          />
+                          {formData.featuredImage && (
+                            <Box mt={2}>
+                              <Image
+                                src={formData.featuredImage}
+                                alt="Featured"
+                                maxH="200px"
+                                borderRadius="md"
+                              />
+                              <Button
+                                size="sm"
+                                colorScheme="red"
+                                mt={2}
+                                onClick={() => setFeaturedImage('')}
+                              >
+                                Remove
+                              </Button>
+                            </Box>
+                          )}
+                        </FormControl>
 
-                          <FormControl>
-                            <FormLabel>Tags</FormLabel>
-                            <VStack align="stretch" spacing={2}>
-                              <HStack spacing={2} wrap="wrap">
-                                {formData.tags.map((tag, index) => (
-                                  <Tag
-                                    key={index}
-                                    size="md"
-                                    borderRadius="full"
-                                    variant="solid"
-                                    colorScheme="blue"
-                                  >
-                                    <TagLabel>{tag}</TagLabel>
-                                    <TagCloseButton onClick={() => removeItem('tags', index)} />
-                                  </Tag>
-                                ))}
+                        <FormControl>
+                          <FormLabel>Tags</FormLabel>
+                          <VStack align="stretch" spacing={2}>
+                            <HStack spacing={2} wrap="wrap">
+                              {formData.tags.map((tag, index) => (
+                                <Tag
+                                  key={index}
+                                  size="md"
+                                  borderRadius="full"
+                                  variant="solid"
+                                >
+                                  <TagLabel>{tag}</TagLabel>
+                                  <TagCloseButton onClick={() => removeItem('tags', index)} />
+                                </Tag>
+                              ))}
+                            </HStack>
+                            <HStack>
+                              <Input
+                                name="newTag"
+                                value={formData.newTag}
+                                onChange={handleInputChange}
+                                placeholder="Add a tag"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    addItem('tags');
+                                  }
+                                }}
+                              />
+                              <Button onClick={() => addItem('tags')}>Add</Button>
+                            </HStack>
+                            {tagSuggestions.length > 0 && (
+                              <HStack spacing={1} wrap="wrap" pt={1}>
+                                <Text fontSize="xs" color="tn.comment" mr={1}>
+                                  Suggestions:
+                                </Text>
+                                {tagSuggestions
+                                  .filter((t) => !formData.tags.includes(t))
+                                  .slice(0, 12)
+                                  .map((t) => (
+                                    <Tag
+                                      key={t}
+                                      size="sm"
+                                      borderRadius="full"
+                                      variant="outline"
+                                      cursor="pointer"
+                                      onClick={() => addTagValue(t)}
+                                    >
+                                      <TagLabel>{t}</TagLabel>
+                                    </Tag>
+                                  ))}
                               </HStack>
-                              <HStack>
-                                <Input
-                                  name="newTag"
-                                  value={formData.newTag}
-                                  onChange={handleInputChange}
-                                  placeholder="Add a tag"
-                                  onKeyDown={(e) => {
-                                    if (e.key === 'Enter') {
-                                      e.preventDefault();
-                                      addItem('tags');
-                                    }
-                                  }}
-                                />
-                                <Button onClick={() => addItem('tags')}>Add</Button>
-                              </HStack>
-                            </VStack>
-                          </FormControl>
-                        </VStack>
+                            )}
+                          </VStack>
+                        </FormControl>
+
+                        <FormControl>
+                          <FormLabel>Categories</FormLabel>
+                          <VStack align="stretch" spacing={2}>
+                            <HStack spacing={2} wrap="wrap">
+                              {formData.categories.map((cat, index) => (
+                                <Tag
+                                  key={index}
+                                  size="md"
+                                  borderRadius="full"
+                                  variant="solid"
+                                >
+                                  <TagLabel>{cat}</TagLabel>
+                                  <TagCloseButton onClick={() => removeItem('categories', index)} />
+                                </Tag>
+                              ))}
+                            </HStack>
+                            <HStack>
+                              <Input
+                                name="newCategory"
+                                value={formData.newCategory}
+                                onChange={handleInputChange}
+                                placeholder="Add a category"
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    addItem('categories');
+                                  }
+                                }}
+                              />
+                              <Button onClick={() => addItem('categories')}>Add</Button>
+                            </HStack>
+                          </VStack>
+                        </FormControl>
                       </VStack>
                     </Collapse>
                   </CardBody>

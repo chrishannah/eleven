@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { buildMarkdown } from '../lib/postTypes';
 
 const LS_PREFIX = 'editor:autosave:';
 
@@ -74,19 +75,7 @@ export default function useAutosave(formData, { serverSaveIntervalMs = 30_000, d
 
       setStatus('saving');
       try {
-        const frontmatter = [
-          '---',
-          `title: ${JSON.stringify(formData.title)}`,
-          `date: ${formData.date}`,
-          `tags: [${formData.tags.map((t) => JSON.stringify(t)).join(', ')}]`,
-          'layout: layouts/post',
-          formData.featuredImage ? `featuredImage: ${formData.featuredImage}` : null,
-          '---',
-        ]
-          .filter(Boolean)
-          .join('\n');
-        const body = `${frontmatter}\n\n${formData.content}`;
-
+        const body = buildMarkdown({ ...formData, isDraft: true });
         const res = await fetch('/api/save-draft', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -36,9 +36,11 @@ export default async function handler(req, res) {
     const markdownContent = content.slice(frontmatterMatch[0].length).trim();
 
     res.status(200).json({
+      ...metadata,
       title: metadata.title || filename.replace('.md', ''),
       date: metadata.date || new Date().toISOString(),
       tags: metadata.tags || [],
+      categories: metadata.categories || [],
       featuredImage: metadata.featuredImage || '',
       content: markdownContent,
       isDraft: true,
