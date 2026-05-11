@@ -13,7 +13,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
         <style>
             {% include "../../assets/css/steno.css" %}
@@ -99,29 +99,38 @@
         </script>
     </head>
 
-    <body>
+    {% set bodyType = pageType %}
+    {% if not bodyType and tags %}
+        {% if 'essay' in tags %}{% set bodyType = "essay" %}
+        {% elif 'link' in tags %}{% set bodyType = "link" %}
+        {% elif 'micro' in tags %}{% set bodyType = "micro" %}
+        {% elif 'photography' in tags %}{% set bodyType = "photography" %}
+        {% elif 'quote' in tags %}{% set bodyType = "quote" %}
+        {% elif 'music' in tags %}{% set bodyType = "music" %}
+        {% elif 'post' in tags %}{% set bodyType = "post" %}
+        {% endif %}
+    {% endif %}
+    <body{% if bodyType %} data-page-type="{{ bodyType }}"{% endif %}>
         {% include "partials/notification.njk" %}
         <header class="site-header">
-            <h1><a href="/">{{ site.title }}</a></h1>
-            <div class="tagline">{{ homepage.tagline }}</div>
-            <nav class="site-nav">
-                <a href="/">Home</a>
-                <a href="/archive/">Archive</a>
-                <a href="/projects/">Projects</a>
-                <a href="/about/">About</a>
-                <a href="/subscribe/">Subscribe</a>
-                <div class="theme-toggle">
-                    <button data-theme="light" title="Light mode">Light</button>
-                    <button data-theme="dark" title="Dark mode">Dark</button>
-                    <button data-theme="auto" title="System preference">Auto</button>
-                </div>
-            </nav>
+            <div class="site-header-inner">
+                <h1><a href="/">{{ site.title }}</a></h1>
+                <div class="tagline">{{ homepage.tagline }}</div>
+                <nav class="site-nav">
+                    <a href="/">Home</a>
+                    <a href="/archive/">Archive</a>
+                    <a href="/projects/">Projects</a>
+                    <a href="/about/">About</a>
+                    <a href="/subscribe/">Subscribe</a>
+                </nav>
+            </div>
         </header>
 
-        <!-- Content Block -->
-        <main class="content-block">
-            {{ content | safe }}
-        </main>
+        <div class="page-content">
+            <main class="content-block">
+                {{ content | safe }}
+            </main>
+        </div>
 
         {% include "partials/steno/footer.njk" %}
 

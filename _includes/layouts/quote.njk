@@ -2,13 +2,19 @@
 layout: layouts/base
 ---
 
-<article class="h-entry">
+{% set postNum = page.url | postNumber(collections.all) %}
+{% set displayTags = (tags or []) | filterTagList %}
+
+<article class="h-entry" data-type="quote">
 	{% if image %}
 		<img src="{{ image }}" alt="" class="list-card-image"/>
 	{% endif %}
 
 	<div class="post-meta">
 		<p>
+			{% if postNum %}<span class="post-number">#{{ postNum }}</span>{% endif %}
+			<span class="type">Quote</span>
+			<span class="sep">·</span>
 			<time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
 		</p>
 	</div>
@@ -17,7 +23,15 @@ layout: layouts/base
 		{{ content | safe }}
 	</div>
 
-{% include "partials/post-footer.njk" %}
+	{% if displayTags.length %}
+	<div class="post-tags">
+		{% for tag in displayTags %}
+		<span class="post-tag">{{ tag }}</span>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	{% include "partials/post-footer.njk" %}
 </article>
 
 {% include "partials/transmit.njk" %}

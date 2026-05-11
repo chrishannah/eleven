@@ -43,6 +43,7 @@
       {% set archiveType = "Post" %}{% set archiveTypeUrl = "/post/" %}
     {% endif %}
 
+    {% set archiveDisplayTags = postTags | filterTagList %}
     <li>
       <span class="post-meta monospace-font">{{ post.data.date | dayAndMonth }} ・ </span>
 
@@ -58,6 +59,12 @@
 
       {% if showType %}
         {% if archiveTypeUrl %}<a class="archive-type" href="{{ archiveTypeUrl }}">{{ archiveType }}</a>{% else %}<span class="archive-type">{{ archiveType }}</span>{% endif %}
+      {% endif %}
+
+      {% if archiveDisplayTags.length %}
+        <span class="archive-tags">
+          {% for tag in archiveDisplayTags %}<span class="post-tag">{{ tag }}</span>{% endfor %}
+        </span>
       {% endif %}
     </li>
 

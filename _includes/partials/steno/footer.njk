@@ -1,6 +1,7 @@
 {% set allPosts = collections.all | excludeDrafts %}
 
 <footer class="site-footer">
+    <div class="site-footer-inner">
     <div class="footer-grid">
         <div class="footer-col">
             <div class="footer-col-title">Pages</div>
@@ -77,6 +78,15 @@
     </div>
 
     <div class="footer-bottom">
-        {{ site.url | replace("https://", "") }} · <span class="hl">#{{ allPosts | length }}</span> posts · Since {{ homepage.since }} · Powered by Eleventy
+        <span>{{ site.url | replace("https://", "") }} · <span class="hl">#{{ allPosts | length }}</span> posts · Since {{ homepage.since }} · Powered by Eleventy</span>
+        <div class="theme-toggle">
+            <span class="label">Theme</span>
+            <button data-theme="light" title="Light mode">Light</button>
+            <span class="sep">·</span>
+            <button data-theme="dark" title="Dark mode">Dark</button>
+            <span class="sep">·</span>
+            <button data-theme="auto" title="System preference">Auto</button>
+        </div>
+    </div>
     </div>
 </footer>

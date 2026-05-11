@@ -168,11 +168,25 @@ export default function (eleventyConfig) {
 
     function filterTagList(tags) {
         return (tags || []).filter(
-            (tag) => ["post", "micro", "link", "essay", "music"].indexOf(tag) === -1
+            (tag) => ["post", "micro", "link", "essay", "music", "quote", "photography"].indexOf(tag) === -1
         );
     }
 
     eleventyConfig.addFilter("filterTagList", filterTagList);
+
+    /* Chronological post number — 1 = oldest, N = newest */
+    const postNumberCache = new WeakMap();
+    eleventyConfig.addFilter("postNumber", function (url, allPosts) {
+        if (!url || !allPosts) return "";
+        let map = postNumberCache.get(allPosts);
+        if (!map) {
+            const sorted = [...allPosts].sort((a, b) => a.date - b.date);
+            map = new Map();
+            sorted.forEach((p, i) => map.set(p.url, i + 1));
+            postNumberCache.set(allPosts, map);
+        }
+        return map.get(url) || "";
+    });
 
     /* Watch for changes */
     eleventyConfig.addWatchTarget("./assets/css/");

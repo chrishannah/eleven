@@ -2,7 +2,10 @@
 layout: layouts/base
 ---
 
-<article class="h-entry music-post">
+{% set postNum = page.url | postNumber(collections.all) %}
+{% set displayTags = (tags or []) | filterTagList %}
+
+<article class="h-entry music-post" data-type="music">
     {% if artwork %}
         <img src="{{ artwork }}" alt="{{ title }} by {{ artist }}" class="music-artwork"/>
     {% endif %}
@@ -13,9 +16,10 @@ layout: layouts/base
 
     <div class="post-meta">
         <p>
-            {% if artist %}
-                <span class="music-artist">{{ artist }}</span><br/>
-            {% endif %}
+            {% if postNum %}<span class="post-number">#{{ postNum }}</span>{% endif %}
+            <a class="type" href="/music/">Music</a>
+            <span class="sep">·</span>
+            {% if artist %}<span class="music-artist">{{ artist }}</span> <span class="sep">·</span> {% endif %}
             <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
         </p>
     </div>
@@ -29,6 +33,14 @@ layout: layouts/base
     <div class="content">
         {{ content | safe }}
     </div>
+
+    {% if displayTags.length %}
+    <div class="post-tags">
+        {% for tag in displayTags %}
+        <span class="post-tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {% include "partials/post-footer.njk" %}
 </article>

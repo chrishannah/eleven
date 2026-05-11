@@ -2,7 +2,28 @@
 layout: layouts/base
 ---
 
-<article class="h-entry">
+{% set postTags = tags or [] %}
+{% set postTypeKey = "post" %}
+{% set postType = "Post" %}
+{% set postTypeUrl = "/post/" %}
+{% if 'essay' in postTags %}
+    {% set postTypeKey = "essay" %}{% set postType = "Essay" %}{% set postTypeUrl = "/essay/" %}
+{% elif 'link' in postTags %}
+    {% set postTypeKey = "link" %}{% set postType = "Link" %}{% set postTypeUrl = "/link/" %}
+{% elif 'micro' in postTags %}
+    {% set postTypeKey = "micro" %}{% set postType = "Micro" %}{% set postTypeUrl = "/micro/" %}
+{% elif 'photography' in postTags %}
+    {% set postTypeKey = "photography" %}{% set postType = "Photo" %}{% set postTypeUrl = "/photography/" %}
+{% elif 'quote' in postTags %}
+    {% set postTypeKey = "quote" %}{% set postType = "Quote" %}{% set postTypeUrl = "" %}
+{% elif 'music' in postTags %}
+    {% set postTypeKey = "music" %}{% set postType = "Music" %}{% set postTypeUrl = "/music/" %}
+{% endif %}
+
+{% set postNum = page.url | postNumber(collections.all) %}
+{% set displayTags = postTags | filterTagList %}
+
+<article class="h-entry" data-type="{{ postTypeKey }}">
     {% if image %}
         <img src="{{ image }}" alt="" class="list-card-image"/>
     {% endif %}
@@ -13,6 +34,9 @@ layout: layouts/base
 
     <div class="post-meta">
         <p>
+            {% if postNum %}<span class="post-number">#{{ postNum }}</span>{% endif %}
+            {% if postTypeUrl %}<a class="type" href="{{ postTypeUrl }}">{{ postType }}</a>{% else %}<span class="type">{{ postType }}</span>{% endif %}
+            <span class="sep">·</span>
             <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
         </p>
     </div>
@@ -20,6 +44,14 @@ layout: layouts/base
     <div class="content">
         {{ content | safe }}
     </div>
+
+    {% if displayTags.length %}
+    <div class="post-tags">
+        {% for tag in displayTags %}
+        <span class="post-tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {% include "partials/post-footer.njk" %}
 </article>

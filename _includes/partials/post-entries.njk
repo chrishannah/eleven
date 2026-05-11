@@ -1,29 +1,37 @@
 {% for post in posts %}
   {% set postTags = post.data.tags or [] %}
   {% set postTypeUrl = "" %}
+  {% set postTypeKey = "post" %}
   {% if 'essay' in postTags %}
       {% set postType = "Essay" %}
+      {% set postTypeKey = "essay" %}
       {% set postTypeUrl = "/essay/" %}
   {% elif 'link' in postTags %}
       {% set postType = "Link" %}
+      {% set postTypeKey = "link" %}
       {% set postTypeUrl = "/link/" %}
   {% elif 'micro' in postTags %}
       {% set postType = "Micro" %}
+      {% set postTypeKey = "micro" %}
       {% set postTypeUrl = "/micro/" %}
   {% elif 'photography' in postTags %}
       {% set postType = "Photo" %}
+      {% set postTypeKey = "photography" %}
       {% set postTypeUrl = "/photography/" %}
   {% elif 'quote' in postTags %}
       {% set postType = "Quote" %}
+      {% set postTypeKey = "quote" %}
   {% elif 'music' in postTags %}
       {% set postType = "Music" %}
+      {% set postTypeKey = "music" %}
       {% set postTypeUrl = "/music/" %}
   {% else %}
       {% set postType = "Post" %}
+      {% set postTypeKey = "post" %}
       {% set postTypeUrl = "/post/" %}
   {% endif %}
 
-<article class="post-entry h-entry">
+<article class="post-entry h-entry" data-type="{{ postTypeKey }}">
     <div class="entry-date">{% if postTypeUrl %}<a class="type" href="{{ postTypeUrl }}">{{ postType }}</a>{% else %}<span class="type">{{ postType }}</span>{% endif %} — <time class="dt-published" datetime="{{ post.data.date }}">{{ post.data.date | displayDate }}</time></div>
     {% if 'music' in postTags and post.data.artwork %}
         <img src="{{ post.data.artwork }}" alt="" class="music-artwork"/>

@@ -1,3 +1,5 @@
 {% if notification.html %}
-<div class="site-banner" role="status">{{ notification.html | safe }}</div>
+<div class="site-banner" role="status">
+    <div class="site-banner-inner">{{ notification.html | safe }}</div>
+</div>
 {% endif %}
