@@ -5,31 +5,31 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    /* Dark mode (default) */
-    --bg: #121110;
-    --bg-tint: #1a1714;
-    --text: #a89e90;
-    --text-heading: #d8ccc0;
-    --text-muted: #4a4438;
-    --text-body: #8a8078;
-    --accent: #c87830;
-    --accent-hover: #e09848;
-    --border: #2a2218;
-    --border-light: #1e1c18;
-    --code-bg: rgba(255, 255, 255, 0.03);
-    --hover-bg: rgba(200, 120, 48, 0.1);
-    --nav-text: #4a4438;
-    --footer-dim: #2a2520;
-    --footer-text: #5a5248;
+    /* Dark mode (default) — Tokyo Night (Night variant) */
+    --bg: #1a1b26;            /* bg */
+    --bg-tint: #292e42;       /* bg_highlight */
+    --text: #a9b1d6;          /* fg_dark */
+    --text-heading: #c0caf5;  /* fg */
+    --text-muted: #565f89;    /* comment */
+    --text-body: #a9b1d6;
+    --accent: #ff9e64;        /* orange */
+    --accent-hover: #ffb88a;
+    --border: #3b4261;        /* fg_gutter */
+    --border-light: #292e42;  /* bg_highlight */
+    --code-bg: rgba(255, 255, 255, 0.04);
+    --hover-bg: rgba(255, 158, 100, 0.12);
+    --nav-text: #737aa2;      /* dark5 */
+    --footer-dim: #414868;    /* terminal_black */
+    --footer-text: #737aa2;
 
-    /* Per-post-type accents (dark) */
-    --type-post:        #c87830;
-    --type-essay:       #d4a574;
-    --type-link:        #6db3c4;
-    --type-micro:       #b87fb6;
-    --type-quote:       #a8a878;
-    --type-music:       #d47a7a;
-    --type-photography: #7fa886;
+    /* Per-post-type accents (Tokyo Night palette) */
+    --type-post:        #ff9e64;  /* orange */
+    --type-essay:       #e0af68;  /* yellow */
+    --type-link:        #7dcfff;  /* cyan */
+    --type-micro:       #bb9af7;  /* magenta */
+    --type-quote:       #9ece6a;  /* green */
+    --type-music:       #f7768e;  /* red */
+    --type-photography: #73daca;  /* green1 / teal */
 
     /* Type scale */
     --fs-title: 2.4rem;
@@ -40,57 +40,59 @@
 }
 
 :root[data-theme="light"] {
-    --bg: #f5f0e8;
-    --bg-tint: #efe6d4;
-    --text: #4a4238;
-    --text-heading: #4a3f35;
-    --text-muted: #c0b5a5;
-    --text-body: #5a5347;
-    --accent: #b85500;
-    --accent-hover: #d47020;
-    --border: #e0c8b0;
-    --border-light: #e8e2d8;
-
-    /* Per-post-type accents (light) */
-    --type-post:        #b85500;
-    --type-essay:       #8a5c2a;
-    --type-link:        #2a7a8c;
-    --type-micro:       #7a3f7a;
-    --type-quote:       #6a6a3a;
-    --type-music:       #a04040;
-    --type-photography: #3a7045;
+    /* Light mode — Tokyo Day */
+    --bg: #e1e2e7;            /* bg */
+    --bg-tint: #d5d6db;       /* bg_dark */
+    --text: #4c505e;          /* fg_dark */
+    --text-heading: #343b58;
+    --text-muted: #848cb5;    /* comment */
+    --text-body: #4c505e;
+    --accent: #b15c00;        /* orange */
+    --accent-hover: #8a4800;
+    --border: #b3b8ce;        /* fg_gutter */
+    --border-light: #c4c8da;
     --code-bg: rgba(0, 0, 0, 0.04);
-    --hover-bg: rgba(184, 85, 0, 0.08);
-    --nav-text: #8a7e70;
-    --footer-dim: #d0c8bc;
-    --footer-text: #5a5347;
+    --hover-bg: rgba(177, 92, 0, 0.08);
+    --nav-text: #6172b0;      /* dark3 */
+    --footer-dim: #b3b8ce;
+    --footer-text: #4c505e;
+
+    /* Per-post-type accents (Tokyo Day palette) */
+    --type-post:        #b15c00;  /* orange */
+    --type-essay:       #8c6c3e;  /* yellow */
+    --type-link:        #007197;  /* cyan */
+    --type-micro:       #9854f1;  /* magenta */
+    --type-quote:       #587539;  /* green */
+    --type-music:       #f52a65;  /* red */
+    --type-photography: #166775;  /* teal */
 }
 
 @media (prefers-color-scheme: light) {
     :root[data-theme="auto"] {
-        --bg: #f5f0e8;
-        --bg-tint: #efe6d4;
-        --text: #4a4238;
-        --text-heading: #4a3f35;
-        --text-muted: #c0b5a5;
-        --text-body: #5a5347;
-        --accent: #b85500;
-        --accent-hover: #d47020;
-        --border: #e0c8b0;
-        --border-light: #e8e2d8;
-
-        --type-post:        #b85500;
-        --type-essay:       #8a5c2a;
-        --type-link:        #2a7a8c;
-        --type-micro:       #7a3f7a;
-        --type-quote:       #6a6a3a;
-        --type-music:       #a04040;
-        --type-photography: #3a7045;
+        /* Auto-light — Tokyo Day */
+        --bg: #e1e2e7;
+        --bg-tint: #d5d6db;
+        --text: #4c505e;
+        --text-heading: #343b58;
+        --text-muted: #848cb5;
+        --text-body: #4c505e;
+        --accent: #b15c00;
+        --accent-hover: #8a4800;
+        --border: #b3b8ce;
+        --border-light: #c4c8da;
         --code-bg: rgba(0, 0, 0, 0.04);
-        --hover-bg: rgba(184, 85, 0, 0.08);
-        --nav-text: #8a7e70;
-        --footer-dim: #d0c8bc;
-        --footer-text: #5a5347;
+        --hover-bg: rgba(177, 92, 0, 0.08);
+        --nav-text: #6172b0;
+        --footer-dim: #b3b8ce;
+        --footer-text: #4c505e;
+
+        --type-post:        #b15c00;
+        --type-essay:       #8c6c3e;
+        --type-link:        #007197;
+        --type-micro:       #9854f1;
+        --type-quote:       #587539;
+        --type-music:       #f52a65;
+        --type-photography: #166775;
     }
 }
 
