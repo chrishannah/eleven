@@ -7,6 +7,7 @@ export const POST_TYPES = {
   post: {
     label: 'Post',
     layout: 'layouts/post',
+    permalinkPrefix: '',
     defaultTags: ['post'],
     defaultCategories: [],
     titleRequired: true,
@@ -15,6 +16,7 @@ export const POST_TYPES = {
   essay: {
     label: 'Essay',
     layout: 'layouts/post',
+    permalinkPrefix: '',
     defaultTags: ['post', 'essay'],
     defaultCategories: ['essay'],
     titleRequired: true,
@@ -25,6 +27,7 @@ export const POST_TYPES = {
   micro: {
     label: 'Micro',
     layout: 'layouts/micro',
+    permalinkPrefix: 'micro',
     defaultTags: ['post', 'micro'],
     defaultCategories: [],
     titleRequired: false,
@@ -33,6 +36,7 @@ export const POST_TYPES = {
   link: {
     label: 'Link',
     layout: 'layouts/link',
+    permalinkPrefix: 'link',
     defaultTags: ['link'],
     defaultCategories: ['link'],
     titleRequired: true,
@@ -44,6 +48,7 @@ export const POST_TYPES = {
   quote: {
     label: 'Quote',
     layout: 'layouts/quote',
+    permalinkPrefix: 'quote',
     defaultTags: ['quote', 'post'],
     defaultCategories: ['quote'],
     titleRequired: false,
@@ -55,6 +60,7 @@ export const POST_TYPES = {
   music: {
     label: 'Music',
     layout: 'layouts/music',
+    permalinkPrefix: 'music',
     defaultTags: ['music'],
     defaultCategories: [],
     titleRequired: true,
@@ -67,6 +73,7 @@ export const POST_TYPES = {
   photography: {
     label: 'Photography',
     layout: 'layouts/post',
+    permalinkPrefix: '',
     defaultTags: ['post', 'photography'],
     defaultCategories: [],
     titleRequired: true,
@@ -99,7 +106,13 @@ export function buildFrontmatter(formData) {
   if (formData.title) lines.push(`title: ${yamlString(formData.title)}`);
   if (formData.date) lines.push(`date: ${formData.date}`);
   lines.push(`layout: ${type.layout}`);
-  if (formData.slug) lines.push(`permalink: ${formData.slug}/`);
+
+  const slug = (formData.slug || slugify(formData.title)).trim();
+  if (slug) {
+    const prefix = type.permalinkPrefix || '';
+    lines.push(`permalink: ${prefix ? `${prefix}/${slug}` : slug}/`);
+  }
+
   lines.push(`tags: ${yamlList(tags)}`);
   if (categories.length) lines.push(`categories: ${yamlList(categories)}`);
   if (formData.excerpt) lines.push(`excerpt: ${yamlString(formData.excerpt)}`);
