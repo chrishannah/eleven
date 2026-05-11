@@ -5,6 +5,7 @@ tags:
   - App
   - Phone
 layout: layouts/post
+permalink: dumbing-down-my-phone/
 
 ---
 
