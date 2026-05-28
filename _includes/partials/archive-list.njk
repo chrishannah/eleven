@@ -39,6 +39,8 @@
       {% set archiveType = "Quote" %}
     {% elif 'music' in postTags %}
       {% set archiveType = "Music" %}{% set archiveTypeUrl = "/music/" %}
+    {% elif 'note' in postTags %}
+      {% set archiveType = "Note" %}{% set archiveTypeUrl = "/note/" %}
     {% else %}
       {% set archiveType = "Post" %}{% set archiveTypeUrl = "/post/" %}
     {% endif %}
@@ -52,6 +54,8 @@
       {% else %}
         {% if post.data.tags and "quote" in post.data.tags %}
           <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.data.quote | microExcerpt }}</a>
+        {% elif post.data.tags and "note" in post.data.tags %}
+          <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">Untitled note</a>
         {% else %}
           <a href="/{{ post.data.permalink }}" class="list-card-title archive-title">{{ post.content | microExcerpt }}</a>
         {% endif %}

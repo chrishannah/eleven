@@ -18,19 +18,27 @@ layout: layouts/base
     {% set postTypeKey = "quote" %}{% set postType = "Quote" %}{% set postTypeUrl = "" %}
 {% elif 'music' in postTags %}
     {% set postTypeKey = "music" %}{% set postType = "Music" %}{% set postTypeUrl = "/music/" %}
+{% elif 'note' in postTags %}
+    {% set postTypeKey = "note" %}{% set postType = "Note" %}{% set postTypeUrl = "/note/" %}
 {% endif %}
 
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = postTags | filterTagList %}
 
 <article class="h-entry" data-type="{{ postTypeKey }}">
-    {% if image %}
+    {% if image and postTypeKey != "note" %}
         <img src="{{ image }}" alt="" class="list-card-image"/>
     {% endif %}
 
+    {% if title %}
     <h1 class="p-name">
         <a href="{{ url | url }}">{{ title }}</a>
     </h1>
+    {% endif %}
+
+    {% if image and postTypeKey == "note" %}
+        <img src="{{ image }}" alt="" class="list-card-image"/>
+    {% endif %}
 
     <div class="post-meta">
         <p>

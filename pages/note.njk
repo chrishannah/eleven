@@ -1,0 +1,14 @@
+---
+layout: layouts/home-steno
+title: Notes
+pageType: note
+pagination:
+  data: collections.note
+  size: 10
+  reverse: true
+  alias: posts
+permalink: "note/{{ pagination.pageNumber | getPermalinkSuffixFromPageNum }}"
+eleventyExcludeFromCollections: true
+---
+
+{% include "partials/post-entries.njk" %}

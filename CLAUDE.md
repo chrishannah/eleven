@@ -84,7 +84,7 @@ Posts live in `posts/YYYY/MM/` as Markdown. Frontmatter:
 title: Post Title
 date: YYYY-MM-DD
 tags:
-  - post                      # or: micro, link, essay, quote, photography, music
+  - post                      # or: micro, link, essay, quote, photography, music, note
 layout: layouts/post
 permalink: slug-here/
 draft: true                   # optional, excluded via excludeDrafts filter
@@ -104,11 +104,12 @@ Tag semantics:
 - `quote` — quote post
 - `photography` — photo post
 - `music` — music log entry
+- `note` — photo of a field-notes notebook page (title + `image:`, no body)
 
 ### Collections (`eleventy.config.js`)
 
 - `all` — all Markdown posts (excludes pages)
-- `essay`, `link`, `micro`, `photography`, `music` — filtered by tag
+- `essay`, `link`, `micro`, `photography`, `music`, `note` — filtered by tag
 
 Custom filters added in config:
 - `excludeDrafts` — filter `draft: true`
@@ -161,6 +162,7 @@ Custom filters added in config:
 - `/feed/essays/index.xml` — essays
 - `/feed/micro/index.xml` — micro posts
 - `/feed/music/index.xml` — music posts
+- `/feed/note/index.xml` — notes
 
 ### Inbox Workflow
 

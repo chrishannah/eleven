@@ -81,6 +81,17 @@ export const POST_TYPES = {
       { key: 'image', label: 'Hero image', type: 'text', placeholder: '/images/YYYY/MM/photo.jpg' },
     ],
   },
+  note: {
+    label: 'Note',
+    layout: 'layouts/post',
+    permalinkPrefix: 'note',
+    defaultTags: ['note'],
+    defaultCategories: [],
+    titleRequired: false,
+    fields: [
+      { key: 'image', label: 'Photo', type: 'text', required: true, placeholder: '/images/YYYY/MM/note.jpg' },
+    ],
+  },
 };
 
 export const POST_TYPE_LIST = Object.entries(POST_TYPES).map(([key, t]) => ({ key, ...t }));

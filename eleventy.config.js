@@ -71,6 +71,10 @@ export default function (eleventyConfig) {
         return collectionApi.getFilteredByTag("music");
     });
 
+    eleventyConfig.addCollection("note", function (collectionApi) {
+        return collectionApi.getFilteredByTag("note");
+    });
+
     // Limit filter for slicing collections in templates
     eleventyConfig.addFilter("limit", function (arr, count) {
         if (!arr) return [];
@@ -168,7 +172,7 @@ export default function (eleventyConfig) {
 
     function filterTagList(tags) {
         return (tags || []).filter(
-            (tag) => ["post", "micro", "link", "essay", "music", "quote", "photography"].indexOf(tag) === -1
+            (tag) => ["post", "micro", "link", "essay", "music", "quote", "photography", "note"].indexOf(tag) === -1
         );
     }
 

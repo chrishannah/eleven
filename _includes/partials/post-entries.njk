@@ -25,6 +25,10 @@
       {% set postType = "Music" %}
       {% set postTypeKey = "music" %}
       {% set postTypeUrl = "/music/" %}
+  {% elif 'note' in postTags %}
+      {% set postType = "Note" %}
+      {% set postTypeKey = "note" %}
+      {% set postTypeUrl = "/note/" %}
   {% else %}
       {% set postType = "Post" %}
       {% set postTypeKey = "post" %}
