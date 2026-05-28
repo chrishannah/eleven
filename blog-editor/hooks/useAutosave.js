@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { buildMarkdown } from '../lib/postTypes';
+import { buildMarkdown, getEffectiveSlug } from '../lib/postTypes';
 
 const LS_PREFIX = 'editor:autosave:';
 
@@ -75,11 +75,12 @@ export default function useAutosave(formData, { serverSaveIntervalMs = 30_000, d
 
       setStatus('saving');
       try {
-        const body = buildMarkdown({ ...formData, isDraft: true });
+        const slug = getEffectiveSlug(formData);
+        const body = buildMarkdown({ ...formData, slug, isDraft: true });
         const res = await fetch('/api/save-draft', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ content: body, title: formData.title, date: formData.date }),
+          body: JSON.stringify({ content: body, slug, title: formData.title, date: formData.date }),
         });
         if (!res.ok) throw new Error(`save-draft ${res.status}`);
 

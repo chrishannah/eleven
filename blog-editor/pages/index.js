@@ -41,7 +41,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import ImageUploader from '../components/ImageUploader';
 import MarkdownEditor from '../components/MarkdownEditor';
 import useAutosave, { readAutosave, clearAutosave } from '../hooks/useAutosave';
-import { POST_TYPES, POST_TYPE_LIST, buildMarkdown, slugify, autoExcerpt } from '../lib/postTypes';
+import { POST_TYPES, POST_TYPE_LIST, buildMarkdown, slugify, autoExcerpt, getEffectiveSlug } from '../lib/postTypes';
 
 const MarkdownPreview = ({ content, title }) => {
   return (
@@ -335,7 +335,9 @@ export default function BlogEditor() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const markdown = buildMarkdown(formData);
+    const slug = getEffectiveSlug(formData);
+    const dataWithSlug = { ...formData, slug };
+    const markdown = buildMarkdown(dataWithSlug);
 
     try {
       const response = await fetch('/api/save-post', {
@@ -345,6 +347,7 @@ export default function BlogEditor() {
         },
         body: JSON.stringify({
           content: markdown,
+          slug,
           title: formData.title,
           date: formData.date,
           isDraft: formData.isDraft,

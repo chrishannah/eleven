@@ -9,17 +9,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { content, title, date } = req.body;
+    const { content, title, date, slug } = req.body;
 
     // Create the file path based on the date
     const postDate = new Date(date);
     const year = format(postDate, 'yyyy');
     const month = format(postDate, 'MM');
 
-    // Create the filename using the title
-    const filename = title.toLowerCase()
+    // Filename: prefer client-computed slug, fall back to title, then timestamp.
+    const fromTitle = (title || '').toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
+    const fallbackFromDate = (() => {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}-${pad(d.getHours())}-${pad(d.getMinutes())}`;
+    })();
+    const filename = (slug || fromTitle) || fallbackFromDate;
 
     // Construct the full path for drafts
     const draftsDir = join(process.cwd(), '..', 'posts', 'drafts');

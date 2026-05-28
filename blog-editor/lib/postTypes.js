@@ -118,11 +118,9 @@ export function buildFrontmatter(formData) {
   if (formData.date) lines.push(`date: ${formData.date}`);
   lines.push(`layout: ${type.layout}`);
 
-  const slug = (formData.slug || slugify(formData.title)).trim();
-  if (slug) {
-    const prefix = type.permalinkPrefix || '';
-    lines.push(`permalink: ${prefix ? `${prefix}/${slug}` : slug}/`);
-  }
+  const slug = getEffectiveSlug(formData);
+  const prefix = type.permalinkPrefix || '';
+  lines.push(`permalink: ${prefix ? `${prefix}/${slug}` : slug}/`);
 
   lines.push(`tags: ${yamlList(tags)}`);
   if (categories.length) lines.push(`categories: ${yamlList(categories)}`);
@@ -150,6 +148,17 @@ export function slugify(s) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
+}
+
+// Final filename/permalink slug. Honours an explicit slug, then title,
+// then falls back to YYYY-MM-DD-HH-MM (matches existing files like
+// 2025-12-28-20-49).
+export function getEffectiveSlug(formData) {
+  const candidate = (formData.slug || slugify(formData.title || '')).trim();
+  if (candidate) return candidate;
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}-${pad(d.getHours())}-${pad(d.getMinutes())}`;
 }
 
 export function autoExcerpt(content) {
