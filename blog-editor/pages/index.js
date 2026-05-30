@@ -204,6 +204,8 @@ export default function BlogEditor() {
   const [showDrafts, setShowDrafts] = useState(false);
   const [showDetails, setShowDetails] = useState(true);
   const [showContent, setShowContent] = useState(true);
+  const [deployOnPublish, setDeployOnPublish] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const [formData, setFormData] = useState({
     postType: 'post',
@@ -340,6 +342,7 @@ export default function BlogEditor() {
     const markdown = buildMarkdown(dataWithSlug);
 
     try {
+      setIsPublishing(true);
       const response = await fetch('/api/save-post', {
         method: 'POST',
         headers: {
@@ -357,7 +360,40 @@ export default function BlogEditor() {
 
       if (!response.ok) throw new Error('Failed to save post');
 
+      const saveData = await response.json().catch(() => ({}));
+
       clearAutosave(formData);
+
+      // Optionally commit & push the saved file (and any referenced images)
+      if (!formData.isDraft && deployOnPublish && saveData.filePath) {
+        const deployRes = await fetch('/api/commit-push', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filePath: saveData.filePath,
+            title: formData.title,
+          }),
+        });
+        const deployData = await deployRes.json().catch(() => ({}));
+        if (!deployRes.ok) {
+          toast({
+            title: 'Commit/push failed',
+            description: deployData.error || deployData.message || 'Unknown error',
+            status: 'error',
+            duration: 6000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: deployData.committed
+              ? `Pushed: ${(deployData.stagedFiles || []).join(', ')}`
+              : deployData.message,
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      }
 
       // If this was a draft that we're now publishing, clear the currentDraftFile
       if (formData.isDraft === false && formData.currentDraftFile) {
@@ -388,6 +424,8 @@ export default function BlogEditor() {
         duration: 3000,
         isClosable: true,
       });
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -984,14 +1022,33 @@ export default function BlogEditor() {
               )}
             </VStack>
 
-            <Flex justify="space-between" mt={6}>
+            <Flex justify="space-between" align="center" mt={6} gap={4}>
               <Button
                 type="submit"
                 colorScheme={formData.isDraft ? "yellow" : "blue"}
                 size="lg"
+                isLoading={isPublishing}
+                loadingText={deployOnPublish && !formData.isDraft ? "Publishing & deploying" : "Saving"}
               >
-                {formData.isDraft ? "Save as Draft" : "Publish Post"}
+                {formData.isDraft
+                  ? "Save as Draft"
+                  : deployOnPublish
+                    ? "Publish & Deploy"
+                    : "Publish Post"}
               </Button>
+              {!formData.isDraft && (
+                <FormControl display="flex" alignItems="center" width="auto">
+                  <FormLabel htmlFor="deployOnPublish" mb="0" fontSize="sm">
+                    Commit &amp; push
+                  </FormLabel>
+                  <Switch
+                    id="deployOnPublish"
+                    isChecked={deployOnPublish}
+                    onChange={(e) => setDeployOnPublish(e.target.checked)}
+                    colorScheme="green"
+                  />
+                </FormControl>
+              )}
             </Flex>
           </form>
         </VStack>

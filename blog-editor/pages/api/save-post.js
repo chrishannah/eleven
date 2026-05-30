@@ -69,7 +69,15 @@ export default async function handler(req, res) {
     // Write the file
     await writeFile(filePath, finalContent, 'utf8');
 
-    res.status(200).json({ message: 'Post saved successfully' });
+    // Repo-relative path (repo root is parent of blog-editor)
+    const repoRelativePath = isDraft
+      ? join('posts', 'drafts', `${filename}.md`)
+      : join('posts', year, month, `${filename}.md`);
+
+    res.status(200).json({
+      message: 'Post saved successfully',
+      filePath: repoRelativePath,
+    });
   } catch (error) {
     console.error('Error saving post:', error);
     res.status(500).json({ message: 'Error saving post', error: error.message });
