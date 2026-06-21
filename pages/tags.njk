@@ -1,0 +1,16 @@
+---
+layout: layouts/base
+title: Tags
+description: Browse every topic on Chris Hannah's blog by tag.
+permalink: /tags/
+eleventyExcludeFromCollections: true
+---
+
+<h1 class="page-title">Tags</h1>
+<p class="intro-text">Browse {{ collections.tagList | length }} topics from across the archive, most-used first.</p>
+
+<div class="tag-cloud">
+  {% for tag in collections.tagList %}
+  <a class="tag-cloud-item" href="/tags/{{ tag.slug }}/">{{ tag.label }}<span class="tag-count">{{ tag.count }}</span></a>
+  {% endfor %}
+</div>

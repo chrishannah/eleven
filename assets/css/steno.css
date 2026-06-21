@@ -509,6 +509,41 @@ a.post-tag:hover {
     background: color-mix(in srgb, var(--type-accent, var(--accent)) 12%, transparent);
 }
 
+/* Tags index (/tags/) */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.tag-cloud-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.tag-cloud-item:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tag-count {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    padding: 0 0.35rem;
+}
+
 .archive-tags {
     margin-left: 0.4rem;
     display: inline-flex;

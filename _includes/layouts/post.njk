@@ -57,7 +57,7 @@ layout: layouts/base
     {% if displayTags.length %}
     <div class="post-tags">
         {% for tag in displayTags %}
-        <span class="post-tag">{{ tag }}</span>
+        <a class="post-tag" href="/tags/{{ tag | tagSlug }}/">{{ tag }}</a>
         {% endfor %}
     </div>
     {% endif %}

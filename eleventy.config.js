@@ -88,6 +88,54 @@ export default function (eleventyConfig) {
         return collectionApi.getFilteredByTag("note");
     });
 
+    eleventyConfig.addCollection("quote", function (collectionApi) {
+        return collectionApi.getFilteredByTag("quote");
+    });
+
+    /* Normalised, browsable tag list: one entry per slug with a canonical
+       label (most common original casing), a post count, and its posts.
+       Posts are precomputed here so each /tags/<slug>/ page doesn't re-scan
+       the whole collection. */
+    eleventyConfig.addCollection("tagList", function (collectionApi) {
+        const typeTags = new Set(["post", "micro", "link", "essay", "music", "quote", "photography", "note", "nav"]);
+        const map = new Map();
+
+        const items = collectionApi.getAll()
+            .filter((item) => {
+                const isPage = item.data.layout?.includes("page") ?? false;
+                const isMd = item.inputPath.split(".").pop() === "md";
+                return isMd && !isPage && !item.data.draft;
+            })
+            .sort((a, b) => a.date - b.date);
+
+        items.forEach((item) => {
+            const seen = new Set();
+            (item.data.tags || []).forEach((tag) => {
+                if (typeTags.has(tag)) return;
+                const slug = slugify(tag);
+                if (!slug || seen.has(slug)) return; // count each post once per slug
+                seen.add(slug);
+                let entry = map.get(slug);
+                if (!entry) {
+                    entry = { slug, count: 0, labels: {}, posts: [] };
+                    map.set(slug, entry);
+                }
+                entry.count++;
+                entry.labels[tag] = (entry.labels[tag] || 0) + 1;
+                entry.posts.push(item);
+            });
+        });
+
+        return [...map.values()]
+            .map((e) => ({
+                slug: e.slug,
+                label: Object.entries(e.labels).sort((a, b) => b[1] - a[1])[0][0],
+                count: e.count,
+                posts: e.posts,
+            }))
+            .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+    });
+
     // Limit filter for slicing collections in templates
     eleventyConfig.addFilter("limit", function (arr, count) {
         if (!arr) return [];
@@ -192,6 +240,10 @@ export default function (eleventyConfig) {
     }
 
     eleventyConfig.addFilter("filterTagList", filterTagList);
+
+    /* Tag slug — same normalisation the tagList collection uses, so tag pills
+       link to the right /tags/<slug>/ page. */
+    eleventyConfig.addFilter("tagSlug", slugify);
 
     /* Chronological post number — 1 = oldest, N = newest */
     const postNumberCache = new WeakMap();
