@@ -24,6 +24,8 @@
     { "url": "/archive/micro/" },
     { "url": "/archive/music/" },
     { "url": "/projects/" },
+    { "url": "/tags/" },
+    { "url": "/search/" },
     { "url": "/subscribe/" },
     { "url": "/support/" },
     { "url": "/uses/" },
@@ -46,6 +48,11 @@
   <url>
     <loc>{{ post.url | absoluteUrl(metadata.url) }}</loc>
     <lastmod>{{ post.date | dateToRfc3339 }}</lastmod>
+  </url>
+  {%- endfor %}
+  {%- for tag in collections.tagList %}
+  <url>
+    <loc>{{ ("/tags/" + tag.slug + "/") | absoluteUrl(metadata.url) }}</loc>
   </url>
   {%- endfor %}
 </urlset>

@@ -25,7 +25,7 @@ layout: layouts/base
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = postTags | filterTagList %}
 
-<article class="h-entry" data-type="{{ postTypeKey }}">
+<article class="h-entry" data-type="{{ postTypeKey }}" data-pagefind-body>
     {% if image and postTypeKey != "note" %}
         <img src="{{ image }}" alt="" class="list-card-image"/>
     {% endif %}
@@ -46,6 +46,7 @@ layout: layouts/base
             {% if postTypeUrl %}<a class="type" href="{{ postTypeUrl }}">{{ postType }}</a>{% else %}<span class="type">{{ postType }}</span>{% endif %}
             <span class="sep">·</span>
             <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
+            {% if postTypeKey == "post" or postTypeKey == "essay" %}<span class="sep">·</span> <span class="reading-time">{{ content | readingTime }}</span>{% endif %}
         </p>
     </div>
 
@@ -56,12 +57,15 @@ layout: layouts/base
     {% if displayTags.length %}
     <div class="post-tags">
         {% for tag in displayTags %}
-        <span class="post-tag">{{ tag }}</span>
+        <a class="post-tag" href="/tags/{{ tag | tagSlug }}/">{{ tag }}</a>
         {% endfor %}
     </div>
     {% endif %}
 
     {% include "partials/post-footer.njk" %}
 </article>
+
+{% set navCollection = collections[postTypeKey] %}
+{% include "partials/post-nav.njk" %}
 
 {% include "partials/transmit.njk" %}

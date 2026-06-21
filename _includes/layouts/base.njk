@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
 
+        {% set metaDesc = description or (content | metaDescription) or title or site.description %}
+        <meta name="description" content="{{ metaDesc }}">
+
         <meta name="theme-color" content="#1a1b26">
         <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
 
@@ -15,10 +18,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+        {% set needsHighlight = '<pre' in content %}
+        {% set needsLightbox = '<img' in content %}
         <style>
             {% include "../../assets/css/steno.css" %}
-            {% include "../../assets/css/highlight.css" %}
-            {% include "../../assets/css/lightbox.css" %}
+            {% if needsHighlight %}{% include "../../assets/css/highlight.css" %}{% endif %}
+            {% if needsLightbox %}{% include "../../assets/css/lightbox.css" %}{% endif %}
             {% include "../../assets/css/tinylytics.css" %}
         </style>
 
@@ -44,6 +49,8 @@
         <!-- Open Graph -->
         <meta property="og:title" content="{{ title }}">
         <meta property="twitter:title" content="{{ title }}">
+        <meta property="og:description" content="{{ metaDesc }}">
+        <meta property="twitter:description" content="{{ metaDesc }}">
         <meta property="og:type" content="article">
         <meta property="twitter:url" content="https://chrishannah.me{{ page.url }}">
         <meta property="og:url" content="https://chrishannah.me{{ page.url }}">
@@ -124,6 +131,7 @@
                     <a href="/projects/">Projects</a>
                     <a href="/about/">About</a>
                     <a href="/subscribe/">Subscribe</a>
+                    <a href="/search/">Search</a>
                 </nav>
             </div>
         </header>
