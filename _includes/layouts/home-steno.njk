@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="code,blog,programmer,developer,tech,story,essay,thought,web"/>
 
+    {% set metaDesc = description or site.description %}
+    <meta name="description" content="{{ metaDesc }}">
+    <meta property="og:description" content="{{ metaDesc }}">
+    <meta property="twitter:description" content="{{ metaDesc }}">
+
     <meta name="theme-color" content="#1a1b26">
     <meta name="fediverse:creator" content="@chrishannah@fosstodon.org"/>
 

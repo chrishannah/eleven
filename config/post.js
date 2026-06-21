@@ -1,4 +1,26 @@
+import * as cheerio from "cheerio";
+
 const postFilters = {
+	// Clean, single-line plain-text description for <meta> tags. Pulls the
+	// post/page body (.content/.e-content/.post-body) so surrounding chrome
+	// (title, meta, footer, transmit form) doesn't leak into the description.
+	metaDescription: (content, maxLength = 160) => {
+		if (!content) return "";
+		let text = "";
+		try {
+			const $ = cheerio.load(content);
+			const body = $(".content, .e-content, .post-body").first();
+			text = (body.length ? body.text() : $.root().text()) || "";
+		} catch (e) {
+			text = String(content).replace(/<[^>]+>/g, " ");
+		}
+		text = text.replace(/\s+/g, " ").trim();
+		if (!text) return "";
+		if (text.length <= maxLength) return text;
+		const cut = text.lastIndexOf(" ", maxLength);
+		return text.substring(0, cut > 0 ? cut : maxLength).trim() + "…";
+	},
+
 	excerpt: (content, maxLength = 300) => {
 		// Handle undefined or null content
 		if (!content) {
