@@ -15,10 +15,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
+        {% set needsHighlight = '<pre' in content %}
+        {% set needsLightbox = '<img' in content %}
         <style>
             {% include "../../assets/css/steno.css" %}
-            {% include "../../assets/css/highlight.css" %}
-            {% include "../../assets/css/lightbox.css" %}
+            {% if needsHighlight %}{% include "../../assets/css/highlight.css" %}{% endif %}
+            {% if needsLightbox %}{% include "../../assets/css/lightbox.css" %}{% endif %}
             {% include "../../assets/css/tinylytics.css" %}
         </style>
 
