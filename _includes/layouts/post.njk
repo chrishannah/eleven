@@ -65,4 +65,7 @@ layout: layouts/base
     {% include "partials/post-footer.njk" %}
 </article>
 
+{% set navCollection = collections[postTypeKey] %}
+{% include "partials/post-nav.njk" %}
+
 {% include "partials/transmit.njk" %}

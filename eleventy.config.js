@@ -245,6 +245,42 @@ export default function (eleventyConfig) {
        link to the right /tags/<slug>/ page. */
     eleventyConfig.addFilter("tagSlug", slugify);
 
+    /* Related posts by shared (normalised) tags. Tag slugs are cached per post
+       so scoring stays cheap even when every post compares against all posts. */
+    const relatedTypeTags = new Set(["post", "micro", "link", "essay", "music", "quote", "photography", "note", "nav"]);
+    const postTagSlugCache = new WeakMap();
+    function nonTypeTagSlugs(post) {
+        let slugs = postTagSlugCache.get(post);
+        if (!slugs) {
+            slugs = [...new Set(
+                (post.data.tags || [])
+                    .filter((t) => !relatedTypeTags.has(t))
+                    .map((t) => slugify(t))
+                    .filter(Boolean)
+            )];
+            postTagSlugCache.set(post, slugs);
+        }
+        return slugs;
+    }
+    eleventyConfig.addFilter("relatedByTags", function (allPosts, currentUrl, currentTags, limit = 3) {
+        if (!allPosts || !currentTags) return [];
+        const mine = new Set(
+            currentTags.filter((t) => !relatedTypeTags.has(t)).map((t) => slugify(t)).filter(Boolean)
+        );
+        if (mine.size === 0) return [];
+        const scored = [];
+        for (const post of allPosts) {
+            if (post.url === currentUrl) continue;
+            let shared = 0;
+            for (const s of nonTypeTagSlugs(post)) {
+                if (mine.has(s)) shared++;
+            }
+            if (shared > 0) scored.push({ post, shared });
+        }
+        scored.sort((a, b) => b.shared - a.shared || b.post.date - a.post.date);
+        return scored.slice(0, limit).map((s) => s.post);
+    });
+
     /* Chronological post number — 1 = oldest, N = newest */
     const postNumberCache = new WeakMap();
     eleventyConfig.addFilter("postNumber", function (url, allPosts) {
