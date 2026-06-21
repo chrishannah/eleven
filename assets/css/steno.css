@@ -610,6 +610,25 @@ a.post-tag:hover {
     border-bottom-color: var(--accent);
 }
 
+/* Heading anchors (markdown-it-anchor) — revealed on hover */
+a.header-anchor {
+    color: var(--text-muted);
+    border-bottom: none;
+    margin-left: 0.4rem;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+}
+
+a.header-anchor:hover { color: var(--accent); }
+
+h2:hover > a.header-anchor,
+h3:hover > a.header-anchor,
+h4:hover > a.header-anchor,
+h5:hover > a.header-anchor,
+h6:hover > a.header-anchor,
+a.header-anchor:focus { opacity: 1; }
+
 .content ul,
 .content ol,
 .e-content ul,

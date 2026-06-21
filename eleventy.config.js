@@ -9,6 +9,8 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginIcons from "eleventy-plugin-icons";
 import markdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
+import markdownItAnchor from "markdown-it-anchor";
+import slugify from "./config/slugify.js";
 
 const buildStart = Date.now();
 
@@ -19,7 +21,18 @@ export default function (eleventyConfig) {
         linkify: false,
     };
 
-    const md = markdownIt(options).use(markdownItFootnote);
+    const md = markdownIt(options)
+        .use(markdownItFootnote)
+        .use(markdownItAnchor, {
+            slugify,
+            tabIndex: false,
+            permalink: markdownItAnchor.permalink.linkInsideHeader({
+                symbol: "#",
+                placement: "after",
+                class: "header-anchor",
+                ariaHidden: true,
+            }),
+        });
     eleventyConfig.setLibrary("md", md);
 
     // Disable this error for the project.
@@ -91,18 +104,20 @@ export default function (eleventyConfig) {
     eleventyConfig.addFilter("toc", function (content) {
         if (!content) return '';
 
-        // Extract headers from HTML content
-        const headerRegex = /<h([1-4])[^>]*>(.*?)<\/h\1>/g;
+        // Read headings (and the ids assigned by markdown-it-anchor) so the TOC
+        // links resolve to real anchors on the page.
+        const headerRegex = /<h([1-4])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
         const headers = [];
         let match;
 
         while ((match = headerRegex.exec(content)) !== null) {
             const level = parseInt(match[1]);
-            const text = match[2].replace(/<[^>]+>/g, ''); // Remove any HTML inside the header
-            // Create a URL-friendly ID from the header text
-            const id = text.toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric chars with hyphens
-                .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+            const id = match[2];
+            const text = match[3]
+                .replace(/<a\b[^>]*class="header-anchor"[^>]*>[\s\S]*?<\/a>/g, '') // drop the # anchor
+                .replace(/<[^>]+>/g, '')                                            // strip remaining inline HTML
+                .trim();
+            if (!text) continue;
 
             headers.push({
                 level,

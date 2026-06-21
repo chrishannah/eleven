@@ -46,6 +46,7 @@ layout: layouts/base
             {% if postTypeUrl %}<a class="type" href="{{ postTypeUrl }}">{{ postType }}</a>{% else %}<span class="type">{{ postType }}</span>{% endif %}
             <span class="sep">·</span>
             <time class="dt-published" datetime="{{ date }}">{{ date | displayDate }}</time>
+            {% if postTypeKey == "post" or postTypeKey == "essay" %}<span class="sep">·</span> <span class="reading-time">{{ content | readingTime }}</span>{% endif %}
         </p>
     </div>
 
