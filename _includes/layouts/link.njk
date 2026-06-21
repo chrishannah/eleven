@@ -5,7 +5,7 @@ layout: layouts/base
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = (tags or []) | filterTagList %}
 
-<article class="h-entry" data-type="link">
+<article class="h-entry" data-type="link" data-pagefind-body>
 	{% if image %}
 		<img src="{{ image }}" alt="" class="list-card-image"/>
 	{% endif %}

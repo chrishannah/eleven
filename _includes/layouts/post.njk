@@ -25,7 +25,7 @@ layout: layouts/base
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = postTags | filterTagList %}
 
-<article class="h-entry" data-type="{{ postTypeKey }}">
+<article class="h-entry" data-type="{{ postTypeKey }}" data-pagefind-body>
     {% if image and postTypeKey != "note" %}
         <img src="{{ image }}" alt="" class="list-card-image"/>
     {% endif %}

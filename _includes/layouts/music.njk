@@ -5,7 +5,7 @@ layout: layouts/base
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = (tags or []) | filterTagList %}
 
-<article class="h-entry music-post" data-type="music">
+<article class="h-entry music-post" data-type="music" data-pagefind-body>
     {% if artwork %}
         <img src="{{ artwork }}" alt="{{ title }} by {{ artist }}" class="music-artwork"/>
     {% endif %}

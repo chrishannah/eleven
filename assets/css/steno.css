@@ -544,6 +544,19 @@ a.post-tag:hover {
     padding: 0 0.35rem;
 }
 
+/* Pagefind search UI (/search/) — themed to match Steno */
+#search {
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--bg);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--bg-tint);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 3px;
+    --pagefind-ui-font: 'JetBrains Mono', monospace;
+    margin: 1.5rem 0 3rem;
+}
+
 .archive-tags {
     margin-left: 0.4rem;
     display: inline-flex;
