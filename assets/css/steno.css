@@ -99,6 +99,100 @@
     }
 }
 
+/* ========================================
+   Palette: Voltage — carbon black / parchment, neon spectrum, cinnabar red lead
+   Layered on top of Tokyo Night via [data-palette="voltage"].
+   Higher specificity than the default :root / [data-theme] blocks,
+   so source order is irrelevant.
+   ======================================== */
+
+:root[data-palette="voltage"] {
+    /* Dark mode (default) — carbon black + cinnabar */
+    --bg: #1a1919;            /* carbon-black */
+    --bg-tint: #262424;
+    --text: #d6d0cd;          /* dimmed parchment */
+    --text-heading: #f3efed;  /* parchment */
+    --text-muted: #8a8482;
+    --text-body: #d6d0cd;
+    --accent: #f73d3a;        /* cinnabar */
+    --accent-hover: #ff6663;
+    --border: #332f2f;
+    --border-light: #262424;
+    --code-bg: rgba(255, 255, 255, 0.04);
+    --hover-bg: rgba(247, 61, 58, 0.12);
+    --nav-text: #9a9290;
+    --footer-dim: #4a4444;
+    --footer-text: #9a9290;
+
+    /* Per-post-type accents (neon spectrum) */
+    --type-post:        #f73d3a;  /* cinnabar */
+    --type-essay:       #f3961d;  /* carrot orange */
+    --type-link:        #17ecff;  /* electric aqua */
+    --type-micro:       #bd48e8;  /* neon violet */
+    --type-quote:       #00ff95;  /* spring green */
+    --type-music:       #ee388a;  /* barbie pink */
+    --type-photography: #3740e7;  /* bright indigo */
+    --type-note:        #b0a8a4;  /* warm grey */
+}
+
+:root[data-palette="voltage"][data-theme="light"] {
+    /* Light mode — parchment + cinnabar (accents darkened for contrast) */
+    --bg: #faf8f6;            /* brightened parchment */
+    --bg-tint: #efeae7;
+    --text: #2c2828;
+    --text-heading: #1a1919;  /* carbon-black */
+    --text-muted: #8a8482;
+    --text-body: #2c2828;
+    --accent: #d62b28;        /* cinnabar (darkened) */
+    --accent-hover: #b01f1c;
+    --border: #d8d0cc;
+    --border-light: #e8e2df;
+    --code-bg: rgba(0, 0, 0, 0.04);
+    --hover-bg: rgba(214, 43, 40, 0.08);
+    --nav-text: #7a7270;
+    --footer-dim: #c4bbb6;
+    --footer-text: #2c2828;
+
+    --type-post:        #d62b28;  /* cinnabar */
+    --type-essay:       #b86a08;  /* carrot orange */
+    --type-link:        #0e8b9c;  /* electric aqua */
+    --type-micro:       #9a2fc0;  /* neon violet */
+    --type-quote:       #008f5a;  /* spring green */
+    --type-music:       #d61c6e;  /* barbie pink */
+    --type-photography: #3038d0;  /* bright indigo */
+    --type-note:        #6a6360;  /* warm grey */
+}
+
+@media (prefers-color-scheme: light) {
+    :root[data-palette="voltage"][data-theme="auto"] {
+        /* Auto-light — Voltage light */
+        --bg: #faf8f6;
+        --bg-tint: #efeae7;
+        --text: #2c2828;
+        --text-heading: #1a1919;
+        --text-muted: #8a8482;
+        --text-body: #2c2828;
+        --accent: #d62b28;
+        --accent-hover: #b01f1c;
+        --border: #d8d0cc;
+        --border-light: #e8e2df;
+        --code-bg: rgba(0, 0, 0, 0.04);
+        --hover-bg: rgba(214, 43, 40, 0.08);
+        --nav-text: #7a7270;
+        --footer-dim: #c4bbb6;
+        --footer-text: #2c2828;
+
+        --type-post:        #d62b28;
+        --type-essay:       #b86a08;
+        --type-link:        #0e8b9c;
+        --type-micro:       #9a2fc0;
+        --type-quote:       #008f5a;
+        --type-music:       #d61c6e;
+        --type-photography: #3038d0;
+        --type-note:        #6a6360;
+    }
+}
+
 /* --- Base --- */
 
 body {
@@ -151,6 +245,22 @@ hr {
 .site-banner a { color: var(--accent); }
 .site-banner a:hover { color: var(--accent-hover); }
 
+/* Voltage palette — bold cinnabar accent bar */
+:root[data-palette="voltage"] .site-banner {
+    background: #f73d3a;        /* cinnabar */
+    color: #faf8f6;            /* parchment */
+    border-bottom: none;
+    opacity: 1;
+}
+:root[data-palette="voltage"] .site-banner a {
+    color: #1a1919;            /* carbon */
+    text-decoration: underline;
+}
+:root[data-palette="voltage"] .site-banner a:hover {
+    color: #1a1919;
+    opacity: 0.7;
+}
+
 /* --- Header --- */
 
 .site-header {
@@ -197,14 +307,16 @@ hr {
 .site-nav a:hover { color: var(--accent); }
 
 /* Theme toggle (now lives in footer-bottom) */
-.theme-toggle {
+.theme-toggle,
+.palette-toggle {
     display: flex;
     gap: 0.25rem;
     align-items: center;
     font-size: var(--fs-meta);
 }
 
-.theme-toggle button {
+.theme-toggle button,
+.palette-toggle button {
     background: none;
     border: none;
     color: var(--text-muted);
@@ -214,8 +326,10 @@ hr {
     padding: 0.15rem 0.3rem;
 }
 
-.theme-toggle button:hover { color: var(--accent); }
-.theme-toggle button.active { color: var(--accent); }
+.theme-toggle button:hover,
+.palette-toggle button:hover { color: var(--accent); }
+.theme-toggle button.active,
+.palette-toggle button.active { color: var(--accent); }
 
 /* --- Homepage Posts --- */
 
