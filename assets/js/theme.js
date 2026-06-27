@@ -4,9 +4,26 @@
 
     const STORAGE_KEY = 'theme-preference';
     const DYNAMIC_KEY = 'dynamic-colors';
+    const PALETTE_KEY = 'palette-preference';
 
     function getStoredTheme() {
         return localStorage.getItem(STORAGE_KEY) || 'auto';
+    }
+
+    function getStoredPalette() {
+        return localStorage.getItem(PALETTE_KEY) || 'voltage';
+    }
+
+    function applyPalette(palette) {
+        document.documentElement.setAttribute('data-palette', palette);
+        document.querySelectorAll('.palette-toggle button[data-palette]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.palette === palette);
+        });
+    }
+
+    function setPalette(palette) {
+        localStorage.setItem(PALETTE_KEY, palette);
+        applyPalette(palette);
     }
 
     function resolveColorMode(theme) {
@@ -88,9 +105,17 @@
         const theme = getStoredTheme();
         applyTheme(theme);
 
+        applyPalette(getStoredPalette());
+
         document.querySelectorAll('.theme-toggle button[data-theme]').forEach(btn => {
             btn.addEventListener('click', () => {
                 setTheme(btn.dataset.theme);
+            });
+        });
+
+        document.querySelectorAll('.palette-toggle button[data-palette]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setPalette(btn.dataset.palette);
             });
         });
 

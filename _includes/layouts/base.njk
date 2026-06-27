@@ -83,6 +83,7 @@
             (function() {
                 var theme = localStorage.getItem('theme-preference') || 'auto';
                 document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-palette', localStorage.getItem('palette-preference') || 'voltage');
                 {% if instagram.colorPalette %}
                 window.__colorPalette = {{ instagram.colorPalette | dump | safe }};
                 {% endif %}
