@@ -47,16 +47,22 @@ async function handleCreate(req, res) {
 	}
 
 	const title = properties.name ? properties.name[0] : '';
+	const isStatus = title === '';
 	const date = new Date().toISOString();
 	const slug = properties.slug ? properties.slug[0] : slugify(title || date);
 	const requestTags = properties.category || [];
-	const tags = [...new Set(['post', ...requestTags])];
+	const baseTags = isStatus ? ['post', 'micro'] : ['post'];
+	const tags = [...new Set([...baseTags, ...requestTags])];
 	const fileName = `${slug}.md`;
 	const fileContent = buildPostContent(title, date, slug, tags, content);
+	const postUrl = isStatus
+		? `https://chrishannah.me/micro/${slug}/`
+		: `https://chrishannah.me/${slug}/`;
 
 	try {
 		await createFileInGitHub(fileName, fileContent);
-		res.status(201).json({ success: true, url: `https://chrishannah.me/posts/${fileName}` });
+		res.setHeader('Location', postUrl);
+		res.status(201).json({ success: true, url: postUrl });
 	} catch (error) {
 		res.status(500).json({ error: 'Failed to create post' });
 	}
