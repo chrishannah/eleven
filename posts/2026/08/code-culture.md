@@ -1,6 +1,6 @@
 ---
 title: "Code & Culture"
-date: 2026-08-01 23:00
+date: 2026-08-01 23:00:00
 layout: layouts/link
 permalink: link/code-culture/
 tags: ["link", "post"]

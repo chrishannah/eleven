@@ -1,6 +1,6 @@
 ---
 title: "Nine Years, Never the Same Job"
-date: 2026-08-01 20:00
+date: 2026-08-01 20:00:00
 layout: layouts/post
 permalink: nine-years-never-the-same-job/
 tags: ["post", "job", "career"]
