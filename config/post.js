@@ -1,4 +1,42 @@
+import * as cheerio from "cheerio";
+
 const postFilters = {
+	// Clean, single-line plain-text description for <meta> tags. Pulls the
+	// post/page body (.content/.e-content/.post-body) so surrounding chrome
+	// (title, meta, footer, transmit form) doesn't leak into the description.
+	metaDescription: (content, maxLength = 160) => {
+		if (!content) return "";
+		let text = "";
+		try {
+			const $ = cheerio.load(content);
+			const body = $(".content, .e-content, .post-body").first();
+			text = (body.length ? body.text() : $.root().text()) || "";
+		} catch (e) {
+			text = String(content).replace(/<[^>]+>/g, " ");
+		}
+		text = text.replace(/\s+/g, " ").trim();
+		if (!text) return "";
+		if (text.length <= maxLength) return text;
+		const cut = text.lastIndexOf(" ", maxLength);
+		return text.substring(0, cut > 0 ? cut : maxLength).trim() + "…";
+	},
+
+	// Rough reading-time estimate from a rendered HTML body (~220 wpm).
+	readingTime: (content) => {
+		if (!content) return "";
+		const text = String(content).replace(/<[^>]+>/g, " ");
+		const words = (text.match(/\S+/g) || []).length;
+		const minutes = Math.max(1, Math.round(words / 220));
+		return `${minutes} min read`;
+	},
+
+	// Remove markdown-it-anchor "#" permalinks from a rendered HTML body so
+	// they don't leak into RSS feed content.
+	stripHeaderAnchors: (html) => {
+		if (!html) return html;
+		return String(html).replace(/<a\b[^>]*class="header-anchor"[^>]*>[\s\S]*?<\/a>/g, "");
+	},
+
 	excerpt: (content, maxLength = 300) => {
 		// Handle undefined or null content
 		if (!content) {

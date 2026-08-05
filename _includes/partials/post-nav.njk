@@ -1,0 +1,37 @@
+{% set newerPost = navCollection | getNextCollectionItem %}
+{% set olderPost = navCollection | getPreviousCollectionItem %}
+{% set related = collections.all | excludeDrafts | relatedByTags(page.url, tags, 3) %}
+
+{% if newerPost or olderPost or related.length %}
+<nav class="post-nav" aria-label="More posts">
+    {% if newerPost or olderPost %}
+    <div class="post-nav-adjacent">
+        {% if newerPost %}
+        <a class="post-nav-newer" href="{{ newerPost.url }}">
+            <span class="post-nav-dir">&larr; Newer</span>
+            <span class="post-nav-title">{{ newerPost.data.title or (newerPost.templateContent | microExcerpt) }}</span>
+        </a>
+        {% endif %}
+        {% if olderPost %}
+        <a class="post-nav-older" href="{{ olderPost.url }}">
+            <span class="post-nav-dir">Older &rarr;</span>
+            <span class="post-nav-title">{{ olderPost.data.title or (olderPost.templateContent | microExcerpt) }}</span>
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if related.length %}
+    <div class="related-posts">
+        <div class="related-posts-title">Related</div>
+        {% for post in related %}
+        <a class="related-post" href="{{ post.url }}">
+            <span class="related-post-name">{{ post.data.title or (post.templateContent | microExcerpt) }}</span>
+            {% set rtags = post.data.tags | filterTagList | limit(3) %}
+            {% if rtags.length %}<span class="related-post-tags">{% for t in rtags %}#{{ t }} {% endfor %}</span>{% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</nav>
+{% endif %}

@@ -1,0 +1,19 @@
+---
+layout: layouts/base
+title: Search
+description: Full-text search across Chris Hannah's blog.
+permalink: /search/
+eleventyExcludeFromCollections: true
+---
+
+<h1 class="page-title">Search</h1>
+<p class="intro-text">Full-text search across {{ collections.all | excludeDrafts | length }} posts and pages.</p>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<div id="search"></div>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        new PagefindUI({ element: "#search", showSubResults: true, showImages: false, pageSize: 8 });
+    });
+</script>

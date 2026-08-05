@@ -1,0 +1,19 @@
+---
+layout: layouts/base
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag.slug }}/"
+eleventyComputed:
+  title: "Tagged: {{ tag.label }}"
+  description: "All posts tagged {{ tag.label }} on Chris Hannah's blog."
+eleventyExcludeFromCollections: true
+---
+
+<h1 class="page-title">#{{ tag.label }}</h1>
+<p class="intro-text">{{ tag.count }} post{% if tag.count != 1 %}s{% endif %} tagged <strong>{{ tag.label }}</strong> · <a href="/tags/">all tags</a></p>
+
+{% set archivePosts = tag.posts %}
+{% set showType = true %}
+{% include "partials/archive-list.njk" %}
