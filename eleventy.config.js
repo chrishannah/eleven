@@ -9,6 +9,8 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginIcons from "eleventy-plugin-icons";
 import markdownIt from "markdown-it";
 import markdownItFootnote from "markdown-it-footnote";
+import markdownItAnchor from "markdown-it-anchor";
+import slugify from "./config/slugify.js";
 
 const buildStart = Date.now();
 
@@ -19,7 +21,18 @@ export default function (eleventyConfig) {
         linkify: false,
     };
 
-    const md = markdownIt(options).use(markdownItFootnote);
+    const md = markdownIt(options)
+        .use(markdownItFootnote)
+        .use(markdownItAnchor, {
+            slugify,
+            tabIndex: false,
+            permalink: markdownItAnchor.permalink.linkInsideHeader({
+                symbol: "#",
+                placement: "after",
+                class: "header-anchor",
+                ariaHidden: true,
+            }),
+        });
     eleventyConfig.setLibrary("md", md);
 
     // Disable this error for the project.
@@ -75,6 +88,54 @@ export default function (eleventyConfig) {
         return collectionApi.getFilteredByTag("note");
     });
 
+    eleventyConfig.addCollection("quote", function (collectionApi) {
+        return collectionApi.getFilteredByTag("quote");
+    });
+
+    /* Normalised, browsable tag list: one entry per slug with a canonical
+       label (most common original casing), a post count, and its posts.
+       Posts are precomputed here so each /tags/<slug>/ page doesn't re-scan
+       the whole collection. */
+    eleventyConfig.addCollection("tagList", function (collectionApi) {
+        const typeTags = new Set(["post", "micro", "link", "essay", "music", "quote", "photography", "note", "nav"]);
+        const map = new Map();
+
+        const items = collectionApi.getAll()
+            .filter((item) => {
+                const isPage = item.data.layout?.includes("page") ?? false;
+                const isMd = item.inputPath.split(".").pop() === "md";
+                return isMd && !isPage && !item.data.draft;
+            })
+            .sort((a, b) => a.date - b.date);
+
+        items.forEach((item) => {
+            const seen = new Set();
+            (item.data.tags || []).forEach((tag) => {
+                if (typeTags.has(tag)) return;
+                const slug = slugify(tag);
+                if (!slug || seen.has(slug)) return; // count each post once per slug
+                seen.add(slug);
+                let entry = map.get(slug);
+                if (!entry) {
+                    entry = { slug, count: 0, labels: {}, posts: [] };
+                    map.set(slug, entry);
+                }
+                entry.count++;
+                entry.labels[tag] = (entry.labels[tag] || 0) + 1;
+                entry.posts.push(item);
+            });
+        });
+
+        return [...map.values()]
+            .map((e) => ({
+                slug: e.slug,
+                label: Object.entries(e.labels).sort((a, b) => b[1] - a[1])[0][0],
+                count: e.count,
+                posts: e.posts,
+            }))
+            .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+    });
+
     // Limit filter for slicing collections in templates
     eleventyConfig.addFilter("limit", function (arr, count) {
         if (!arr) return [];
@@ -91,18 +152,20 @@ export default function (eleventyConfig) {
     eleventyConfig.addFilter("toc", function (content) {
         if (!content) return '';
 
-        // Extract headers from HTML content
-        const headerRegex = /<h([1-4])[^>]*>(.*?)<\/h\1>/g;
+        // Read headings (and the ids assigned by markdown-it-anchor) so the TOC
+        // links resolve to real anchors on the page.
+        const headerRegex = /<h([1-4])[^>]*\sid="([^"]+)"[^>]*>([\s\S]*?)<\/h\1>/g;
         const headers = [];
         let match;
 
         while ((match = headerRegex.exec(content)) !== null) {
             const level = parseInt(match[1]);
-            const text = match[2].replace(/<[^>]+>/g, ''); // Remove any HTML inside the header
-            // Create a URL-friendly ID from the header text
-            const id = text.toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric chars with hyphens
-                .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+            const id = match[2];
+            const text = match[3]
+                .replace(/<a\b[^>]*class="header-anchor"[^>]*>[\s\S]*?<\/a>/g, '') // drop the # anchor
+                .replace(/<[^>]+>/g, '')                                            // strip remaining inline HTML
+                .trim();
+            if (!text) continue;
 
             headers.push({
                 level,
@@ -177,6 +240,46 @@ export default function (eleventyConfig) {
     }
 
     eleventyConfig.addFilter("filterTagList", filterTagList);
+
+    /* Tag slug — same normalisation the tagList collection uses, so tag pills
+       link to the right /tags/<slug>/ page. */
+    eleventyConfig.addFilter("tagSlug", slugify);
+
+    /* Related posts by shared (normalised) tags. Tag slugs are cached per post
+       so scoring stays cheap even when every post compares against all posts. */
+    const relatedTypeTags = new Set(["post", "micro", "link", "essay", "music", "quote", "photography", "note", "nav"]);
+    const postTagSlugCache = new WeakMap();
+    function nonTypeTagSlugs(post) {
+        let slugs = postTagSlugCache.get(post);
+        if (!slugs) {
+            slugs = [...new Set(
+                (post.data.tags || [])
+                    .filter((t) => !relatedTypeTags.has(t))
+                    .map((t) => slugify(t))
+                    .filter(Boolean)
+            )];
+            postTagSlugCache.set(post, slugs);
+        }
+        return slugs;
+    }
+    eleventyConfig.addFilter("relatedByTags", function (allPosts, currentUrl, currentTags, limit = 3) {
+        if (!allPosts || !currentTags) return [];
+        const mine = new Set(
+            currentTags.filter((t) => !relatedTypeTags.has(t)).map((t) => slugify(t)).filter(Boolean)
+        );
+        if (mine.size === 0) return [];
+        const scored = [];
+        for (const post of allPosts) {
+            if (post.url === currentUrl) continue;
+            let shared = 0;
+            for (const s of nonTypeTagSlugs(post)) {
+                if (mine.has(s)) shared++;
+            }
+            if (shared > 0) scored.push({ post, shared });
+        }
+        scored.sort((a, b) => b.shared - a.shared || b.post.date - a.post.date);
+        return scored.slice(0, limit).map((s) => s.post);
+    });
 
     /* Chronological post number — 1 = oldest, N = newest */
     const postNumberCache = new WeakMap();

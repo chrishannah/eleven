@@ -67,7 +67,7 @@
 
       {% if archiveDisplayTags.length %}
         <span class="archive-tags">
-          {% for tag in archiveDisplayTags %}<span class="post-tag">{{ tag }}</span>{% endfor %}
+          {% for tag in archiveDisplayTags %}<a class="post-tag" href="/tags/{{ tag | tagSlug }}/">{{ tag }}</a>{% endfor %}
         </span>
       {% endif %}
     </li>

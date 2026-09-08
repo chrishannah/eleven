@@ -9,11 +9,13 @@ Personal blog at [chrishannah.me](https://chrishannah.me), built with Eleventy (
 ```bash
 npm run dev                 # Dev server with live reload; skips old posts for speed
 npm start                   # Dev server (full build, no dev optimizations)
-npm run build               # Production build
+npm run build               # Production build (eleventy && pagefind --site public)
 ./new_post.sh "Post Title"  # Create a new post (opens in Neovim)
 ./new_link.sh               # Create a new link post in inbox-links/
 ./process-inbox.sh          # Process inbox/ and inbox-links/ into posts/
 ```
+
+**Search caveat:** `npm run build` also runs Pagefind to index the built site into `public/pagefind/`. The dev server (`npm run dev` / `npm start`) does **not** run Pagefind, so `/search/` only returns results after a full `npm run build`.
 
 ## Architecture
 
@@ -46,21 +48,24 @@ Theme switch:
 
 | File | Purpose |
 |------|---------|
-| `post-footer.njk` | Author byline, permalink, source (link posts), reply-via-email |
+| `post-footer.njk` | Author byline, permalink, source (link posts), reply-via-email. Marked `data-pagefind-ignore` so the boilerplate stays out of search. |
 | `post.njk`, `link.njk`, `micro.njk`, `quote.njk` | Rendering blocks for each post type |
+| `post-nav.njk` | Newer/Older (same post type) + up to 3 related posts (shared tags). Included by `post.njk` and `link.njk`; expects `navCollection` set before include. |
 | `living-document-notice.njk` | Shown on pages with `living: true` frontmatter |
 | `transmit.njk` | "Transmit" message form (ntfy-backed) — included at bottom of `post.njk` |
-| `steno/footer.njk` | Sitewide footer: pages column, projects column, contact column, "Now" column with Minifocus + Instagram |
+| `steno/footer.njk` | Sitewide footer: pages column (incl. Tags, Search), projects column, contact column, "Now" column with Minifocus + Instagram |
 
 ### CSS (`assets/css/`, inlined via `{% include %}`)
 
 | File | Purpose |
 |------|---------|
-| `steno.css` | Main stylesheet — variables, layout, typography, forms, header/nav/footer, cards, post entries, pagination, archive, 404, transmit |
+| `steno.css` | Main stylesheet — variables, layout, typography, forms, header/nav/footer, cards, post entries, pagination, archive, 404, transmit, heading anchors, tag cloud, Pagefind UI theming, post-nav/related |
 | `fonts.css` | Currently empty — reserved for future self-hosted `@font-face` declarations. |
-| `highlight.css` | Code syntax highlighting (paired with highlight.js, loaded conditionally) |
-| `lightbox.css` | Image lightbox overlay |
+| `highlight.css` | Code syntax highlighting. Inlined in `base.njk` **only when the page contains a `<pre>` block** (paired with highlight.js, injected on `<code>`). |
+| `lightbox.css` | Image lightbox overlay. Inlined in `base.njk` **only when the page contains an `<img>`**. |
 | `tinylytics.css` | Tinylytics hits/kudos widget styling |
+
+`base.njk` content-sniffs the rendered child (`'<pre' in content`, `'<img' in content`) to decide whether to inline `highlight.css` / `lightbox.css`, so pages that don't need them stay lean.
 
 ### Client-Side JS (`assets/js/` → copied to `public/js/`)
 
@@ -109,14 +114,19 @@ Tag semantics:
 ### Collections (`eleventy.config.js`)
 
 - `all` — all Markdown posts (excludes pages)
-- `essay`, `link`, `micro`, `photography`, `music`, `note` — filtered by tag
+- `essay`, `link`, `micro`, `photography`, `music`, `note`, `quote` — filtered by tag
+- `tagList` — normalised, browsable tags. One entry per slug (`{ slug, label, count, posts }`); casing variants (iOS/ios, "Text Case") merge, canonical label = most common casing. Excludes content-type tags. Drives `/tags/`.
+
+Markdown: `markdown-it` + `markdown-it-footnote` + **`markdown-it-anchor`** (assigns heading ids via the shared `config/slugify.js`, with a hover-revealed `#` permalink). This is what makes the `toc` filter and heading deep-links resolve.
 
 Custom filters added in config:
 - `excludeDrafts` — filter `draft: true`
 - `limit` — array slice
-- `toc` — generate table of contents from HTML headers
+- `toc` — table of contents; reads the real heading ids assigned by markdown-it-anchor
 - `buildDuration` — seconds since build start
 - `filterTagList` — strip content-type tags from display
+- `tagSlug` — normalise a tag to its `/tags/<slug>/` slug (same slugify as `tagList`)
+- `relatedByTags` — rank posts by shared normalised tags (per-post slug cache)
 - Plus filters from `config/date.js`, `config/number.js`, `config/post.js`, `config/stats.js`
 
 ### Data Files (`_data/`)
@@ -130,7 +140,6 @@ Custom filters added in config:
 | `external.js` | Other writing sites (Code and Culture, Journeys Through Glass) — also downloads favicons into `public/images/favicons/` at build time |
 | `social.json` | Social media links |
 | `instagram.js` | Fetches latest photo + color palette from Behold.so |
-| `github.js` | Fetches recent activity/commits from GitHub API at build time (avoids client-side rate limits) |
 | `build.js` | Build timestamp |
 | `env.js` | Environment variables exposed to templates |
 
@@ -142,8 +151,11 @@ Custom filters added in config:
 |------|---------|
 | `date.js` | Date formatting (uses `moment`) |
 | `number.js` | Number formatting |
-| `post.js` | `excerpt`, `microExcerpt`, `cleanUrl` |
+| `post.js` | `metaDescription`, `readingTime`, `stripHeaderAnchors`, `excerpt`, `microExcerpt`, `cleanUrl` |
+| `slugify.js` | Shared heading/tag slug function (used by markdown-it-anchor, `toc`, `tagSlug`, `tagList`, `relatedByTags`) |
 | `stats.js` | `daysPublishing`, `postsThisMonth`, `postsThisYear`, `daysSinceLastPost`, `volumeNumber`, `nextMilestone`, `longestStreak`, `bestMonth` |
+
+`metaDescription` (used in both `<head>`s) extracts clean body text from `.content`/`.e-content`/`.post-body` via cheerio so page chrome doesn't leak into `<meta description>`/`og:description`. `stripHeaderAnchors` keeps the anchor `#` permalinks out of RSS content.
 
 ### Static Assets
 
@@ -171,6 +183,10 @@ Drafts can land in `inbox/` or `inbox-links/` (ignored by Eleventy builds). `pro
 ### Pages (`pages/`)
 
 Static pages (`about.md`, `colophon.md`, `uses.md`, etc.). The `all` collection excludes anything with `page` in its layout, so these don't pollute post lists.
+
+- `tags.njk` → `/tags/` — tag cloud (all of `collections.tagList`, by count).
+- `tag.njk` → `/tags/<slug>/` — paginated one-per-tag, lists the tag's posts via `archive-list.njk`.
+- `search.njk` → `/search/` — Pagefind UI. Only content articles carry `data-pagefind-body` (in the leaf layouts), so posts and static pages are indexed but listing pages (homepage, archives, the ~460 tag pages) are not.
 
 ### Build Ignores
 
@@ -205,7 +221,8 @@ Standalone Next.js (Chakra UI) app for editing posts via a web UI. Ignored by th
 | Vercel | Hosting + serverless functions. Auto-deploys from `master`. |
 | Tinylytics | Analytics + hits + kudos widget. Embed-only — no CORS, so client-side fetches don't work. |
 | Behold.so | Instagram feed proxy (build-time fetch). |
-| GitHub API | Recent activity (build-time via Octokit, to avoid client 60/hr rate limit). |
+| GitHub API | Micropub commits (`api/createFileInGitHub.mjs` via Octokit). The old build-time "recent activity" fetch (`_data/github.js`) was removed — it cost ~74% of build time and no template used it. |
+| Pagefind | Static full-text search. `pagefind --site public` runs after the Eleventy build (part of `npm run build`); indexes `data-pagefind-body` regions only. No server / no CORS. |
 | ntfy | Push notifications for the Transmit form. Public topic on `ntfy.sh` by default; topic name acts as the secret. |
 | IndieAuth | Auth for Micropub posting. |
 | Minifocus | "Currently focused on" widget embedded in footer. |
@@ -244,6 +261,15 @@ Can't be fetched from the browser. Use their embed script — add `<span class="
 
 ### Filter performance
 Filters called from `base.njk` / `home-steno.njk` run on every rendered page — hundreds of calls per build. Cache aggressively when inputs don't change (see `postsThisYear` in `config/stats.js` for the pattern).
+
+### Tags are normalised by slug
+493 raw tags with inconsistent casing collapse to ~460 `/tags/<slug>/` pages. `tagList`, the `tagSlug` filter, `relatedByTags`, and the pill links all run tags through `config/slugify.js`, so they always agree — change the slug rule in **one** place. The canonical label shown is the most common original casing.
+
+### Search indexing is opt-in per article
+Pagefind only indexes elements carrying `data-pagefind-body`, which lives on the `<article>` in the *leaf* layouts (`post`/`link`/`micro`/`quote`/`music`/`page`). Listing pages (homepage, archives, tag pages, `/search/`) deliberately omit it so search returns content, not indexes. `post-footer.njk` is `data-pagefind-ignore`d so "Permalink / Reply via Email" doesn't pollute results.
+
+### Heading anchors feed RSS too
+`markdown-it-anchor` adds a `#` permalink to every rendered heading, including content that flows into feeds. The RSS templates pipe `templateContent` through `stripHeaderAnchors` to remove them. If you add a new feed, include that filter.
 
 ### Miniroll embed
 Supports `data-color-mode="light|dark|auto"`. Set the attribute **before** the script loads — create the `<script>` dynamically once theme is resolved. When toggling theme after load, update the iframe's `color_mode` query param.

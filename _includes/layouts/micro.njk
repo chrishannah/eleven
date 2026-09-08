@@ -5,7 +5,7 @@ layout: layouts/base
 {% set postNum = page.url | postNumber(collections.all) %}
 {% set displayTags = (tags or []) | filterTagList %}
 
-<article class="h-entry" data-type="micro">
+<article class="h-entry" data-type="micro" data-pagefind-body>
     {% if image %}
         <img src="{{ image }}" alt="" class="list-card-image"/>
     {% endif %}
@@ -26,7 +26,7 @@ layout: layouts/base
     {% if displayTags.length %}
     <div class="post-tags">
         {% for tag in displayTags %}
-        <span class="post-tag">{{ tag }}</span>
+        <a class="post-tag" href="/tags/{{ tag | tagSlug }}/">{{ tag }}</a>
         {% endfor %}
     </div>
     {% endif %}
