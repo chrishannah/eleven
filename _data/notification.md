@@ -1,1 +1,1 @@
-Check out [Miniroll.app](https://miniroll.app?ref=chrishannah.me), a way to create, share, and explore blogrolls!
+Check out [Text Case](https://textcase.app/), the text transformation app with AI formats, custom flows, and more. For macOS and iOS.

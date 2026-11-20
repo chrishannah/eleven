@@ -236,10 +236,10 @@ hr {
 }
 
 .site-banner-inner {
-    max-width: 760px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0.5rem 1.5rem;
-    text-align: right;
+    text-align: center;
 }
 
 .site-banner a { color: var(--accent); }
