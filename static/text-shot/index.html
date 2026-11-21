@@ -1,172 +1,85 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-	<title>Text Shot</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="keywords" content="app,utility,text shot,image,share" />
-	<meta name="theme-color" content="#fffdfb" media="(prefers-color-scheme: light)">
-	<meta name="theme-color" content="#1d1d1d" media="(prefers-color-scheme: dark)">
-	<script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js" defer></script>
-
-	<style>
-		:root {
-			--accent: #FF8100;
-			--bg: #fffdfb;
-			--link: var(--accent);
-			--link-visited: var(--accent);
-			--link-active: var(--accent);
-			--code-background: rgb(255, 245, 234);
-			--code-text: rgb(211, 31, 31);
-			--hr: #908a83;
-			--table-border: rgb(240, 240, 240);
-			--table-head-bg: rgb(240, 240, 240);
-			--table-row-bg: rgb(255, 245, 234);
-			--table-row-bg-alt: rgb(250, 250, 250);
-			--site-title: rgb(105, 105, 105);
-			--text: rgb(25, 25, 25);
-			--quote-text: rgb(75, 75, 75);
-			--quote-background: rgb(255, 245, 234);
-			--image-frame: rgb(255, 245, 234);
-			--meta-text: rgb(75, 75, 75);
-			--heading-text: rgb(73, 73, 73);
-			--sans-serif: system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-			--serif: "Iowan Old Style", "Iowan", Palatino, Charter, Georgia, serif;
-			--monospace: Consolas, monaco, monospace;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			:root {
-				/* Colours */
-				--bg: #1d1d1d;
-				--hr: rgb(67, 67, 67);
-				--table-border: rgb(37, 37, 37);
-				--table-head-bg: rgb(37, 37, 37);
-				--table-row-bg: rgb(65, 65, 65);
-				--table-row-bg-alt: rgb(50, 50, 50);
-				--site-title: rgb(255, 255, 255);
-				--text: rgb(255, 255, 255);
-				--quote-text: rgb(166, 166, 166);
-				--quote-background: rgb(68, 64, 60);
-				--image-frame: rgb(11, 11, 11);
-				--meta-text: rgb(171, 171, 171);
-				--heading-text: rgb(228, 224, 224);
-			}
-		}
-
-		/* Global */
-		html {
-			background-color: var(--bg);
-			line-height: 1.75;
-			font-size: 1.05rem;
-			color: var(--text);
-			font-family: var(--serif);
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			font-smooth: auto;
-		}
-
-		body {
-			max-width: 80ch;
-			padding: 3em 1em;
-			margin: auto;
-		}
-
-		/* Headings */
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			font-family: var(--serif);
-			color: var(--heading-text);
-		}
-
-		/* Links */
-		a:link {
-			color: var(--link);
-		}
-
-		a:visited {
-			color: var(--link-visited);
-		}
-
-		a:active {
-			color: var(--link-active);
-		}
-
-		#icon {
-			max-width: 120px;
-		}
-
-		img,
-		video {
-			height: auto;
-			width: auto;
-			max-width: 100%;
-		}
-
-		.button {
-			background-color: #AE321E;
-			border: none;
-			border-radius: 8px;
-			color: white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			cursor: pointer;
-			line-height: 1.75;
-			font-size: 1.05rem;
-			font-family: var(--serif);
-		}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text Shot — Words worth sharing</title>
+  <meta name="description" content="Turn a favourite passage into a beautiful, shareable image. Explore Text Shot 2026.1 for iPhone, iPad and Mac, with six image themes and Shortcuts support.">
+  <meta name="theme-color" content="#f8f5ef">
+  <link rel="canonical" href="https://chrishannah.me/text-shot/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Text Shot — Words worth sharing">
+  <meta property="og:description" content="A little more care for the words you want to keep. A look at Text Shot 2026.1 for iPhone, iPad and Mac.">
+  <meta property="og:url" content="https://chrishannah.me/text-shot/">
+  <meta property="og:image" content="https://chrishannah.me/text-shot/images/social-2026.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="/text-shot/images/icon-2026.png">
+  <link rel="stylesheet" href="/text-shot/style.css">
+  <script src="/text-shot/site.js" defer></script>
+  <script src="https://tinylytics.app/embed/e7KoNsv_jq9FizddEYyk.js" defer></script>
 </head>
-
 <body>
-	<img src="/text-shot/images/icon.png" id="icon" />
-	<h1>Text Shot</h1>
-	<p><a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot</a> is a universal
-		(iOS/iPadOS/macOS) application that lets you take text snippets and create beautiful
-		shareable images (text shots).</p>
-
-	<p>You can add a title, source, author, and the quote, or just a few of them!</p>
-	<p>From there, you can choose a theme, font, and a size, to customise how each text shot looks.</p>
-	<p>It also supports styling your text with bold and italics using the Markdown syntax.</p>
-	<p>Check out <a href="https://apps.apple.com/us/app/text-shot/id6450152342">Text Shot on the App Store!</a></p>
-	<h2>Shortcuts Integration</h2>
-	<p>You can also find all of this functionality inside of a "Create Text Shot" action in the Shortcuts app. Which
-		means, you can even build your own automations to make the process of creating and sharing your text shots
-		even easier.</p>
-	<p><a href="https://www.icloud.com/shortcuts/21943fefb09a4dc8bbe317c8ed2010f5">Download the example
-			Shortcut</a>.</p>
-	<h2>Pricing</h2>
-	<p>Text Shot costs £2.99/$2.99/€2.99, and will come as a universal
-		(iOS/iPadOS/macOS) app.</p>
-	<h2>Reviews</h2>
-	<p><em>"Text Shot follows Text Case as an indispensable tool in dealing with text."</em> - <a
-			href="https://www.iphoneblog.de/2023/06/21/text-shot-sperrt-buchstaben-in-ein-png/">iPhoneBlog.de</a>
-	</p>
-	<p><em>"The new App Text Shot creates beautifully prepared images from quotes."</em> - <a
-			href="https://www.wuv.de/Themen/Tech/App-Tipps-zum-Wochenende-Lyd-Text-Shot-und-Rapid-Reminders">W&V</a>
-	</p>
-	<p><em>"Text Shot shares selected texts as graphics."</em> - <a
-			href="https://www.ifun.de/text-shot-teilt-ausgewaehlte-texte-als-grafiken-212378/">ifun.de</a>
-	</p>
-	<h2>Screenshots</h2>
-	<h2>Screenshots</h2>
-	<h3>iPhone</h3>
-	<a href="/text-shot/images/iphone.jpg"><img src="/text-shot/images/iphone-small.jpg" /></a>
-	<h3>iPad</h3>
-	<a href="/text-shot/images/ipad.jpg"><img src="/text-shot/images/ipad-small.jpg" /></a>
-	<h3>Mac</h3>
-	<a href="/text-shot/images/mac.jpg"><img src="/text-shot/images/mac-small.jpg" /></a>
-	<h2>More Information</h2>
-	<p>For information on Text Shot, information on upcoming features, or for a chance to give some feedback, you
-		can <a rel="me" href="https://hachyderm.io/@chrishannah">find Chris Hannah on Mastodon</a>.</p>
-
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/text-shot/" aria-label="Text Shot home"><img src="/text-shot/images/icon-2026.png" width="44" height="44" alt=""><span>Text Shot</span></a>
+    <nav aria-label="Main navigation"><a href="#themes">Themes</a><a href="#apps">The apps</a><a href="#shortcuts">Shortcuts</a></nav>
+    <a class="header-download" href="https://apps.apple.com/app/text-shot/id6450152342" aria-label="View Text Shot on the App Store">App Store</a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">A look at Text Shot 2026.1</p>
+        <h1 id="hero-title">Good words.<br><em>Worth sharing.</em></h1>
+        <p class="intro">A passage from a book. A line you can’t forget. Something of your own. Turn it into an image that gives the words room to speak.</p>
+        <a class="button" href="https://apps.apple.com/app/text-shot/id6450152342">View on the App Store</a>
+        <p class="platforms">For iPhone, iPad &amp; Mac</p>
+        <p class="release-note">2026.1 preview · The new version is being prepared for release.</p>
+      </div>
+      <div class="hero-art" id="themes">
+        <div class="paper-stack">
+          <div class="back-sheet sheet-dark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="back-sheet sheet-red" aria-hidden="true"><span></span><span></span><span></span></div>
+          <figure class="text-shot" data-theme="paper" id="theme-preview" aria-label="Example text shot in the Paper theme">
+            <blockquote><p>Good tools make room for the work. They give you just enough structure, then get out of the way.</p></blockquote>
+            <figcaption><strong>A little room to think</strong><span>Example text for Text Shot</span></figcaption>
+          </figure>
+        </div>
+        <div class="theme-picker" role="group" aria-label="Preview an image theme">
+          <button type="button" data-theme="light" aria-pressed="false"><span class="swatch light"></span>Light</button>
+          <button type="button" data-theme="dark" aria-pressed="false"><span class="swatch dark"></span>Dark</button>
+          <button type="button" data-theme="sepia" aria-pressed="false"><span class="swatch sepia"></span>Sepia</button>
+          <button type="button" data-theme="black" aria-pressed="false"><span class="swatch black"></span>Black</button>
+          <button type="button" data-theme="paper" aria-pressed="true"><span class="swatch paper"></span>Paper</button>
+          <button type="button" data-theme="red" aria-pressed="false"><span class="swatch red"></span>Red</button>
+        </div>
+        <p class="theme-caption" id="theme-caption" aria-live="polite">Paper — clean ivory, charcoal ink.</p>
+        <p class="demo-note">An illustrated theme preview. Choose a colour to try it.</p>
+      </div>
+    </section>
+    <section class="workflow wrap" aria-label="How Text Shot works">
+      <div><span class="little-rule" aria-hidden="true"></span><h2>Start with the words.</h2><p>Paste your passage, then add a title, author or source. Use just the details you need.</p></div>
+      <div><span class="little-rule" aria-hidden="true"></span><h2>Make it yours.</h2><p>Pick an image theme, font and width. Keep bold and italic emphasis with Markdown.</p></div>
+      <div><span class="little-rule" aria-hidden="true"></span><h2>Send it on.</h2><p>Check the preview, then export a PNG to save or share wherever the conversation takes you.</p></div>
+    </section>
+    <section class="workspace" id="apps" aria-labelledby="apps-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">A new place for your words</p><h2 id="apps-title">A little room<br>to <em>work.</em></h2><p>A refreshed editor keeps your text, its appearance and the finished image close at hand. On iPad and Mac, edit beside the preview and see your changes as you make them.</p></div>
+        <figure class="mac-showcase"><a href="/text-shot/images/mac-workspace-clean-2026.webp" aria-label="Open the Mac workspace image"><img src="/text-shot/images/mac-workspace-clean-2026.webp" width="1600" height="1000" loading="lazy" alt="Text Shot on Mac, with the passage and attribution editor beside a live preview."></a><figcaption>The Mac workspace · Text Shot 2026.1</figcaption></figure>
+        <div class="workspace-details"><p><strong>Your workspace, your colours.</strong> Choose Light, Dark, Paper or Red for the app itself, independently of your image’s theme.</p><p><strong>Made for the space you have.</strong> Focused tabs on iPhone. An editor beside the preview on larger screens. Fold-aware layouts on iPhone Duo.</p></div>
+      </div>
+    </section>
+    <section class="mobile-section wrap" aria-labelledby="mobile-title">
+      <div class="mobile-copy"><p class="eyebrow">From a passing thought to a PNG</p><h2 id="mobile-title">Keep the words.<br><em>Skip the fuss.</em></h2><p>Move between Content, Appearance and Preview on iPhone. Give a favourite excerpt a clean paper background, the warmth of Sepia or a bold red canvas.</p><p>Image themes and app appearance are separate, so a dark workspace can still produce a bright image.</p><a class="text-link" href="#themes">Explore the six image themes</a></div>
+      <div class="phone-pair"><figure class="phone phone-content"><img src="/text-shot/images/iphone-content-2026.webp" width="550" height="1195" loading="lazy" alt="The iPhone Content tab, with fields for the passage, title, author and source."><figcaption>Add your words</figcaption></figure><figure class="phone phone-appearance"><img src="/text-shot/images/iphone-appearance-2026.webp" width="550" height="1195" loading="lazy" alt="The iPhone Appearance tab, with image theme, font and width controls."><figcaption>Choose their look</figcaption></figure></div>
+    </section>
+    <section class="shortcuts-section wrap" id="shortcuts" aria-labelledby="shortcuts-title">
+      <div class="shortcut-mark" aria-hidden="true"><span></span><span></span></div>
+      <div><p class="eyebrow">Part of your workflow</p><h2 id="shortcuts-title">The same care.<br><em>One less step.</em></h2><p>The <strong>Create Text Shot</strong> action brings your text, attribution, theme, fonts and image size into Shortcuts. Add it to your own workflow and get a PNG back, ready for the next action.</p><a class="text-link" href="https://www.icloud.com/shortcuts/21943fefb09a4dc8bbe317c8ed2010f5">See the example Shortcut</a></div>
+    </section>
+    <section class="closing wrap" aria-labelledby="closing-title"><img src="/text-shot/images/icon-2026.png" width="72" height="72" alt=""><p class="eyebrow">Text Shot for iPhone, iPad &amp; Mac</p><h2 id="closing-title">For the words<br>you want to <em>keep.</em></h2><a class="button" href="https://apps.apple.com/app/text-shot/id6450152342">View on the App Store</a><p class="requirements">2026.1 requires iOS / iPadOS 17 or macOS 14 and later.<br>Fold-aware arrangements require iPhone Duo and iOS 27.1 or later.</p></section>
+  </main>
+  <footer class="wrap site-footer"><p>Made by <a href="https://chrishannah.me/">Chris Hannah</a>.</p><nav aria-label="More information"><a href="/apps/text-shot/privacy-policy/">Privacy policy</a><a href="mailto:me@chrishannah.me?subject=Text%20Shot">Get in touch</a><a href="https://hachyderm.io/@chrishannah" rel="me">Mastodon</a></nav></footer>
 </body>
-
 </html>
